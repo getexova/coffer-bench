@@ -1,0 +1,4 @@
+2026-10-30T15:24:49.799Z setup: up_rc=0 up_ms=43131 readyz_status=200
+2026-10-30T15:24:49.799Z ASSERT ok   not(up.sh rc=0 (want 0))
+2026-10-30T15:24:49.799Z ASSERT ok   not(up.sh took 43131 ms (want <= 180000))
+2026-10-30T15:24:49.799Z ASSERT ok   not(/readyz after up.sh -> 200 (want 200))

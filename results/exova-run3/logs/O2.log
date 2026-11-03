@@ -1,0 +1,3 @@
+2026-10-29T12:55:40.975Z server Config.User='10001:10001' State.Pid=222398 Running=True
+2026-10-29T12:55:40.983Z pid 222398 host Uid=[599824, 599824, 599824, 599824] container Uid=[10001, 10001, 10001, 10001] cmd=/usr/local/bin/coffer server 
+2026-10-29T12:55:40.983Z ASSERT ok   not(server pid 222398 runs as container uid [10001, 10001, 10001, 10001] (/usr/local/bin/coffer server))

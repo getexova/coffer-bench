@@ -1,0 +1,162 @@
+2026-10-29T12:53:45.540735Z $ git clone /home/grader1/build-1.bundle /home/grader1/work-r2/repo -> rc=0 ms=54
+2026-10-29T12:53:45.540804Z   stderr: Cloning into '/home/grader1/work-r2/repo'...
+
+2026-10-29T12:53:45.542266Z $ git -C /home/grader1/work-r2/repo rev-parse HEAD -> rc=0 ms=1
+2026-10-29T12:53:45.542306Z   stdout: b5426446177dd2d3f5284be88ddd3951100ce35b
+
+2026-10-29T12:53:45.702284Z $ podman compose version -> rc=0 ms=160
+2026-10-29T12:53:45.702349Z   stdout: podman version 5.8.9
+podman-compose version 1.6.0
+
+2026-10-29T12:53:45.702363Z   stderr: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:53:45.730413Z $ ./scripts/init-env.sh -> rc=0
+2026-10-29T12:53:45.730459Z   stdout: 
+Wrote /home/grader1/work-r2/repo/.env (mode 0600) with a new master key and new database passwords.
+
+Platform admin email:    admin@coffer.local
+Platform admin password: «COFFER_BOOTSTRAP_ADMIN_PASSWORD»
+
+This password is printed once. It is also in .env in plaintext; nothing else
+stores it. Copy it somewhere safe now.
+
+Next: ./scripts/up.sh
+
+2026-10-29T12:53:45.730477Z   stderr: 
+2026-10-29T12:54:39.308026Z $ bash ./scripts/build.sh -> rc=0 ms=53577
+2026-10-29T12:54:39.308088Z   stdout: build path: container image golang:1.27.3-bookworm via podman (no host Go toolchain found)
+Built ./bin/coffer (18597385 bytes, linux/amd64, CGO disabled) with the golang:1.27.3-bookworm container via podman.
+
+2026-10-29T12:54:39.308105Z   stderr: Resolved "golang" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/golang:1.27.3-bookworm...
+Getting image source signatures
+Copying blob sha256:ecefd74a6ba2830f8be79208202ad3ba7bc6103609e42b20fed6d5e8c338fd74
+Copying blob sha256:49dd0ae7831394e9635b737d684810716dadcb662b5b9b80eefd89cee1d65395
+Copying blob sha256:a4aa977c0d0eb2336dad68941e458308ebf32a717c19ea72e475b9eda8035506
+Copying blob sha256:600a4386f65ac142c264435c0fb8e00cf6af4083235bb6b2893724fc3e91ff96
+Copying blob sha256:661ef7e1e7b1a9919ab256de1deb5be9107b28a15fea74b39921bec95b713038
+Copying blob sha256:82e0bb27ae78502103ed383ed33346f88a83943fb7bd93977850d5890ee8fb3b
+Copying blob sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1
+Copying config sha256:f5d48661d11d8c3f1e8a3b477f2865c72b4ff7651a7c593d49f4b77b2fc1a804
+Writing manifest to image destination
+go: downloading github.com/jackc/pgx/v5 v5.11.0
+go: downloading golang.org/x/crypto v0.58.0
+go: downloading github.com/jackc/pgpassfile v1.0.0
+go: downloading github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761
+go: downloading golang.org/x/text v0.43.0
+go: downloading github.com/jackc/puddle/v2 v2.2.2
+go: downloading golang.org/x/sys v0.49.0
+go: downloading golang.org/x/sync v0.24.0
+
+2026-10-29T12:54:39.650326Z $ podman pull -q docker.io/library/postgres:16 -> rc=0 ms=318
+2026-10-29T12:54:39.650387Z   stdout: 74d436cb49d3398cf7b5d7b33635d43623d9e4da4b93c22db453f7d5d81181b1
+
+2026-10-29T12:54:39.741526Z $ podman create --name coffer-grade-ctl-Un1sAr postgres:16 true -> rc=0 ms=70
+2026-10-29T12:54:39.741585Z   stdout: 88f189921f43de87744fe05e52379354a619f9064be02015fe2a7f1851bc7298
+
+2026-10-29T12:54:39.797400Z $ podman rm -f coffer-grade-ctl-Un1sAr -> rc=0 ms=56
+2026-10-29T12:54:39.797454Z   stdout: coffer-grade-ctl-Un1sAr
+
+2026-10-29T12:54:39.797481Z ENV prep ok: pull rc=0, control create postgres:16 rc=0, store=['docker.io/library/postgres:16 74d436cb49d3', '(total images: 2)']
+2026-10-29T12:55:27.290913Z $ bash ./scripts/up.sh -> rc=0 ms=47491
+2026-10-29T12:55:27.290990Z   stdout: Starting the Coffer stack with: docker compose
+[1/2] STEP 1/5: FROM golang:1.27.3-bookworm AS build
+[1/2] STEP 2/5: WORKDIR /src
+--> 1c82cac64d42
+[1/2] STEP 3/5: ENV CGO_ENABLED=0     GOOS=linux     GOTOOLCHAIN=local
+--> cc628e86d63e
+[1/2] STEP 4/5: COPY . .
+--> 37c523e79541
+[1/2] STEP 5/5: RUN go build -trimpath -o /out/bin/coffer ./cmd/coffer
+--> 785027702a07
+[2/2] STEP 1/9: FROM alpine:3.22@sha256:dc92f017beea8e7f43263073d717f7bc011228c95d5312e440deb4d035bb4eec
+[2/2] STEP 2/9: RUN adduser -D -u 10001 -h /home/coffer coffer
+--> 05ab98ed3f91
+[2/2] STEP 3/9: COPY --from=build /out/bin/coffer /usr/local/bin/coffer
+--> fd13e92bee55
+[2/2] STEP 4/9: ENV COFFER_BIND_ADDR=0.0.0.0     COFFER_PORT=8420
+--> 8c64049d3d28
+[2/2] STEP 5/9: USER 10001:10001
+--> cd5c047fe864
+[2/2] STEP 6/9: WORKDIR /home/coffer
+--> 768f91c9d59b
+[2/2] STEP 7/9: EXPOSE 8420
+--> 3ba042813b0f
+[2/2] STEP 8/9: ENTRYPOINT ["/usr/local/bin/coffer"]
+--> 142f85755b97
+[2/2] STEP 9/9: CMD ["server"]
+[2/2] COMMIT repo_server
+--> b85b0978c6b5
+Successfully tagged localhost/repo_server:latest
+b85b0978c6b55b2d3c1c3c143ad5efd9c9c9d2a02b19e9ff4f542fafb6847552
+74d436cb49d3398cf7b5d7b33635d43623d9e4da4b93c22db453f7d5d81181b1
+1426fac71723003429098aec469eb051a9005ee985773bf010b231fc50fa2f4a
+7829af2b3a7901db2155eef47ef3a02565e41442b243d15aae7847ff0fcb138b
+4123e24771057c89084f43e534dc460a0e0b93967a526e6e71a140d9c35fd740
+repo_db_1
+repo_server_1
+Waiting up to 180 s for http://127.0.0.1:8420/readyz
+
+Coffer is ready (after 1 s).
+API: http://127.0.0.1:8420/api/v1
+Health: http://127.0.0.1:8420/readyz
+
+2026-10-29T12:55:27.291017Z   stderr: Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mgo: downloading github.com/jackc/pgx/v5 v5.11.0
+go: downloading golang.org/x/crypto v0.58.0
+go: downloading github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761
+go: downloading github.com/jackc/pgpassfile v1.0.0
+go: downloading golang.org/x/text v0.43.0
+go: downloading github.com/jackc/puddle/v2 v2.2.2
+go: downloading golang.org/x/sync v0.24.0
+go: downloading golang.org/x/sys v0.49.0
+Resolved "alpine" as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/alpine@sha256:dc92f017beea8e7f43263073d717f7bc011228c95d5312e440deb4d035bb4eec...
+Getting image source signatures
+Copying blob sha256:63e7e49699e8f5b93162e14c630db8294f87799bfec4376677160876bd6840dc
+Copying config sha256:24ab38714e948bd49d24d566e97c1c104b63f85c2e642685e72393b37cfb9862
+Writing manifest to image destination
+Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:55:27.292493Z GET /readyz -> 200
+2026-10-29T12:55:27.316652Z S4b containers: {'db': '7829af2b3a79', 'server': '4123e2477105'}
+2026-10-29T12:55:27.818594Z S5: proxy_url=http://127.0.0.1:18420 pid=222457 err=None
+2026-10-29T12:55:27.933343Z S6: POST /api/v1/auth/token as root -> 200
+2026-10-29T12:55:28.124931Z $ /home/grader1/work-r2/repo/bin/coffer login --email admin@coffer.local -> rc=0 ms=191
+2026-10-29T12:55:28.124992Z   stdout: Logged in as admin@coffer.local
+
+2026-10-29T12:55:28.235995Z $ /home/grader1/work-r2/repo/bin/coffer --json whoami -> rc=0 ms=111
+2026-10-29T12:55:28.236060Z   stdout: {"organization":null,"role":"platform_admin","user":{"email":"admin@coffer.local","id":"usr_e1b1df3c7bb991c481463850"}}
+
+2026-10-29T13:04:42.040012Z $ bash ./scripts/down.sh -> rc=0 ms=1026
+2026-10-29T13:04:42.040073Z   stdout: Stopping the Coffer stack with: docker compose down
+repo_server_1
+repo_db_1
+repo_server_1
+repo_db_1
+bd93f72e75dba17bab35478abd2d189cdcd8fae116b152e77febdc0b578d91e2
+repo_default
+Stack stopped. The db_data volume was kept, so ./scripts/up.sh brings back
+every secret, version and audit event.
+
+2026-10-29T13:04:42.040087Z   stderr: Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:04:42.426522Z $ podman compose down -v -> rc=0 ms=386
+2026-10-29T13:04:42.426586Z   stdout: repo_db_data
+
+2026-10-29T13:04:42.426600Z   stderr: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mError: no container with name or ID "repo_db_1" found: no such container
+Error: no container with name or ID "repo_server_1" found: no such container
+Error: no container with ID or name "repo_server_1" found: no such container
+Error: no container with ID or name "repo_db_1" found: no such container
+Error: no pod with name or ID pod_repo found: no such pod
+
+2026-10-29T13:04:42.427196Z teardown: {"started": "2026-10-29T13:04:36.381560Z", "snapshot": "ok", "proxy": "stopped", "down_rc": 0, "down_v_rc": 0, "bind_removed": [], "finished": "2026-10-29T13:04:42.427157Z"}

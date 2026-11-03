@@ -1,0 +1,251 @@
+2026-10-29T12:55:44.773Z GIT rev-list --count HEAD -> rc=0 2ms err=
+2026-10-29T12:55:44.804Z GIT log --stat --format=%h %ad %s --date=iso-strict HEAD -> rc=0 31ms err=
+2026-10-29T12:55:44.805Z E6 git log --stat (first 12000 chars):
+b542644 2026-10-29T06:21:47Z commit 37
+
+ docs/PRODUCT.md | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+fddc46f 2026-10-29T06:16:30Z commit 36
+
+ docs/PRODUCT.md | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+e20fb57 2026-10-29T05:40:55Z commit 35
+
+ docs/DECISIONS.md | 58 ++++++++++++++++++++++++++++---------------------------
+ docs/SECURITY.md  | 11 +++++++++++
+ 2 files changed, 41 insertions(+), 28 deletions(-)
+972f403 2026-10-29T05:36:19Z commit 34
+
+ .env.example                   | 10 ++++++++
+ docs/CONTRACTS.md              |  2 ++
+ docs/DECISIONS.md              | 38 +++++++++++++++++++++--------
+ internal/config/config_test.go | 54 ++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 94 insertions(+), 10 deletions(-)
+aad6ba7 2026-10-29T05:32:21Z commit 33
+
+ internal/config/config.go | 47 ++++++++++++++++++++++++++++++++++++++++++++++-
+ internal/store/db.go      | 31 +++++++++++++++++++++++++++++++
+ 2 files changed, 77 insertions(+), 1 deletion(-)
+c51ed34 2026-10-29T05:30:54Z commit 32
+
+ review.md | 52 +++++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 47 insertions(+), 5 deletions(-)
+352ece9 2026-10-29T05:26:30Z commit 31
+
+ internal/api/secretsapi/audit_test.go        |  44 ------
+ internal/api/secretsapi/gate_central_test.go | 202 +++++++++++++++++++++++++++
+ review.md                                    |  70 ++++++++++
+ 3 files changed, 272 insertions(+), 44 deletions(-)
+93d4b9e 2026-10-29T05:22:28Z commit 30
+
+ internal/api/auditapi/api_test.go           |  68 ++++++++++++-----
+ internal/api/auditapi/audit.go              | 110 ++++++----------------------
+ internal/api/secretsapi/common.go           |  56 +++-----------
+ internal/httpapi/mustchange_central_test.go |  97 ++++++++++++++++++++++--
+ 4 files changed, 173 insertions(+), 158 deletions(-)
+d1d342a 2026-10-29T05:19:35Z commit 29
+
+ docs/DECISIONS.md | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+d4be698 2026-10-29T05:14:49Z commit 28
+
+ internal/httpapi/mustchange_central_test.go | 145 ++++++++++++++++++++++++++++
+ 1 file changed, 145 insertions(+)
+e78185a 2026-10-28T21:07:34Z commit 27
+
+ cmd/coffer/serve.go                     |  25 ++++++++
+ internal/api/authapi/auth.go            |  79 ++++++++-----------------
+ internal/api/authapi/mustchange_test.go | 102 ++++++++++++++++++++++++++++++++
+ internal/httpapi/router.go              |  76 +++++++++++++++++++-----
+ internal/httpapi/router_test.go         |  66 +++++++++++++++++++++
+ internal/reqctx/reqctx.go               |  24 ++++----
+ 6 files changed, 293 insertions(+), 79 deletions(-)
+fa601ba 2026-10-28T21:03:01Z commit 26
+
+ internal/api/authapi/auth.go | 51 ++++++++++++++++++++++++++++++++--
+ internal/httpapi/router.go   | 66 ++++++++++++++++++++++++++++++++++++++++++++
+ internal/reqctx/reqctx.go    | 15 ++++++++++
+ 3 files changed, 130 insertions(+), 2 deletions(-)
+d4872cb 2026-10-28T20:58:48Z commit 25
+d71b451 2026-10-28T20:58:22Z commit 24
+
+ internal/api/secretsapi/common.go | 59 +++++++++++++++++++++++++++++++++------
+ 1 file changed, 51 insertions(+), 8 deletions(-)
+b18d7e2 2026-10-28T20:55:15Z commit 23
+
+ internal/api/secretsapi/audit_test.go   |  93 +++++++++++++++++++++++++++
+ internal/api/secretsapi/secrets_test.go | 107 --------------------------------
+ internal/httpx/httpx_test.go            |  69 ++++++++++++++++++++
+ internal/store/role_test.go             |  66 ++++++++++++++++++++
+ internal/store/source_test.go           |  16 +++++
+ 5 files changed, 244 insertions(+), 107 deletions(-)
+4fd27d5 2026-10-28T20:54:05Z commit 22
+
+ docs/DECISIONS.md                       |  32 +++
+ internal/api/auditapi/api_test.go       | 202 ++++++++++++++++
+ internal/api/auditapi/audit.go          | 134 +++++++++++
+ internal/api/secretsapi/changes.go      |   9 +
+ internal/api/secretsapi/common.go       |  30 +++
+ internal/api/secretsapi/export.go       |   3 +
+ internal/api/secretsapi/secrets.go      |  21 ++
+ internal/api/secretsapi/secrets_test.go | 107 +++++++++
+ internal/httpx/httpx.go                 | 136 +++++++++--
+ internal/store/db.go                    |  58 ++++-
+ review.md                               | 398 ++++++++++++++++++++++++++++++++
+ 11 files changed, 1106 insertions(+), 24 deletions(-)
+58f446c 2026-10-28T20:34:27Z commit 21
+
+ docs/DECISIONS.md | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+0a415f6 2026-10-28T20:33:30Z commit 20
+
+ docs/DECISIONS.md | 33 ++++++++++++++++++++++++++-------
+ 1 file changed, 26 insertions(+), 7 deletions(-)
+fe0c46a 2026-10-28T20:29:45Z commit 19
+
+ cmd/coffer/auth.go                      |  10 ++
+ cmd/coffer/config_test.go               |  61 ++++++++++++
+ docs/SLICE-AUTH.md                      |  31 ++++--
+ internal/api/authapi/auth.go            |  30 ++----
+ internal/api/authapi/authz_db_test.go   |  71 +++++++++++---
+ internal/api/authapi/members.go         |  40 ++++----
+ internal/api/secretsapi/secrets.go      |  19 ++++
+ internal/api/secretsapi/secrets_test.go | 168 ++++++++++++++++++++++++++++++++
+ internal/store/secrets/store.go         |  15 ++-
+ 9 files changed, 381 insertions(+), 64 deletions(-)
+304e157 2026-10-28T19:39:56Z commit 18
+
+ docs/CONTRACTS.md |  1 +
+ docs/DECISIONS.md | 82 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 83 insertions(+)
+23d6d2b 2026-10-28T19:39:18Z commit 17
+
+ .../api/authapi/{handlers_admin.go => admin.go}    |  19 +
+ internal/api/authapi/{handlers_auth.go => auth.go} | 217 +++++++--
+ .../authapi/{handlers_members.go => members.go}    |  61 +++
+ internal/api/authapi/middleware.go                 | 420 ++++++++++++++++++
+ internal/api/authapi/platform.go                   | 486 ++-------------------
+ .../authapi/{handlers_tenancy.go => projects.go}   | 246 ++---------
+ internal/api/authapi/{routes.go => register.go}    |  16 +
+ internal/api/authapi/tokens.go                     | 269 ++++++++++++
+ 8 files changed, 1036 insertions(+), 698 deletions(-)
+0c7a60a 2026-10-28T19:36:26Z commit 16
+
+ docs/SLICE-AUTH.md | 96 ++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 83 insertions(+), 13 deletions(-)
+f4f3522 2026-10-28T19:31:01Z commit 15
+
+ internal/httpapi/router.go | 35 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
+57e9a8a 2026-10-28T19:22:55Z commit 14
+
+ internal/httpapi/server.go | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+186b232 2026-10-28T18:34:34Z commit 13
+
+ cmd/coffer/{cmd_admin.go => admin.go}           |   0
+ cmd/coffer/{cmd_audit.go => audit.go}           |   0
+ cmd/coffer/{cmd_audit_test.go => audit_test.go} |   0
+ cmd/coffer/{cmd_auth.go => auth.go}             |   0
+ cmd/coffer/changes.go                           | 122 ++++++++++++++++++++++++
+ cmd/coffer/{cmd_member.go => members.go}        |   0
+ cmd/coffer/{cmd_project.go => projects.go}      |   0
+ cmd/coffer/{cmd_run.go => run.go}               |   0
+ cmd/coffer/{cmd_secrets.go => secrets.go}       |   0
+ cmd/coffer/{cmd_change.go => tokens.go}         | 116 ----------------------
+ docs/CLI.md                                     |  19 ++--
+ 11 files changed, 132 insertions(+), 125 deletions(-)
+a083009 2026-10-28T18:30:44Z commit 12
+
+ internal/api/secretsapi/audit_test.go | 42 +++++++++++++++++++++++++++++++---
+ internal/store/secrets/raw_test.go    | 43 ++++++++++++++++++++++++++++++++---
+ 2 files changed, 79 insertions(+), 6 deletions(-)
+ec69a0d 2026-10-28T18:29:00Z commit 11
+
+ cmd/coffer/cmd_auth.go                           |   7 +-
+ cmd/coffer/config_test.go                        |  14 ++
+ docs/SLICE-SECRETS.md                            | 199 +++++++++++++++++++++++
+ internal/api/auditapi/{handlers.go => audit.go}  |   0
+ internal/api/secretsapi/{dotenv.go => export.go} |  66 ++++++++
+ internal/api/secretsapi/secrets.go               |  52 ------
+ internal/crypto/rotate.go                        | 113 +++++++++++++
+ internal/crypto/sealer.go                        |  96 -----------
+ internal/httpapi/server_test.go                  |  86 ++++++++++
+ 9 files changed, 484 insertions(+), 149 deletions(-)
+68506f1 2026-10-28T18:25:10Z commit 10
+
+ .gitignore                    |   2 +-
+ cmd/coffer/client.go          | 193 ++++++++++++++++++
+ cmd/coffer/cmd_admin.go       | 192 ++++++++++++++++++
+ cmd/coffer/cmd_audit.go       | 139 +++++++++++++
+ cmd/coffer/cmd_audit_test.go  | 107 ++++++++++
+ cmd/coffer/cmd_auth.go        | 233 ++++++++++++++++++++++
+ cmd/coffer/cmd_change.go      | 275 ++++++++++++++++++++++++++
+ cmd/coffer/cmd_member.go      | 299 ++++++++++++++++++++++++++++
+ cmd/coffer/cmd_project.go     | 180 +++++++++++++++++
+ cmd/coffer/cmd_run.go         | 197 +++++++++++++++++++
+ cmd/coffer/cmd_secrets.go     | 444 ++++++++++++++++++++++++++++++++++++++++++
+ cmd/coffer/commands_test.go   | 162 +++++++++++++++
+ cmd/coffer/config.go          | 227 +++++++++++++++++++++
+ cmd/coffer/config_test.go     | 350 +++++++++++++++++++++++++++++++++
+ cmd/coffer/errors.go          |  85 ++++++++
+ cmd/coffer/exitcode_test.go   | 244 +++++++++++++++++++++++
+ cmd/coffer/flags.go           | 215 ++++++++++++++++++++
+ cmd/coffer/format_test.go     | 168 ++++++++++++++++
+ cmd/coffer/harness_test.go    | 252 ++++++++++++++++++++++++
+ cmd/coffer/input.go           |  75 +++++++
+ cmd/coffer/json_test.go       | 191 ++++++++++++++++++
+ cmd/coffer/main.go            | 363 ++++++++++++++++++++++++++++++++++
+ cmd/coffer/output.go          | 217 +++++++++++++++++++++
+ cmd/coffer/run_signal_test.go |  97 +++++++++
+ cmd/coffer/run_test.go        | 209 ++++++++++++++++++++
+ cmd/coffer/secrets_test.go    | 216 ++++++++++++++++++++
+ cmd/coffer/serve.go           | 144 ++++++++++++++
+ cmd/coffer/tty.go             |  23 +++
+ cmd/coffer/types.go           | 297 ++++++++++++++++++++++++++++
+ cmd/coffer/validate.go        | 151 ++++++++++++++
+ 30 files changed, 5946 insertions(+), 1 deletion(-)
+386e528 2026-10-28T18:24:17Z commit 9
+
+ internal/api/secretsapi/secrets_test.go | 38 +++++++++++++++++++++++++++++++++
+ internal/httpapi/server.go              | 13 +++++++----
+ scripts/test.sh                         | 10 ++++-----
+ 3 files changed, 52 insertions(+), 9 deletions(-)
+b355a7c 2026-10-28T18:21:33Z commit 8
+
+ internal/api/secretsapi/audit_test.go      | 77 ++++++++++++++++++++++--
+ internal/api/secretsapi/real_audit_test.go | 15 +++--
+ internal/api/secretsapi/secrets_test.go    | 23 -------
+ internal/audit/append.go                   | 70 ++++++++++++++++++----
+ internal/audit/append_test.go              | 96 +++++++++++++++++++++++++++++-
+ 5 files changed, 234 insertions(+), 47 deletions(-)
+118632d 2026-10-28T18:17:48Z commit 7
+
+ README.md                                  |  62 ++-
+ docs/CLI.md                                | 188 +++++++
+ docs/FOUNDATION.md                         | 354 +++++++++++++
+ docs/OPS.md                                | 218 ++++++++
+ docs/SLICE-AUTH.md                         | 145 +++++
+ internal/api/auditapi/api_test.go          | 579 ++++++++++++++++++++
+ internal/api/auditapi/handlers.go          | 291 ++++++++++
+ internal/api/auditapi/register.go          |  46 +-
+ internal/api/authapi/authz_db_test.go      |  48 +-
+ internal/api/authapi/handlers_admin.go     |   5 +
+ internal/api/authapi/handlers_members.go   |  35 +-
+ internal/api/authapi/handlers_tenancy.go   |  15 +-
+ internal/api/secretsapi/audit_test.go      | 405 ++++++++++++++
+ internal/api/secretsapi/common.go          |  22 +-
+ internal/api/secretsapi/real_audit_test.go | 279 ++++++++++
+ internal/api/secretsapi/secrets_test.go    | 805 ++++++++++++++++++++++++++++
+ internal/audit/append.go                   |  16 +-
+ internal/audit/append_test.go              | 815 +++++++++++++++++++++++++++++
+ internal/audit/chain_test.go               | 550 +++++++++++++++++++
+ internal/audit/event.go                    |   8 +
+ internal/audit/verify.go                   |  30 +-
+ internal/httpapi/router.go                 |  72 ++-
+ internal/httpapi/r
+2026-10-29T12:55:44.836Z GIT log --no-merges --numstat --format=@@C %H %ct %s HEAD -> rc=0 31ms err=
+2026-10-29T12:55:44.837Z E6 summary: {'commits': 37, 'non_merge': 37, 'touching': 36, 'added_lines_first_party': 38523, 'excluded_lines': {'lockfile': 30, 'vendor': 0, 'generated': 0}, 'largest_commit': 'fa2e204119', 'largest_subject': 'commit 6', 'largest_share': 0.201, 'unit': 'lines', 'span_hours': 14.66, 'per_commit': [{'sha': 'b542644617', 'first_party_lines': 4, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'fddc46f8ec', 'first_party_lines': 21, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'e20fb5798f', 'first_party_lines': 41, 'files': 2, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '972f403f16', 'first_party_lines': 94, 'files': 4, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'aad6ba7824', 'first_party_lines': 77, 'files': 2, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'c51ed3423e', 'first_party_lines': 47, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '352ece9c63', 'first_party_lines': 272, 'files': 3, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '93d4b9ecfa', 'first_party_lines': 173, 'files': 4, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'd1d342a402', 'first_party_lines': 26, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'd4be698107', 'first_party_lines': 145, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'e78185a631', 'first_party_lines': 293, 'files': 6, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'fa601ba139', 'first_party_lines': 130, 'files': 3, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'd4872cba49', 'first_party_lines': 0, 'files': 0, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'd71b45147c', 'first_party_lines': 51, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'b18d7e29ce', 'first_party_lines': 244, 'files': 5, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '4fd27d5d79', 'first_party_lines': 1106, 'files': 11, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '58f446caac', 'first_party_lines': 17, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '0a415f63a8', 'first_party_lines': 26, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'fe0c46a217', 'first_party_lines': 381, 'files': 9, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '304e157b65', 'first_party_lines': 83, 'files': 2, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '23d6d2b535', 'first_party_lines': 1036, 'files': 8, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '0c7a60afe7', 'first_party_lines': 83, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'f4f35222fc', 'first_party_lines': 34, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '57e9a8ade4', 'first_party_lines': 32, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '186b232b5a', 'first_party_lines': 132, 'files': 11, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'a083009c13', 'first_party_lines': 79, 'files': 2, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'ec69a0dd5a', 'first_party_lines': 484, 'files': 9, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '68506f13a1', 'first_party_lines': 5946, 'files': 30, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '386e528d8b', 'first_party_lines': 52, 'files': 3, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'b355a7c4d4', 'first_party_lines': 234, 'files': 5, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '118632dee2', 'first_party_lines': 6674, 'files': 36, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'fa2e204119', 'first_party_lines': 7748, 'files': 49, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '47178161e6', 'first_party_lines': 4350, 'files': 35, 'excluded': {'lockfile': 30, 'vendor': 0, 'generated': 0}}, {'sha': 'd61dc7bcb9', 'first_party_lines': 4281, 'files': 20, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'a3b2a76a02', 'first_party_lines': 3813, 'files': 26, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '47908cc4ee', 'first_party_lines': 8, 'files': 1, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '89976e1820', 'first_party_lines': 306, 'files': 2, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}]}
+2026-10-29T12:55:44.837Z ASSERT ok   not(commits reachable from HEAD = 37 (want > 1))
+2026-10-29T12:55:44.837Z ASSERT ok   not(commits that change files = 36 (want >= 2))
+2026-10-29T12:55:44.837Z ASSERT ok   not(largest commit fa2e204119 holds 20% of added lines (first-party, dump threshold 80%))

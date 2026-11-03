@@ -1,0 +1,122 @@
+# golangci-lint v2 configuration (CI pins golangci-lint v2.15.0).
+#
+# Every exclusion below is deliberate and narrow (matched by path + rule + source
+# text, never by line number), with the reason next to it. Do not widen them;
+# add a justified `//nolint:<linter> // reason` at the call site instead.
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+  build-tags:
+    - e2e
+
+linters:
+  default: none
+  enable:
+    - govet
+    - staticcheck
+    - errcheck
+    - gosec
+    - ineffassign
+    - unused
+    - bodyclose
+    - misspell
+  settings:
+    errcheck:
+      exclude-functions:
+        - (io.Closer).Close
+        - (net/http.ResponseWriter).Write
+        # `defer tx.Rollback(ctx)` is the idiomatic pgx pattern: after Commit it is a
+        # no-op returning ErrTxClosed, and on an error path the original error is
+        # what matters. A failed rollback closes the connection anyway.
+        - (github.com/jackc/pgx/v5.Tx).Rollback
+    gosec:
+      excludes:
+        # G104 duplicates errcheck.
+        - G104
+        # G115 (int conversions) is noisy on bounded lengths/indices.
+        - G115
+        # G407 misfires on nonce-prefixed AEAD output where the nonce slice is filled by crypto/rand.
+        - G407
+  exclusions:
+    generated: lax
+    presets:
+      - std-error-handling
+    rules:
+      # Tests legitimately spawn subprocesses, use fixed file paths and weak
+      # randomness, and ignore errors of best-effort setup/cleanup statements
+      # (a real failure surfaces as a failing assertion).
+      - path: _test\.go
+        linters:
+          - gosec
+          - errcheck
+      - path: internal/server/testutil/
+        linters:
+          - gosec
+          - errcheck
+      - path: test/e2e/
+        linters:
+          - gosec
+          - errcheck
+      # The e2e package is a black-box helper library; not every helper is used by
+      # every test at every commit.
+      - path: test/e2e/
+        linters:
+          - unused
+
+      # Test-only dead store (the first `out` of this test is never read). Belongs to
+      # the CLI test; harmless, and this rule stops matching once it is rewritten
+      # as `code, _, stderr := ...`.
+      - path: internal/cli/cli_test\.go
+        linters: [ineffassign, staticcheck]
+        source: 'code, out, stderr := h\.run\("secrets", "set", "K", "-p", "a", "-e", "b", "--expect-version", "6"'
+
+      # --- errcheck: intentional best-effort calls in production code -----------
+      # Releasing the migration advisory lock on the dedicated connection: if the
+      # unlock fails the session (and therefore the lock) ends with the connection.
+      - path: internal/server/db/db\.go
+        linters: [errcheck]
+        source: 'defer conn\.Exec\(.*pg_advisory_unlock'
+      # Shutdown: we only wait for Boot to return; its error was already handled
+      # (or is moot because we are shutting down).
+      - path: internal/server/app/app\.go
+        linters: [errcheck]
+        source: '^\s*<-bootErr\b'
+      # CLI help/table output to stdout: there is nothing useful to do if writing
+      # to the user's terminal fails.
+      - path: internal/cli/(commands|output)\.go
+        linters: [errcheck]
+        source: '^\s*io\.WriteString\(w, b\.String\(\)\)'
+
+      # --- gosec: reviewed, intended behaviour -----------------------------------
+      # `coffer run -- COMMAND ARGS...` executes exactly the command the user typed
+      # (SPEC 7.1 run); there is no shell and no interpolation.
+      - path: internal/cli/run\.go
+        linters: [gosec]
+        text: 'G204:'
+        source: 'exec\.Command\(argv\[0\], argv\[1:\]\.\.\.\)'
+      # The CLI config file/dir path comes from XDG_CONFIG_HOME/HOME of the invoking
+      # user (SPEC 7.1 config directory), not from untrusted input.
+      - path: internal/cli/config\.go
+        linters: [gosec]
+        text: 'G304:'
+      # 0700 is exactly the mode SPEC 7.1 requires for the config *directory*
+      # (gosec's G302 expects file modes <= 0600).
+      - path: internal/cli/config\.go
+        linters: [gosec]
+        text: 'G302:'
+        source: 'os\.Chmod\(dir, 0o700\)'
+      # TCGETS ioctl for TTY detection needs unsafe.Pointer (same as x/term).
+      - path: internal/cli/term_linux\.go
+        linters: [gosec]
+        text: 'G103:'
+      # `coffer-server healthcheck` only ever requests http://127.0.0.1:<own port>/readyz.
+      - path: cmd/coffer-server/main\.go
+        linters: [gosec]
+        text: 'G704:'
+        source: '"http://" \+ net\.JoinHostPort\("127\.0\.0\.1", port\)'
+
+formatters:
+  enable:
+    - gofmt

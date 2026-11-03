@@ -1,0 +1,455 @@
+2026-10-29T12:56:23.926Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=reader@acme -> 200 3ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=319a1941b0eaacef7bca930522aba848a284fec95387ce90a6e194a26a0cb51a len=2233]
+2026-10-29T12:56:23.926Z CONTROL ok: control nogrant@acme list api/dev (200)
+2026-10-29T12:56:23.931Z HTTP GET /api/v1/projects/zz-absent-b959ec46/envs/dev/secrets actor=nogrant@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.935Z HTTP GET /api/v1/projects/zz-absent-b959ec46/envs/dev/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.940Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.940Z ASSERT ok   not(nogrant@acme list api/dev: 404 identical to absent)
+2026-10-29T12:56:23.944Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=reader@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:23.944Z CONTROL ok: control nogrant@acme get api/dev (200)
+2026-10-29T12:56:23.949Z HTTP GET /api/v1/projects/zz-absent-a1473d02/envs/dev/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.953Z HTTP GET /api/v1/projects/zz-absent-a1473d02/envs/dev/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.957Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.958Z ASSERT ok   not(nogrant@acme get api/dev: 404 identical to absent)
+2026-10-29T12:56:23.962Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 actor=reader@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:23.962Z CONTROL ok: control nogrant@acme ver api/dev (200)
+2026-10-29T12:56:23.966Z HTTP GET /api/v1/projects/zz-absent-09a5ed0c/envs/dev/secrets/CANARY/versions/1 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.971Z HTTP GET /api/v1/projects/zz-absent-09a5ed0c/envs/dev/secrets/CANARY/versions/1 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.975Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.975Z ASSERT ok   not(nogrant@acme ver api/dev: 404 identical to absent)
+2026-10-29T12:56:23.976Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:55:37.289735Z","created_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:56:23.976Z CONTROL ok: control nogrant@acme hist api/dev (200)
+2026-10-29T12:56:23.981Z HTTP GET /api/v1/projects/zz-absent-25a99cdc/envs/dev/secrets/CANARY/versions actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.985Z HTTP GET /api/v1/projects/zz-absent-25a99cdc/envs/dev/secrets/CANARY/versions actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.989Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:23.990Z ASSERT ok   not(nogrant@acme hist api/dev: 404 identical to absent)
+2026-10-29T12:56:24.103Z HTTP GET /api/v1/projects/api/envs/dev/export actor=reader@acme -> 200 112ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_CC9191E0":"«canary:F17:v2»","F2_BIG_52A56062":"«canary:F2:big»","F2_EMPTY_POS_54786955":"","F2_EMPTY_STDIN_4066FB55":"","F2_MULTI_F31B149F":"«canary:acme/api/dev/MULTI»","F2_NL_B5FC211B":"«canary:F2:nl»\n","F2_ONE_9904A704":"e","F3_MAX_2C199CC4":"«canary:F3:max»","F4_HIST_F2B56E22":"«canary:F4:v1»","F5_DEL_5C6625B2":"«canary:F5:b»","F6_CAS_3987DC75":"«canary:F6:3»","F7_PAR_D36734FB":"«canary:F7:p10»","JUNK_S4_10":"JUNK_S4_10-v2","JUNK_S4_13":"S4-PROBE","…[sha256=12f20f3de9e60bd3560285f58a7fe4b5270e44e32d027820ef621c57a801953c len=132002]
+2026-10-29T12:56:24.103Z CONTROL ok: control nogrant@acme export api/dev (200)
+2026-10-29T12:56:24.108Z HTTP GET /api/v1/projects/zz-absent-8f599055/envs/dev/export actor=nogrant@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:24.113Z HTTP GET /api/v1/projects/zz-absent-8f599055/envs/dev/export actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:24.117Z HTTP GET /api/v1/projects/api/envs/dev/export actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:24.117Z ASSERT ok   not(nogrant@acme export api/dev: 404 identical to absent)
+2026-10-29T12:56:24.301Z CLI coffer login --email reader@acme.test actor=anon home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 184ms stdin=25B
+  out: Logged in as reader@acme.test
+
+  err: 
+2026-10-29T12:56:24.302Z homebind: reader@acme home /home/grader1/work-r2/homes/reader@acme is bound to http://127.0.0.1:18420; using /home/grader1/work-r2/homes/reader@acme~base for http://127.0.0.1:8420
+2026-10-29T12:56:24.482Z CLI coffer run -p api -e dev -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 180ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:56:24.482Z CONTROL ok: control nogrant@acme run api/dev (rc=0)
+2026-10-29T12:56:24.671Z CLI coffer login --email nogrant@acme.test actor=anon home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=0 188ms stdin=25B
+  out: Logged in as nogrant@acme.test
+
+  err: 
+2026-10-29T12:56:24.671Z homebind: nogrant@acme home /home/grader1/work-r2/homes/nogrant@acme is bound to http://127.0.0.1:18420; using /home/grader1/work-r2/homes/nogrant@acme~base for http://127.0.0.1:8420
+2026-10-29T12:56:24.787Z CLI coffer run -p zz-absent-b1bf9e6c -e dev -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 115ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:24.903Z CLI coffer run -p zz-absent-b1bf9e6c -e dev -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 116ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:25.031Z CLI coffer run -p api -e dev -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 128ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:25.031Z ASSERT ok   not(nogrant@acme run api/dev: 404 identical to absent)
+2026-10-29T12:56:25.036Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S5_2 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.041Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_1 actor=writer@acme -> 200 5ms
+  req: {"value": "ctl"}
+  resp: {"version":1}
+2026-10-29T12:56:25.042Z CONTROL ok: control nogrant@acme set api/dev (200)
+2026-10-29T12:56:25.046Z HTTP PUT /api/v1/projects/zz-absent-cbd19d1d/envs/dev/secrets/JUNK_S5_2 actor=nogrant@acme -> 404 4ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.050Z HTTP PUT /api/v1/projects/zz-absent-cbd19d1d/envs/dev/secrets/JUNK_S5_2 actor=nogrant@acme -> 404 4ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.054Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_2 actor=nogrant@acme -> 404 4ms
+  req: {"value": "PROBE-must-not-land"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.055Z ASSERT ok   not(nogrant@acme set api/dev: 404 identical to absent)
+2026-10-29T12:56:25.059Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S5_2 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.059Z ASSERT ok   not(nogrant@acme set api/dev: target JUNK_S5_2 changed after denied write (404/vNone -> 404/vNone))
+2026-10-29T12:56:25.064Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_3 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_3-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:25.068Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_3 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_3-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:25.073Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_4 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_4-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:25.077Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_4 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_4-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:25.082Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S5_4 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_4","version":2,"value":"JUNK_S5_4-v2"}
+2026-10-29T12:56:25.086Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S5_3 actor=writer@acme -> 200 4ms
+  req: 
+  resp: {"version":3}
+2026-10-29T12:56:25.086Z CONTROL ok: control nogrant@acme del api/dev (200)
+2026-10-29T12:56:25.091Z HTTP DELETE /api/v1/projects/zz-absent-b9fb16b6/envs/dev/secrets/JUNK_S5_4 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.095Z HTTP DELETE /api/v1/projects/zz-absent-b9fb16b6/envs/dev/secrets/JUNK_S5_4 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.099Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S5_4 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.099Z ASSERT ok   not(nogrant@acme del api/dev: 404 identical to absent)
+2026-10-29T12:56:25.103Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S5_4 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_4","version":2,"value":"JUNK_S5_4-v2"}
+2026-10-29T12:56:25.103Z ASSERT ok   not(nogrant@acme del api/dev: target JUNK_S5_4 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:25.108Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_5 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_5-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:25.112Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_5 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_5-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:25.116Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_6 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_6-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:25.121Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S5_6 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S5_6-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:25.125Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S5_6 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_6","version":2,"value":"JUNK_S5_6-v2"}
+2026-10-29T12:56:25.130Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S5_5/rollback actor=writer@acme -> 200 4ms
+  req: {"to": 1}
+  resp: {"version":3}
+2026-10-29T12:56:25.130Z CONTROL ok: control nogrant@acme rb api/dev (200)
+2026-10-29T12:56:25.134Z HTTP POST /api/v1/projects/zz-absent-41ccb2e1/envs/dev/secrets/JUNK_S5_6/rollback actor=nogrant@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.138Z HTTP POST /api/v1/projects/zz-absent-41ccb2e1/envs/dev/secrets/JUNK_S5_6/rollback actor=nogrant@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.143Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S5_6/rollback actor=nogrant@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.143Z ASSERT ok   not(nogrant@acme rb api/dev: 404 identical to absent)
+2026-10-29T12:56:25.147Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S5_6 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_6","version":2,"value":"JUNK_S5_6-v2"}
+2026-10-29T12:56:25.147Z ASSERT ok   not(nogrant@acme rb api/dev: target JUNK_S5_6 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:25.148Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.779192Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F12_PROT_BD032AFE","version":1,"updated_at":"2026-10-29T12:55:54.717212Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F13_REJ_09BCA637","version":1,"updated_at":"2026-10-29T12:55:55.345252Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALEAPI_512A84DA","version":1,"updated_at":"2026-10-29T12:55:56.335464Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALE_E004D236","version":1,"updated_at":"2026-10-29T12:55:56.18182Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S4_2","version":1,"updated_at":"2026-10-29T12:56:23.186981Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"}]
+2026-10-29T12:56:25.149Z CONTROL ok: control nogrant@acme list api/prod (200)
+2026-10-29T12:56:25.153Z HTTP GET /api/v1/projects/zz-absent-ebbe776a/envs/prod/secrets actor=nogrant@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.158Z HTTP GET /api/v1/projects/zz-absent-ebbe776a/envs/prod/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.162Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.162Z ASSERT ok   not(nogrant@acme list api/prod: 404 identical to absent)
+2026-10-29T12:56:25.167Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=reader@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:56:25.167Z CONTROL ok: control nogrant@acme get api/prod (200)
+2026-10-29T12:56:25.171Z HTTP GET /api/v1/projects/zz-absent-1a4da539/envs/prod/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.175Z HTTP GET /api/v1/projects/zz-absent-1a4da539/envs/prod/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.180Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.180Z ASSERT ok   not(nogrant@acme get api/prod: 404 identical to absent)
+2026-10-29T12:56:25.184Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions/1 actor=reader@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:56:25.184Z CONTROL ok: control nogrant@acme ver api/prod (200)
+2026-10-29T12:56:25.189Z HTTP GET /api/v1/projects/zz-absent-de39b176/envs/prod/secrets/CANARY/versions/1 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.193Z HTTP GET /api/v1/projects/zz-absent-de39b176/envs/prod/secrets/CANARY/versions/1 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.197Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions/1 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.198Z ASSERT ok   not(nogrant@acme ver api/prod: 404 identical to absent)
+2026-10-29T12:56:25.199Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:55:37.779192Z","created_by":"usr_b5e9134f655c5825fa5df3b8"}]
+2026-10-29T12:56:25.199Z CONTROL ok: control nogrant@acme hist api/prod (200)
+2026-10-29T12:56:25.203Z HTTP GET /api/v1/projects/zz-absent-28178d7e/envs/prod/secrets/CANARY/versions actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.207Z HTTP GET /api/v1/projects/zz-absent-28178d7e/envs/prod/secrets/CANARY/versions actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.212Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.212Z ASSERT ok   not(nogrant@acme hist api/prod: 404 identical to absent)
+2026-10-29T12:56:25.235Z HTTP GET /api/v1/projects/api/envs/prod/export actor=reader@acme -> 200 23ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/prod/CANARY»","F12_PROT_BD032AFE":"«canary:F12:prot»","F13_REJ_09BCA637":"«canary:F13:v1»","F14_STALEAPI_512A84DA":"«canary:F14:c»","F14_STALE_E004D236":"«canary:F14:a»","JUNK_S4_2":"JUNK_S4_2-cr"}
+2026-10-29T12:56:25.235Z CONTROL ok: control nogrant@acme export api/prod (200)
+2026-10-29T12:56:25.239Z HTTP GET /api/v1/projects/zz-absent-d0fd8b84/envs/prod/export actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.243Z HTTP GET /api/v1/projects/zz-absent-d0fd8b84/envs/prod/export actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.248Z HTTP GET /api/v1/projects/api/envs/prod/export actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.248Z ASSERT ok   not(nogrant@acme export api/prod: 404 identical to absent)
+2026-10-29T12:56:25.383Z CLI coffer run -p api -e prod -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 134ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:56:25.383Z CONTROL ok: control nogrant@acme run api/prod (rc=0)
+2026-10-29T12:56:25.491Z CLI coffer run -p zz-absent-a5c72265 -e prod -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 108ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:25.608Z CLI coffer run -p zz-absent-a5c72265 -e prod -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 116ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:25.720Z CLI coffer run -p api -e prod -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 112ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:25.720Z ASSERT ok   not(nogrant@acme run api/prod: 404 identical to absent)
+2026-10-29T12:56:25.725Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S5_8 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.730Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_7 actor=writer@acme -> 202 5ms
+  req: {"value": "ctl"}
+  resp: {"status":"pending","change_id":"chg093f4bc6deea20b9c5dc21a8"}
+2026-10-29T12:56:25.730Z CONTROL ok: control nogrant@acme set api/prod (202)
+2026-10-29T12:56:25.735Z HTTP PUT /api/v1/projects/zz-absent-e003d1c9/envs/prod/secrets/JUNK_S5_8 actor=nogrant@acme -> 404 4ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.739Z HTTP PUT /api/v1/projects/zz-absent-e003d1c9/envs/prod/secrets/JUNK_S5_8 actor=nogrant@acme -> 404 4ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.743Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_8 actor=nogrant@acme -> 404 4ms
+  req: {"value": "PROBE-must-not-land"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.743Z ASSERT ok   not(nogrant@acme set api/prod: 404 identical to absent)
+2026-10-29T12:56:25.748Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S5_8 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.748Z ASSERT ok   not(nogrant@acme set api/prod: target JUNK_S5_8 changed after denied write (404/vNone -> 404/vNone))
+2026-10-29T12:56:25.752Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_9 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S5_9-v1"}
+  resp: {"status":"pending","change_id":"chg465c13b92f7bc35da3afbf80"}
+2026-10-29T12:56:25.758Z HTTP POST /api/v1/changes/chg465c13b92f7bc35da3afbf80/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg465c13b92f7bc35da3afbf80","status":"approved","key":"JUNK_S5_9","version":1}
+2026-10-29T12:56:25.763Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_9 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S5_9-v2"}
+  resp: {"status":"pending","change_id":"chg4f1a1e133f762d7941346d33"}
+2026-10-29T12:56:25.768Z HTTP POST /api/v1/changes/chg4f1a1e133f762d7941346d33/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg4f1a1e133f762d7941346d33","status":"approved","key":"JUNK_S5_9","version":2}
+2026-10-29T12:56:25.772Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_10 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S5_10-v1"}
+  resp: {"status":"pending","change_id":"chgba805771461e427292197307"}
+2026-10-29T12:56:25.778Z HTTP POST /api/v1/changes/chgba805771461e427292197307/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chgba805771461e427292197307","status":"approved","key":"JUNK_S5_10","version":1}
+2026-10-29T12:56:25.782Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_10 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S5_10-v2"}
+  resp: {"status":"pending","change_id":"chg8ead821941d2868665e3ed6d"}
+2026-10-29T12:56:25.788Z HTTP POST /api/v1/changes/chg8ead821941d2868665e3ed6d/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg8ead821941d2868665e3ed6d","status":"approved","key":"JUNK_S5_10","version":2}
+2026-10-29T12:56:25.792Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S5_10 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_10","version":2,"value":"JUNK_S5_10-v2"}
+2026-10-29T12:56:25.797Z HTTP DELETE /api/v1/projects/api/envs/prod/secrets/JUNK_S5_9 actor=writer@acme -> 202 4ms
+  req: 
+  resp: {"status":"pending","change_id":"chg9d91b2567051d5721c21d9a2"}
+2026-10-29T12:56:25.797Z CONTROL ok: control nogrant@acme del api/prod (202)
+2026-10-29T12:56:25.801Z HTTP DELETE /api/v1/projects/zz-absent-bf88d723/envs/prod/secrets/JUNK_S5_10 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.806Z HTTP DELETE /api/v1/projects/zz-absent-bf88d723/envs/prod/secrets/JUNK_S5_10 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.810Z HTTP DELETE /api/v1/projects/api/envs/prod/secrets/JUNK_S5_10 actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.810Z ASSERT ok   not(nogrant@acme del api/prod: 404 identical to absent)
+2026-10-29T12:56:25.814Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S5_10 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_10","version":2,"value":"JUNK_S5_10-v2"}
+2026-10-29T12:56:25.814Z ASSERT ok   not(nogrant@acme del api/prod: target JUNK_S5_10 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:25.819Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_11 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S5_11-v1"}
+  resp: {"status":"pending","change_id":"chgaac9a8d4a74e119ba31cb9b7"}
+2026-10-29T12:56:25.824Z HTTP POST /api/v1/changes/chgaac9a8d4a74e119ba31cb9b7/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chgaac9a8d4a74e119ba31cb9b7","status":"approved","key":"JUNK_S5_11","version":1}
+2026-10-29T12:56:25.829Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_11 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S5_11-v2"}
+  resp: {"status":"pending","change_id":"chg48f1d9445a83a4f11b87295e"}
+2026-10-29T12:56:25.834Z HTTP POST /api/v1/changes/chg48f1d9445a83a4f11b87295e/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg48f1d9445a83a4f11b87295e","status":"approved","key":"JUNK_S5_11","version":2}
+2026-10-29T12:56:25.838Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_12 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S5_12-v1"}
+  resp: {"status":"pending","change_id":"chgbbfeb36be461a857cb48bf9f"}
+2026-10-29T12:56:25.843Z HTTP POST /api/v1/changes/chgbbfeb36be461a857cb48bf9f/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chgbbfeb36be461a857cb48bf9f","status":"approved","key":"JUNK_S5_12","version":1}
+2026-10-29T12:56:25.848Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S5_12 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S5_12-v2"}
+  resp: {"status":"pending","change_id":"chgb82676d8ab429d50c5307219"}
+2026-10-29T12:56:25.869Z HTTP POST /api/v1/changes/chgb82676d8ab429d50c5307219/approve actor=admin@acme -> 200 22ms
+  req: {}
+  resp: {"id":"chgb82676d8ab429d50c5307219","status":"approved","key":"JUNK_S5_12","version":2}
+2026-10-29T12:56:25.874Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S5_12 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"JUNK_S5_12","version":2,"value":"JUNK_S5_12-v2"}
+2026-10-29T12:56:25.879Z HTTP POST /api/v1/projects/api/envs/prod/secrets/JUNK_S5_11/rollback actor=writer@acme -> 202 5ms
+  req: {"to": 1}
+  resp: {"status":"pending","change_id":"chg7e348a40182a53b4b3336fb9"}
+2026-10-29T12:56:25.879Z CONTROL ok: control nogrant@acme rb api/prod (202)
+2026-10-29T12:56:25.884Z HTTP POST /api/v1/projects/zz-absent-9fbf49b5/envs/prod/secrets/JUNK_S5_12/rollback actor=nogrant@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.888Z HTTP POST /api/v1/projects/zz-absent-9fbf49b5/envs/prod/secrets/JUNK_S5_12/rollback actor=nogrant@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.892Z HTTP POST /api/v1/projects/api/envs/prod/secrets/JUNK_S5_12/rollback actor=nogrant@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.893Z ASSERT ok   not(nogrant@acme rb api/prod: 404 identical to absent)
+2026-10-29T12:56:25.897Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S5_12 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S5_12","version":2,"value":"JUNK_S5_12-v2"}
+2026-10-29T12:56:25.897Z ASSERT ok   not(nogrant@acme rb api/prod: target JUNK_S5_12 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:25.898Z HTTP GET /api/v1/projects actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: {"projects":[]}
+2026-10-29T12:56:25.898Z ASSERT ok   not(nogrant GET /projects -> 200, lists api)
+2026-10-29T12:56:25.900Z HTTP GET /api/v1/projects/api/envs actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"environments":[{"created_at":"2026-10-29T12:55:36.117271Z","id":"env_1161efd8271530cd160dcf3e","protected":false,"slug":"dev"},{"created_at":"2026-10-29T12:55:36.231736Z","id":"env_ddabcac9c2171ec0430de62a","protected":true,"slug":"prod"}]}
+2026-10-29T12:56:25.900Z CONTROL ok: control nogrant GET /projects/api/envs (200)
+2026-10-29T12:56:25.904Z HTTP GET /api/v1/projects/zz-absent-29af4ac4/envs actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.908Z HTTP GET /api/v1/projects/zz-absent-29af4ac4/envs actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.913Z HTTP GET /api/v1/projects/api/envs actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:25.913Z ASSERT ok   not(nogrant GET /projects/api/envs: 404 identical to absent)
+2026-10-29T12:56:26.028Z CLI coffer secrets get CANARY -e dev -p api actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 115ms stdin=0B
+  out: «canary:acme/api/dev/CANARY»
+  err: 
+2026-10-29T12:56:26.028Z CONTROL ok: control nogrant CLI secrets get (rc=0)
+2026-10-29T12:56:26.142Z CLI coffer secrets get CANARY -e dev -p zz-absent-e7b757b3 actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 113ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:26.252Z CLI coffer secrets get CANARY -e dev -p zz-absent-e7b757b3 actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 110ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:26.365Z CLI coffer secrets get CANARY -e dev -p api actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 112ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:26.365Z ASSERT ok   not(nogrant CLI secrets get: 404 identical to absent)
+2026-10-29T12:56:26.478Z CLI coffer secrets list -e prod -p api actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 112ms stdin=0B
+  out: KEY                    VERSION  UPDATED               UPDATED BY
+---                    -------  -------               ----------
+CANARY                 1        2026-10-29T12:55:37Z  usr_b5e9134f655c5825fa5df3b8
+F12_PROT_BD032AFE      1        2026-10-29T12:55:54Z  usr_b5e9134f655c5825fa5df3b8
+F13_REJ_09BCA637       1        2026-10-29T12:55:55Z  usr_b5e9134f655c5825fa5df3b8
+F14_STALEAPI_512A84DA  1        2026-10-29T12:55:56Z  usr_b5e9134f655c5825fa5df3b8
+F14_STALE_E004D236     1        2026-10-29T12:55:56Z  usr_b5e9134f655c5825fa5df3b8
+JUNK_S4_2              1        2026-10-29T12:56:23Z  usr_b5e9134f655c5825fa5df3b8
+JUNK_S5_10             2        2026-10-29T12:56:25Z  usr_b5e9134f655c5825fa5df3b8
+JUNK_S5_11             2        2026-10-29T12:56:25Z  usr_b5e9134f655c5825fa5df3b8
+JUNK_S5_12             2        2026-10-29T12:56:25Z  usr_b5e9134f655c5825fa5df3b8
+JUNK_S5_9              2        2026-10-29T12:56:25Z  usr_b5e9134f655c5825fa5df3b8
+
+  err: 
+2026-10-29T12:56:26.478Z CONTROL ok: control nogrant CLI secrets list (rc=0)
+2026-10-29T12:56:26.595Z CLI coffer secrets list -e prod -p zz-absent-20195aec actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 116ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:26.707Z CLI coffer secrets list -e prod -p zz-absent-20195aec actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 112ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:26.831Z CLI coffer secrets list -e prod -p api actor=nogrant@acme home=/home/grader1/work-r2/homes/nogrant@acme~base url=http://127.0.0.1:8420 -> rc=5 124ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:26.831Z ASSERT ok   not(nogrant CLI secrets list: 404 identical to absent)
+2026-10-29T12:56:26.836Z HTTP POST /api/v1/changes/chg093f4bc6deea20b9c5dc21a8/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg093f4bc6deea20b9c5dc21a8","status":"rejected","key":"JUNK_S5_7"}
+2026-10-29T12:56:26.841Z HTTP POST /api/v1/changes/chg9d91b2567051d5721c21d9a2/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg9d91b2567051d5721c21d9a2","status":"rejected","key":"JUNK_S5_9"}
+2026-10-29T12:56:26.846Z HTTP POST /api/v1/changes/chg7e348a40182a53b4b3336fb9/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg7e348a40182a53b4b3336fb9","status":"rejected","key":"JUNK_S5_11"}

@@ -1,0 +1,40 @@
+# Build output
+bin/
+/coffer
+*.exe
+
+# Local environment: holds the master key and database passwords, never committed.
+.env
+.env.*
+!.env.example
+
+# Production credentials, materialised from the vault at ship time.
+.env.production
+.env.production.*
+
+# Test credentials written by the harness.
+TEST_CREDENTIALS.md
+
+# Backups contain the whole database (ciphertext, but still: not in git).
+# Migration .sql files ARE source and stay committed, so no blanket *.sql rule here.
+*.sql.gz
+*.dump
+
+
+# Language and framework caches
+node_modules/
+dist/
+build/
+out/
+coverage/
+coverage.out
+.turbo/
+.cache/
+
+# Editor and OS noise
+.toolbox/
+.next/
+*.log
+.DS_Store
+.idea/
+.vscode/

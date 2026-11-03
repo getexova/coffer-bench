@@ -1,0 +1,15 @@
+2026-10-29T13:04:18.316Z needles: 452 kinds=['canary', 'password', 'token']
+2026-10-29T13:04:18.316Z pulled audit files: [('acme.jsonl', 409775), ('globex.jsonl', 31366), ('platform.jsonl', 23324)]
+2026-10-29T13:04:18.451Z sweep.scan sources=('audit',) kinds=('canary', 'token', 'password') needles=452 hits=0
+2026-10-29T13:04:18.810Z PSQL user=coffer db=coffer rc=0 rows=14
+  sql: SELECT table_schema, table_name, string_agg(column_name || ':' || data_type, ',') FROM information_schema.columns WHERE table_schema NOT IN ('pg_catalog','information_schema') AND (table_schema, table_name) IN (SELECT table_schema, table_name FROM information_schema.tables WHERE table_type='BASE TABLE') GROUP BY 1,2;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:04:19.165Z PSQL user=coffer db=coffer rc=0 rows=3388
+  sql: SELECT row_to_json(x)::text FROM "public"."audit_events" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:04:19.623Z db audit rows scanned: 3388
+2026-10-29T13:04:19.623Z ASSERT ok   not()

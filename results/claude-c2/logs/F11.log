@@ -1,0 +1,6 @@
+2026-10-30T15:24:55.661Z CLI coffer secrets get CANARY -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/F11/home-1 url=http://127.0.0.1:18420 -> rc=0 15ms stdin=0B
+  out: «canary:acme/api/dev/CANARY»
+  err: 
+2026-10-30T15:24:55.661Z ASSERT ok   not(COFFER_TOKEN get rc=0 exact=True)
+2026-10-30T15:24:55.661Z HOME after: files=[] dirs=[]
+2026-10-30T15:24:55.661Z ASSERT ok   not(COFFER_TOKEN run created files in HOME: [])

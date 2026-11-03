@@ -1,0 +1,16 @@
+# Keep the build context small and free of secrets.
+.git
+.github
+bin
+tmp
+coverage*
+*.dump
+*.backup
+*.sql.gz
+.env
+.env.*
+!.env.example
+**/*.test
+**/*.out
+.idea
+.vscode

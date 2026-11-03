@@ -1,0 +1,358 @@
+2026-10-30T15:33:52.012Z HTTP POST /api/v1/projects actor=owner@acme -> 201 10ms
+  req: {"slug": "x2-151b9"}
+  resp: {"id":"prj_rh623bxsrzbhxojzyxruaayaemrawbkh","slug":"x2-151b9","created_at":"2026-10-30T15:33:52.006003Z"}
+
+2026-10-30T15:33:52.018Z HTTP POST /api/v1/projects/x2-151b9/envs actor=owner@acme -> 201 6ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_ijelxzbuxwwn3aecnbcli4y6dkaybpt7","slug":"dev","protected":false,"created_at":"2026-10-30T15:33:52.013846Z"}
+
+2026-10-30T15:33:52.023Z HTTP POST /api/v1/projects/x2-151b9/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "stg", "protected": false}
+  resp: {"id":"env_mlk6nhstun2v3zeldvxccgx3pjgh6vtf","slug":"stg","protected":false,"created_at":"2026-10-30T15:33:52.019559Z"}
+
+2026-10-30T15:33:52.025Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@globex -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.916105Z","updated_by":"usr_zsxf7ikyrvmz447g6rok7ywwlphysxla"}]
+
+2026-10-30T15:33:52.033Z HTTP PUT /api/v1/projects/x2-151b9/envs/dev/secrets/JUNK_X2_2 actor=owner@acme -> 200 7ms
+  req: {"value": "warm"}
+  resp: {"version":1}
+
+2026-10-30T15:33:52.040Z HTTP PUT /api/v1/projects/x2-151b9/envs/stg/secrets/JUNK_X2_3 actor=owner@acme -> 200 7ms
+  req: {"value": "warm"}
+  resp: {"version":1}
+
+2026-10-30T15:33:52.046Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X2_4 actor=owner@acme -> 200 6ms
+  req: {"value": "warm"}
+  resp: {"version":1}
+
+2026-10-30T15:33:52.051Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X2_5 actor=owner@globex -> 200 5ms
+  req: {"value": "warm"}
+  resp: {"version":1}
+
+2026-10-30T15:33:52.414Z PSQL user=coffer db=coffer rc=0 rows=96
+  sql: SELECT c.table_schema, c.table_name, c.column_name, c.data_type FROM information_schema.columns c JOIN information_schema.tables t ON t.table_schema=c.table_schema AND t.table_name=c.table_name WHERE t.table_type='BASE TABLE' AND c.table_schema NOT IN ('pg_catalog','information_schema') AND c.table_schema NOT LIKE 'x2_%' ORDER BY 1,2,c.ordinal_position;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:52.773Z PSQL user=coffer db=coffer rc=0 rows=2642
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:52.781Z HTTP PUT /api/v1/projects/x2-151b9/envs/dev/secrets/X2_SRC actor=owner@acme -> 200 6ms
+  req: {"value": "«canary:x2-K1»"}
+  resp: {"version":1}
+
+2026-10-30T15:33:53.181Z PSQL user=coffer db=coffer rc=0 rows=2644
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:53.182Z X2 write K1 changed {'public.secret_versions': 1, 'public.secrets': 1}
+2026-10-30T15:33:53.540Z PSQL user=coffer db=coffer rc=0 rows=2644
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:53.548Z HTTP PUT /api/v1/projects/x2-151b9/envs/dev/secrets/X2_DST actor=owner@acme -> 200 7ms
+  req: {"value": "«canary:x2-K2»"}
+  resp: {"version":1}
+
+2026-10-30T15:33:53.956Z PSQL user=coffer db=coffer rc=0 rows=2646
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:53.957Z X2 write K2 changed {'public.secret_versions': 1, 'public.secrets': 1}
+2026-10-30T15:33:54.364Z PSQL user=coffer db=coffer rc=0 rows=2646
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:54.371Z HTTP PUT /api/v1/projects/x2-151b9/envs/dev/secrets/X2_ENV actor=owner@acme -> 200 6ms
+  req: {"value": "«canary:x2-Edev»"}
+  resp: {"version":1}
+
+2026-10-30T15:33:54.774Z PSQL user=coffer db=coffer rc=0 rows=2648
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:54.775Z X2 write Edev changed {'public.secret_versions': 1, 'public.secrets': 1}
+2026-10-30T15:33:55.140Z PSQL user=coffer db=coffer rc=0 rows=2648
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:55.148Z HTTP PUT /api/v1/projects/x2-151b9/envs/stg/secrets/X2_ENV actor=owner@acme -> 200 7ms
+  req: {"value": "«canary:x2-Estg»"}
+  resp: {"version":1}
+
+2026-10-30T15:33:55.550Z PSQL user=coffer db=coffer rc=0 rows=2650
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:55.551Z X2 write Estg changed {'public.secret_versions': 1, 'public.secrets': 1, 'public.tokens': 1}
+2026-10-30T15:33:55.911Z PSQL user=coffer db=coffer rc=0 rows=2650
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:55.922Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/X2_O_69F590 actor=owner@acme -> 200 10ms
+  req: {"value": "«canary:x2-Oacme»"}
+  resp: {"version":1}
+
+2026-10-30T15:33:56.280Z PSQL user=coffer db=coffer rc=0 rows=2652
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:56.282Z X2 write Oacme changed {'public.secret_versions': 1, 'public.secrets': 1}
+2026-10-30T15:33:56.648Z PSQL user=coffer db=coffer rc=0 rows=2652
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:56.656Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/X2_O_69F590 actor=owner@globex -> 200 7ms
+  req: {"value": "«canary:x2-Oglobex»"}
+  resp: {"version":1}
+
+2026-10-30T15:33:57.020Z PSQL user=coffer db=coffer rc=0 rows=2654
+  sql: SELECT 'public.change_requests', ctid::text, md5(row_to_json(x)::text) FROM "public"."change_requests" x UNION ALL SELECT 'public.environments', ctid::text, md5(row_to_json(x)::text) FROM "public"."environments" x UNION ALL SELECT 'public.grants', ctid::text, md5(row_to_json(x)::text) FROM "public"."grants" x UNION ALL SELECT 'public.login_failures', ctid::text, md5(row_to_json(x)::text) FROM "public"."login_failures" x UNION ALL SELECT 'public.master_key_check', ctid::text, md5(row_to_json(x)::text) FROM "public"."master_key_check" x UNION ALL SELECT 'public.orgs', ctid::text, md5(row_to_json(x)::text) FROM "public"."orgs" x UNION ALL SELECT 'public.projects', ctid::text, md5(row_to_json(x)::text) FROM "public"."projects" x UNION ALL SELECT 'public.schema_migrations', ctid::text, md5(row_to_json(x)::text) FROM "public"."schema_migrations" x UNION ALL SELECT 'public.secret_versions', ctid::text, md5(row_to_json(x)::text) FROM "public"."secret_versions" x UNION ALL SELECT 'public.secrets', ctid::text, md5(row_to_json(x)::text) FROM "public"."secrets" x UNION ALL SELECT 'public.tokens', ctid::text, md5(row_to_json(x)::text) FROM "public"."tokens" x UNION ALL SELECT 'public.users', ctid::text, md5(row_to_json(x)::text) FROM "public"."users" x;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:57.021Z X2 write Oglobex changed {'public.secret_versions': 1, 'public.secrets': 1}
+2026-10-30T15:33:57.410Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secret_versions" x WHERE ctid = '(30,5)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:57.803Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secret_versions" x WHERE ctid = '(30,6)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:58.144Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secret_versions" x WHERE ctid = '(30,7)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:58.488Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secret_versions" x WHERE ctid = '(30,8)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:58.880Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secret_versions" x WHERE ctid = '(31,1)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:59.272Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secret_versions" x WHERE ctid = '(31,2)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:33:59.272Z X2 candidate public.secret_versions crypto columns=['ciphertext']
+2026-10-30T15:33:59.668Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secrets" x WHERE ctid = '(19,10)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:00.005Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secrets" x WHERE ctid = '(19,12)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:00.404Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secrets" x WHERE ctid = '(19,14)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:00.748Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secrets" x WHERE ctid = '(19,16)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:01.131Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secrets" x WHERE ctid = '(19,18)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:01.486Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."secrets" x WHERE ctid = '(19,20)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:01.487Z X2 candidate public.secrets crypto columns=[]
+2026-10-30T15:34:01.487Z ASSERT ok   not(ciphertext table public.secret_versions columns ['ciphertext'])
+2026-10-30T15:34:01.493Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/secrets/X2_DST actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"key":"X2_DST","version":1,"value":"«canary:x2-K2»"}
+
+2026-10-30T15:34:01.494Z CONTROL ok: same env, other key: dst readable before tamper (200)
+2026-10-30T15:34:01.499Z HTTP GET /api/v1/projects/x2-151b9/envs/stg/secrets/X2_ENV actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X2_ENV","version":1,"value":"«canary:x2-Estg»"}
+
+2026-10-30T15:34:01.499Z CONTROL ok: same key, other env: dst readable before tamper (200)
+2026-10-30T15:34:01.504Z HTTP GET /api/v1/projects/api/envs/dev/secrets/X2_O_69F590 actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"X2_O_69F590","version":1,"value":"«canary:x2-Oglobex»"}
+
+2026-10-30T15:34:01.504Z CONTROL ok: acme -> globex: dst readable before tamper (200)
+2026-10-30T15:34:01.907Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: CREATE SCHEMA x2_83e59c40;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:02.265Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: CREATE TABLE x2_83e59c40.b_k2_0 AS SELECT * FROM "public"."secret_versions" WHERE ctid = '(30,6)'::tid;
+WITH s AS (SELECT * FROM "public"."secret_versions" WHERE ctid = '(30,5)'::tid) UPDATE "public"."secret_versions" t SET "ciphertext" = s."ciphertext" FROM s WHERE t.ctid = '(30,6)'::tid RETURNING t.ctid::text;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:02.651Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT count(*) FROM "public"."secret_versions" t, "public"."secret_versions" s WHERE t.ctid = '(30,9)'::tid AND s.ctid = '(30,5)'::tid AND t."ciphertext" IS NOT DISTINCT FROM s."ciphertext";
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:02.651Z ASSERT ok   not(same env, other key: dst crypto columns equal src after UPDATE on secret_versions)
+2026-10-30T15:34:03.003Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: CREATE TABLE x2_83e59c40.b_estg_0 AS SELECT * FROM "public"."secret_versions" WHERE ctid = '(30,8)'::tid;
+WITH s AS (SELECT * FROM "public"."secret_versions" WHERE ctid = '(30,7)'::tid) UPDATE "public"."secret_versions" t SET "ciphertext" = s."ciphertext" FROM s WHERE t.ctid = '(30,8)'::tid RETURNING t.ctid::text;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:03.386Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT count(*) FROM "public"."secret_versions" t, "public"."secret_versions" s WHERE t.ctid = '(30,10)'::tid AND s.ctid = '(30,7)'::tid AND t."ciphertext" IS NOT DISTINCT FROM s."ciphertext";
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:03.386Z ASSERT ok   not(same key, other env: dst crypto columns equal src after UPDATE on secret_versions)
+2026-10-30T15:34:03.795Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: CREATE TABLE x2_83e59c40.b_oglobex_0 AS SELECT * FROM "public"."secret_versions" WHERE ctid = '(31,2)'::tid;
+WITH s AS (SELECT * FROM "public"."secret_versions" WHERE ctid = '(31,1)'::tid) UPDATE "public"."secret_versions" t SET "ciphertext" = s."ciphertext" FROM s WHERE t.ctid = '(31,2)'::tid RETURNING t.ctid::text;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:04.192Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT count(*) FROM "public"."secret_versions" t, "public"."secret_versions" s WHERE t.ctid = '(31,3)'::tid AND s.ctid = '(31,1)'::tid AND t."ciphertext" IS NOT DISTINCT FROM s."ciphertext";
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:04.193Z ASSERT ok   not(acme -> globex: dst crypto columns equal src after UPDATE on secret_versions)
+2026-10-30T15:34:04.804Z pg_dumpall pre-compose-restart -> rc=0 0041-X2-pre-compose-restart.sql
+2026-10-30T15:34:04.909Z sweep_snapshot pre-compose-restart: dump=0041-X2-pre-compose-restart.sql logs=2
+2026-10-30T15:34:05.396Z COMPOSE restart server -> rc=0 487ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:05.954Z wait_ready(120s) -> True (last status 200)
+2026-10-30T15:34:05.954Z X2 after tamper restart ready=True
+2026-10-30T15:34:05.962Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/secrets/X2_DST actor=owner@acme -> 500 8ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:05.968Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/secrets/X2_DST/versions/1 actor=owner@acme -> 500 6ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:05.975Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/export actor=owner@acme -> 500 7ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:05.975Z ASSERT ok   not(same env, other key: tampered get -> 500 (want an error))
+2026-10-30T15:34:05.978Z ASSERT ok   not(same env, other key: tampered get -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:05.978Z ASSERT ok   not(same env, other key: tampered get v1 -> 500 (want an error))
+2026-10-30T15:34:05.980Z ASSERT ok   not(same env, other key: tampered get v1 -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:05.982Z ASSERT ok   not(same env, other key: export after tamper -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:05.988Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/secrets/X2_SRC actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"key":"X2_SRC","version":1,"value":"«canary:x2-K1»"}
+
+2026-10-30T15:34:05.988Z CONTROL ok: same env, other key: src still readable after tamper (200)
+2026-10-30T15:34:05.994Z HTTP GET /api/v1/projects/x2-151b9/envs/stg/secrets/X2_ENV actor=owner@acme -> 500 5ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:05.999Z HTTP GET /api/v1/projects/x2-151b9/envs/stg/secrets/X2_ENV/versions/1 actor=owner@acme -> 500 5ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:06.004Z HTTP GET /api/v1/projects/x2-151b9/envs/stg/export actor=owner@acme -> 500 5ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:06.004Z ASSERT ok   not(same key, other env: tampered get -> 500 (want an error))
+2026-10-30T15:34:06.006Z ASSERT ok   not(same key, other env: tampered get -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:06.006Z ASSERT ok   not(same key, other env: tampered get v1 -> 500 (want an error))
+2026-10-30T15:34:06.008Z ASSERT ok   not(same key, other env: tampered get v1 -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:06.009Z ASSERT ok   not(same key, other env: export after tamper -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:06.014Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/secrets/X2_ENV actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X2_ENV","version":1,"value":"«canary:x2-Edev»"}
+
+2026-10-30T15:34:06.014Z CONTROL ok: same key, other env: src still readable after tamper (200)
+2026-10-30T15:34:06.019Z HTTP GET /api/v1/projects/api/envs/dev/secrets/X2_O_69F590 actor=owner@globex -> 500 5ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:06.024Z HTTP GET /api/v1/projects/api/envs/dev/secrets/X2_O_69F590/versions/1 actor=owner@globex -> 500 5ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:06.029Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@globex -> 500 5ms
+  req: 
+  resp: {"error":{"code":"internal","message":"internal error"}}
+2026-10-30T15:34:06.029Z ASSERT ok   not(acme -> globex: tampered get -> 500 (want an error))
+2026-10-30T15:34:06.031Z ASSERT ok   not(acme -> globex: tampered get -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:06.031Z ASSERT ok   not(acme -> globex: tampered get v1 -> 500 (want an error))
+2026-10-30T15:34:06.033Z ASSERT ok   not(acme -> globex: tampered get v1 -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:06.034Z ASSERT ok   not(acme -> globex: export after tamper -> 500 (want a 4xx or a generic 5xx; generic SPEC-shaped 5xx, no value or key material))
+2026-10-30T15:34:06.040Z HTTP GET /api/v1/projects/api/envs/dev/secrets/X2_O_69F590 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X2_O_69F590","version":1,"value":"«canary:x2-Oacme»"}
+
+2026-10-30T15:34:06.040Z CONTROL ok: acme -> globex: src still readable after tamper (200)
+2026-10-30T15:34:06.431Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: UPDATE "public"."secret_versions" t SET "ciphertext" = b."ciphertext" FROM x2_83e59c40.b_k2_0 b WHERE t.ctid = '(30,9)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:06.835Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: UPDATE "public"."secret_versions" t SET "ciphertext" = b."ciphertext" FROM x2_83e59c40.b_estg_0 b WHERE t.ctid = '(30,10)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:07.232Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: UPDATE "public"."secret_versions" t SET "ciphertext" = b."ciphertext" FROM x2_83e59c40.b_oglobex_0 b WHERE t.ctid = '(31,3)'::tid;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:07.632Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: DROP SCHEMA x2_83e59c40 CASCADE;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mNOTICE:  drop cascades to 3 other objects
+DETAIL:  drop cascades to table x2_83e59c40.b_k2_0
+drop cascades to table x2_83e59c40.b_estg_0
+drop cascades to table x2_83e59c40.b_oglobex_0
+
+2026-10-30T15:34:08.259Z pg_dumpall pre-compose-restart -> rc=0 0042-X2-pre-compose-restart.sql
+2026-10-30T15:34:08.375Z sweep_snapshot pre-compose-restart: dump=0042-X2-pre-compose-restart.sql logs=2
+2026-10-30T15:34:08.835Z COMPOSE restart server -> rc=0 460ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:09.392Z wait_ready(120s) -> True (last status 200)
+2026-10-30T15:34:09.400Z HTTP GET /api/v1/projects/x2-151b9/envs/dev/secrets/X2_DST actor=owner@acme -> 200 8ms
+  req: 
+  resp: {"key":"X2_DST","version":1,"value":"«canary:x2-K2»"}
+
+2026-10-30T15:34:09.400Z CONTROL ok: same env, other key: dst reads its own value after restoring its ciphertext
+2026-10-30T15:34:09.406Z HTTP GET /api/v1/projects/x2-151b9/envs/stg/secrets/X2_ENV actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X2_ENV","version":1,"value":"«canary:x2-Estg»"}
+
+2026-10-30T15:34:09.406Z CONTROL ok: same key, other env: dst reads its own value after restoring its ciphertext
+2026-10-30T15:34:09.412Z HTTP GET /api/v1/projects/api/envs/dev/secrets/X2_O_69F590 actor=owner@globex -> 200 6ms
+  req: 
+  resp: {"key":"X2_O_69F590","version":1,"value":"«canary:x2-Oglobex»"}
+
+2026-10-30T15:34:09.412Z CONTROL ok: acme -> globex: dst reads its own value after restoring its ciphertext
+2026-10-30T15:34:09.996Z pg_dumpall pre-rollback-X2 -> rc=0 0043-X2-pre-rollback-X2.sql
+2026-10-30T15:34:10.117Z sweep_snapshot pre-rollback-X2: dump=0043-X2-pre-rollback-X2.sql logs=2
+2026-10-30T15:34:25Z [runner] rollback: ok

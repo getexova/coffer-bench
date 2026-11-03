@@ -1,0 +1,101 @@
+2026-10-30T15:27:59.507Z HTTP POST /api/v1/members actor=owner@acme -> 201 55ms
+  req: {"email": "s18-15297@acme.test", "role": "member", "password": "«pw0:s18-15297@acme»"}
+  resp: {"id":"usr_7atko3kix7vhudcrucaion4dgac5hj3q","email":"s18-15297@acme.test","role":"member","created_at":"2026-10-30T15:27:59.496681Z"}
+
+2026-10-30T15:27:59.515Z HTTP PUT /api/v1/members/usr_7atko3kix7vhudcrucaion4dgac5hj3q/grants/api actor=owner@acme -> 200 7ms
+  req: {"level": "reader"}
+  resp: {"level":"reader","project":"api","user_id":"usr_7atko3kix7vhudcrucaion4dgac5hj3q"}
+
+2026-10-30T15:27:59.565Z HTTP POST /api/v1/auth/token actor=anon -> 201 50ms
+  req: {"email": "s18-15297@acme.test", "password": "«pw0:s18-15297@acme»"}
+  resp: {"expires_at":"2026-11-29T15:27:59.515723Z","token":"<redacted-token>","user":{"id":"usr_7atko3kix7vhudcrucaion4dgac5hj3q","email":"s18-15297@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:27:59.569Z HTTP GET /api/v1/projects actor=s18-15297@acme -> 200 2ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z","level":"reader"}]
+
+2026-10-30T15:27:59.571Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-15297@acme -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=afff2e2b81204ba6e808106eb841f41229d44565085780a8c4ec11e94edcf630 len=4542]
+2026-10-30T15:27:59.571Z CONTROL ok: scratch reader lists api/dev before removal (200)
+2026-10-30T15:27:59.576Z HTTP DELETE /api/v1/members/usr_7atko3kix7vhudcrucaion4dgac5hj3q actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:27:59.577Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-15297@acme -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:27:59.577Z ASSERT ok   not(removed user's PAT next request -> 401 (want 401))
+2026-10-30T15:27:59.578Z HTTP GET /api/v1/me actor=s18-15297@acme -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:27:59.578Z ASSERT ok   not(removed user's PAT GET /me -> 401 (want 401))
+2026-10-30T15:27:59.625Z HTTP POST /api/v1/members actor=owner@acme -> 201 46ms
+  req: {"email": "s18-287ea@acme.test", "role": "member", "password": "«pw0:s18-287ea@acme»"}
+  resp: {"id":"usr_gljhth4fbicc3pk2luzl37yqnspfnbvr","email":"s18-287ea@acme.test","role":"member","created_at":"2026-10-30T15:27:59.619809Z"}
+
+2026-10-30T15:27:59.630Z HTTP PUT /api/v1/members/usr_gljhth4fbicc3pk2luzl37yqnspfnbvr/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"api","user_id":"usr_gljhth4fbicc3pk2luzl37yqnspfnbvr"}
+
+2026-10-30T15:27:59.681Z HTTP POST /api/v1/auth/token actor=anon -> 201 50ms
+  req: {"email": "s18-287ea@acme.test", "password": "«pw0:s18-287ea@acme»"}
+  resp: {"expires_at":"2026-11-29T15:27:59.631437Z","token":"<redacted-token>","user":{"id":"usr_gljhth4fbicc3pk2luzl37yqnspfnbvr","email":"s18-287ea@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:27:59.684Z HTTP GET /api/v1/projects actor=s18-287ea@acme -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z","level":"writer"}]
+
+2026-10-30T15:27:59.692Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-287ea@acme -> 200 8ms
+  req: {"value": "w1"}
+  resp: {"version":1}
+
+2026-10-30T15:27:59.692Z CONTROL ok: scratch writer PUT api/dev junk (200)
+2026-10-30T15:27:59.697Z HTTP PUT /api/v1/members/usr_gljhth4fbicc3pk2luzl37yqnspfnbvr/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "reader"}
+  resp: {"level":"reader","project":"api","user_id":"usr_gljhth4fbicc3pk2luzl37yqnspfnbvr"}
+
+2026-10-30T15:27:59.702Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-287ea@acme -> 403 4ms
+  req: {"value": "w2"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:27:59.702Z ASSERT ok   not(writer lowered to reader: next PUT -> 403 (want 403))
+2026-10-30T15:27:59.707Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-287ea@acme -> 200 5ms
+  req: 
+  resp: {"key":"JUNK_S18_3","version":1,"value":"w1"}
+
+2026-10-30T15:27:59.707Z CONTROL ok: reader still reads value (200)
+2026-10-30T15:27:59.712Z HTTP PUT /api/v1/members/usr_gljhth4fbicc3pk2luzl37yqnspfnbvr/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_gljhth4fbicc3pk2luzl37yqnspfnbvr"}
+
+2026-10-30T15:27:59.716Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-287ea@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:27:59.716Z ASSERT ok   not(reader lowered to viewer: next value GET -> 403 (want 403))
+2026-10-30T15:27:59.718Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-287ea@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=7f6957530c2128977addac9acc23229aa1fa702f495b7321d6311f9224fae7b1 len=4670]
+2026-10-30T15:27:59.718Z CONTROL ok: viewer still lists (200)
+2026-10-30T15:27:59.723Z HTTP DELETE /api/v1/members/usr_gljhth4fbicc3pk2luzl37yqnspfnbvr/grants/api actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:27:59.727Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-287ea@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:27:59.727Z ASSERT ok   not(revoked grant: next list -> 404 (want 404))
+2026-10-30T15:27:59.729Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=7f6957530c2128977addac9acc23229aa1fa702f495b7321d6311f9224fae7b1 len=4670]
+2026-10-30T15:27:59.729Z CONTROL ok: revoked-grant list vs absent project (200)
+2026-10-30T15:27:59.733Z HTTP GET /api/v1/projects/zz-absent-821a0917/envs/dev/secrets actor=s18-287ea@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:27:59.737Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-287ea@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:27:59.738Z ASSERT ok   not(revoked-grant list vs absent project: 404 identical to absent)
+2026-10-30T15:27:59.738Z ASSERT ok   not(removed_ms: probe completed 1 ms after the change (want <= 1000))
+2026-10-30T15:27:59.738Z ASSERT ok   not(lowered_reader_ms: probe completed 4 ms after the change (want <= 1000))
+2026-10-30T15:27:59.738Z ASSERT ok   not(lowered_viewer_ms: probe completed 4 ms after the change (want <= 1000))
+2026-10-30T15:27:59.738Z ASSERT ok   not(revoked_grant_ms: probe completed 4 ms after the change (want <= 1000))

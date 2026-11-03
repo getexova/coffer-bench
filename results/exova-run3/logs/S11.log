@@ -1,0 +1,114 @@
+2026-10-29T12:56:44.215Z HTTP POST /api/v1/members actor=owner@acme -> 201 71ms
+  req: {"email": "s11-10ed3@acme.test", "role": "owner", "password": "«pw0:s11-10ed3@acme.test»"}
+  resp: {"member":{"id":"usr_5ef1c5ecb4ee5278921e688e","email":"s11-10ed3@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.207901Z"}}
+2026-10-29T12:56:44.215Z CONTROL ok: admin POST /members role=owner (201)
+2026-10-29T12:56:44.222Z HTTP POST /api/v1/members actor=admin@acme -> 403 5ms
+  req: {"email": "s11-28623@acme.test", "role": "owner", "password": "«pw0:s11-28623@acme.test»"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:44.222Z ASSERT ok   not(admin POST /members role=owner: denied 403)
+2026-10-29T12:56:44.224Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=9c58b37226b03632a92023767a6a5eb72f3362d31cd1826d808a6fc4e07f510c len=2173]
+2026-10-29T12:56:44.224Z ASSERT ok   not(admin-created owner exists after 403)
+2026-10-29T12:56:44.308Z HTTP POST /api/v1/members actor=owner@acme -> 201 82ms
+  req: {"email": "s11-380e3@acme.test", "role": "member", "password": "«pw0:s11-380e3@acme.test»"}
+  resp: {"member":{"id":"usr_02dc159aef8dd62a96007b2d","email":"s11-380e3@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:44.300822Z"}}
+2026-10-29T12:56:44.378Z HTTP POST /api/v1/members actor=owner@acme -> 201 69ms
+  req: {"email": "s11-48b5b@acme.test", "role": "member", "password": "«pw0:s11-48b5b@acme.test»"}
+  resp: {"member":{"id":"usr_4b3b926dcb968a323d48b6f9","email":"s11-48b5b@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:44.371195Z"}}
+2026-10-29T12:56:44.384Z HTTP PATCH /api/v1/members/usr_4b3b926dcb968a323d48b6f9 actor=owner@acme -> 200 5ms
+  req: {"role": "owner"}
+  resp: {"member":{"id":"usr_4b3b926dcb968a323d48b6f9","email":"s11-48b5b@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.371195Z"}}
+2026-10-29T12:56:44.384Z CONTROL ok: admin promotes member to owner (200)
+2026-10-29T12:56:44.388Z HTTP PATCH /api/v1/members/usr_02dc159aef8dd62a96007b2d actor=admin@acme -> 403 5ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:44.389Z ASSERT ok   not(admin promotes member to owner: denied 403)
+2026-10-29T12:56:44.390Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=c2cf3ec671f62243e1c338b82956f63ab75533e697ae386f29401e2c7665a1d3 len=2482]
+2026-10-29T12:56:44.390Z ASSERT ok   not(promoted target role 'member')
+2026-10-29T12:56:44.459Z HTTP POST /api/v1/members actor=owner@acme -> 201 67ms
+  req: {"email": "s11-5cc5f@acme.test", "role": "owner", "password": "«pw0:s11-5cc5f@acme.test»"}
+  resp: {"member":{"id":"usr_e2c9d0002d25b5d7e95035e7","email":"s11-5cc5f@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.451901Z"}}
+2026-10-29T12:56:44.529Z HTTP POST /api/v1/members actor=owner@acme -> 201 68ms
+  req: {"email": "s11-6fb3b@acme.test", "role": "owner", "password": "«pw0:s11-6fb3b@acme.test»"}
+  resp: {"member":{"id":"usr_f6b687d0d74ca912643a672e","email":"s11-6fb3b@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.521926Z"}}
+2026-10-29T12:56:44.608Z HTTP POST /api/v1/members actor=owner@acme -> 201 78ms
+  req: {"email": "s11-7e48a@acme.test", "role": "owner", "password": "«pw0:s11-7e48a@acme.test»"}
+  resp: {"member":{"id":"usr_ca058c0ae917050fbc1af3d2","email":"s11-7e48a@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.601720Z"}}
+2026-10-29T12:56:44.676Z HTTP POST /api/v1/members actor=owner@acme -> 201 66ms
+  req: {"email": "s11-804ab@acme.test", "role": "owner", "password": "«pw0:s11-804ab@acme.test»"}
+  resp: {"member":{"id":"usr_617239c6d096e914d414fd25","email":"s11-804ab@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.670323Z"}}
+2026-10-29T12:56:44.745Z HTTP POST /api/v1/members actor=owner@acme -> 201 68ms
+  req: {"email": "s11-9bf9e@acme.test", "role": "owner", "password": "«pw0:s11-9bf9e@acme.test»"}
+  resp: {"member":{"id":"usr_dff8df89172be7bef0cc66fd","email":"s11-9bf9e@acme.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:44.739440Z"}}
+2026-10-29T12:56:44.751Z HTTP PATCH /api/v1/members/usr_ca058c0ae917050fbc1af3d2 actor=owner@acme -> 200 5ms
+  req: {"role": "member"}
+  resp: {"member":{"id":"usr_ca058c0ae917050fbc1af3d2","email":"s11-7e48a@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:44.601720Z"}}
+2026-10-29T12:56:44.751Z CONTROL ok: admin demotes an owner (200)
+2026-10-29T12:56:44.756Z HTTP PATCH /api/v1/members/usr_e2c9d0002d25b5d7e95035e7 actor=admin@acme -> 403 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:44.756Z ASSERT ok   not(admin demotes an owner: denied 403)
+2026-10-29T12:56:44.761Z HTTP DELETE /api/v1/members/usr_617239c6d096e914d414fd25 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"removed":true}
+2026-10-29T12:56:44.762Z CONTROL ok: admin removes an owner (200)
+2026-10-29T12:56:44.766Z HTTP DELETE /api/v1/members/usr_f6b687d0d74ca912643a672e actor=admin@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:44.766Z ASSERT ok   not(admin removes an owner: denied 403)
+2026-10-29T12:56:44.771Z HTTP PATCH /api/v1/members/usr_dff8df89172be7bef0cc66fd actor=owner@acme -> 200 5ms
+  req: {"role": "admin"}
+  resp: {"member":{"id":"usr_dff8df89172be7bef0cc66fd","email":"s11-9bf9e@acme.test","role":"admin","must_change_password":true,"created_at":"2026-10-29T12:56:44.739440Z"}}
+2026-10-29T12:56:44.771Z CONTROL ok: admin demotes owner@acme (200)
+2026-10-29T12:56:44.775Z HTTP PATCH /api/v1/members/usr_493b9b638f8b78d524ce5e65 actor=admin@acme -> 403 4ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:44.775Z ASSERT ok   not(admin demotes owner@acme: denied 403)
+2026-10-29T12:56:44.777Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=4f3e38b7744a17b6d92f06290c77002be947ea3977e92df23d4e0971a886b619 len=3099]
+2026-10-29T12:56:44.777Z ASSERT ok   not(owner usr_e2c9d0002d25b5d7e95035e7 is 'owner' after admin probes)
+2026-10-29T12:56:44.778Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=4f3e38b7744a17b6d92f06290c77002be947ea3977e92df23d4e0971a886b619 len=3099]
+2026-10-29T12:56:44.778Z ASSERT ok   not(owner usr_f6b687d0d74ca912643a672e is 'owner' after admin probes)
+2026-10-29T12:56:44.780Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=4f3e38b7744a17b6d92f06290c77002be947ea3977e92df23d4e0971a886b619 len=3099]
+2026-10-29T12:56:44.780Z ASSERT ok   not(owner usr_493b9b638f8b78d524ce5e65 is 'owner' after admin probes)
+2026-10-29T12:56:44.869Z HTTP POST /api/v1/members actor=owner@acme -> 201 88ms
+  req: {"email": "s11-10cbbc@acme.test", "role": "member", "password": "«pw0:s11-10cbbc@acme.test»"}
+  resp: {"member":{"id":"usr_a7f28d92671d3bd20723b1f5","email":"s11-10cbbc@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:44.862243Z"}}
+2026-10-29T12:56:44.980Z CLI coffer whoami actor=anon home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 110ms stdin=0B
+  out: owner@acme.test
+  role: owner
+  organization: acme
+  user id: usr_493b9b638f8b78d524ce5e65
+
+  err: 
+2026-10-29T12:56:45.092Z CLI coffer member role s11-10cbbc@acme.test owner actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 112ms stdin=0B
+  out: Set role of s11-10cbbc@acme.test to owner
+
+  err: 
+2026-10-29T12:56:45.092Z CONTROL ok: admin CLI member role <member> owner (rc=0)
+2026-10-29T12:56:45.280Z CLI coffer login --email admin@acme.test actor=anon home=/home/grader1/work-r2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=0 187ms stdin=25B
+  out: Logged in as admin@acme.test
+
+  err: 
+2026-10-29T12:56:45.280Z homebind: admin@acme home /home/grader1/work-r2/homes/admin@acme is bound to http://127.0.0.1:18420; using /home/grader1/work-r2/homes/admin@acme~base for http://127.0.0.1:8420
+2026-10-29T12:56:45.395Z CLI coffer member role s11-380e3@acme.test owner actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=4 115ms stdin=0B
+  out: 
+  err: coffer: not permitted
+coffer: hint: you may lack permission, or a password set by an administrator must be changed first with `coffer passwd`
+
+2026-10-29T12:56:45.395Z ASSERT ok   not(admin CLI member role <member> owner: denied rc=4)
+2026-10-29T12:56:45.397Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=edfda32a7ff207f5cd4a4204d197c72eb3d6bb92d81b340602872cab6dc515ee len=3254]
+2026-10-29T12:56:45.397Z ASSERT ok   not(CLI-promoted target role 'member')
+2026-10-29T12:56:45.968Z pg_dumpall pre-rollback-S11 -> rc=0 0006-S11-pre-rollback-S11.sql
+2026-10-29T12:56:46.040Z sweep_snapshot pre-rollback-S11: dump=0006-S11-pre-rollback-S11.sql logs=2
+2026-10-29T12:56:51Z [runner] rollback: ok

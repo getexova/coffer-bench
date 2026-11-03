@@ -1,0 +1,21 @@
+2026-10-29T12:57:00.927Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=T_prod_rw -> 200 3ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.779192Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F12_PROT_BD032AFE","version":1,"updated_at":"2026-10-29T12:55:54.717212Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F13_REJ_09BCA637","version":1,"updated_at":"2026-10-29T12:55:55.345252Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALEAPI_512A84DA","version":1,"updated_at":"2026-10-29T12:55:56.335464Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14…[sha256=db250fc298682a0d04261c174bd09ad4c3e5fa5392960074e0dc0e7e1e43b53d len=3262]
+2026-10-29T12:57:00.927Z CONTROL ok: T_prod_rw GET api/prod list (200)
+2026-10-29T12:57:00.934Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S15_1 actor=T_prod_rw -> 202 6ms
+  req: {"value": "«canary:s15»"}
+  resp: {"status":"pending","change_id":"chgcab15eafb0d595c2bce79092"}
+2026-10-29T12:57:00.935Z ASSERT ok   not(T_prod_rw PUT api/prod/JUNK_S15_1 -> 202 (want 202))
+2026-10-29T12:57:00.935Z ASSERT ok   not(202 without change_id)
+2026-10-29T12:57:00.939Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S15_1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.939Z ASSERT ok   not(value applied without approval: owner GET api/prod/JUNK_S15_1 -> 404 (want 404))
+2026-10-29T12:57:00.942Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chgcab15eafb0d595c2bce79092","project":"api","env":"prod","key":"JUNK_S15_1","op":"set","base_version":0,"status":"pending","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:57:00.930232Z"},{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d…[sha256=7491a20b1d17f08724d7170fa2d95e5e175484681f0c6e251d5f5516069136f3 len=20860]
+2026-10-29T12:57:00.943Z ASSERT ok   not(change chgcab15eafb0d595c2bce79092 not listed in GET /changes (200))
+2026-10-29T12:57:00.948Z HTTP POST /api/v1/changes/chgcab15eafb0d595c2bce79092/reject actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chgcab15eafb0d595c2bce79092","status":"rejected","key":"JUNK_S15_1"}
+2026-10-29T12:57:00.948Z S15 cleanup reject chgcab15eafb0d595c2bce79092 -> 200

@@ -1,0 +1,59 @@
+2026-10-29T12:55:46.799Z CLI coffer secrets set F3_MAX_2C199CC4 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=65536B
+  out: Set F3_MAX_2C199CC4 (version 1)
+
+  err: 
+2026-10-29T12:55:46.799Z ASSERT ok   not(control: 65,536 B set rc=0 (want 0))
+2026-10-29T12:55:46.939Z CLI coffer secrets set F3_OVER_8E85568D -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=6 114ms stdin=65537B
+  out: 
+  err: coffer: invalid value
+
+2026-10-29T12:55:46.939Z ASSERT ok   not(65,537 B set rc=6 (want 6))
+2026-10-29T12:55:47.060Z CLI coffer secrets get F3_OVER_8E85568D -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=5 121ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:55:47.060Z ASSERT ok   not(after 65,537 B: get rc=5 (want 5, nothing stored))
+2026-10-29T12:55:47.066Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F3_OVER_8E85568D actor=owner@acme -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:55:47.066Z ASSERT ok   not(after 65,537 B: API GET -> 404 (want 404))
+2026-10-29T12:55:47.071Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F3_OVER_8E85568D/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:55:47.071Z versions after oversize: None
+2026-10-29T12:55:47.076Z HTTP POST /api/v1/projects actor=owner@acme -> 201 5ms
+  req: {"slug": "f3-1c657"}
+  resp: {"project":{"created_at":"2026-10-29T12:55:47.072617Z","id":"prj_d21f664f8622dd72276dac4b","slug":"f3-1c657"}}
+2026-10-29T12:55:47.081Z HTTP POST /api/v1/projects/f3-1c657/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"created_at":"2026-10-29T12:55:47.077573Z","id":"env_5215ebe23417ac3960a3e1b2","protected":false,"slug":"dev"}
+2026-10-29T12:55:47.200Z CLI coffer secrets set F3_D7N_BGBUGL84M8APB93VB29CVLMW28TU3N0SJT750EZ5ZI1UUZMUQ_NM47UQF8RKCV_3K93U73JDQQZZNO0DA301ZD62UDCVL0DV9ADFYBM55MA2HDZ3YUCPONF6C -p f3-1c657 -e dev actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=1B
+  out: Set F3_D7N_BGBUGL84M8APB93VB29CVLMW28TU3N0SJT750EZ5ZI1UUZMUQ_NM47UQF8RKCV_3K93U73JDQQZZNO0DA301ZD62UDCVL0DV9ADFYBM55MA2HDZ3YUCPONF6C (version 1)
+
+  err: 
+2026-10-29T12:55:47.200Z ASSERT ok   not(control: 128-char key set rc=0 (want 0))
+2026-10-29T12:55:47.311Z CLI coffer secrets set lower -p f3-1c657 -e dev actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=2 111ms stdin=1B
+  out: 
+  err: coffer: invalid secret key "lower": must match ^[A-Z_][A-Z0-9_]{0,127}$
+
+2026-10-29T12:55:47.311Z ASSERT FAIL bad key lower(5): rc=2 (want 6)
+2026-10-29T12:55:47.428Z CLI coffer secrets set 1ABC -p f3-1c657 -e dev actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=2 117ms stdin=1B
+  out: 
+  err: coffer: invalid secret key "1ABC": must match ^[A-Z_][A-Z0-9_]{0,127}$
+
+2026-10-29T12:55:47.428Z ASSERT FAIL bad key 1ABC(4): rc=2 (want 6)
+2026-10-29T12:55:47.542Z CLI coffer secrets set A-B -p f3-1c657 -e dev actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=2 114ms stdin=1B
+  out: 
+  err: coffer: invalid secret key "A-B": must match ^[A-Z_][A-Z0-9_]{0,127}$
+
+2026-10-29T12:55:47.542Z ASSERT FAIL bad key A-B(3): rc=2 (want 6)
+2026-10-29T12:55:47.655Z CLI coffer secrets set AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -p f3-1c657 -e dev actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=2 112ms stdin=1B
+  out: 
+  err: coffer: invalid secret key "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA": must match ^[A-Z_][A-Z0-9_]{0,127}$
+
+2026-10-29T12:55:47.655Z ASSERT FAIL bad key AAAAAAAAAAAA..(129): rc=2 (want 6)
+2026-10-29T12:55:47.657Z HTTP GET /api/v1/projects/f3-1c657/envs/dev/secrets actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"key":"F3_D7N_BGBUGL84M8APB93VB29CVLMW28TU3N0SJT750EZ5ZI1UUZMUQ_NM47UQF8RKCV_3K93U73JDQQZZNO0DA301ZD62UDCVL0DV9ADFYBM55MA2HDZ3YUCPONF6C","version":1,"updated_at":"2026-10-29T12:55:47.189822Z","updated_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:55:47.658Z scratch keys after bad-key attempts: ['F3_D7N_BGBUGL84M8APB93VB29CVLMW28TU3N0SJT750EZ5ZI1UUZMUQ_NM47UQF8RKCV_3K93U73JDQQZZNO0DA301ZD62UDCVL0DV9ADFYBM55MA2HDZ3YUCPONF6C']
+2026-10-29T12:55:47.658Z ASSERT ok   not(a bad key was stored anyway)

@@ -1,0 +1,95 @@
+2026-10-29T12:59:50.853Z .env.example COFFER_MASTER_KEY present=True len=31
+2026-10-29T12:59:50.883Z init-env run 1 rc=0 key_len=44 stdout=
+Wrote /home/grader1/work-r2/tmp/G3/g3clone/.env (mode 0600) with a new master key and new database passwords.
+
+Platform admin email:    admin@coffer.local
+Platform admin password: «pw:g3-bootstrap1»
+
+This password is printed once. It is also in .env in plaintext; nothing else
+stores it. Copy it somewhere safe now.
+
+Next: ./scripts/up.sh
+ stderr=
+2026-10-29T12:59:50.883Z ASSERT ok   not(init-env.sh run 1 rc=0)
+2026-10-29T12:59:50.883Z ASSERT ok   not(init-env.sh run 1: no COFFER_MASTER_KEY in .env)
+2026-10-29T12:59:50.883Z ASSERT ok   not(init-env.sh run 1: master key is not base64 of 32 bytes (len 44))
+2026-10-29T12:59:50.883Z ASSERT ok   not(init-env.sh run 1: master key equals the .env.example placeholder)
+2026-10-29T12:59:50.912Z init-env run 2 rc=0 key_len=44 stdout=
+Wrote /home/grader1/work-r2/tmp/G3/g3clone/.env (mode 0600) with a new master key and new database passwords.
+
+Platform admin email:    admin@coffer.local
+Platform admin password: «pw:g3-bootstrap2»
+
+This password is printed once. It is also in .env in plaintext; nothing else
+stores it. Copy it somewhere safe now.
+
+Next: ./scripts/up.sh
+ stderr=
+2026-10-29T12:59:50.912Z ASSERT ok   not(init-env.sh run 2 rc=0)
+2026-10-29T12:59:50.912Z ASSERT ok   not(init-env.sh run 2: no COFFER_MASTER_KEY in .env)
+2026-10-29T12:59:50.913Z ASSERT ok   not(init-env.sh run 2: master key is not base64 of 32 bytes (len 44))
+2026-10-29T12:59:50.913Z ASSERT ok   not(init-env.sh run 2: master key equals the .env.example placeholder)
+2026-10-29T12:59:50.913Z ASSERT ok   not(init-env.sh wrote the same master key twice (not random))
+2026-10-29T12:59:51.460Z pg_dumpall pre-env-override -> rc=0 0016-G3-pre-env-override.sql
+2026-10-29T12:59:51.572Z sweep_snapshot pre-env-override: dump=0016-G3-pre-env-override.sql logs=2
+2026-10-29T12:59:51.572Z env_override set=[] unset=[]
+2026-10-29T12:59:52.368Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 482ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:59:52.369Z   compose up out: ba765f225bd371d19949dd6ee42d72dc4788d05a68b0e49b6e12b0804d49ffd2
+repo_server_1
+
+2026-10-29T12:59:52.576Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid acd60a02f0b0 -> ba765f225bd3 recreated=True
+  logs: {"time":"2026-10-29T12:59:52.450931913Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T12:59:52.450976792Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T12:59:52.462136137Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T12:59:52.465982822Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T12:59:52.466815747Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T12:59:52.467516912Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T12:59:52.578Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+2026-10-29T12:59:52.578Z CONTROL ok: unmodified .env boots (recreated container) (200)
+2026-10-29T12:59:53.102Z pg_dumpall pre-env-override -> rc=0 0017-G3-pre-env-override.sql
+2026-10-29T12:59:53.172Z sweep_snapshot pre-env-override: dump=0017-G3-pre-env-override.sql logs=2
+2026-10-29T12:59:53.172Z env_override set=['COFFER_MASTER_KEY'] unset=[]
+2026-10-29T12:59:53.910Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 499ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:59:53.910Z   compose up out: 6d6e4971594f6e5fc82153e9d9f9febf8f4f71a8129774b152b5463b7920b0a2
+repo_server_1
+
+2026-10-29T12:59:55.203Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=3 status=running cid ba765f225bd3 -> 6d6e4971594f recreated=True
+  logs: coffer: serve: COFFER_MASTER_KEY is not valid base64
+coffer: serve: COFFER_MASTER_KEY is not valid base64
+coffer: serve: COFFER_MASTER_KEY is not valid base64
+coffer: serve: COFFER_MASTER_KEY is not valid base64
+
+2026-10-29T12:59:55.203Z placeholder override: {'placeholder_len': 31, 'compose_rc': 0, 'ready': False, 'running': True, 'exit_code': None, 'restarts': 3, 'status': 'running', 'recreated': True, 'log_names_key': True, 'log_bytes': 212}
+2026-10-29T12:59:55.203Z ASSERT ok   not(server BOOTED (/readyz 200) with the .env.example placeholder master key)
+2026-10-29T12:59:55.203Z ASSERT ok   not(refused: exit=None restarts=3 log names key=True)
+2026-10-29T12:59:55.826Z pg_dumpall pre-env-override -> rc=0 0018-G3-pre-env-override.sql
+2026-10-29T12:59:55.927Z sweep_snapshot pre-env-override: dump=0018-G3-pre-env-override.sql logs=2
+2026-10-29T12:59:55.927Z env_override set=[] unset=[]
+2026-10-29T12:59:56.887Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 493ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:59:56.887Z   compose up out: f394368ae3f438fdbcf0d90f4686a0285f8ee6035bd0970c1139a4ca92ad30a8
+repo_server_1
+
+2026-10-29T12:59:57.072Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 6d6e4971594f -> f394368ae3f4 recreated=True
+  logs: {"time":"2026-10-29T12:59:56.961898695Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T12:59:56.961943507Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T12:59:56.973245669Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T12:59:56.978338952Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T12:59:56.979132707Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T12:59:56.979830315Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T12:59:57.074Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+2026-10-29T12:59:57.074Z CONTROL ok: restored .env boots again (recovery) (200)
+2026-10-29T12:59:57.649Z pg_dumpall pre-rollback-G3 -> rc=0 0019-G3-pre-rollback-G3.sql
+2026-10-29T12:59:57.719Z sweep_snapshot pre-rollback-G3: dump=0019-G3-pre-rollback-G3.sql logs=2
+2026-10-29T13:00:04Z [runner] rollback: ok

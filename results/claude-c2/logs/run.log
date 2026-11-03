@@ -1,0 +1,105 @@
+2026-10-30T15:24:43Z setup done: failed_step=None
+2026-10-30T15:24:46Z F1 pass 57 CLI steps ok
+2026-10-30T15:24:49Z base checkpoint: ok
+2026-10-30T15:24:49Z G2 pass up.sh rc=0 in 43.1s, /readyz 200
+2026-10-30T15:24:49Z O9 pass 3 image refs pinned (1 compose, 1 Dockerfiles)
+2026-10-30T15:24:50Z O2 pass 1 server processes, none uid 0 (Config.User='65532:65532')
+2026-10-30T15:24:52Z X15 pass 0 High/Critical across 1 first-party lockfiles: go.mod (9 pkgs)
+2026-10-30T15:24:52Z X16 fail 1 gitleaks findings: generic-api-key test/e2e/helpers_test.go:27 commit 1fbcde8e
+2026-10-30T15:24:52Z X17 pass 9 fixture homes + 1 umask-000 login: dir 0700, files 0600
+2026-10-30T15:24:53Z E3 pass .github/workflows/ci.yml: lint[.github/workflows/ci.yml#lint: out="$(gofmt -l $(go list -f '{{.Dir}}' ./...))"] test[.gi
+2026-10-30T15:24:53Z E6 pass 6 commits (6 non-merge) over 2.5 h; largest commit 3fcbd71555 = 67% of 20576 first-party added lines (excl. lockfiles, v
+2026-10-30T15:24:53Z F2 pass empty(pos+stdin), 1B, 65536B, MULTI, trailing-\n all byte-exact via CLI
+2026-10-30T15:24:53Z F3 pass 65,537 B -> 6, not stored; lower/1ABC/A-B/129 chars -> 6; 65,536 B and 128-char key accepted
+2026-10-30T15:24:53Z F4 pass history 1..3, get --version 1/2 exact, rollback --to 1 -> v4 == v1
+2026-10-30T15:24:54Z F5 pass delete -> get 5 / API 404; v2 tombstone; re-set -> v3
+2026-10-30T15:24:54Z F6 pass stale -> 8 unchanged; correct -> 0; API stale -> 409
+2026-10-30T15:24:54Z F7 pass 20 parallel sets -> v2..v21 contiguous, all 20 values present, current == v21
+2026-10-30T15:24:54Z F8 pass dotenv byte-exact (5 keys incl. MULTI, empty, \t/'/` unescaped); sorted; LF; final newline
+2026-10-30T15:24:54Z F9 pass export json parses, keys sorted, every value exact through jq (incl. MULTI, empty)
+2026-10-30T15:24:55Z F10 pass env injected+override, exit 42, 143, SIGTERM forwarded, stdin passthrough
+2026-10-30T15:24:55Z F11 pass token get exact with empty HOME; HOME still has no files
+2026-10-30T15:24:55Z F12 pass writer prod set -> 7 + id; unchanged; admin approve -> value; audit has proposer + approver
+2026-10-30T15:24:56Z F13 pass reject -> value unchanged, status rejected (API + CLI)
+2026-10-30T15:24:56Z F14 pass second approval -> exit 8 / HTTP 409, status stale, value = first
+2026-10-30T15:24:56Z F15 pass protected rollback and delete -> exit 7 + CR; unchanged until approved; applied after
+2026-10-30T15:24:56Z F16 pass --json parses (one doc) for list, get, history, token create, change list, audit list
+2026-10-30T15:24:57Z F18 fail before passwd: project list rc=0 (want refused); before passwd: API GET /projects -> 200 (want refused)
+2026-10-30T15:25:10Z F17 pass down.sh+up.sh: 6 canaries + 2-version marker intact, owner PATs still valid
+2026-10-30T15:25:13Z X18 pass 199 proxied URLs (29 from this sequence) and 387 server log lines: no secret or token; 112 needles + token regex; note: 
+2026-10-30T15:25:13Z S1 pass 14 controls; every web route 404 identical to absent; acme web state unchanged
+2026-10-30T15:25:14Z S2 pass 23 globex responses, only globex values, no acme canary
+2026-10-30T15:25:20Z rollback S3 for S3: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:25:36Z S3 pass 9 IDOR probes 404; acme members/tokens/changes and the 2 probed grants unchanged
+2026-10-30T15:25:39Z S4 error error: control failed: root PUT grant (400)
+2026-10-30T15:25:40Z S5 pass 21 controls; nogrant 404 identical to absent on every api route
+2026-10-30T15:25:41Z S6 pass 14 controls; viewer list 200, values 403, writes 403
+2026-10-30T15:25:41Z S7 pass 6 controls; reader reads ok on dev+prod, writes 403
+2026-10-30T15:25:42Z S8 pass writer dev writes 200 + applied; prod writes 202 + not applied
+2026-10-30T15:25:50Z rollback S9: homebind invalidated /home/grader2/work-c2/homes/admin@acme~base
+2026-10-30T15:25:50Z rollback S9 for S9: homebind: dropped 1 record(s), 1 alt home(s)
+2026-10-30T15:26:01Z S9 pass 43 controls; every member management cell 403
+2026-10-30T15:26:02Z S10 pass writer/admin/owner self-approve 403; admin2 approves 200 and applies
+2026-10-30T15:26:08Z rollback S11: homebind invalidated /home/grader2/work-c2/homes/admin@acme~base
+2026-10-30T15:26:08Z rollback S11 for S11: homebind: dropped 1 record(s), 1 alt home(s)
+2026-10-30T15:26:19Z S11 pass admin create/promote/demote/remove owner -> 403; owners unchanged
+2026-10-30T15:26:19Z S12 pass last owner self-demote/remove 409 (API+CLI); non-last owner demote 200
+2026-10-30T15:26:25Z rollback S13 for S13: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:26:37Z S13 pass 30 self-escalation attempts, state unchanged; 2xx-ignored: 0
+2026-10-30T15:26:37Z S14 pass T_dev_rw out-of-scope 404 (identical to absent); T_dev_r writes 403
+2026-10-30T15:26:37Z S15 pass T_prod_rw protected write -> 202 change_id, value not applied
+2026-10-30T15:26:43Z rollback S16 for S16: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:26:58Z S16 error error: control failed: T_dev_r PUT grant (400)
+2026-10-30T15:27:59Z S17 pass revoked and expired tokens -> 401 on the next request
+2026-10-30T15:27:59Z S18 pass removed PAT 401; lowered grant 403 next request; revoked grant 404
+2026-10-30T15:28:00Z S19 pass disabled org refused 10 PAT/token requests; acme/globex unaffected
+2026-10-30T15:28:00Z S20 pass 35 routes 401 anon; 30 outside paths 404; 22 bad bearers 401
+2026-10-30T15:28:07Z X5 fail admin2@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32); admin@acme.test: public
+2026-10-30T15:28:08Z X8 pass A: [401, 401, 401, 401, 401] then 429/429; B 201
+2026-10-30T15:28:19Z rollback X10 for X10: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:28:34Z X10 fail GET audit?actor=nul/raw: 200 with non-empty/unknown result (want 4xx or []); GET audit?action=nul/raw: 200 with non-empt
+2026-10-30T15:28:35Z X9 pass 33 responses, statuses [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]: headers ok, no CORS
+2026-10-30T15:28:35Z X11 pass 22 error probes: shape ok, statuses seen [400, 401, 404, 405, 413]; 23 bodies free of traces/paths/SQL
+2026-10-30T15:28:35Z X12 pass 2 MiB PUT -> 413 in 1 ms; 2 MiB login -> 413 in 1 ms; not stored
+2026-10-30T15:28:36Z X13 pass API logout and `coffer logout` both revoke the PAT (reuse -> 401)
+2026-10-30T15:28:39Z X14 pass password absent from ps argv: login: 8 ps samples, rc=0; member add: 8 ps samples, rc=0; admin org create: 8 ps samples,
+2026-10-30T15:28:48Z rollback X19 for X19: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:28:59Z X19 pass UPDATE/DELETE on 1 audit tables as coffer_app: permission denied
+2026-10-30T15:29:00Z X20 pass password change revoked the user's other PAT (-> 401); new password logs in
+2026-10-30T15:29:01Z A1 pass every op (set/get/--version/export x2 per key/run per key/rollback/delete/CR create+approve+reject/member+grant+role+rem
+2026-10-30T15:29:03Z A2 pass viewer/nogrant denials + cross-org denial in actor's org log, nothing in acme; unauth failed login in platform log + adm
+2026-10-30T15:29:03Z A4 pass audit verify (acme, globex) and admin audit verify: rc 0, valid:true
+2026-10-30T15:29:07Z A7 pass --limit 3 exact; --actor/--action/--since exact subsets (API and CLI)
+2026-10-30T15:29:08Z A8 pass CR created x3, approved, stale (409), rejected: all audited
+2026-10-30T15:29:13Z O1 pass /healthz 200; readyz 503 after 2.0s; recovered in 0.5s, same server container
+2026-10-30T15:29:26Z O3 pass 20 in-flight: 20 completed, rest clean errors; exit 1.16 s
+2026-10-30T15:29:29Z O4 fail GET /api/v1/me: 0 log lines with request_id=24e7ee8754b5581c8a44a8f609bb38a0 (want 1); GET /api/v1/me: 0 log lines with 
+2026-10-30T15:30:14Z O6 pass 3 down/up cycles clean; 72 secrets (all versions) intact, audit verifies
+2026-10-30T15:30:18Z O10 pass list(1000) p95 4 ms; 50-concurrent get p95 23 ms
+2026-10-30T15:30:35Z rollback G3 for G3: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:30:48Z G3 pass init-env keys random 32-byte, distinct; placeholder key -> server refused (exit/crash/log evidence), recovered on the re
+2026-10-30T15:31:07Z rollback X3 for X3: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:31:19Z X3 pass placeholder, 16-byte and missing master key all refused
+2026-10-30T15:31:49Z rollback O8 for O8: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:32:01Z O8 pass every required var refused with a named message: COFFER_MASTER_KEY=pass, COFFER_BOOTSTRAP_ADMIN_EMAIL=pass, COFFER_BOOTS
+2026-10-30T15:32:40Z rollback O7 for O7: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:32:54Z O7 pass backup 610603 B -> wipe -> restore: 1107 secrets (all versions) and all audit events intact; verify ok
+2026-10-30T15:33:38Z rollback X4 for X4: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:33:50Z X4 pass rotation re-wrapped; new key alone works; old key alone fails closed
+2026-10-30T15:34:13Z rollback X2 for X2: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:34:25Z X2 pass 3 transplants (key, env, org): every read errored; restore reads back
+2026-10-30T15:34:32Z rollback A5 for A5: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:34:44Z A5 pass UPDATE audit_events.target at seq 2622: verify rc 9 + first_invalid_seq 2622; restored -> rc 0
+2026-10-30T15:34:51Z rollback A6 for A6: homebind: dropped 0 record(s), 0 alt home(s)
+2026-10-30T15:35:07Z A6 fail DELETE seq 2623 (expect first_invalid_seq 2624): first_invalid_seq=2623 (want 2624); DELETE seq 2623 (expect first_inval
+2026-10-30T15:35:30Z X1 pass 373 needles ({'canary': 108, 'token': 129, 'password': 136}) absent from 44 dumps, 45 logs, 2 backups, 28 home files
+2026-10-30T15:35:34Z X6 pass 129 tokens absent (raw/hex/b64 + regex) from 44 dumps
+2026-10-30T15:35:36Z A3 pass 0 hits: 373 needles x 3 API audit lists + 3386 DB audit rows
+2026-10-30T15:35:36Z O5 pass 45 log files (2547936 B) clean of 373 needles and token/header shapes
+2026-10-30T15:35:48Z X7 pass 60 tries: status [401], 1 body, medians 49/49 ms (ratio 1.00)
+2026-10-30T15:35:55Z teardown: {"started": "2026-10-30T15:35:48.659858Z", "snapshot": "ok", "proxy": "stopped", "down_rc": 0, "down_v_rc": 0, "bind_removed": [], "finished": "2026-10-30T15:35:55.513077Z"}
+2026-10-30T15:37:42Z E1 pass ./scripts/test.sh rc=0 in 107 s on clean clone ba861e566a19 (1181 bytes output)
+2026-10-30T15:37:42Z G1 na manual; recorded na
+2026-10-30T15:37:42Z E2 na manual; recorded na
+2026-10-30T15:37:42Z E4 na manual; recorded na
+2026-10-30T15:37:42Z E5 na manual; recorded na

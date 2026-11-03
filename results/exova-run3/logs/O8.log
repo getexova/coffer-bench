@@ -1,0 +1,151 @@
+2026-10-29T13:01:55.210Z pg_dumpall pre-env-override -> rc=0 0025-O8-pre-env-override.sql
+2026-10-29T13:01:55.285Z sweep_snapshot pre-env-override: dump=0025-O8-pre-env-override.sql logs=2
+2026-10-29T13:01:55.285Z env_override set=[] unset=[]
+2026-10-29T13:01:56.057Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 478ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:01:56.057Z   compose up out: 5adb2736772c0b1073a58ea53d2ee09fed6ee087492abd0f0e8c803019cd5a51
+repo_server_1
+
+2026-10-29T13:01:56.242Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 63598ac6f7cf -> 5adb2736772c recreated=True
+  logs: {"time":"2026-10-29T13:01:56.131213866Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T13:01:56.131255597Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T13:01:56.142378696Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T13:01:56.146064569Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T13:01:56.146831465Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T13:01:56.147560153Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T13:01:56.244Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+2026-10-29T13:01:56.244Z CONTROL ok: unmodified .env boots (200)
+2026-10-29T13:01:56.776Z pg_dumpall pre-env-override -> rc=0 0026-O8-pre-env-override.sql
+2026-10-29T13:01:56.849Z sweep_snapshot pre-env-override: dump=0026-O8-pre-env-override.sql logs=2
+2026-10-29T13:01:56.849Z env_override set=[] unset=['COFFER_MASTER_KEY']
+2026-10-29T13:01:57.576Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 482ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:01:57.576Z   compose up out: 416d64235a6657a014881a326d0bc217f419dc1a5a4d106d20b8f7753fd6f6e0
+repo_server_1
+
+2026-10-29T13:01:58.861Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=3 status=running cid 5adb2736772c -> 416d64235a66 recreated=True
+  logs: coffer: serve: missing required environment variable COFFER_MASTER_KEY
+coffer: serve: missing required environment variable COFFER_MASTER_KEY
+coffer: serve: missing required environment variable COFFER_MASTER_KEY
+coffer: serve: missing required environment variable COFFER_MASTER_KEY
+
+2026-10-29T13:01:58.861Z O8 COFFER_MASTER_KEY: compose_rc=0 ready=False running=True exit=None restarts=3 -> pass: exit=None restarts=3, logs name it
+2026-10-29T13:01:58.861Z ASSERT ok   not(unset COFFER_MASTER_KEY: pass: exit=None restarts=3, logs name it)
+2026-10-29T13:01:59.402Z pg_dumpall pre-env-override -> rc=0 0027-O8-pre-env-override.sql
+2026-10-29T13:01:59.627Z sweep_snapshot pre-env-override: dump=0027-O8-pre-env-override.sql logs=2
+2026-10-29T13:01:59.627Z env_override set=[] unset=['COFFER_BOOTSTRAP_ADMIN_EMAIL']
+2026-10-29T13:02:00.539Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 464ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:00.539Z   compose up out: 6b03e2a4ad10b5560d496c55c92279ce7aef9185d63564d03b803b14cdd10714
+repo_server_1
+
+2026-10-29T13:02:01.756Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=3 status=running cid 416d64235a66 -> 6b03e2a4ad10 recreated=True
+  logs: coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+
+2026-10-29T13:02:01.756Z O8 COFFER_BOOTSTRAP_ADMIN_EMAIL: compose_rc=0 ready=False running=True exit=None restarts=3 -> pass: exit=None restarts=3, logs name it
+2026-10-29T13:02:01.756Z ASSERT ok   not(unset COFFER_BOOTSTRAP_ADMIN_EMAIL: pass: exit=None restarts=3, logs name it)
+2026-10-29T13:02:02.338Z pg_dumpall pre-env-override -> rc=0 0028-O8-pre-env-override.sql
+2026-10-29T13:02:02.517Z sweep_snapshot pre-env-override: dump=0028-O8-pre-env-override.sql logs=2
+2026-10-29T13:02:02.517Z env_override set=[] unset=['COFFER_BOOTSTRAP_ADMIN_PASSWORD']
+2026-10-29T13:02:03.560Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 467ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:03.560Z   compose up out: d80f303f726c8299f961da211176b76d3247d253e7b0211b70b64f8eb3a1b511
+repo_server_1
+
+2026-10-29T13:02:04.868Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=4 status=running cid 6b03e2a4ad10 -> d80f303f726c recreated=True
+  logs: coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+coffer: serve: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+
+2026-10-29T13:02:04.868Z O8 COFFER_BOOTSTRAP_ADMIN_PASSWORD: compose_rc=0 ready=False running=True exit=None restarts=4 -> pass: exit=None restarts=4, logs name it
+2026-10-29T13:02:04.868Z ASSERT ok   not(unset COFFER_BOOTSTRAP_ADMIN_PASSWORD: pass: exit=None restarts=4, logs name it)
+2026-10-29T13:02:05.526Z pg_dumpall pre-env-override -> rc=0 0029-O8-pre-env-override.sql
+2026-10-29T13:02:05.727Z sweep_snapshot pre-env-override: dump=0029-O8-pre-env-override.sql logs=2
+2026-10-29T13:02:05.727Z env_override set=[] unset=['COFFER_PORT']
+2026-10-29T13:02:06.667Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 475ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:06.668Z   compose up out: 623de822a1506b6fa4a790937bcf4f5f83d4820212f01df09fe61d6456d4b615
+repo_server_1
+
+2026-10-29T13:02:06.853Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid d80f303f726c -> 623de822a150 recreated=True
+  logs: {"time":"2026-10-29T13:02:06.741148463Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T13:02:06.741193808Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T13:02:06.751562314Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T13:02:06.756806861Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T13:02:06.757512516Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T13:02:06.758202068Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T13:02:06.853Z O8 COFFER_PORT: compose_rc=0 ready=True running=True exit=None restarts=0 -> na-by-design: booted on the SPEC default (${COFFER_PORT:-8420})
+2026-10-29T13:02:06.853Z ASSERT ok   not(unset COFFER_PORT: na-by-design: booted on the SPEC default (${COFFER_PORT:-8420}))
+2026-10-29T13:02:07.350Z pg_dumpall pre-env-override -> rc=0 0030-O8-pre-env-override.sql
+2026-10-29T13:02:07.421Z sweep_snapshot pre-env-override: dump=0030-O8-pre-env-override.sql logs=2
+2026-10-29T13:02:07.421Z env_override set=[] unset=['POSTGRES_USER']
+2026-10-29T13:02:08.110Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 470ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:08.110Z   compose up out: cc47a0732fbd58daabf3495bb373a6bb818de2922dd92e84f813104dfa7bc392
+repo_server_1
+
+2026-10-29T13:02:09.501Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=4 status=running cid 623de822a150 -> cc47a0732fbd recreated=True
+  logs: coffer: serve: missing required environment variable POSTGRES_USER
+coffer: serve: missing required environment variable POSTGRES_USER
+coffer: serve: missing required environment variable POSTGRES_USER
+coffer: serve: missing required environment variable POSTGRES_USER
+coffer: serve: missing required environment variable POSTGRES_USER
+
+2026-10-29T13:02:09.501Z O8 POSTGRES_USER: compose_rc=0 ready=False running=True exit=None restarts=4 -> pass: exit=None restarts=4, logs name it
+2026-10-29T13:02:09.501Z ASSERT ok   not(unset POSTGRES_USER: pass: exit=None restarts=4, logs name it)
+2026-10-29T13:02:09.903Z pg_dumpall pre-env-override -> rc=1 0031-O8-pre-env-override.sql
+2026-10-29T13:02:09.904Z sweep_snapshot: pg_dumpall rc=1: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mpg_dumpall: error: connection to server on socket "/var/
+2026-10-29T13:02:10.123Z sweep_snapshot pre-env-override: dump=None logs=2
+2026-10-29T13:02:10.123Z env_override set=[] unset=['POSTGRES_PASSWORD']
+2026-10-29T13:02:10.953Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 465ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:10.953Z   compose up out: 3cd991aed26bffe489e1ed718eaf7afbf35ed2be20175e7dce3e8535065f311d
+repo_server_1
+
+2026-10-29T13:02:12.234Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=4 status=running cid cc47a0732fbd -> 3cd991aed26b recreated=True
+  logs: coffer: serve: missing required environment variable POSTGRES_PASSWORD
+coffer: serve: missing required environment variable POSTGRES_PASSWORD
+coffer: serve: missing required environment variable POSTGRES_PASSWORD
+coffer: serve: missing required environment variable POSTGRES_PASSWORD
+
+2026-10-29T13:02:12.234Z O8 POSTGRES_PASSWORD: compose_rc=0 ready=False running=True exit=None restarts=4 -> pass: exit=None restarts=4, logs name it
+2026-10-29T13:02:12.234Z ASSERT ok   not(unset POSTGRES_PASSWORD: pass: exit=None restarts=4, logs name it)
+2026-10-29T13:02:12.839Z pg_dumpall pre-env-override -> rc=0 0032-O8-pre-env-override.sql
+2026-10-29T13:02:13.054Z sweep_snapshot pre-env-override: dump=0032-O8-pre-env-override.sql logs=2
+2026-10-29T13:02:13.055Z env_override set=[] unset=['POSTGRES_DB']
+2026-10-29T13:02:13.849Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 478ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:13.849Z   compose up out: 018ba73d4d68845d4238ef909d63359329bb2b44f709f281e2056f4d248dd4ea
+repo_server_1
+
+2026-10-29T13:02:15.137Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=4 status=running cid 3cd991aed26b -> 018ba73d4d68 recreated=True
+  logs: coffer: serve: missing required environment variable POSTGRES_DB
+coffer: serve: missing required environment variable POSTGRES_DB
+coffer: serve: missing required environment variable POSTGRES_DB
+coffer: serve: missing required environment variable POSTGRES_DB
+coffer: serve: missing required environment variable POSTGRES_DB
+
+2026-10-29T13:02:15.137Z O8 POSTGRES_DB: compose_rc=0 ready=False running=True exit=None restarts=4 -> pass: exit=None restarts=4, logs name it
+2026-10-29T13:02:15.137Z ASSERT ok   not(unset POSTGRES_DB: pass: exit=None restarts=4, logs name it)
+2026-10-29T13:02:15.821Z pg_dumpall pre-rollback-O8 -> rc=0 0033-O8-pre-rollback-O8.sql
+2026-10-29T13:02:15.966Z sweep_snapshot pre-rollback-O8: dump=0033-O8-pre-rollback-O8.sql logs=2
+2026-10-29T13:02:21Z [runner] rollback: ok

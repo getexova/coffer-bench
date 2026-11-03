@@ -1,0 +1,54 @@
+2026-10-29T12:58:41.636Z HTTP POST /api/v1/members actor=owner@acme -> 201 73ms
+  req: {"email": "x13-11ccd@acme.test", "role": "member", "password": "«pw0:x13-11ccd@acme»"}
+  resp: {"member":{"id":"usr_897d228b7f9ed1ef83b9fda6","email":"x13-11ccd@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:41.628237Z"}}
+2026-10-29T12:58:41.638Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=2f4d210f2e1891e220cb34ad2d027caf2a71c8d0e157b26d646ef3810d816e28 len=3415]
+2026-10-29T12:58:41.710Z HTTP POST /api/v1/auth/token actor=anon -> 200 71ms
+  req: {"email": "x13-11ccd@acme.test", "password": "«pw0:x13-11ccd@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_897d228b7f9ed1ef83b9fda6","email":"x13-11ccd@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:41.713Z HTTP GET /api/v1/projects actor=x13-11ccd@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:41.848Z HTTP POST /api/v1/auth/password actor=x13-11ccd@acme -> 200 133ms
+  req: {"current_password": "«pw0:x13-11ccd@acme»", "new_password": "«pw:x13-11ccd@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:41.933Z HTTP POST /api/v1/auth/token actor=anon -> 200 85ms
+  req: {"email": "x13-11ccd@acme.test", "password": "«pw:x13-11ccd@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_897d228b7f9ed1ef83b9fda6","email":"x13-11ccd@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:42.023Z HTTP POST /api/v1/auth/token actor=anon -> 200 88ms
+  req: {"email": "x13-11ccd@acme.test", "password": "«pw:x13-11ccd@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_897d228b7f9ed1ef83b9fda6","email":"x13-11ccd@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:42.027Z HTTP GET /api/v1/me actor=x13a -> 200 2ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"x13-11ccd@acme.test","id":"usr_897d228b7f9ed1ef83b9fda6","must_change_password":false}}
+2026-10-29T12:58:42.027Z CONTROL ok: fresh PAT GET /me (200)
+2026-10-29T12:58:42.035Z HTTP POST /api/v1/auth/logout actor=x13a -> 200 8ms
+  req: 
+  resp: {"logged_out":true}
+2026-10-29T12:58:42.035Z ASSERT ok   not(POST /auth/logout -> 200 (want 2xx))
+2026-10-29T12:58:42.036Z HTTP GET /api/v1/me actor=x13a -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:42.036Z ASSERT ok   not(API: PAT after logout GET /me -> 401 (want 401))
+2026-10-29T12:58:42.037Z HTTP GET /api/v1/projects actor=x13a -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:42.037Z ASSERT ok   not(API: PAT after logout GET /projects -> 401 (want 401))
+2026-10-29T12:58:42.227Z CLI coffer login --email x13-11ccd@acme.test actor=anon home=/home/grader1/work-r2/tmp/X13/home-2 url=http://127.0.0.1:8420 -> rc=0 190ms stdin=17B
+  out: Logged in as x13-11ccd@acme.test
+
+  err: 
+2026-10-29T12:58:42.231Z HTTP GET /api/v1/me actor=x13cli -> 200 2ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"x13-11ccd@acme.test","id":"usr_897d228b7f9ed1ef83b9fda6","must_change_password":false}}
+2026-10-29T12:58:42.231Z CONTROL ok: CLI PAT GET /me (200)
+2026-10-29T12:58:42.355Z CLI coffer logout actor=anon home=/home/grader1/work-r2/tmp/X13/home-2 url=http://127.0.0.1:8420 -> rc=0 124ms stdin=0B
+  out: Logged out.
+
+  err: 
+2026-10-29T12:58:42.355Z ASSERT ok   not(coffer logout rc=0 (want 0))
+2026-10-29T12:58:42.357Z HTTP GET /api/v1/me actor=x13cli -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:42.357Z ASSERT ok   not(CLI: PAT after `coffer logout` GET /me -> 401 (want 401))

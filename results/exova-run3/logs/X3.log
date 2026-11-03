@@ -1,0 +1,72 @@
+2026-10-29T13:00:06.441Z pg_dumpall pre-env-override -> rc=0 0020-X3-pre-env-override.sql
+2026-10-29T13:00:06.512Z sweep_snapshot pre-env-override: dump=0020-X3-pre-env-override.sql logs=2
+2026-10-29T13:00:06.513Z env_override set=[] unset=[]
+2026-10-29T13:00:07.275Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 464ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:00:07.275Z   compose up out: 586202aea76f13ccd28a5a1fe928ff801d74023629277dc59e93f764dfec3316
+repo_server_1
+
+2026-10-29T13:00:07.461Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid e3a6810f8f1b -> 586202aea76f recreated=True
+  logs: {"time":"2026-10-29T13:00:07.351166453Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T13:00:07.351210244Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T13:00:07.361189045Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T13:00:07.366606116Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T13:00:07.367385485Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T13:00:07.368056449Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T13:00:07.461Z CONTROL ok: env_override with unchanged .env -> ready
+2026-10-29T13:00:07.972Z pg_dumpall pre-env-override -> rc=0 0021-X3-pre-env-override.sql
+2026-10-29T13:00:08.045Z sweep_snapshot pre-env-override: dump=0021-X3-pre-env-override.sql logs=2
+2026-10-29T13:00:08.045Z env_override set=['COFFER_MASTER_KEY'] unset=[]
+2026-10-29T13:00:08.795Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 499ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:00:08.796Z   compose up out: 4dcc7b70cc9bd3f9781c0002d7b40cbe99b0a323897706a57e960046b5e5ff96
+repo_server_1
+
+2026-10-29T13:00:09.867Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=3 status=running cid 586202aea76f -> 4dcc7b70cc9b recreated=True
+  logs: coffer: serve: COFFER_MASTER_KEY is not valid base64
+coffer: serve: COFFER_MASTER_KEY is not valid base64
+coffer: serve: COFFER_MASTER_KEY is not valid base64
+coffer: serve: COFFER_MASTER_KEY is not valid base64
+
+2026-10-29T13:00:40.198Z wait_ready(30s) -> False (last status 0)
+2026-10-29T13:00:40.198Z ASSERT ok   not(master key placeholder: server became ready (want refuse to start))
+2026-10-29T13:00:40.949Z pg_dumpall pre-env-override -> rc=0 0022-X3-pre-env-override.sql
+2026-10-29T13:00:41.220Z sweep_snapshot pre-env-override: dump=0022-X3-pre-env-override.sql logs=2
+2026-10-29T13:00:41.220Z env_override set=['COFFER_MASTER_KEY'] unset=[]
+2026-10-29T13:00:42.255Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 527ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:00:42.256Z   compose up out: c1a8fd19b3bac9d98966d47dc235cda8ffd18128e99912fdc30901461379f65d
+repo_server_1
+
+2026-10-29T13:00:43.515Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=3 status=running cid 4dcc7b70cc9b -> c1a8fd19b3ba recreated=True
+  logs: coffer: serve: COFFER_MASTER_KEY must decode to exactly 32 bytes, got 16
+coffer: serve: COFFER_MASTER_KEY must decode to exactly 32 bytes, got 16
+coffer: serve: COFFER_MASTER_KEY must decode to exactly 32 bytes, got 16
+coffer: serve: COFFER_MASTER_KEY must decode to exactly 32 bytes, got 16
+
+2026-10-29T13:01:13.682Z wait_ready(30s) -> False (last status 0)
+2026-10-29T13:01:13.683Z ASSERT ok   not(master key 16-byte key: server became ready (want refuse to start))
+2026-10-29T13:01:14.365Z pg_dumpall pre-env-override -> rc=0 0023-X3-pre-env-override.sql
+2026-10-29T13:01:14.601Z sweep_snapshot pre-env-override: dump=0023-X3-pre-env-override.sql logs=2
+2026-10-29T13:01:14.602Z env_override set=[] unset=['COFFER_MASTER_KEY']
+2026-10-29T13:01:15.511Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 464ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:01:15.511Z   compose up out: 0213810e44b9816c78e55687be959300c2fc1c19b759500895b87769d249966d
+repo_server_1
+
+2026-10-29T13:01:16.736Z env_override -> compose_rc=0 ready=False running=True exit=None restarts=3 status=running cid c1a8fd19b3ba -> 0213810e44b9 recreated=True
+  logs: coffer: serve: missing required environment variable COFFER_MASTER_KEY
+coffer: serve: missing required environment variable COFFER_MASTER_KEY
+coffer: serve: missing required environment variable COFFER_MASTER_KEY
+coffer: serve: missing required environment variable COFFER_MASTER_KEY
+
+2026-10-29T13:01:46.883Z wait_ready(30s) -> False (last status 0)
+2026-10-29T13:01:46.883Z ASSERT ok   not(master key unset: server became ready (want refuse to start))
+2026-10-29T13:01:47.670Z pg_dumpall pre-rollback-X3 -> rc=0 0024-X3-pre-rollback-X3.sql
+2026-10-29T13:01:47.911Z sweep_snapshot pre-rollback-X3: dump=0024-X3-pre-rollback-X3.sql logs=2
+2026-10-29T13:01:53Z [runner] rollback: ok

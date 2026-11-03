@@ -1,0 +1,56 @@
+2026-10-30T15:24:53.956Z CLI coffer secrets set F5_DEL_EF0C80FE -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 13ms stdin=40B
+  out: set F5_DEL_EF0C80FE (version 1)
+
+  err: 
+2026-10-30T15:24:53.956Z ASSERT ok   not(initial set failed)
+2026-10-30T15:24:53.966Z CLI coffer secrets delete F5_DEL_EF0C80FE -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: deleted F5_DEL_EF0C80FE (version 2)
+
+  err: 
+2026-10-30T15:24:53.966Z ASSERT ok   not(delete rc=0 (want 0))
+2026-10-30T15:24:53.975Z CLI coffer secrets get F5_DEL_EF0C80FE -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=5 9ms stdin=0B
+  out: 
+  err: error: not found (not_found)
+
+2026-10-30T15:24:53.975Z ASSERT ok   not(get after delete rc=5 (want 5))
+2026-10-30T15:24:53.979Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F5_DEL_EF0C80FE actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:24:53.980Z ASSERT ok   not(API GET after delete -> 404 (want 404))
+2026-10-30T15:24:53.981Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F5_DEL_EF0C80FE/versions actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:53.949525Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":2,"deleted":true,"created_at":"2026-10-30T15:24:53.961383Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"}]
+
+2026-10-30T15:24:53.981Z ASSERT ok   not(API versions after delete=[(1, False), (2, True)] (want [(1,live),(2,tombstone)]))
+2026-10-30T15:24:53.986Z CLI coffer --json secrets history F5_DEL_EF0C80FE -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 5ms stdin=0B
+  out: [
+  {
+    "version": 1,
+    "deleted": false,
+    "created_at": "2026-10-30T15:24:53.949525Z",
+    "created_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"
+  },
+  {
+    "version": 2,
+    "deleted": true,
+    "created_at": "2026-10-30T15:24:53.961383Z",
+    "created_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"
+  }
+]
+
+  err: 
+2026-10-30T15:24:53.986Z ASSERT ok   not(CLI history after delete=[(1, False), (2, True)] rc=0)
+2026-10-30T15:24:53.996Z CLI coffer secrets set F5_DEL_EF0C80FE -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 8ms stdin=40B
+  out: set F5_DEL_EF0C80FE (version 3)
+
+  err: 
+2026-10-30T15:24:53.996Z ASSERT ok   not(set after delete failed)
+2026-10-30T15:24:53.997Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F5_DEL_EF0C80FE/versions actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:53.949525Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":2,"deleted":true,"created_at":"2026-10-30T15:24:53.961383Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":3,"deleted":false,"created_at":"2026-10-30T15:24:53.991563Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"}]
+
+2026-10-30T15:24:53.997Z ASSERT ok   not(versions after re-set=[(1, False), (2, True), (3, False)] (want 1..3))
+2026-10-30T15:24:54.005Z CLI coffer secrets get F5_DEL_EF0C80FE -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 8ms stdin=0B
+  out: «canary:F5:b»
+  err: 
+2026-10-30T15:24:54.006Z ASSERT ok   not(get after re-set rc=0 exact=True)

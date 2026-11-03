@@ -1,0 +1,74 @@
+2026-10-29T12:57:09.777Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 10ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s17-1ae64"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:57:09.772101Z","id":"tok_029717cbc002eb9871c87326","name":"s17-1ae64","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:09.781Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=tok:s17-1ae64 -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:57:09.781Z CONTROL ok: read token works before revoke (200)
+2026-10-29T12:57:09.786Z HTTP DELETE /api/v1/tokens/tok_029717cbc002eb9871c87326 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"revoked":true}
+2026-10-29T12:57:09.787Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=tok:s17-1ae64 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:57:09.788Z ASSERT ok   not(revoked read token next request -> 401 (want 401) after 1 ms)
+2026-10-29T12:57:09.788Z ASSERT ok   not(revoked read token: first post-revoke probe completed 1 ms after DELETE (want <= 1000))
+2026-10-29T12:57:09.789Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=tok:s17-1ae64 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:57:09.789Z ASSERT ok   not(revoked read token GET value -> 401 (want 401))
+2026-10-29T12:57:09.794Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read-write", "ttl_seconds": 3600, "name": "s17-349ae"}
+  resp: {"access":"read-write","env":"dev","expires_at":"2026-10-29T13:57:09.790470Z","id":"tok_e800a2a71bd95bfac1521b8c","name":"s17-349ae","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:09.797Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=tok:s17-349ae -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:57:09.797Z CONTROL ok: read-write token works before revoke (200)
+2026-10-29T12:57:09.802Z HTTP DELETE /api/v1/tokens/tok_e800a2a71bd95bfac1521b8c actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"revoked":true}
+2026-10-29T12:57:09.803Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S17_4 actor=tok:s17-349ae -> 401 1ms
+  req: {"value": "after-revoke"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:57:09.803Z ASSERT ok   not(revoked read-write token next request -> 401 (want 401) after 1 ms)
+2026-10-29T12:57:09.803Z ASSERT ok   not(revoked read-write token: first post-revoke probe completed 1 ms after DELETE (want <= 1000))
+2026-10-29T12:57:09.807Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S17_4 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:09.807Z ASSERT ok   not(write by revoked token applied: GET JUNK_S17_4 -> 404)
+2026-10-29T12:57:09.808Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=tok:s17-349ae -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:57:09.808Z ASSERT ok   not(revoked read-write token GET value -> 401 (want 401))
+2026-10-29T12:57:09.810Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_dev_r -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:57:09.810Z CONTROL ok: T_rev (revoked) GET api/dev list (200)
+2026-10-29T12:57:09.811Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_rev -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:57:09.811Z ASSERT ok   not(T_rev (revoked) GET api/dev list: denied 401)
+2026-10-29T12:57:09.812Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 5, "name": "s17exp5"}
+  resp: {"error":{"code":"validation_error","message":"ttl_seconds must be between 60 (1 minute) and 7776000 (90 days)"}}
+2026-10-29T12:57:09.812Z S17 POST /tokens ttl=5 -> 400
+2026-10-29T12:57:09.817Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 60, "name": "s17exp60"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T12:58:09.813316Z","id":"tok_c33fa7e57dfda4ac1f9cce0a","name":"s17exp60","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:09.818Z S17 ttl=60 server expires_at=2026-10-29T12:58:09.813316Z drift=-0.0s
+2026-10-29T12:57:09.820Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:57:09.820Z CONTROL ok: ttl=60s token works before expiry (200)
+2026-10-29T12:58:10.820Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 401 3ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:10.820Z ASSERT ok   not(ttl=60s token at expiry+1 s -> 401 (want 401))
+2026-10-29T12:58:10.822Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_dev_r -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:58:10.822Z CONTROL ok: T_exp (expired) GET api/dev list (200)
+2026-10-29T12:58:10.823Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_exp -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:10.824Z ASSERT ok   not(T_exp (expired) GET api/dev list: denied 401)

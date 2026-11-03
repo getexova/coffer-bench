@@ -1,0 +1,58 @@
+2026-10-30T15:24:54.655Z HTTP POST /api/v1/projects actor=owner@acme -> 201 9ms
+  req: {"slug": "f8-1dc57"}
+  resp: {"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"}
+
+2026-10-30T15:24:54.661Z HTTP POST /api/v1/projects/f8-1dc57/envs actor=owner@acme -> 201 6ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_jumwkxokpccgrnco64bnbistkd6nrfwo","slug":"dev","protected":false,"created_at":"2026-10-30T15:24:54.656976Z"}
+
+2026-10-30T15:24:54.667Z HTTP PUT /api/v1/projects/f8-1dc57/envs/dev/secrets/A_PLAIN actor=owner@acme -> 200 6ms
+  req: {"value": "«canary:F8:plain»"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.672Z HTTP PUT /api/v1/projects/f8-1dc57/envs/dev/secrets/B_MULTI actor=owner@acme -> 200 5ms
+  req: {"value": "«canary:acme/api/dev/MULTI»"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.677Z HTTP PUT /api/v1/projects/f8-1dc57/envs/dev/secrets/C_ESC actor=owner@acme -> 200 5ms
+  req: {"value": "«canary:F8:esc»\\\"$\n\r\t'`😀\u0001$HOME${X}"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.682Z HTTP PUT /api/v1/projects/f8-1dc57/envs/dev/secrets/D_EMPTY actor=owner@acme -> 200 5ms
+  req: {"value": ""}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.687Z HTTP PUT /api/v1/projects/f8-1dc57/envs/dev/secrets/E_UNI actor=owner@acme -> 200 5ms
+  req: {"value": "héllo wörld ☃ «canary:F8:uni»"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.699Z CLI coffer secrets export -p f8-1dc57 -e dev --format dotenv actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=0B
+  out: A_PLAIN="«canary:F8:plain»"
+B_MULTI="«canary:multi_core»\"\\\$HOME\n\r\n😀qAYGTH3fmMibFvf7o2IWSHhomgNAgbzz5ivuuCMo"
+C_ESC="«canary:F8:esc»\\\"\$\n\r	'`😀\$HOME\${X}"
+D_EMPTY=""
+E_UNI="héllo wörld ☃ «canary:F8:uni»"
+
+  err: 
+2026-10-30T15:24:54.699Z ASSERT ok   not(export dotenv rc=0)
+2026-10-30T15:24:54.699Z ASSERT ok   not(scratch dotenv byte-exact vs reference encoder: True (len 263 want 263))
+2026-10-30T15:24:54.699Z ASSERT ok   not(dotenv: final newline + LF only (no raw CR))
+2026-10-30T15:24:54.715Z CLI coffer secrets export -p api -e dev --format dotenv actor=reader@acme home=/home/grader2/work-c2/homes/reader@acme url=http://127.0.0.1:18420 -> rc=0 15ms stdin=0B
+  out: CANARY="«canary:acme/api/dev/CANARY»"
+F2_BIG_F37A6220="«canary:F2:big»"
+F2_EMPTY_POS_D8F43BE3=""
+F2_EMPTY_STDIN_131CA018=""
+F2_MULTI_50E8EF4A="«canary:multi_core»\"\\\$HOME\n\r\n😀qAYGTH3fmMibFvf7o2IWSHhomgNAgbzz5ivuuCMo"
+F2_NL_598FE677="«canary:F2:nl»\n"
+F2_ONE_98B58392="U"
+F3_MAX_82773D2C="«canary:F3:max»"
+F4_HIST_2EF66BE8="«canary:F4:v1»"
+F5_DEL_EF0C80FE="«canary:F5:b»"
+F6_CAS_FD81F1B4="«canary:F6:3»"
+F7_PAR_6CF4CACA="«canary:F7:p0»"
+MULTI="«canary:multi_core»\"\\\$HOME\n\r\n😀qAYGTH3fmMibFvf7o2IWSHhomgN…[sha256=6fcd6747589bdc5a9c9dd1c1d487db95f449b2cc57f8ed7a4818206a1e26e0e3 len=131761]
+  err: 
+2026-10-30T15:24:54.715Z ASSERT ok   not(reader export acme/api/dev rc=0)
+2026-10-30T15:24:54.715Z ASSERT ok   not(acme/api/dev dotenv: LF only + trailing newline)
+2026-10-30T15:24:54.715Z ASSERT ok   not(acme/api/dev dotenv keys sorted: True (13 keys))
+2026-10-30T15:24:54.715Z ASSERT ok   not(acme/api/dev MULTI line not byte-exact to the 7.1 rule)

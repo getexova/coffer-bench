@@ -1,0 +1,71 @@
+2026-10-29T12:58:42.553Z HTTP POST /api/v1/members actor=owner@acme -> 201 73ms
+  req: {"email": "x14-1e242@acme.test", "role": "member", "password": "«pw0:x14-1e242@acme»"}
+  resp: {"member":{"id":"usr_236c7196e0388ff9c31d1ed2","email":"x14-1e242@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:42.545933Z"}}
+2026-10-29T12:58:42.556Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=ecfe3795c760acfbbb3b2f109aa431cd69feb190dc4ca7cccb433f59c7d50286 len=3571]
+2026-10-29T12:58:42.636Z HTTP POST /api/v1/auth/token actor=anon -> 200 80ms
+  req: {"email": "x14-1e242@acme.test", "password": "«pw0:x14-1e242@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_236c7196e0388ff9c31d1ed2","email":"x14-1e242@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:42.640Z HTTP GET /api/v1/projects actor=x14-1e242@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:42.788Z HTTP POST /api/v1/auth/password actor=x14-1e242@acme -> 200 147ms
+  req: {"current_password": "«pw0:x14-1e242@acme»", "new_password": "«pw:x14-1e242@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:42.861Z HTTP POST /api/v1/auth/token actor=anon -> 200 73ms
+  req: {"email": "x14-1e242@acme.test", "password": "«pw:x14-1e242@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_236c7196e0388ff9c31d1ed2","email":"x14-1e242@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:43.059Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader1/work-r2/tmp/X14/home-3 url=http://127.0.0.1:8420 -> rc=0 196ms stdin=25B
+  out: Logged in as owner@acme.test
+
+  err: 
+2026-10-29T12:58:43.252Z CLI coffer login --email admin@coffer.local actor=anon home=/home/grader1/work-r2/tmp/X14/home-4 url=http://127.0.0.1:8420 -> rc=0 192ms stdin=33B
+  out: Logged in as admin@coffer.local
+
+  err: 
+2026-10-29T12:58:43.255Z CLI-SPAWN coffer login --email x14-1e242@acme.test actor=anon home=/home/grader1/work-r2/tmp/X14/home-2
+2026-10-29T12:58:44.051Z login: rc=0 samples=9 pid_seen=True leaks=[]
+  out: Logged in as x14-1e242@acme.test
+
+  err: 
+2026-10-29T12:58:44.135Z HTTP POST /api/v1/auth/token actor=anon -> 200 83ms
+  req: {"email": "x14-1e242@acme.test", "password": "«pw:x14-1e242@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_236c7196e0388ff9c31d1ed2","email":"x14-1e242@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:44.218Z HTTP POST /api/v1/auth/token actor=anon -> 401 81ms
+  req: {"email": "x14-1e242@acme.test", "password": "«pw:x14-1e242@acme»-wrong"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:44.397Z CLI coffer login --email x14-1e242@acme.test actor=anon home=/home/grader1/work-r2/tmp/X14/home-5 url=http://127.0.0.1:8420 -> rc=3 179ms stdin=23B
+  out: 
+  err: coffer: invalid email or password
+coffer: hint: run `coffer login --email EMAIL` to obtain a token, or check COFFER_TOKEN
+
+2026-10-29T12:58:44.397Z CONTROL ok: login seen in ps, exited 0, stdin password effective on the server (rc=0)
+2026-10-29T12:58:44.397Z ASSERT ok   not(login: password visible in ps argv ())
+2026-10-29T12:58:44.397Z CLI-SPAWN coffer member add x14-ff36d1f5@acme.test --role member actor=anon home=/home/grader1/work-r2/tmp/X14/home-3
+2026-10-29T12:58:45.186Z member add: rc=0 samples=9 pid_seen=True leaks=[]
+  out: Added x14-ff36d1f5@acme.test as member
+
+  err: 
+2026-10-29T12:58:45.270Z HTTP POST /api/v1/auth/token actor=anon -> 200 83ms
+  req: {"email": "x14-ff36d1f5@acme.test", "password": "«pw0:x14-member»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_b6b7977b0a897ad21e10297d","email":"x14-ff36d1f5@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:45.350Z HTTP POST /api/v1/auth/token actor=anon -> 401 78ms
+  req: {"email": "x14-ff36d1f5@acme.test", "password": "«pw0:x14-member»-wrong"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:45.350Z CONTROL ok: member add seen in ps, exited 0, stdin password effective on the server (rc=0)
+2026-10-29T12:58:45.350Z ASSERT ok   not(member add: password visible in ps argv ())
+2026-10-29T12:58:45.350Z CLI-SPAWN coffer admin org create x14-52cbba --owner-email owner@x14-52cbba.test actor=anon home=/home/grader1/work-r2/tmp/X14/home-4
+2026-10-29T12:58:46.139Z admin org create: rc=0 samples=9 pid_seen=True leaks=[]
+  out: Created organization x14-52cbba
+Owner: owner@x14-52cbba.test
+
+  err: 
+2026-10-29T12:58:46.208Z HTTP POST /api/v1/auth/token actor=anon -> 200 69ms
+  req: {"email": "owner@x14-52cbba.test", "password": "«pw0:owner@x14-52cbba»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_2fbdd2e167b726444da1cbbb","email":"owner@x14-52cbba.test","role":"owner","must_change_password":true,"organization":{"id":"org_32b90f341865a8cbae8acc51","slug":"x14-52cbba"}}}
+2026-10-29T12:58:46.277Z HTTP POST /api/v1/auth/token actor=anon -> 401 67ms
+  req: {"email": "owner@x14-52cbba.test", "password": "«pw0:owner@x14-52cbba»-wrong"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:46.277Z CONTROL ok: admin org create seen in ps, exited 0, stdin password effective on the server (rc=0)
+2026-10-29T12:58:46.277Z ASSERT ok   not(admin org create: password visible in ps argv ())

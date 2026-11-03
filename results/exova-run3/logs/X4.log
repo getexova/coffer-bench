@@ -1,0 +1,152 @@
+2026-10-29T13:02:54.020Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X4_1 actor=owner@acme -> 200 9ms
+  req: {"value": "«canary:x4-JUNK_X4_1»"}
+  resp: {"version":1}
+2026-10-29T13:02:54.026Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X4_1 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"JUNK_X4_1","version":1,"value":"«canary:x4-JUNK_X4_1»"}
+2026-10-29T13:02:54.026Z CONTROL ok: junk value readable before rotation (200)
+2026-10-29T13:02:54.031Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T13:02:54.036Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+2026-10-29T13:02:54.041Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T13:02:54.046Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T13:02:54.051Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+2026-10-29T13:02:54.055Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+2026-10-29T13:02:54.060Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X4_1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_X4_1","version":1,"value":"«canary:x4-JUNK_X4_1»"}
+2026-10-29T13:02:54.596Z pg_dumpall pre-env-override -> rc=0 0037-X4-pre-env-override.sql
+2026-10-29T13:02:54.668Z sweep_snapshot pre-env-override: dump=0037-X4-pre-env-override.sql logs=2
+2026-10-29T13:02:54.668Z env_override set=['COFFER_MASTER_KEY', 'COFFER_MASTER_KEY_PREVIOUS'] unset=[]
+2026-10-29T13:02:55.455Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 490ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:55.455Z   compose up out: 17eba450502dabd1376dd63f3da2ced474da3bd411f02320486b6590f17f9457
+repo_server_1
+
+2026-10-29T13:02:55.643Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 469eda5e4a4d -> 17eba450502d recreated=True
+  logs: {"time":"2026-10-29T13:02:55.527486712Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T13:02:55.527532182Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T13:02:55.538449737Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T13:02:55.542210127Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T13:02:55.547123487Z","level":"INFO","msg":"master key rotated","data_keys_rewrapped":14}
+{"time":"2026-10-29T13:02:55.547536565Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T13:02:55.548224409Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T13:02:55.643Z ASSERT ok   not(PREVIOUS=old MASTER=new: not ready (exit=None, restarts=0))
+2026-10-29T13:02:55.651Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 7ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T13:02:55.656Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+2026-10-29T13:02:55.661Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T13:02:55.666Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T13:02:55.671Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+2026-10-29T13:02:55.676Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+2026-10-29T13:02:55.681Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X4_1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_X4_1","version":1,"value":"«canary:x4-JUNK_X4_1»"}
+2026-10-29T13:02:55.681Z ASSERT ok   not(after PREVIOUS=old MASTER=new: 0/7 unreadable or wrong: )
+2026-10-29T13:02:56.213Z pg_dumpall pre-env-override -> rc=0 0038-X4-pre-env-override.sql
+2026-10-29T13:02:56.285Z sweep_snapshot pre-env-override: dump=0038-X4-pre-env-override.sql logs=2
+2026-10-29T13:02:56.285Z env_override set=['COFFER_MASTER_KEY'] unset=['COFFER_MASTER_KEY_PREVIOUS']
+2026-10-29T13:02:57.013Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 471ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:57.013Z   compose up out: 9980a988c1b11ca15eeab9bea01e9c05b8b4ba4cdef94d2d75a59c9460c3f3a3
+repo_server_1
+
+2026-10-29T13:02:57.191Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 17eba450502d -> 9980a988c1b1 recreated=True
+  logs: {"time":"2026-10-29T13:02:57.083019513Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T13:02:57.08306204Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T13:02:57.092838838Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T13:02:57.096555191Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T13:02:57.097530532Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T13:02:57.098465878Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T13:02:57.192Z ASSERT ok   not(MASTER=new alone: not ready (exit=None, restarts=0))
+2026-10-29T13:02:57.199Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 7ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T13:02:57.204Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+2026-10-29T13:02:57.208Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T13:02:57.212Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T13:02:57.216Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+2026-10-29T13:02:57.220Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+2026-10-29T13:02:57.223Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X4_1 actor=owner@acme -> 200 3ms
+  req: 
+  resp: {"key":"JUNK_X4_1","version":1,"value":"«canary:x4-JUNK_X4_1»"}
+2026-10-29T13:02:57.223Z ASSERT ok   not(after MASTER=new alone: 0/7 unreadable or wrong: )
+2026-10-29T13:02:57.715Z pg_dumpall pre-env-override -> rc=0 0039-X4-pre-env-override.sql
+2026-10-29T13:02:57.786Z sweep_snapshot pre-env-override: dump=0039-X4-pre-env-override.sql logs=2
+2026-10-29T13:02:57.786Z env_override set=['COFFER_MASTER_KEY'] unset=['COFFER_MASTER_KEY_PREVIOUS']
+2026-10-29T13:02:58.497Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 498ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:02:58.497Z   compose up out: 21b6b9cfc11c1b39ce2f7abf4687fa8a46f8257b53762e1d8fb8e75eca7cd981
+repo_server_1
+
+2026-10-29T13:02:58.672Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 9980a988c1b1 -> 21b6b9cfc11c recreated=True
+  logs: {"time":"2026-10-29T13:02:58.558611285Z","level":"INFO","msg":"listening","addr":"[::]:8420","env":"production"}
+{"time":"2026-10-29T13:02:58.558655518Z","level":"WARN","msg":"binding to a non-loopback address: the API is plaintext HTTP and must sit behind a TLS-terminating reverse proxy","addr":"[::]:8420"}
+{"time":"2026-10-29T13:02:58.569931889Z","level":"INFO","msg":"migrations up to date"}
+{"time":"2026-10-29T13:02:58.575239932Z","level":"INFO","msg":"database connected","role":"coffer_app","degraded":false,"attempt":1}
+{"time":"2026-10-29T13:02:58.57596639Z","level":"INFO","msg":"bootstrap complete"}
+{"time":"2026-10-29T13:02:58.576948975Z","level":"INFO","msg":"server ready"}
+
+2026-10-29T13:02:58.676Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 500 4ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.678Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 500 2ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.680Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 500 2ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.681Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 500 1ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.683Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 500 1ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.684Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 500 1ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.685Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X4_1 actor=owner@acme -> 500 1ms
+  req: 
+  resp: {"error":{"code":"internal_error","message":"internal error"}}
+2026-10-29T13:02:58.685Z ASSERT ok   not(MASTER=old alone: server ready and 0 reads succeeded: )
+2026-10-29T13:02:58.685Z ASSERT FAIL MASTER=old alone: server ready and 7 reads -> 5xx/transport: acme/api/dev/CANARY->500, acme/api/dev/MULTI->500, acme/api/prod/CANARY->500, acme/web/dev/CANARY->500
+2026-10-29T13:02:59.268Z pg_dumpall pre-rollback-X4 -> rc=0 0040-X4-pre-rollback-X4.sql
+2026-10-29T13:02:59.342Z sweep_snapshot pre-rollback-X4: dump=0040-X4-pre-rollback-X4.sql logs=2
+2026-10-29T13:03:04Z [runner] rollback: ok

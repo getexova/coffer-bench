@@ -1,0 +1,66 @@
+2026-10-30T15:26:19.315Z HTTP POST /api/v1/admin/orgs actor=root -> 201 58ms
+  req: {"slug": "s12-180db", "owner_email": "owner-s12-180db@s12-180db.test", "owner_password": "«pw0:owner@s12-180db»"}
+  resp: {"id":"org_litjq2nbrrgb44ja2ply4z7l7ebhodq4","slug":"s12-180db","disabled":false,"created_at":"2026-10-30T15:26:19.302445Z","owner":{"id":"usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr","email":"owner-s12-180db@s12-180db.test","role":"owner"}}
+
+2026-10-30T15:26:19.366Z HTTP POST /api/v1/auth/token actor=anon -> 201 51ms
+  req: {"email": "owner-s12-180db@s12-180db.test", "password": "«pw0:owner@s12-180db»"}
+  resp: {"expires_at":"2026-11-29T15:26:19.316759Z","token":"<redacted-token>","user":{"id":"usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr","email":"owner-s12-180db@s12-180db.test","role":"owner","org_id":"org_litjq2nbrrgb44ja2ply4z7l7ebhodq4","org_slug":"s12-180db","must_change_password":false}}
+
+2026-10-30T15:26:19.371Z HTTP GET /api/v1/projects actor=owner@s12-180db -> 200 4ms
+  req: 
+  resp: []
+
+2026-10-30T15:26:19.372Z HTTP GET /api/v1/me actor=owner@s12-180db -> 200 1ms
+  req: 
+  resp: {"email":"owner-s12-180db@s12-180db.test","id":"usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr","must_change_password":false,"org_id":"org_litjq2nbrrgb44ja2ply4z7l7ebhodq4","org_slug":"s12-180db","role":"owner","type":"user"}
+
+2026-10-30T15:26:19.424Z HTTP POST /api/v1/members actor=owner@s12-180db -> 201 50ms
+  req: {"email": "o2-s12-180db@s12-180db.test", "role": "owner", "password": "«pw0:s12-s12-180db»"}
+  resp: {"id":"usr_3akl266szu7vhh46cuf6jp2vp3orbrgu","email":"o2-s12-180db@s12-180db.test","role":"owner","created_at":"2026-10-30T15:26:19.414606Z"}
+
+2026-10-30T15:26:19.431Z HTTP PATCH /api/v1/members/usr_3akl266szu7vhh46cuf6jp2vp3orbrgu actor=owner@s12-180db -> 200 7ms
+  req: {"role": "admin"}
+  resp: {"id":"usr_3akl266szu7vhh46cuf6jp2vp3orbrgu","email":"o2-s12-180db@s12-180db.test","role":"admin","created_at":"2026-10-30T15:26:19.414606Z"}
+
+2026-10-30T15:26:19.431Z CONTROL ok: demote a non-last owner (two owners present) (200)
+2026-10-30T15:26:19.433Z HTTP GET /api/v1/members actor=owner@s12-180db -> 200 2ms
+  req: 
+  resp: [{"id":"usr_3akl266szu7vhh46cuf6jp2vp3orbrgu","email":"o2-s12-180db@s12-180db.test","role":"admin","created_at":"2026-10-30T15:26:19.414606Z","grants":[]},{"id":"usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr","email":"owner-s12-180db@s12-180db.test","role":"owner","created_at":"2026-10-30T15:26:19.302445Z","grants":[]}]
+
+2026-10-30T15:26:19.433Z ASSERT ok   not(scratch org owners after demote: ['admin', 'owner'])
+2026-10-30T15:26:19.435Z HTTP PATCH /api/v1/members/usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr actor=owner@s12-180db -> 409 1ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"conflict","message":"cannot demote the last owner"}}
+2026-10-30T15:26:19.435Z ASSERT ok   not(last owner PATCH self role=admin -> 409 (want 409))
+2026-10-30T15:26:19.436Z HTTP PATCH /api/v1/members/usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr actor=owner@s12-180db -> 409 2ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"conflict","message":"cannot demote the last owner"}}
+2026-10-30T15:26:19.436Z ASSERT ok   not(last owner PATCH self role=member -> 409 (want 409))
+2026-10-30T15:26:19.438Z HTTP DELETE /api/v1/members/usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr actor=owner@s12-180db -> 409 1ms
+  req: 
+  resp: {"error":{"code":"conflict","message":"cannot remove the last owner"}}
+2026-10-30T15:26:19.438Z ASSERT ok   not(last owner DELETE self -> 409 (want 409))
+2026-10-30T15:26:19.532Z CLI coffer login --email owner-s12-180db@s12-180db.test actor=anon home=/home/grader2/work-c2/tmp/S12/home-2 url=http://127.0.0.1:8420 -> rc=0 94ms stdin=17B
+  out: logged in as owner-s12-180db@s12-180db.test
+
+  err: 
+2026-10-30T15:26:19.540Z CLI coffer member role owner-s12-180db@s12-180db.test member actor=anon home=/home/grader2/work-c2/tmp/S12/home-2 url=http://127.0.0.1:8420 -> rc=8 8ms stdin=0B
+  out: 
+  err: error: cannot demote the last owner (conflict)
+
+2026-10-30T15:26:19.541Z ASSERT ok   not(last owner CLI member role self member rc=8 (want 8))
+2026-10-30T15:26:19.545Z CLI coffer member remove owner-s12-180db@s12-180db.test actor=anon home=/home/grader2/work-c2/tmp/S12/home-2 url=http://127.0.0.1:8420 -> rc=8 4ms stdin=0B
+  out: 
+  err: error: cannot remove the last owner (conflict)
+
+2026-10-30T15:26:19.545Z ASSERT ok   not(last owner CLI member remove self rc=8 (want 8))
+2026-10-30T15:26:19.546Z HTTP GET /api/v1/members actor=owner@s12-180db -> 200 1ms
+  req: 
+  resp: [{"id":"usr_3akl266szu7vhh46cuf6jp2vp3orbrgu","email":"o2-s12-180db@s12-180db.test","role":"admin","created_at":"2026-10-30T15:26:19.414606Z","grants":[]},{"id":"usr_2ubaxaj6lwu5sikaqhscdgdn3lktswtr","email":"owner-s12-180db@s12-180db.test","role":"owner","created_at":"2026-10-30T15:26:19.302445Z","grants":[]}]
+
+2026-10-30T15:26:19.546Z ASSERT ok   not(last owner is now 'owner')
+2026-10-30T15:26:19.547Z HTTP GET /api/v1/projects actor=owner@s12-180db -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:26:19.547Z ASSERT ok   not(last owner PAT after probes -> 200)

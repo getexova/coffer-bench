@@ -1,0 +1,129 @@
+2026-10-30T15:26:03.464Z HTTP POST /api/v1/members actor=owner@acme -> 201 54ms
+  req: {"email": "s11-1311a@acme.test", "role": "owner", "password": "«pw0:s11-1311a@acme.test»"}
+  resp: {"id":"usr_zexnealq6xcxubsjtko3twdofxvtg7ns","email":"s11-1311a@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.455764Z"}
+
+2026-10-30T15:26:03.464Z CONTROL ok: admin POST /members role=owner (201)
+2026-10-30T15:26:03.473Z HTTP POST /api/v1/members actor=admin@acme -> 403 7ms
+  req: {"email": "s11-29608@acme.test", "role": "owner", "password": "«pw0:s11-29608@acme.test»"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:26:03.473Z ASSERT ok   not(admin POST /members role=owner: denied 403)
+2026-10-30T15:26:03.475Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=cbe67e9cd399ff0ddf50082bf10f0cfac12cd2dedb0d061e3ac99a167555e29c len=2181]
+2026-10-30T15:26:03.476Z ASSERT ok   not(admin-created owner exists after 403)
+2026-10-30T15:26:03.525Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s11-3803e@acme.test", "role": "member", "password": "«pw0:s11-3803e@acme.test»"}
+  resp: {"id":"usr_r4lvzl5ajwfvhxq5e3afcv6e4xj4ghdk","email":"s11-3803e@acme.test","role":"member","created_at":"2026-10-30T15:26:03.518665Z"}
+
+2026-10-30T15:26:03.577Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s11-496bb@acme.test", "role": "member", "password": "«pw0:s11-496bb@acme.test»"}
+  resp: {"id":"usr_xv7x4usadj4lgmu4anlmbacu3mnve6p2","email":"s11-496bb@acme.test","role":"member","created_at":"2026-10-30T15:26:03.569369Z"}
+
+2026-10-30T15:26:03.583Z HTTP PATCH /api/v1/members/usr_xv7x4usadj4lgmu4anlmbacu3mnve6p2 actor=owner@acme -> 200 6ms
+  req: {"role": "owner"}
+  resp: {"id":"usr_xv7x4usadj4lgmu4anlmbacu3mnve6p2","email":"s11-496bb@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.569369Z"}
+
+2026-10-30T15:26:03.583Z CONTROL ok: admin promotes member to owner (200)
+2026-10-30T15:26:03.588Z HTTP PATCH /api/v1/members/usr_r4lvzl5ajwfvhxq5e3afcv6e4xj4ghdk actor=admin@acme -> 403 5ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:26:03.588Z ASSERT ok   not(admin promotes member to owner: denied 403)
+2026-10-30T15:26:03.590Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=396c1ec28df8035746677410447013c5f683ae264f53caeb82ee0f21a6072271 len=2474]
+2026-10-30T15:26:03.590Z ASSERT ok   not(promoted target role 'member')
+2026-10-30T15:26:03.640Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s11-5bd25@acme.test", "role": "owner", "password": "«pw0:s11-5bd25@acme.test»"}
+  resp: {"id":"usr_f6n6vni2q4clmy5cfgdpr27b5vdglrra","email":"s11-5bd25@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.633161Z"}
+
+2026-10-30T15:26:03.692Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s11-6fcd5@acme.test", "role": "owner", "password": "«pw0:s11-6fcd5@acme.test»"}
+  resp: {"id":"usr_cajipucb25zhq2reb6ky24adewbeatjf","email":"s11-6fcd5@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.684940Z"}
+
+2026-10-30T15:26:03.744Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s11-711ea@acme.test", "role": "owner", "password": "«pw0:s11-711ea@acme.test»"}
+  resp: {"id":"usr_4nmx5nlteqc22tt6dg344fkyd2tulfak","email":"s11-711ea@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.736748Z"}
+
+2026-10-30T15:26:03.796Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s11-8126f@acme.test", "role": "owner", "password": "«pw0:s11-8126f@acme.test»"}
+  resp: {"id":"usr_hrxppilesmyqettt5pw5ldmgoqilwrf3","email":"s11-8126f@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.788343Z"}
+
+2026-10-30T15:26:03.847Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s11-91c70@acme.test", "role": "owner", "password": "«pw0:s11-91c70@acme.test»"}
+  resp: {"id":"usr_lgvijqmcuhsc24bwnda7s3gg5rplv3r3","email":"s11-91c70@acme.test","role":"owner","created_at":"2026-10-30T15:26:03.839347Z"}
+
+2026-10-30T15:26:03.853Z HTTP PATCH /api/v1/members/usr_4nmx5nlteqc22tt6dg344fkyd2tulfak actor=owner@acme -> 200 6ms
+  req: {"role": "member"}
+  resp: {"id":"usr_4nmx5nlteqc22tt6dg344fkyd2tulfak","email":"s11-711ea@acme.test","role":"member","created_at":"2026-10-30T15:26:03.736748Z"}
+
+2026-10-30T15:26:03.853Z CONTROL ok: admin demotes an owner (200)
+2026-10-30T15:26:03.858Z HTTP PATCH /api/v1/members/usr_f6n6vni2q4clmy5cfgdpr27b5vdglrra actor=admin@acme -> 403 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:26:03.858Z ASSERT ok   not(admin demotes an owner: denied 403)
+2026-10-30T15:26:03.863Z HTTP DELETE /api/v1/members/usr_hrxppilesmyqettt5pw5ldmgoqilwrf3 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:26:03.863Z CONTROL ok: admin removes an owner (200)
+2026-10-30T15:26:03.867Z HTTP DELETE /api/v1/members/usr_cajipucb25zhq2reb6ky24adewbeatjf actor=admin@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:26:03.868Z ASSERT ok   not(admin removes an owner: denied 403)
+2026-10-30T15:26:03.872Z HTTP PATCH /api/v1/members/usr_lgvijqmcuhsc24bwnda7s3gg5rplv3r3 actor=owner@acme -> 200 4ms
+  req: {"role": "admin"}
+  resp: {"id":"usr_lgvijqmcuhsc24bwnda7s3gg5rplv3r3","email":"s11-91c70@acme.test","role":"admin","created_at":"2026-10-30T15:26:03.839347Z"}
+
+2026-10-30T15:26:03.872Z CONTROL ok: admin demotes owner@acme (200)
+2026-10-30T15:26:03.877Z HTTP PATCH /api/v1/members/usr_764cnv53gai3qsmtqqnstgooc6sz7r4b actor=admin@acme -> 403 5ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:26:03.877Z ASSERT ok   not(admin demotes owner@acme: denied 403)
+2026-10-30T15:26:03.879Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=9e4d928e1eba6a33e9550b3bf9c525a1b22f9e841e26faa1f0eab5a7c33896ed len=3059]
+2026-10-30T15:26:03.879Z ASSERT ok   not(owner usr_f6n6vni2q4clmy5cfgdpr27b5vdglrra is 'owner' after admin probes)
+2026-10-30T15:26:03.881Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=9e4d928e1eba6a33e9550b3bf9c525a1b22f9e841e26faa1f0eab5a7c33896ed len=3059]
+2026-10-30T15:26:03.881Z ASSERT ok   not(owner usr_cajipucb25zhq2reb6ky24adewbeatjf is 'owner' after admin probes)
+2026-10-30T15:26:03.882Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=9e4d928e1eba6a33e9550b3bf9c525a1b22f9e841e26faa1f0eab5a7c33896ed len=3059]
+2026-10-30T15:26:03.882Z ASSERT ok   not(owner usr_764cnv53gai3qsmtqqnstgooc6sz7r4b is 'owner' after admin probes)
+2026-10-30T15:26:03.932Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s11-105aa3@acme.test", "role": "member", "password": "«pw0:s11-105aa3@acme.test»"}
+  resp: {"id":"usr_bf4xhnbtdzorlf3ke3z5u32ogj4ugn5j","email":"s11-105aa3@acme.test","role":"member","created_at":"2026-10-30T15:26:03.924496Z"}
+
+2026-10-30T15:26:03.937Z CLI coffer whoami actor=anon home=/home/grader2/work-c2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 5ms stdin=0B
+  out: type: user
+id: usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+email: owner@acme.test
+role: owner
+org_id: org_xyap7smmpbnuafybnstbwwbvhp32ccah
+org_slug: acme
+must_change_password: false
+
+  err: 
+2026-10-30T15:26:03.946Z CLI coffer member role s11-105aa3@acme.test owner actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 9ms stdin=0B
+  out: s11-105aa3@acme.test is now owner
+
+  err: 
+2026-10-30T15:26:03.946Z CONTROL ok: admin CLI member role <member> owner (rc=0)
+2026-10-30T15:26:04.005Z CLI coffer login --email admin@acme.test actor=anon home=/home/grader2/work-c2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=0 58ms stdin=25B
+  out: logged in as admin@acme.test
+
+  err: 
+2026-10-30T15:26:04.005Z homebind: admin@acme home /home/grader2/work-c2/homes/admin@acme is bound to http://127.0.0.1:18420; using /home/grader2/work-c2/homes/admin@acme~base for http://127.0.0.1:8420
+2026-10-30T15:26:04.018Z CLI coffer member role s11-3803e@acme.test owner actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=4 12ms stdin=0B
+  out: 
+  err: error: forbidden (forbidden)
+
+2026-10-30T15:26:04.018Z ASSERT ok   not(admin CLI member role <member> owner: denied rc=4)
+2026-10-30T15:26:04.020Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=d1b80db12fa4b938c29d8f4771b36a1b7f934435aad3b36bfd3cacaa95e7bacb len=3206]
+2026-10-30T15:26:04.020Z ASSERT ok   not(CLI-promoted target role 'member')
+2026-10-30T15:26:04.642Z pg_dumpall pre-rollback-S11 -> rc=0 0006-S11-pre-rollback-S11.sql
+2026-10-30T15:26:04.763Z sweep_snapshot pre-rollback-S11: dump=0006-S11-pre-rollback-S11.sql logs=2
+2026-10-30T15:26:19Z [runner] rollback: ok

@@ -1,0 +1,29 @@
+2026-10-30T15:29:27.288Z HTTP GET /api/v1/me actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"email":"owner@acme.test","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","must_change_password":false,"org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","role":"owner","type":"user"}
+
+2026-10-30T15:29:27.288Z ASSERT ok   not(GET /api/v1/me as owner@acme -> 200 (want 200))
+2026-10-30T15:29:27.288Z ASSERT ok   not(GET /api/v1/me -> no X-Request-Id header)
+2026-10-30T15:29:27.289Z HTTP GET /api/v1/me actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:29:27.289Z ASSERT ok   not(GET /api/v1/me as anon -> 401 (want 401))
+2026-10-30T15:29:27.289Z ASSERT ok   not(GET /api/v1/me -> no X-Request-Id header)
+2026-10-30T15:29:27.296Z HTTP GET /api/v1/projects/zz-absent-ba5f87b6/envs/dev/secrets actor=owner@acme -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:29:27.296Z ASSERT ok   not(GET /api/v1/projects/zz-absent-ba5f87b6/envs/dev/secrets as owner@acme -> 404 (want 404))
+2026-10-30T15:29:27.296Z ASSERT ok   not(GET /api/v1/projects/zz-absent-ba5f87b6/envs/dev/secrets -> no X-Request-Id header)
+2026-10-30T15:29:27.296Z HTTP GET /zz-o4-out-of-surface actor=anon -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:29:27.297Z ASSERT ok   not(GET /zz-o4-out-of-surface as anon -> 404 (want 404))
+2026-10-30T15:29:27.297Z ASSERT ok   not(GET /zz-o4-out-of-surface -> no X-Request-Id header)
+2026-10-30T15:29:29.632Z server log lines since mark: 1, JSON objects: 1, non-JSON: 0
+2026-10-30T15:29:29.632Z ASSERT ok   not(no JSON request log line (duration_ms or method+status) found)
+2026-10-30T15:29:29.632Z ASSERT ok   not(request log line lacks []: {"ts": "2026-10-30T15:29:29.373772Z", "level": "info", "msg": "request", "method": "GET", "route": "GET /readyz", "status": 200, "duration_ms": 0.452,)
+2026-10-30T15:29:29.633Z ASSERT ok   not(duration_ms not numeric: 0.452)
+2026-10-30T15:29:29.633Z ASSERT FAIL GET /api/v1/me: 0 log lines with request_id=24e7ee8754b5581c8a44a8f609bb38a0 (want 1)
+2026-10-30T15:29:29.633Z ASSERT FAIL GET /api/v1/me: 0 log lines with request_id=a68adf1b15f81f93aa5f61b154e8bfa9 (want 1)
+2026-10-30T15:29:29.633Z ASSERT FAIL GET /api/v1/projects/zz-absent-ba5f87b6/envs/dev/secrets: 0 log lines with request_id=4e4d3edbea23f92a8a93a1db9ce42a61 (want 1)
+2026-10-30T15:29:29.633Z ASSERT FAIL GET /zz-o4-out-of-surface: 0 log lines with request_id=2d4251a3d6d254337bc0f22353f727c8 (want 1)

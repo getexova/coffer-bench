@@ -1,0 +1,63 @@
+2026-10-29T12:56:51.724Z HTTP POST /api/v1/admin/orgs actor=root -> 201 112ms
+  req: {"slug": "s12-1aa72", "owner_email": "owner-s12-1aa72@s12-1aa72.test", "owner_password": "«pw0:owner@s12-1aa72»"}
+  resp: {"id":"org_816ab8b8de1fca39965c87de","organization":{"created_at":"2026-10-29T12:56:51.717687Z","disabled_at":null,"id":"org_816ab8b8de1fca39965c87de","slug":"s12-1aa72"},"owner":{"email":"owner-s12-1aa72@s12-1aa72.test","id":"usr_1bbd17f3f8a9cfadc68f3ff3","must_change_password":true,"role":"owner"},"slug":"s12-1aa72"}
+2026-10-29T12:56:51.808Z HTTP POST /api/v1/auth/token actor=anon -> 200 84ms
+  req: {"email": "owner-s12-1aa72@s12-1aa72.test", "password": "«pw0:owner@s12-1aa72»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_1bbd17f3f8a9cfadc68f3ff3","email":"owner-s12-1aa72@s12-1aa72.test","role":"owner","must_change_password":true,"organization":{"id":"org_816ab8b8de1fca39965c87de","slug":"s12-1aa72"}}}
+2026-10-29T12:56:51.811Z HTTP GET /api/v1/projects actor=owner@s12-1aa72 -> 403 2ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:56:51.941Z HTTP POST /api/v1/auth/password actor=owner@s12-1aa72 -> 200 128ms
+  req: {"current_password": "«pw0:owner@s12-1aa72»", "new_password": "«pw:owner@s12-1aa72»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:56:52.011Z HTTP POST /api/v1/auth/token actor=anon -> 200 69ms
+  req: {"email": "owner-s12-1aa72@s12-1aa72.test", "password": "«pw:owner@s12-1aa72»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_1bbd17f3f8a9cfadc68f3ff3","email":"owner-s12-1aa72@s12-1aa72.test","role":"owner","must_change_password":false,"organization":{"id":"org_816ab8b8de1fca39965c87de","slug":"s12-1aa72"}}}
+2026-10-29T12:56:52.015Z HTTP GET /api/v1/me actor=owner@s12-1aa72 -> 200 2ms
+  req: 
+  resp: {"organization":{"id":"org_816ab8b8de1fca39965c87de","slug":"s12-1aa72"},"role":"owner","user":{"email":"owner-s12-1aa72@s12-1aa72.test","id":"usr_1bbd17f3f8a9cfadc68f3ff3","must_change_password":false}}
+2026-10-29T12:56:52.085Z HTTP POST /api/v1/members actor=owner@s12-1aa72 -> 201 69ms
+  req: {"email": "o2-s12-1aa72@s12-1aa72.test", "role": "owner", "password": "«pw0:s12-s12-1aa72»"}
+  resp: {"member":{"id":"usr_3885e746298f96f68988612c","email":"o2-s12-1aa72@s12-1aa72.test","role":"owner","must_change_password":true,"created_at":"2026-10-29T12:56:52.077995Z"}}
+2026-10-29T12:56:52.091Z HTTP PATCH /api/v1/members/usr_3885e746298f96f68988612c actor=owner@s12-1aa72 -> 200 5ms
+  req: {"role": "admin"}
+  resp: {"member":{"id":"usr_3885e746298f96f68988612c","email":"o2-s12-1aa72@s12-1aa72.test","role":"admin","must_change_password":true,"created_at":"2026-10-29T12:56:52.077995Z"}}
+2026-10-29T12:56:52.091Z CONTROL ok: demote a non-last owner (two owners present) (200)
+2026-10-29T12:56:52.092Z HTTP GET /api/v1/members actor=owner@s12-1aa72 -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_3885e746298f96f68988612c","email":"o2-s12-1aa72@s12-1aa72.test","role":"admin","must_change_password":true,"created_at":"2026-10-29T12:56:52.077995Z"},{"id":"usr_1bbd17f3f8a9cfadc68f3ff3","email":"owner-s12-1aa72@s12-1aa72.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:56:51.717687Z"}]}
+2026-10-29T12:56:52.092Z ASSERT ok   not(scratch org owners after demote: ['admin', 'owner'])
+2026-10-29T12:56:52.094Z HTTP PATCH /api/v1/members/usr_1bbd17f3f8a9cfadc68f3ff3 actor=owner@s12-1aa72 -> 409 1ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"conflict","message":"the last owner cannot be demoted"}}
+2026-10-29T12:56:52.094Z ASSERT ok   not(last owner PATCH self role=admin -> 409 (want 409))
+2026-10-29T12:56:52.095Z HTTP PATCH /api/v1/members/usr_1bbd17f3f8a9cfadc68f3ff3 actor=owner@s12-1aa72 -> 409 1ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"conflict","message":"the last owner cannot be demoted"}}
+2026-10-29T12:56:52.095Z ASSERT ok   not(last owner PATCH self role=member -> 409 (want 409))
+2026-10-29T12:56:52.096Z HTTP DELETE /api/v1/members/usr_1bbd17f3f8a9cfadc68f3ff3 actor=owner@s12-1aa72 -> 409 1ms
+  req: 
+  resp: {"error":{"code":"conflict","message":"the last owner cannot be removed"}}
+2026-10-29T12:56:52.096Z ASSERT ok   not(last owner DELETE self -> 409 (want 409))
+2026-10-29T12:56:52.278Z CLI coffer login --email owner-s12-1aa72@s12-1aa72.test actor=anon home=/home/grader1/work-r2/tmp/S12/home-2 url=http://127.0.0.1:8420 -> rc=0 181ms stdin=17B
+  out: Logged in as owner-s12-1aa72@s12-1aa72.test
+
+  err: 
+2026-10-29T12:56:52.390Z CLI coffer member role owner-s12-1aa72@s12-1aa72.test member actor=anon home=/home/grader1/work-r2/tmp/S12/home-2 url=http://127.0.0.1:8420 -> rc=8 112ms stdin=0B
+  out: 
+  err: coffer: the last owner cannot be demoted
+
+2026-10-29T12:56:52.390Z ASSERT ok   not(last owner CLI member role self member rc=8 (want 8))
+2026-10-29T12:56:52.510Z CLI coffer member remove owner-s12-1aa72@s12-1aa72.test actor=anon home=/home/grader1/work-r2/tmp/S12/home-2 url=http://127.0.0.1:8420 -> rc=8 120ms stdin=0B
+  out: 
+  err: coffer: the last owner cannot be removed
+
+2026-10-29T12:56:52.511Z ASSERT ok   not(last owner CLI member remove self rc=8 (want 8))
+2026-10-29T12:56:52.512Z HTTP GET /api/v1/members actor=owner@s12-1aa72 -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_3885e746298f96f68988612c","email":"o2-s12-1aa72@s12-1aa72.test","role":"admin","must_change_password":true,"created_at":"2026-10-29T12:56:52.077995Z"},{"id":"usr_1bbd17f3f8a9cfadc68f3ff3","email":"owner-s12-1aa72@s12-1aa72.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:56:51.717687Z"}]}
+2026-10-29T12:56:52.512Z ASSERT ok   not(last owner is now 'owner')
+2026-10-29T12:56:52.513Z HTTP GET /api/v1/projects actor=owner@s12-1aa72 -> 200 1ms
+  req: 
+  resp: {"projects":[]}
+2026-10-29T12:56:52.514Z ASSERT ok   not(last owner PAT after probes -> 200)

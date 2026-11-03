@@ -1,0 +1,6 @@
+2026-10-29T12:55:40.813Z compose files: ['compose.yaml']
+2026-10-29T12:55:40.813Z dockerfiles: ['Dockerfile']
+2026-10-29T12:55:40.813Z ASSERT ok   not(compose.yaml:15: postgres:16 pinned)
+2026-10-29T12:55:40.813Z ASSERT ok   not(Dockerfile: golang:1.27.3-bookworm pinned)
+2026-10-29T12:55:40.813Z ASSERT ok   not(Dockerfile: alpine:3.22@sha256:dc92f017beea8e7f43263073d717f7bc011228c95d5312e440deb4d035bb4eec pinned)
+2026-10-29T12:55:40.813Z postgres:16 seen: True

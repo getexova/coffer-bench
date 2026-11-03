@@ -1,0 +1,112 @@
+name: CI
+
+# Pinned action versions: a floating tag can change under us between builds.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Go
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version: "1.27.3"
+          check-latest: false
+
+      - name: gofmt
+        run: |
+          unformatted="$(gofmt -l .)"
+          if [ -n "$unformatted" ]; then
+            echo "gofmt found files that need formatting:"
+            echo "$unformatted"
+            exit 1
+          fi
+          echo "gofmt clean"
+
+      - name: go vet
+        run: go vet ./...
+
+  test:
+    name: test
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: coffer_test
+          POSTGRES_PASSWORD: coffer_test_password
+          POSTGRES_DB: coffer_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -h 127.0.0.1 -U coffer_test -d coffer_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      COFFER_TEST_DATABASE_URL: postgres://coffer_test:coffer_test_password@127.0.0.1:5432/coffer_test?sslmode=disable
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Go
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version: "1.27.3"
+          check-latest: false
+
+      - name: go test
+        run: go test ./...
+
+  build:
+    name: build
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Go
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version: "1.27.3"
+          check-latest: false
+
+      - name: go build
+        run: go build ./...
+
+      - name: scripts/build.sh
+        run: |
+          chmod +x ./scripts/*.sh
+          ./scripts/build.sh
+
+      - name: Check the binary
+        run: |
+          test -x ./bin/coffer
+          ls -l ./bin/coffer
+
+  govulncheck:
+    name: govulncheck
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Go
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version: "1.27.3"
+          check-latest: false
+
+      - name: govulncheck
+        run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...

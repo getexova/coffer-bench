@@ -1,0 +1,459 @@
+2026-10-30T15:29:00.494Z HTTP POST /api/v1/admin/orgs actor=root -> 201 54ms
+  req: {"slug": "a1-18323", "owner_email": "owner-a1-18323@a1-18323.test", "owner_password": "«pw0:owner@a1-18323»"}
+  resp: {"id":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","slug":"a1-18323","disabled":false,"created_at":"2026-10-30T15:29:00.482999Z","owner":{"id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","email":"owner-a1-18323@a1-18323.test","role":"owner"}}
+
+2026-10-30T15:29:00.545Z HTTP POST /api/v1/auth/token actor=anon -> 201 51ms
+  req: {"email": "owner-a1-18323@a1-18323.test", "password": "«pw0:owner@a1-18323»"}
+  resp: {"expires_at":"2026-11-29T15:29:00.495424Z","token":"<redacted-token>","user":{"id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","email":"owner-a1-18323@a1-18323.test","role":"owner","org_id":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","org_slug":"a1-18323","must_change_password":false}}
+
+2026-10-30T15:29:00.550Z HTTP GET /api/v1/projects actor=owner@a1-18323 -> 200 3ms
+  req: 
+  resp: []
+
+2026-10-30T15:29:00.561Z HTTP POST /api/v1/projects actor=owner@a1-18323 -> 201 11ms
+  req: {"slug": "a1-2ad29"}
+  resp: {"id":"prj_an5nqwiz2e5iaj54k5m6rdncchzvo4ir","slug":"a1-2ad29","created_at":"2026-10-30T15:29:00.552507Z"}
+
+2026-10-30T15:29:00.569Z HTTP POST /api/v1/projects/a1-2ad29/envs actor=owner@a1-18323 -> 201 7ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_jobloevkd4shziznhxi6g42qahmfdpqz","slug":"dev","protected":false,"created_at":"2026-10-30T15:29:00.563465Z"}
+
+2026-10-30T15:29:00.576Z HTTP POST /api/v1/projects/a1-2ad29/envs actor=owner@a1-18323 -> 201 7ms
+  req: {"slug": "prod", "protected": true}
+  resp: {"id":"env_i37n5ocydfdmiow7ekmv7n55oj6we7yv","slug":"prod","protected":true,"created_at":"2026-10-30T15:29:00.570921Z"}
+
+2026-10-30T15:29:00.628Z HTTP POST /api/v1/members actor=owner@a1-18323 -> 201 51ms
+  req: {"email": "a1-3273a@a1-18323.test", "role": "admin", "password": "«pw0:a1-3273a@a1-18323»"}
+  resp: {"id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47","email":"a1-3273a@a1-18323.test","role":"admin","created_at":"2026-10-30T15:29:00.618849Z"}
+
+2026-10-30T15:29:00.677Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "a1-3273a@a1-18323.test", "password": "«pw0:a1-3273a@a1-18323»"}
+  resp: {"expires_at":"2026-11-29T15:29:00.629777Z","token":"<redacted-token>","user":{"id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47","email":"a1-3273a@a1-18323.test","role":"admin","org_id":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","org_slug":"a1-18323","must_change_password":false}}
+
+2026-10-30T15:29:00.681Z HTTP GET /api/v1/projects actor=a1-3273a@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"id":"prj_an5nqwiz2e5iaj54k5m6rdncchzvo4ir","slug":"a1-2ad29","created_at":"2026-10-30T15:29:00.552507Z"}]
+
+2026-10-30T15:29:00.729Z HTTP POST /api/v1/members actor=owner@a1-18323 -> 201 47ms
+  req: {"email": "a1-4b619@a1-18323.test", "role": "member", "password": "«pw0:a1-4b619@a1-18323»"}
+  resp: {"id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","email":"a1-4b619@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.723761Z"}
+
+2026-10-30T15:29:00.736Z HTTP PUT /api/v1/members/usr_unx7souwiebuiptvjmn2xo532u7omb4e/grants/a1-2ad29 actor=owner@a1-18323 -> 200 7ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"a1-2ad29","user_id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"}
+
+2026-10-30T15:29:00.785Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "a1-4b619@a1-18323.test", "password": "«pw0:a1-4b619@a1-18323»"}
+  resp: {"expires_at":"2026-11-29T15:29:00.737619Z","token":"<redacted-token>","user":{"id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","email":"a1-4b619@a1-18323.test","role":"member","org_id":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","org_slug":"a1-18323","must_change_password":false}}
+
+2026-10-30T15:29:00.790Z HTTP GET /api/v1/projects actor=a1-4b619@a1-18323 -> 200 3ms
+  req: 
+  resp: [{"id":"prj_an5nqwiz2e5iaj54k5m6rdncchzvo4ir","slug":"a1-2ad29","created_at":"2026-10-30T15:29:00.552507Z","level":"writer"}]
+
+2026-10-30T15:29:00.792Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"seq":10,"ts":"2026-10-30T15:29:00.779865Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_b6pk3lskbk3fxxhzjogfkvjeeqpcayl4"},"prev_hash":"5eb6e5929068c4d635e4b4ec5fec4ab54ddd8647e9e19fb15de5505ffc1bdad5","hash":"daace5a956abfd5022bdac1e97ac74f97a539e14baa337b430e1c7cefd37d80c"},{"seq":9,"ts":"2026-10-30T15:29:00.732606Z","actor":{"type":"user","…[sha256=db3a01f781d37ed69f03ed674118537a0b3d9404acb835d0f55f2332cb854d09 len=4371]
+2026-10-30T15:29:00.795Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"seq":10,"ts":"2026-10-30T15:29:00.779865Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_b6pk3lskbk3fxxhzjogfkvjeeqpcayl4"},"prev_hash":"5eb6e5929068c4d635e4b4ec5fec4ab54ddd8647e9e19fb15de5505ffc1bdad5","hash":"daace5a956abfd5022bdac1e97ac74f97a539e14baa337b430e1c7cefd37d80c"},{"seq":9,"ts":"2026-10-30T15:29:00.732606Z","actor":{"type":"user","…[sha256=db3a01f781d37ed69f03ed674118537a0b3d9404acb835d0f55f2332cb854d09 len=4371]
+2026-10-30T15:29:00.799Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","owner_id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","slug":"a1-18323"},"prev_hash":"a41ea36231268c8bb43a713ecca5b2ddc5fefeecadfe05d9ead9e34db293bcff","hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254"},{"…[sha256=e34b332b72d2647e76fabd1c85ca462f859ea706f2b60f8695f0cc8f63854d27 len=30741]
+2026-10-30T15:29:00.802Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_pa7mybvt5zvcpz2irfwdjh2dxmctcven","owner_id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","slug":"a1-18323"},"prev_hash":"a41ea36231268c8bb43a713ecca5b2ddc5fefeecadfe05d9ead9e34db293bcff","hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254"},{"…[sha256=e34b332b72d2647e76fabd1c85ca462f859ea706f2b60f8695f0cc8f63854d27 len=30741]
+2026-10-30T15:29:00.804Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":10,"ts":"2026-10-30T15:29:00.779865Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_b6pk3lskbk3fxxhzjogfkvjeeqpcayl4"},"prev_hash":"5eb6e5929068c4d635e4b4ec5fec4ab54ddd8647e9e19fb15de5505ffc1bdad5","hash":"daace5a956abfd5022bdac1e97ac74f97a539e14baa337b430e1c7cefd37d80c"},{"seq":9,"ts":"2026-10-30T15:29:00.732606Z","actor":{"type":"user","…[sha256=61984f5d14878842653726f69fcf8754c6e220a77eafb2ab405ca19f46a2e595 len=2133]
+2026-10-30T15:29:00.805Z CONTROL ok: owner reads org audit (200)
+2026-10-30T15:29:00.857Z CLI coffer member add a1-calo2368ae@a1-18323.test --role member actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-5 url=http://127.0.0.1:8420 -> rc=0 50ms stdin=19B
+  out: added a1-calo2368ae@a1-18323.test as member (usr_s6jerdndseogzjuzgddwt7vhj7nw6whp)
+
+  err: 
+2026-10-30T15:29:00.859Z HTTP GET /api/v1/members actor=owner@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47","email":"a1-3273a@a1-18323.test","role":"admin","created_at":"2026-10-30T15:29:00.618849Z","grants":[]},{"id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","email":"a1-4b619@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.723761Z","grants":[{"project":"a1-2ad29","level":"writer"}]},{"id":"usr_s6jerdndseogzjuzgddwt7vhj7nw6whp","email":"a1-calo2368ae@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.848838Z","grants":[]},{"id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","email":"owner-a1-18323@a1-18323.test","role":"owner","created_at":"2026-10-30T15:29:00.482999Z","grants":[]}]
+
+2026-10-30T15:29:00.861Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":11,"ts":"2026-10-30T15:29:00.850676Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.add","target":"usr_s6jerdndseogzjuzgddwt7vhj7nw6whp","source_ip":"10.89.0.17","result":"success","details":{"role":"member"},"prev_hash":"daace5a956abfd5022bdac1e97ac74f97a539e14baa337b430e1c7cefd37d80c","hash":"13966add82616acff3a2c6978182c6de5d19774962181b43b89ea6c6521edc99"},{"seq":10,"ts":"2026-10-30T15:29:00.779865Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo53…[sha256=5105a8d70e44f1560dc150dae10485cb585ade38157241061deeea1b7fd81e4d len=4780]
+2026-10-30T15:29:00.863Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":11,"ts":"2026-10-30T15:29:00.850676Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.add","target":"usr_s6jerdndseogzjuzgddwt7vhj7nw6whp","source_ip":"10.89.0.17","result":"success","details":{"role":"member"},"prev_hash":"daace5a956abfd5022bdac1e97ac74f97a539e14baa337b430e1c7cefd37d80c","hash":"13966add82616acff3a2c6978182c6de5d19774962181b43b89ea6c6521edc99"},{"seq":10,"ts":"2026-10-30T15:29:00.779865Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo53…[sha256=5105a8d70e44f1560dc150dae10485cb585ade38157241061deeea1b7fd81e4d len=4780]
+2026-10-30T15:29:00.863Z calibration o: member.add event seq=11 action=member.add result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "member.add", "details": {"role": "member"}, "result": "success", "target": "usr_s6jerdndseogzjuzgddwt7vhj7nw6whp"}; actor values ['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco']
+2026-10-30T15:29:00.938Z CLI coffer member add a1-calab86131@a1-18323.test --role member actor=a1-3273a@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-6 url=http://127.0.0.1:8420 -> rc=0 74ms stdin=19B
+  out: added a1-calab86131@a1-18323.test as member (usr_ljknk7yxyijs264pw6647kpofbrm3sta)
+
+  err: 
+2026-10-30T15:29:00.941Z HTTP GET /api/v1/members actor=a1-3273a@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47","email":"a1-3273a@a1-18323.test","role":"admin","created_at":"2026-10-30T15:29:00.618849Z","grants":[]},{"id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","email":"a1-4b619@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.723761Z","grants":[{"project":"a1-2ad29","level":"writer"}]},{"id":"usr_ljknk7yxyijs264pw6647kpofbrm3sta","email":"a1-calab86131@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.929280Z","grants":[]},{"id":"usr_s6jerdndseogzjuzgddwt7vhj7nw6whp","email":"a1-calo2368ae@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.848838Z","grants":[]},{"id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","email":"owner-a1-18323@a1-18323.test","role":"owner","created_at":"2026-10-30T15:29:00.482999Z","grants":[]}]
+
+2026-10-30T15:29:00.943Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"seq":12,"ts":"2026-10-30T15:29:00.931513Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"action":"member.add","target":"usr_ljknk7yxyijs264pw6647kpofbrm3sta","source_ip":"10.89.0.17","result":"success","details":{"role":"member"},"prev_hash":"13966add82616acff3a2c6978182c6de5d19774962181b43b89ea6c6521edc99","hash":"830491a74e0528ee6922d20feaa7363c6139e1fb33379ae74e3b345978c703fb"},{"seq":11,"ts":"2026-10-30T15:29:00.850676Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortp…[sha256=541341ba1dfec6db229ddb1b527fd9de57b2ac07819ace5fa95fcb44385e9b89 len=5189]
+2026-10-30T15:29:00.945Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":12,"ts":"2026-10-30T15:29:00.931513Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"action":"member.add","target":"usr_ljknk7yxyijs264pw6647kpofbrm3sta","source_ip":"10.89.0.17","result":"success","details":{"role":"member"},"prev_hash":"13966add82616acff3a2c6978182c6de5d19774962181b43b89ea6c6521edc99","hash":"830491a74e0528ee6922d20feaa7363c6139e1fb33379ae74e3b345978c703fb"},{"seq":11,"ts":"2026-10-30T15:29:00.850676Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortp…[sha256=541341ba1dfec6db229ddb1b527fd9de57b2ac07819ace5fa95fcb44385e9b89 len=5189]
+2026-10-30T15:29:00.945Z calibration a: member.add event seq=12 action=member.add result=success actor=['user', 'usr_fgm5lu5h5pwcaykqzmclhc635umcpo47'] text={"action": "member.add", "details": {"role": "member"}, "result": "success", "target": "usr_ljknk7yxyijs264pw6647kpofbrm3sta"}; actor values ['user', 'usr_fgm5lu5h5pwcaykqzmclhc635umcpo47']
+2026-10-30T15:29:00.945Z actor aliases: owner ['usr_oqkyaxkt3nwuawoih4c6ortpg576prco'], admin ['usr_fgm5lu5h5pwcaykqzmclhc635umcpo47'] (dropped as shared: ['user'])
+2026-10-30T15:29:00.956Z CLI coffer secrets set A1_48C83DDCE0 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-7 url=http://127.0.0.1:8420 -> rc=0 9ms stdin=40B
+  out: set A1_48C83DDCE0 (version 1)
+
+  err: 
+2026-10-30T15:29:00.956Z ASSERT ok   not(set K1 v1: rc=0 (want 0))
+2026-10-30T15:29:00.958Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":13,"ts":"2026-10-30T15:29:00.951873Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"830491a74e0528ee6922d20feaa7363c6139e1fb33379ae74e3b345978c703fb","hash":"2685d8554663f5e8af5de350234b256075e85b9fb44bb2d7b830cef176223383"},{"seq":12,"ts":"2026-10-30T15:29:00.931513Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"…[sha256=73de83daa0d16655863e8f745ff3d1d468d6087c26ebcba1409f990e33f47c2e len=5586]
+2026-10-30T15:29:00.960Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":13,"ts":"2026-10-30T15:29:00.951873Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"830491a74e0528ee6922d20feaa7363c6139e1fb33379ae74e3b345978c703fb","hash":"2685d8554663f5e8af5de350234b256075e85b9fb44bb2d7b830cef176223383"},{"seq":12,"ts":"2026-10-30T15:29:00.931513Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"…[sha256=73de83daa0d16655863e8f745ff3d1d468d6087c26ebcba1409f990e33f47c2e len=5586]
+2026-10-30T15:29:00.960Z set K1 v1[0]: 1 matching of 1 new; seq=13 action=secret.write result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.write", "details": {"version": 1}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:00.960Z ASSERT ok   not(set K1 v1[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:00.969Z CLI coffer secrets set A1_48C83DDCE0 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-8 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=40B
+  out: set A1_48C83DDCE0 (version 2)
+
+  err: 
+2026-10-30T15:29:00.969Z ASSERT ok   not(set K1 v2: rc=0 (want 0))
+2026-10-30T15:29:00.970Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":14,"ts":"2026-10-30T15:29:00.965085Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":2},"prev_hash":"2685d8554663f5e8af5de350234b256075e85b9fb44bb2d7b830cef176223383","hash":"711063a68cb7dcd07a66a011dca9ac7bc0c781447d1d4936cbebef531289f4a1"},{"seq":13,"ts":"2026-10-30T15:29:00.951873Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"…[sha256=45a5035be4eeaf08c36d2d6c4ba62dba226e233b6343303bccb61a1cab5fe134 len=5983]
+2026-10-30T15:29:00.972Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":14,"ts":"2026-10-30T15:29:00.965085Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":2},"prev_hash":"2685d8554663f5e8af5de350234b256075e85b9fb44bb2d7b830cef176223383","hash":"711063a68cb7dcd07a66a011dca9ac7bc0c781447d1d4936cbebef531289f4a1"},{"seq":13,"ts":"2026-10-30T15:29:00.951873Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"…[sha256=45a5035be4eeaf08c36d2d6c4ba62dba226e233b6343303bccb61a1cab5fe134 len=5983]
+2026-10-30T15:29:00.973Z set K1 v2[0]: 1 matching of 1 new; seq=14 action=secret.write result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.write", "details": {"version": 2}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:00.973Z ASSERT ok   not(set K1 v2[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:00.982Z CLI coffer secrets set A1_15BFE08574 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-9 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=40B
+  out: set A1_15BFE08574 (version 1)
+
+  err: 
+2026-10-30T15:29:00.982Z ASSERT ok   not(set K2: rc=0 (want 0))
+2026-10-30T15:29:00.983Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:00.977660Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_15BFE08574","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"711063a68cb7dcd07a66a011dca9ac7bc0c781447d1d4936cbebef531289f4a1","hash":"e1747905079df3f2e0c66cd8b91a225677dc8aec3c55b8f8fc7d4e53f6c544f5"},{"seq":14,"ts":"2026-10-30T15:29:00.965085Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"…[sha256=01a8dbb0dbedcbd6833b2982244bf306346f24a6055d0233e38492a9816dc932 len=6380]
+2026-10-30T15:29:00.985Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:00.977660Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_15BFE08574","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"711063a68cb7dcd07a66a011dca9ac7bc0c781447d1d4936cbebef531289f4a1","hash":"e1747905079df3f2e0c66cd8b91a225677dc8aec3c55b8f8fc7d4e53f6c544f5"},{"seq":14,"ts":"2026-10-30T15:29:00.965085Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"…[sha256=01a8dbb0dbedcbd6833b2982244bf306346f24a6055d0233e38492a9816dc932 len=6380]
+2026-10-30T15:29:00.986Z set K2[0]: 1 matching of 1 new; seq=15 action=secret.write result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.write", "details": {"version": 1}, "result": "success", "target": "a1-2ad29/dev/A1_15BFE08574"}
+2026-10-30T15:29:00.986Z ASSERT ok   not(set K2[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:00.995Z CLI coffer secrets set A1_D994E708C4 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-10 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=40B
+  out: set A1_D994E708C4 (version 1)
+
+  err: 
+2026-10-30T15:29:00.995Z ASSERT ok   not(set K3: rc=0 (want 0))
+2026-10-30T15:29:00.997Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":16,"ts":"2026-10-30T15:29:00.990942Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"e1747905079df3f2e0c66cd8b91a225677dc8aec3c55b8f8fc7d4e53f6c544f5","hash":"dad727e70410fdc7c198f989589c5ce17abc53c5e94a9210a8e71e8bed8b5bd2"},{"seq":15,"ts":"2026-10-30T15:29:00.977660Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"…[sha256=9ac464252b91bf8b70de6ae0cbb16ecca02d7a3f84bfc9bdff8fb6bff8544445 len=6777]
+2026-10-30T15:29:00.999Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":16,"ts":"2026-10-30T15:29:00.990942Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.write","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"e1747905079df3f2e0c66cd8b91a225677dc8aec3c55b8f8fc7d4e53f6c544f5","hash":"dad727e70410fdc7c198f989589c5ce17abc53c5e94a9210a8e71e8bed8b5bd2"},{"seq":15,"ts":"2026-10-30T15:29:00.977660Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"…[sha256=9ac464252b91bf8b70de6ae0cbb16ecca02d7a3f84bfc9bdff8fb6bff8544445 len=6777]
+2026-10-30T15:29:00.999Z set K3[0]: 1 matching of 1 new; seq=16 action=secret.write result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.write", "details": {"version": 1}, "result": "success", "target": "a1-2ad29/dev/A1_D994E708C4"}
+2026-10-30T15:29:00.999Z ASSERT ok   not(set K3[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.006Z CLI coffer secrets get A1_48C83DDCE0 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-11 url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: «canary:A1:k1v2»
+  err: 
+2026-10-30T15:29:01.006Z ASSERT ok   not(get K1: rc=0 (want 0))
+2026-10-30T15:29:01.008Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":17,"ts":"2026-10-30T15:29:01.002491Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":2},"prev_hash":"dad727e70410fdc7c198f989589c5ce17abc53c5e94a9210a8e71e8bed8b5bd2","hash":"7657db34c815e1bfb293c526c3eb922fa82ccf097134a50eb2a330c9c117444d"},{"seq":16,"ts":"2026-10-30T15:29:00.990942Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"a…[sha256=36af8246f2e34d5d27702d8106ee211231bfb58bcd950f9d311c92b49cc05910 len=7173]
+2026-10-30T15:29:01.010Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":17,"ts":"2026-10-30T15:29:01.002491Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":2},"prev_hash":"dad727e70410fdc7c198f989589c5ce17abc53c5e94a9210a8e71e8bed8b5bd2","hash":"7657db34c815e1bfb293c526c3eb922fa82ccf097134a50eb2a330c9c117444d"},{"seq":16,"ts":"2026-10-30T15:29:00.990942Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"a…[sha256=36af8246f2e34d5d27702d8106ee211231bfb58bcd950f9d311c92b49cc05910 len=7173]
+2026-10-30T15:29:01.010Z get K1[0]: 1 matching of 1 new; seq=17 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 2}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.010Z ASSERT ok   not(get K1[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.017Z CLI coffer secrets get A1_48C83DDCE0 -p a1-2ad29 -e dev --version 1 actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-12 url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: «canary:A1:k1v1»
+  err: 
+2026-10-30T15:29:01.017Z ASSERT ok   not(get K1 --version 1: rc=0 (want 0))
+2026-10-30T15:29:01.019Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":18,"ts":"2026-10-30T15:29:01.013383Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"7657db34c815e1bfb293c526c3eb922fa82ccf097134a50eb2a330c9c117444d","hash":"55394216ff34c5ea2a7b6813c45b1669dc28e9a8f855d485555384b6b16a2af4"},{"seq":17,"ts":"2026-10-30T15:29:01.002491Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"a…[sha256=130582d4e73a68a6a1fbe93902a203b5e5abc01d9f65b7e0e3bf57eda2f17f77 len=7569]
+2026-10-30T15:29:01.021Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":18,"ts":"2026-10-30T15:29:01.013383Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"7657db34c815e1bfb293c526c3eb922fa82ccf097134a50eb2a330c9c117444d","hash":"55394216ff34c5ea2a7b6813c45b1669dc28e9a8f855d485555384b6b16a2af4"},{"seq":17,"ts":"2026-10-30T15:29:01.002491Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"a…[sha256=130582d4e73a68a6a1fbe93902a203b5e5abc01d9f65b7e0e3bf57eda2f17f77 len=7569]
+2026-10-30T15:29:01.021Z get K1 --version 1[0]: 1 matching of 1 new; seq=18 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.021Z ASSERT ok   not(get K1 --version 1[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.028Z CLI coffer secrets export -p a1-2ad29 -e dev --format dotenv actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-13 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: A1_15BFE08574="«canary:A1:k2»"
+A1_48C83DDCE0="«canary:A1:k1v2»"
+A1_D994E708C4="«canary:A1:k3»"
+
+  err: 
+2026-10-30T15:29:01.028Z ASSERT ok   not(export dotenv (3 keys): rc=0 (want 0))
+2026-10-30T15:29:01.030Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":21,"ts":"2026-10-30T15:29:01.024720Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1,"via":"export"},"prev_hash":"dbca80fca630ecab5c4de511542987c73b0fa3b134488537dc02a793423814dc","hash":"45c6848fd7d31d2ef37340921942610d27501aedcbda1a5f2057b171c8ce61cf"},{"seq":20,"ts":"2026-10-30T15:29:01.024720Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo…[sha256=26785a00dc3446786832ff63127e60b1057d6a1c13550b3dfb06f67f9c8fbaeb len=8802]
+2026-10-30T15:29:01.032Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":21,"ts":"2026-10-30T15:29:01.024720Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1,"via":"export"},"prev_hash":"dbca80fca630ecab5c4de511542987c73b0fa3b134488537dc02a793423814dc","hash":"45c6848fd7d31d2ef37340921942610d27501aedcbda1a5f2057b171c8ce61cf"},{"seq":20,"ts":"2026-10-30T15:29:01.024720Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo…[sha256=26785a00dc3446786832ff63127e60b1057d6a1c13550b3dfb06f67f9c8fbaeb len=8802]
+2026-10-30T15:29:01.033Z export dotenv (3 keys)[0]: 1 matching of 3 new; seq=20 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 2, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.033Z ASSERT ok   not(export dotenv (3 keys)[0]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.033Z export dotenv (3 keys)[1]: 1 matching of 3 new; seq=19 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_15BFE08574"}
+2026-10-30T15:29:01.033Z ASSERT ok   not(export dotenv (3 keys)[1]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.033Z export dotenv (3 keys)[2]: 1 matching of 3 new; seq=21 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_D994E708C4"}
+2026-10-30T15:29:01.033Z ASSERT ok   not(export dotenv (3 keys)[2]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.040Z CLI coffer secrets export -p a1-2ad29 -e dev --format json actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-14 url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: {"A1_15BFE08574":"«canary:A1:k2»","A1_48C83DDCE0":"«canary:A1:k1v2»","A1_D994E708C4":"«canary:A1:k3»"}
+
+  err: 
+2026-10-30T15:29:01.040Z ASSERT ok   not(export json (3 keys): rc=0 (want 0))
+2026-10-30T15:29:01.042Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":24,"ts":"2026-10-30T15:29:01.036342Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1,"via":"export"},"prev_hash":"adcec9c5b0cb7ba06f432f4e85183b199c3f606dc79c40a5fd618d78be3acca9","hash":"664966793fee0ea53768febea8b7e73fdf70a727cf31f826449c0d779e70ce09"},{"seq":23,"ts":"2026-10-30T15:29:01.036342Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo…[sha256=318cad52c2045eeebb801bb208df02e66752f36d8c52b705c9567f010e5308e2 len=10035]
+2026-10-30T15:29:01.044Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":24,"ts":"2026-10-30T15:29:01.036342Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1,"via":"export"},"prev_hash":"adcec9c5b0cb7ba06f432f4e85183b199c3f606dc79c40a5fd618d78be3acca9","hash":"664966793fee0ea53768febea8b7e73fdf70a727cf31f826449c0d779e70ce09"},{"seq":23,"ts":"2026-10-30T15:29:01.036342Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo…[sha256=318cad52c2045eeebb801bb208df02e66752f36d8c52b705c9567f010e5308e2 len=10035]
+2026-10-30T15:29:01.045Z export json (3 keys)[0]: 1 matching of 3 new; seq=23 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 2, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.045Z ASSERT ok   not(export json (3 keys)[0]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.045Z export json (3 keys)[1]: 1 matching of 3 new; seq=22 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_15BFE08574"}
+2026-10-30T15:29:01.045Z ASSERT ok   not(export json (3 keys)[1]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.045Z export json (3 keys)[2]: 1 matching of 3 new; seq=24 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_D994E708C4"}
+2026-10-30T15:29:01.045Z ASSERT ok   not(export json (3 keys)[2]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.053Z CLI coffer run -p a1-2ad29 -e dev -- /bin/true actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-15 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: 
+  err: 
+2026-10-30T15:29:01.053Z ASSERT ok   not(run -- /bin/true (3 keys): rc=0 (want 0))
+2026-10-30T15:29:01.055Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":27,"ts":"2026-10-30T15:29:01.048477Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1,"via":"export"},"prev_hash":"4e9dbd5de76de2137c7c5756e83dd0f3826b11fb38d5bb2d10a127e3083218db","hash":"abefe47f05e18b27f0dc4719d03026940b6c17c2af75ae16f4284102d6c86eb8"},{"seq":26,"ts":"2026-10-30T15:29:01.048477Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo…[sha256=8311ed71055ca7016619456bc6bb90e603973113e59ee3c2e8fdddb670d9eeed len=11268]
+2026-10-30T15:29:01.057Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":27,"ts":"2026-10-30T15:29:01.048477Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.read","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":1,"via":"export"},"prev_hash":"4e9dbd5de76de2137c7c5756e83dd0f3826b11fb38d5bb2d10a127e3083218db","hash":"abefe47f05e18b27f0dc4719d03026940b6c17c2af75ae16f4284102d6c86eb8"},{"seq":26,"ts":"2026-10-30T15:29:01.048477Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo…[sha256=8311ed71055ca7016619456bc6bb90e603973113e59ee3c2e8fdddb670d9eeed len=11268]
+2026-10-30T15:29:01.058Z run -- /bin/true (3 keys)[0]: 1 matching of 3 new; seq=26 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 2, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.058Z ASSERT ok   not(run -- /bin/true (3 keys)[0]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.058Z run -- /bin/true (3 keys)[1]: 1 matching of 3 new; seq=25 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_15BFE08574"}
+2026-10-30T15:29:01.058Z ASSERT ok   not(run -- /bin/true (3 keys)[1]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.058Z run -- /bin/true (3 keys)[2]: 1 matching of 3 new; seq=27 action=secret.read result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.read", "details": {"version": 1, "via": "export"}, "result": "success", "target": "a1-2ad29/dev/A1_D994E708C4"}
+2026-10-30T15:29:01.058Z ASSERT ok   not(run -- /bin/true (3 keys)[2]: 1 matching audit event(s) (want >= 1) among 3 new)
+2026-10-30T15:29:01.065Z CLI coffer secrets rollback A1_48C83DDCE0 --to 1 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-16 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: rolled back A1_48C83DDCE0 (version 3)
+
+  err: 
+2026-10-30T15:29:01.066Z ASSERT ok   not(rollback K1 --to 1: rc=0 (want 0))
+2026-10-30T15:29:01.068Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":28,"ts":"2026-10-30T15:29:01.061788Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.rollback","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"to":1,"version":3},"prev_hash":"abefe47f05e18b27f0dc4719d03026940b6c17c2af75ae16f4284102d6c86eb8","hash":"17fdee0d1593a45010c58fce33fa3bbe44d5d5c8229546172d89b86ff4fe97c7"},{"seq":27,"ts":"2026-10-30T15:29:01.048477Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u…[sha256=267e3682e9832cc5ff7ef53aeeee655d83d124ec6065f0776407a0c5ca319aa3 len=11675]
+2026-10-30T15:29:01.070Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":28,"ts":"2026-10-30T15:29:01.061788Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.rollback","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"to":1,"version":3},"prev_hash":"abefe47f05e18b27f0dc4719d03026940b6c17c2af75ae16f4284102d6c86eb8","hash":"17fdee0d1593a45010c58fce33fa3bbe44d5d5c8229546172d89b86ff4fe97c7"},{"seq":27,"ts":"2026-10-30T15:29:01.048477Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u…[sha256=267e3682e9832cc5ff7ef53aeeee655d83d124ec6065f0776407a0c5ca319aa3 len=11675]
+2026-10-30T15:29:01.070Z rollback K1 --to 1[0]: 1 matching of 1 new; seq=28 action=secret.rollback result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.rollback", "details": {"to": 1, "version": 3}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.070Z ASSERT ok   not(rollback K1 --to 1[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.077Z CLI coffer secrets delete A1_D994E708C4 -p a1-2ad29 -e dev actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-17 url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: deleted A1_D994E708C4 (version 2)
+
+  err: 
+2026-10-30T15:29:01.077Z ASSERT ok   not(delete K3: rc=0 (want 0))
+2026-10-30T15:29:01.079Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":29,"ts":"2026-10-30T15:29:01.073467Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.delete","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":2},"prev_hash":"17fdee0d1593a45010c58fce33fa3bbe44d5d5c8229546172d89b86ff4fe97c7","hash":"d494abb09a3627df51f65d7f78acd8d79afe5ab96fcbb57f335fca1640e8abbf"},{"seq":28,"ts":"2026-10-30T15:29:01.061788Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},…[sha256=9d17e6e86b3f0b2bfad0c6bf8cf90df2aef722f358c0ce8f4777f8c4718a10d2 len=12073]
+2026-10-30T15:29:01.081Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":29,"ts":"2026-10-30T15:29:01.073467Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"secret.delete","target":"a1-2ad29/dev/A1_D994E708C4","source_ip":"10.89.0.17","result":"success","details":{"version":2},"prev_hash":"17fdee0d1593a45010c58fce33fa3bbe44d5d5c8229546172d89b86ff4fe97c7","hash":"d494abb09a3627df51f65d7f78acd8d79afe5ab96fcbb57f335fca1640e8abbf"},{"seq":28,"ts":"2026-10-30T15:29:01.061788Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},…[sha256=9d17e6e86b3f0b2bfad0c6bf8cf90df2aef722f358c0ce8f4777f8c4718a10d2 len=12073]
+2026-10-30T15:29:01.082Z delete K3[0]: 1 matching of 1 new; seq=29 action=secret.delete result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "secret.delete", "details": {"version": 2}, "result": "success", "target": "a1-2ad29/dev/A1_D994E708C4"}
+2026-10-30T15:29:01.082Z ASSERT ok   not(delete K3[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.090Z CLI coffer --json secrets set A1_6BFA774544 -p a1-2ad29 -e prod actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-18 url=http://127.0.0.1:8420 -> rc=7 7ms stdin=40B
+  out: {
+  "change_id": "chg_gld2h2mnah46ulln3q2557jxamoy2zcd",
+  "status": "pending"
+}
+
+  err: 
+2026-10-30T15:29:01.090Z ASSERT ok   not(protected set KP1 (CR created): rc=7 (want 7))
+2026-10-30T15:29:01.091Z protected set A1_6BFA774544: CLI change_id chg_gld2h2mnah46ulln3q2557jxamoy2zcd
+2026-10-30T15:29:01.093Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":30,"ts":"2026-10-30T15:29:01.086676Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"change.create","target":"a1-2ad29/prod/A1_6BFA774544","source_ip":"10.89.0.17","result":"success","details":{"base_version":0,"change_id":"chg_gld2h2mnah46ulln3q2557jxamoy2zcd","op":"set"},"prev_hash":"d494abb09a3627df51f65d7f78acd8d79afe5ab96fcbb57f335fca1640e8abbf","hash":"e032538fb7c591e32d4eda8e75b51eb1dfce525c381e693e06a6ace24d265a54"},{"seq":29,"ts":"2026-10-30T15:29:01.073467Z",…[sha256=e75be837f7fccb3194f9030975542b6ef50ab25703c4aca08a689489dc4c0732 len=12539]
+2026-10-30T15:29:01.095Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":30,"ts":"2026-10-30T15:29:01.086676Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"change.create","target":"a1-2ad29/prod/A1_6BFA774544","source_ip":"10.89.0.17","result":"success","details":{"base_version":0,"change_id":"chg_gld2h2mnah46ulln3q2557jxamoy2zcd","op":"set"},"prev_hash":"d494abb09a3627df51f65d7f78acd8d79afe5ab96fcbb57f335fca1640e8abbf","hash":"e032538fb7c591e32d4eda8e75b51eb1dfce525c381e693e06a6ace24d265a54"},{"seq":29,"ts":"2026-10-30T15:29:01.073467Z",…[sha256=e75be837f7fccb3194f9030975542b6ef50ab25703c4aca08a689489dc4c0732 len=12539]
+2026-10-30T15:29:01.096Z protected set KP1 (CR created)[0]: 1 matching of 1 new; seq=30 action=change.create result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "change.create", "details": {"base_version": 0, "change_id": "chg_gld2h2mnah46ulln3q2557jxamoy2zcd", "op": "set"}, "result": "success", "target": "a1
+2026-10-30T15:29:01.096Z ASSERT ok   not(protected set KP1 (CR created)[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.105Z CLI coffer --json secrets set A1_2ACB698D00 -p a1-2ad29 -e prod actor=a1-4b619@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-19 url=http://127.0.0.1:8420 -> rc=7 7ms stdin=40B
+  out: {
+  "change_id": "chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl",
+  "status": "pending"
+}
+
+  err: 
+2026-10-30T15:29:01.105Z ASSERT ok   not(protected set KP2 (CR created): rc=7 (want 7))
+2026-10-30T15:29:01.105Z protected set A1_2ACB698D00: CLI change_id chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl
+2026-10-30T15:29:01.107Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":31,"ts":"2026-10-30T15:29:01.101241Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"change.create","target":"a1-2ad29/prod/A1_2ACB698D00","source_ip":"10.89.0.17","result":"success","details":{"base_version":0,"change_id":"chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl","op":"set"},"prev_hash":"e032538fb7c591e32d4eda8e75b51eb1dfce525c381e693e06a6ace24d265a54","hash":"8c37ddef4520177c9c957a4876f2250e604a3312a090fbc425efe71bdbda1252"},{"seq":30,"ts":"2026-10-30T15:29:01.086676Z",…[sha256=48c2100715cf92a72bc57bd03543d6528a71b9147f4173bbf2493a6b22348666 len=13005]
+2026-10-30T15:29:01.110Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":31,"ts":"2026-10-30T15:29:01.101241Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"change.create","target":"a1-2ad29/prod/A1_2ACB698D00","source_ip":"10.89.0.17","result":"success","details":{"base_version":0,"change_id":"chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl","op":"set"},"prev_hash":"e032538fb7c591e32d4eda8e75b51eb1dfce525c381e693e06a6ace24d265a54","hash":"8c37ddef4520177c9c957a4876f2250e604a3312a090fbc425efe71bdbda1252"},{"seq":30,"ts":"2026-10-30T15:29:01.086676Z",…[sha256=48c2100715cf92a72bc57bd03543d6528a71b9147f4173bbf2493a6b22348666 len=13005]
+2026-10-30T15:29:01.110Z protected set KP2 (CR created)[0]: 1 matching of 1 new; seq=31 action=change.create result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "change.create", "details": {"base_version": 0, "change_id": "chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl", "op": "set"}, "result": "success", "target": "a1
+2026-10-30T15:29:01.110Z ASSERT ok   not(protected set KP2 (CR created)[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.118Z CLI coffer change approve chg_gld2h2mnah46ulln3q2557jxamoy2zcd actor=a1-3273a@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-20 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: approved change chg_gld2h2mnah46ulln3q2557jxamoy2zcd (version 1)
+
+  err: 
+2026-10-30T15:29:01.119Z ASSERT ok   not(approve CR1: rc=0 (want 0))
+2026-10-30T15:29:01.121Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":33,"ts":"2026-10-30T15:29:01.114576Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"action":"secret.write","target":"a1-2ad29/prod/A1_6BFA774544","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_gld2h2mnah46ulln3q2557jxamoy2zcd","version":1},"prev_hash":"f7d5d520a9b399e1d4f492ce36a19c390a35a2e898ef57a64445d6bc415d69a0","hash":"f59d888f9a602b0f976af342926af8b0fe4474780199601291c98be77be19af4"},{"seq":32,"ts":"2026-10-30T15:29:01.114576Z","actor":{"type":"…[sha256=b27b60425959e7bf5f7c30a89599f54cc4eede2ec9b9f43e602f3c84dbe32b82 len=13905]
+2026-10-30T15:29:01.124Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":33,"ts":"2026-10-30T15:29:01.114576Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"action":"secret.write","target":"a1-2ad29/prod/A1_6BFA774544","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_gld2h2mnah46ulln3q2557jxamoy2zcd","version":1},"prev_hash":"f7d5d520a9b399e1d4f492ce36a19c390a35a2e898ef57a64445d6bc415d69a0","hash":"f59d888f9a602b0f976af342926af8b0fe4474780199601291c98be77be19af4"},{"seq":32,"ts":"2026-10-30T15:29:01.114576Z","actor":{"type":"…[sha256=b27b60425959e7bf5f7c30a89599f54cc4eede2ec9b9f43e602f3c84dbe32b82 len=13905]
+2026-10-30T15:29:01.124Z approve CR1[0]: 1 matching of 2 new; seq=32 action=change.approve result=success actor=['user', 'usr_fgm5lu5h5pwcaykqzmclhc635umcpo47'] text={"action": "change.approve", "details": {"change_id": "chg_gld2h2mnah46ulln3q2557jxamoy2zcd", "version": 1}, "result": "success", "target": "a1-2ad29/prod/A1_6B
+2026-10-30T15:29:01.124Z ASSERT ok   not(approve CR1[0]: 1 matching audit event(s) (want >= 1) among 2 new)
+2026-10-30T15:29:01.131Z CLI coffer change reject chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl actor=a1-3273a@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-21 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: rejected change chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl
+
+  err: 
+2026-10-30T15:29:01.131Z ASSERT ok   not(reject CR2: rc=0 (want 0))
+2026-10-30T15:29:01.134Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":34,"ts":"2026-10-30T15:29:01.127834Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"action":"change.reject","target":"a1-2ad29/prod/A1_2ACB698D00","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl"},"prev_hash":"f59d888f9a602b0f976af342926af8b0fe4474780199601291c98be77be19af4","hash":"4ee74ac7f684b7b95763fbb6e45dc12679bd5cf41efab0f20fce89be712dba0e"},{"seq":33,"ts":"2026-10-30T15:29:01.114576Z","actor":{"type":"user","id":…[sha256=633fc6c734551ccdb5b5459d62dedf58d5534c5b0772e1f53dd1267433f32a2e len=14343]
+2026-10-30T15:29:01.136Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":34,"ts":"2026-10-30T15:29:01.127834Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47"},"action":"change.reject","target":"a1-2ad29/prod/A1_2ACB698D00","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl"},"prev_hash":"f59d888f9a602b0f976af342926af8b0fe4474780199601291c98be77be19af4","hash":"4ee74ac7f684b7b95763fbb6e45dc12679bd5cf41efab0f20fce89be712dba0e"},{"seq":33,"ts":"2026-10-30T15:29:01.114576Z","actor":{"type":"user","id":…[sha256=633fc6c734551ccdb5b5459d62dedf58d5534c5b0772e1f53dd1267433f32a2e len=14343]
+2026-10-30T15:29:01.137Z reject CR2[0]: 1 matching of 1 new; seq=34 action=change.reject result=success actor=['user', 'usr_fgm5lu5h5pwcaykqzmclhc635umcpo47'] text={"action": "change.reject", "details": {"change_id": "chg_7vrzxlwmmsxaep2tmhoxpmna2yxk7ysl"}, "result": "success", "target": "a1-2ad29/prod/A1_2ACB698D00"}
+2026-10-30T15:29:01.137Z ASSERT ok   not(reject CR2[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.206Z CLI coffer member add a1-m989239@a1-18323.test --role member actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-22 url=http://127.0.0.1:8420 -> rc=0 68ms stdin=19B
+  out: added a1-m989239@a1-18323.test as member (usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa)
+
+  err: 
+2026-10-30T15:29:01.207Z ASSERT ok   not(member add: rc=0 (want 0))
+2026-10-30T15:29:01.208Z HTTP GET /api/v1/members actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"id":"usr_fgm5lu5h5pwcaykqzmclhc635umcpo47","email":"a1-3273a@a1-18323.test","role":"admin","created_at":"2026-10-30T15:29:00.618849Z","grants":[]},{"id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","email":"a1-4b619@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.723761Z","grants":[{"project":"a1-2ad29","level":"writer"}]},{"id":"usr_ljknk7yxyijs264pw6647kpofbrm3sta","email":"a1-calab86131@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.929280Z","grants":[]},{"id":"usr_s6jerdndseogzjuzgddwt7vhj7nw6whp","email":"a1-calo2368ae@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:00.848838Z","grants":[]},{"id":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","email":"a1-m989239@a1-18323.test","role":"member","created_at":"2026-10-30T15:29:01.197731Z","grants":[]},{"id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco","email":"owner-a1-18323@a1-18323.test","role":"owner","created_at":"2026-10-30T15:29:00.482999Z","grants":[]}]
+
+2026-10-30T15:29:01.208Z new member id: usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa
+2026-10-30T15:29:01.211Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":35,"ts":"2026-10-30T15:29:01.200234Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.add","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","source_ip":"10.89.0.17","result":"success","details":{"role":"member"},"prev_hash":"4ee74ac7f684b7b95763fbb6e45dc12679bd5cf41efab0f20fce89be712dba0e","hash":"53897e6119b94f71d6d09cdd0a158401a2bd275d8c7cdfb6c7fa02ffa7968455"},{"seq":34,"ts":"2026-10-30T15:29:01.127834Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc63…[sha256=091d13f5a76972f463bc23b8a76c67efb3c1c9d1d260627848e7737b64ee100c len=14752]
+2026-10-30T15:29:01.213Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":35,"ts":"2026-10-30T15:29:01.200234Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.add","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","source_ip":"10.89.0.17","result":"success","details":{"role":"member"},"prev_hash":"4ee74ac7f684b7b95763fbb6e45dc12679bd5cf41efab0f20fce89be712dba0e","hash":"53897e6119b94f71d6d09cdd0a158401a2bd275d8c7cdfb6c7fa02ffa7968455"},{"seq":34,"ts":"2026-10-30T15:29:01.127834Z","actor":{"type":"user","id":"usr_fgm5lu5h5pwcaykqzmclhc63…[sha256=091d13f5a76972f463bc23b8a76c67efb3c1c9d1d260627848e7737b64ee100c len=14752]
+2026-10-30T15:29:01.214Z member add[0]: 1 matching of 1 new; seq=35 action=member.add result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "member.add", "details": {"role": "member"}, "result": "success", "target": "usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa"}
+2026-10-30T15:29:01.214Z ASSERT ok   not(member add[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.223Z CLI coffer grant set a1-m989239@a1-18323.test -p a1-2ad29 --level reader actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-23 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: granted a1-m989239@a1-18323.test reader on a1-2ad29
+
+  err: 
+2026-10-30T15:29:01.223Z ASSERT ok   not(grant set reader: rc=0 (want 0))
+2026-10-30T15:29:01.225Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":36,"ts":"2026-10-30T15:29:01.218532Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"grant.set","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa a1-2ad29","source_ip":"10.89.0.17","result":"success","details":{"level":"reader","previous":""},"prev_hash":"53897e6119b94f71d6d09cdd0a158401a2bd275d8c7cdfb6c7fa02ffa7968455","hash":"cd1a72822dd483954cab9b11e04e1c9eb3a2c3c113884e0bc51d789c03c5cec1"},{"seq":35,"ts":"2026-10-30T15:29:01.200234Z","actor":{"type":"user","id":"usr_o…[sha256=a801f169662e57ebe6df83ff592589e01bf9da7a800e1c618159efe2923904d4 len=15184]
+2026-10-30T15:29:01.228Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":36,"ts":"2026-10-30T15:29:01.218532Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"grant.set","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa a1-2ad29","source_ip":"10.89.0.17","result":"success","details":{"level":"reader","previous":""},"prev_hash":"53897e6119b94f71d6d09cdd0a158401a2bd275d8c7cdfb6c7fa02ffa7968455","hash":"cd1a72822dd483954cab9b11e04e1c9eb3a2c3c113884e0bc51d789c03c5cec1"},{"seq":35,"ts":"2026-10-30T15:29:01.200234Z","actor":{"type":"user","id":"usr_o…[sha256=a801f169662e57ebe6df83ff592589e01bf9da7a800e1c618159efe2923904d4 len=15184]
+2026-10-30T15:29:01.229Z grant set reader[0]: 1 matching of 1 new; seq=36 action=grant.set result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "grant.set", "details": {"level": "reader", "previous": ""}, "result": "success", "target": "usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa a1-2ad29"}
+2026-10-30T15:29:01.229Z ASSERT ok   not(grant set reader[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.237Z CLI coffer grant revoke a1-m989239@a1-18323.test -p a1-2ad29 actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-24 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: revoked a1-m989239@a1-18323.test's grant on a1-2ad29
+
+  err: 
+2026-10-30T15:29:01.237Z ASSERT ok   not(grant revoke: rc=0 (want 0))
+2026-10-30T15:29:01.240Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":37,"ts":"2026-10-30T15:29:01.233369Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"grant.revoke","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa a1-2ad29","source_ip":"10.89.0.17","result":"success","details":{"previous":"reader"},"prev_hash":"cd1a72822dd483954cab9b11e04e1c9eb3a2c3c113884e0bc51d789c03c5cec1","hash":"9f2bea61a3f587066ba148de045c5915f9480a7afac82e988fa0b74b299da6ae"},{"seq":36,"ts":"2026-10-30T15:29:01.218532Z","actor":{"type":"user","id":"usr_oqkyaxkt3…[sha256=fce4d2e21f0731d09a3b0273e2b32322f442c2a7141f0aa09c1eea5d3fb59aa0 len=15608]
+2026-10-30T15:29:01.243Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":37,"ts":"2026-10-30T15:29:01.233369Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"grant.revoke","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa a1-2ad29","source_ip":"10.89.0.17","result":"success","details":{"previous":"reader"},"prev_hash":"cd1a72822dd483954cab9b11e04e1c9eb3a2c3c113884e0bc51d789c03c5cec1","hash":"9f2bea61a3f587066ba148de045c5915f9480a7afac82e988fa0b74b299da6ae"},{"seq":36,"ts":"2026-10-30T15:29:01.218532Z","actor":{"type":"user","id":"usr_oqkyaxkt3…[sha256=fce4d2e21f0731d09a3b0273e2b32322f442c2a7141f0aa09c1eea5d3fb59aa0 len=15608]
+2026-10-30T15:29:01.243Z grant revoke[0]: 1 matching of 1 new; seq=37 action=grant.revoke result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "grant.revoke", "details": {"previous": "reader"}, "result": "success", "target": "usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa a1-2ad29"}
+2026-10-30T15:29:01.243Z ASSERT ok   not(grant revoke[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.251Z CLI coffer member role a1-m989239@a1-18323.test admin actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-25 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: a1-m989239@a1-18323.test is now admin
+
+  err: 
+2026-10-30T15:29:01.252Z ASSERT ok   not(member role admin: rc=0 (want 0))
+2026-10-30T15:29:01.254Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":38,"ts":"2026-10-30T15:29:01.247765Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.role_change","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","source_ip":"10.89.0.17","result":"success","details":{"from":"member","to":"admin"},"prev_hash":"9f2bea61a3f587066ba148de045c5915f9480a7afac82e988fa0b74b299da6ae","hash":"e0a763a5f3ab1ddd1bd6fc6a3ad0cd98813b137d0aa542bc47b27f4e6176715e"},{"seq":37,"ts":"2026-10-30T15:29:01.233369Z","actor":{"type":"user","id":"usr_oqk…[sha256=8ac3bf92a47471d78c171a9a9e05de9ec600d08a850e7022a214711b97be8629 len=16038]
+2026-10-30T15:29:01.257Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":38,"ts":"2026-10-30T15:29:01.247765Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.role_change","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","source_ip":"10.89.0.17","result":"success","details":{"from":"member","to":"admin"},"prev_hash":"9f2bea61a3f587066ba148de045c5915f9480a7afac82e988fa0b74b299da6ae","hash":"e0a763a5f3ab1ddd1bd6fc6a3ad0cd98813b137d0aa542bc47b27f4e6176715e"},{"seq":37,"ts":"2026-10-30T15:29:01.233369Z","actor":{"type":"user","id":"usr_oqk…[sha256=8ac3bf92a47471d78c171a9a9e05de9ec600d08a850e7022a214711b97be8629 len=16038]
+2026-10-30T15:29:01.257Z member role admin[0]: 1 matching of 1 new; seq=38 action=member.role_change result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "member.role_change", "details": {"from": "member", "to": "admin"}, "result": "success", "target": "usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa"}
+2026-10-30T15:29:01.258Z ASSERT ok   not(member role admin[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.265Z CLI coffer member remove a1-m989239@a1-18323.test actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-26 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: removed a1-m989239@a1-18323.test
+
+  err: 
+2026-10-30T15:29:01.265Z ASSERT ok   not(member remove: rc=0 (want 0))
+2026-10-30T15:29:01.268Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":39,"ts":"2026-10-30T15:29:01.261504Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.remove","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","source_ip":"10.89.0.17","result":"success","details":{"role":"admin"},"prev_hash":"e0a763a5f3ab1ddd1bd6fc6a3ad0cd98813b137d0aa542bc47b27f4e6176715e","hash":"6563a4ae86f82eb4376800c7b6c0f11babc05e30fae118999e3b73dc863a57b7"},{"seq":38,"ts":"2026-10-30T15:29:01.247765Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6or…[sha256=1c008f06e9f7ae7bd9b8bd5cd173d994f69dabf0bf8f636d18594e959bd4abb3 len=16449]
+2026-10-30T15:29:01.271Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":39,"ts":"2026-10-30T15:29:01.261504Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"member.remove","target":"usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa","source_ip":"10.89.0.17","result":"success","details":{"role":"admin"},"prev_hash":"e0a763a5f3ab1ddd1bd6fc6a3ad0cd98813b137d0aa542bc47b27f4e6176715e","hash":"6563a4ae86f82eb4376800c7b6c0f11babc05e30fae118999e3b73dc863a57b7"},{"seq":38,"ts":"2026-10-30T15:29:01.247765Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6or…[sha256=1c008f06e9f7ae7bd9b8bd5cd173d994f69dabf0bf8f636d18594e959bd4abb3 len=16449]
+2026-10-30T15:29:01.271Z member remove[0]: 1 matching of 1 new; seq=39 action=member.remove result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "member.remove", "details": {"role": "admin"}, "result": "success", "target": "usr_voretlrd4n7rfezfyjnx5fsrp3v3lhpa"}
+2026-10-30T15:29:01.271Z ASSERT ok   not(member remove[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.277Z HTTP POST /api/v1/tokens actor=owner@a1-18323 -> 201 5ms
+  req: {"project": "a1-2ad29", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "a1-275e5f"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:29:01.272567Z","id":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s","name":"a1-275e5f","project":"a1-2ad29","token":"<redacted-token>"}
+
+2026-10-30T15:29:01.281Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":40,"ts":"2026-10-30T15:29:01.273415Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"token.issue","target":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s","source_ip":"10.89.0.17","result":"success","details":{"access":"read","env":"dev","project":"a1-2ad29","ttl_seconds":3600},"prev_hash":"6563a4ae86f82eb4376800c7b6c0f11babc05e30fae118999e3b73dc863a57b7","hash":"5b06a44c0184c0bd89023b81fec1313b3a7d4de31ce313fca50dcb5968ae89f1"},{"seq":39,"ts":"2026-10-30T15:29:01.261504Z","act…[sha256=1195bb2a1513a0b8fe005eb7711bd1cfb1383ead9053c69c4e574f56ace30f5b len=16911]
+2026-10-30T15:29:01.284Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":40,"ts":"2026-10-30T15:29:01.273415Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"token.issue","target":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s","source_ip":"10.89.0.17","result":"success","details":{"access":"read","env":"dev","project":"a1-2ad29","ttl_seconds":3600},"prev_hash":"6563a4ae86f82eb4376800c7b6c0f11babc05e30fae118999e3b73dc863a57b7","hash":"5b06a44c0184c0bd89023b81fec1313b3a7d4de31ce313fca50dcb5968ae89f1"},{"seq":39,"ts":"2026-10-30T15:29:01.261504Z","act…[sha256=1195bb2a1513a0b8fe005eb7711bd1cfb1383ead9053c69c4e574f56ace30f5b len=16911]
+2026-10-30T15:29:01.285Z token issue: seen 39 -> 40
+2026-10-30T15:29:01.285Z token issued: 1 matching of 1 new; seq=40 action=token.issue result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "token.issue", "details": {"access": "read", "env": "dev", "project": "a1-2ad29", "ttl_seconds": 3600}, "result": "success", "target": "tok_yotmuxxo6
+2026-10-30T15:29:01.285Z ASSERT ok   not(token issued: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.295Z CLI coffer secrets get A1_48C83DDCE0 -p a1-2ad29 -e dev actor=tok:a1-275e5f home=/home/grader2/work-c2/tmp/A1/home-anon-28 url=http://127.0.0.1:8420 -> rc=0 10ms stdin=0B
+  out: «canary:A1:k1v1»
+  err: 
+2026-10-30T15:29:01.296Z ASSERT ok   not(token reads K1: rc=0 (want 0))
+2026-10-30T15:29:01.298Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":41,"ts":"2026-10-30T15:29:01.288566Z","actor":{"type":"service_token","id":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s"},"action":"secret.read","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":3},"prev_hash":"5b06a44c0184c0bd89023b81fec1313b3a7d4de31ce313fca50dcb5968ae89f1","hash":"4a01a008e8a552bf1cee80f93b3939d3749729cf00ff8a3717cd247edad2cf28"},{"seq":40,"ts":"2026-10-30T15:29:01.273415Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576…[sha256=c55c7b60cf4c41d606d65bb954480d69fdedf0ce56518f426306de27fc7fbb02 len=17316]
+2026-10-30T15:29:01.301Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":41,"ts":"2026-10-30T15:29:01.288566Z","actor":{"type":"service_token","id":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s"},"action":"secret.read","target":"a1-2ad29/dev/A1_48C83DDCE0","source_ip":"10.89.0.17","result":"success","details":{"version":3},"prev_hash":"5b06a44c0184c0bd89023b81fec1313b3a7d4de31ce313fca50dcb5968ae89f1","hash":"4a01a008e8a552bf1cee80f93b3939d3749729cf00ff8a3717cd247edad2cf28"},{"seq":40,"ts":"2026-10-30T15:29:01.273415Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576…[sha256=c55c7b60cf4c41d606d65bb954480d69fdedf0ce56518f426306de27fc7fbb02 len=17316]
+2026-10-30T15:29:01.302Z token reads K1[0]: 1 matching of 1 new; seq=41 action=secret.read result=success actor=['service_token', 'tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s'] text={"action": "secret.read", "details": {"version": 3}, "result": "success", "target": "a1-2ad29/dev/A1_48C83DDCE0"}
+2026-10-30T15:29:01.302Z ASSERT ok   not(token reads K1[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.309Z CLI coffer token revoke tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s actor=owner@a1-18323 home=/home/grader2/work-c2/tmp/A1/home-anon-29 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: revoked token tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s
+
+  err: 
+2026-10-30T15:29:01.310Z ASSERT ok   not(token revoke: rc=0 (want 0))
+2026-10-30T15:29:01.312Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":42,"ts":"2026-10-30T15:29:01.305722Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"token.revoke","target":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s","source_ip":"10.89.0.17","result":"success","details":{"already_revoked":false},"prev_hash":"4a01a008e8a552bf1cee80f93b3939d3749729cf00ff8a3717cd247edad2cf28","hash":"fd2a4d42e0addd4bf1eb4922e3bfe84b11ef47804e2460a09dc0e82d4052bf55"},{"seq":41,"ts":"2026-10-30T15:29:01.288566Z","actor":{"type":"service_token","id":"tok_yotmu…[sha256=8ff8253934c88ea1c6b8ce3365d6719b978ebc804f5e5dc795137a7c495f785c len=17735]
+2026-10-30T15:29:01.316Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":42,"ts":"2026-10-30T15:29:01.305722Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"token.revoke","target":"tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s","source_ip":"10.89.0.17","result":"success","details":{"already_revoked":false},"prev_hash":"4a01a008e8a552bf1cee80f93b3939d3749729cf00ff8a3717cd247edad2cf28","hash":"fd2a4d42e0addd4bf1eb4922e3bfe84b11ef47804e2460a09dc0e82d4052bf55"},{"seq":41,"ts":"2026-10-30T15:29:01.288566Z","actor":{"type":"service_token","id":"tok_yotmu…[sha256=8ff8253934c88ea1c6b8ce3365d6719b978ebc804f5e5dc795137a7c495f785c len=17735]
+2026-10-30T15:29:01.316Z token revoke[0]: 1 matching of 1 new; seq=42 action=token.revoke result=success actor=['user', 'usr_oqkyaxkt3nwuawoih4c6ortpg576prco'] text={"action": "token.revoke", "details": {"already_revoked": false}, "result": "success", "target": "tok_yotmuxxo6wi77fpcle7kedjb6yh67m2s"}
+2026-10-30T15:29:01.316Z ASSERT ok   not(token revoke[0]: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:01.371Z CLI coffer login --email a1-4b619@a1-18323.test actor=anon home=/home/grader2/work-c2/tmp/A1/home-30 url=http://127.0.0.1:8420 -> rc=3 53ms stdin=23B
+  out: 
+  err: error: invalid credentials (unauthenticated)
+
+2026-10-30T15:29:01.371Z ASSERT ok   not(login fail (wrong password): rc=3 (want 3))
+2026-10-30T15:29:01.375Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"seq":43,"ts":"2026-10-30T15:29:01.365356Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"fd2a4d42e0addd4bf1eb4922e3bfe84b11ef47804e2460a09dc0e82d4052bf55","hash":"b17da90ca04cf992aa4f5cdf5f6fc7c9cc4e7f1b0b3be796c4e1ff0c52d57537"},{"seq":42,"ts":"2026-10-30T15:29:01.305722Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"token.revoke","target":"to…[sha256=80cdb2c8d001cf2764b990f489c906aaba1b66092cd26f75414aae52f166229c len=18097]
+2026-10-30T15:29:01.378Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 1ms
+  req: 
+  resp: [{"seq":43,"ts":"2026-10-30T15:29:01.365356Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"fd2a4d42e0addd4bf1eb4922e3bfe84b11ef47804e2460a09dc0e82d4052bf55","hash":"b17da90ca04cf992aa4f5cdf5f6fc7c9cc4e7f1b0b3be796c4e1ff0c52d57537"},{"seq":42,"ts":"2026-10-30T15:29:01.305722Z","actor":{"type":"user","id":"usr_oqkyaxkt3nwuawoih4c6ortpg576prco"},"action":"token.revoke","target":"to…[sha256=80cdb2c8d001cf2764b990f489c906aaba1b66092cd26f75414aae52f166229c len=18097]
+2026-10-30T15:29:01.382Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":75,"ts":"2026-10-30T15:29:01.364528Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:70cb5ce95870aa08","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254","hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352"},{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz…[sha256=a4e03d976e642ee436b316548c63e1c59bf97869d704be3cbedb91393439ecc1 len=31089]
+2026-10-30T15:29:01.386Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":75,"ts":"2026-10-30T15:29:01.364528Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:70cb5ce95870aa08","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254","hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352"},{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz…[sha256=a4e03d976e642ee436b316548c63e1c59bf97869d704be3cbedb91393439ecc1 len=31089]
+2026-10-30T15:29:01.386Z login fail (wrong password)[0]: 1 matching of 2 new; seq=43 action=auth.login result=failed actor=['anonymous', ''] text={"action": "auth.login", "details": {}, "result": "failed", "target": "usr_unx7souwiebuiptvjmn2xo532u7omb4e"}
+2026-10-30T15:29:01.387Z ASSERT ok   not(login fail (wrong password)[0]: 1 matching audit event(s) (want >= 1) among 2 new)
+2026-10-30T15:29:01.446Z CLI coffer login --email a1-4b619@a1-18323.test actor=anon home=/home/grader2/work-c2/tmp/A1/home-31 url=http://127.0.0.1:8420 -> rc=0 59ms stdin=17B
+  out: logged in as a1-4b619@a1-18323.test
+
+  err: 
+2026-10-30T15:29:01.446Z ASSERT ok   not(login success: rc=0 (want 0))
+2026-10-30T15:29:01.450Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 3ms
+  req: 
+  resp: [{"seq":44,"ts":"2026-10-30T15:29:01.433464Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_ov3x2dxw7x474rli4xmr7vfh4y5cqwdc"},"prev_hash":"b17da90ca04cf992aa4f5cdf5f6fc7c9cc4e7f1b0b3be796c4e1ff0c52d57537","hash":"cb8626b7d6b80124eb5cfcd5de7b273731bae11c4081bfcae94cbc12dc818ccb"},{"seq":43,"ts":"2026-10-30T15:29:01.365356Z","actor":{"type":"anonym…[sha256=ed6e898a2083b7288b79e01002c9d71bd8f30baa4ae63b077c3ff2bf90812bb5 len=18540]
+2026-10-30T15:29:01.454Z HTTP GET /api/v1/audit actor=owner@a1-18323 -> 200 2ms
+  req: 
+  resp: [{"seq":44,"ts":"2026-10-30T15:29:01.433464Z","actor":{"type":"user","id":"usr_unx7souwiebuiptvjmn2xo532u7omb4e"},"action":"auth.login","target":"usr_unx7souwiebuiptvjmn2xo532u7omb4e","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_ov3x2dxw7x474rli4xmr7vfh4y5cqwdc"},"prev_hash":"b17da90ca04cf992aa4f5cdf5f6fc7c9cc4e7f1b0b3be796c4e1ff0c52d57537","hash":"cb8626b7d6b80124eb5cfcd5de7b273731bae11c4081bfcae94cbc12dc818ccb"},{"seq":43,"ts":"2026-10-30T15:29:01.365356Z","actor":{"type":"anonym…[sha256=ed6e898a2083b7288b79e01002c9d71bd8f30baa4ae63b077c3ff2bf90812bb5 len=18540]
+2026-10-30T15:29:01.459Z HTTP GET /api/v1/admin/audit actor=root -> 200 2ms
+  req: 
+  resp: [{"seq":75,"ts":"2026-10-30T15:29:01.364528Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:70cb5ce95870aa08","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254","hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352"},{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz…[sha256=a4e03d976e642ee436b316548c63e1c59bf97869d704be3cbedb91393439ecc1 len=31089]
+2026-10-30T15:29:01.463Z HTTP GET /api/v1/admin/audit actor=root -> 200 2ms
+  req: 
+  resp: [{"seq":75,"ts":"2026-10-30T15:29:01.364528Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:70cb5ce95870aa08","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254","hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352"},{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz…[sha256=a4e03d976e642ee436b316548c63e1c59bf97869d704be3cbedb91393439ecc1 len=31089]
+2026-10-30T15:29:01.463Z login success[0]: 1 matching of 1 new; seq=44 action=auth.login result=success actor=['user', 'usr_unx7souwiebuiptvjmn2xo532u7omb4e'] text={"action": "auth.login", "details": {"token_id": "tok_ov3x2dxw7x474rli4xmr7vfh4y5cqwdc"}, "result": "success", "target": "usr_unx7souwiebuiptvjmn2xo532u7omb4e"}
+2026-10-30T15:29:01.463Z ASSERT ok   not(login success[0]: 1 matching audit event(s) (want >= 1) among 1 new)

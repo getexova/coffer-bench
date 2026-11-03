@@ -1,0 +1,42 @@
+2026-10-29T13:04:42.532Z GIT clone --no-hardlinks /home/grader1/work-r2/repo /home/grader1/work-r2/tmp/E1/e1 -> rc=0 20ms err=Cloning into '/home/grader1/work-r2/tmp/E1/e1'...
+done.
+
+2026-10-29T13:04:42.534Z GIT rev-parse HEAD -> rc=0 1ms err=
+2026-10-29T13:04:42.540Z GIT status --porcelain --ignored -> rc=0 6ms err=
+2026-10-29T13:05:59.845Z E1 test.sh rc=0 77.3s out=928B err=400B
+--- stdout tail ---
+Starting a throwaway postgres:16 container (coffer-test-db-301323) for the tests via podman
+Test database ready on 127.0.0.1:38993
+Running go test -p 1 ./... inside golang:1.27.3-bookworm via podman (no host Go toolchain found)
+ok  	coffer/cmd/coffer	1.515s
+ok  	coffer/internal/api/auditapi	0.522s
+ok  	coffer/internal/api/authapi	4.539s
+ok  	coffer/internal/api/secretsapi	27.429s
+ok  	coffer/internal/audit	0.674s
+ok  	coffer/internal/authz	0.002s
+ok  	coffer/internal/config	0.002s
+ok  	coffer/internal/crypto	0.004s
+ok  	coffer/internal/httpapi	0.129s
+ok  	coffer/internal/httpx	0.011s
+ok  	coffer/internal/idgen	0.002s
+ok  	coffer/internal/reqctx	0.002s
+ok  	coffer/internal/store	0.002s
+ok  	coffer/internal/store/auditq	0.234s
+?   	coffer/internal/store/auth	[no test files]
+ok  	coffer/internal/store/secrets	1.062s
+?   	coffer/internal/testutil	[no test files]
+?   	coffer/tools/perftest	[no test files]
+Tests passed.
+
+--- stderr tail ---
+go: downloading github.com/jackc/pgx/v5 v5.11.0
+go: downloading golang.org/x/crypto v0.58.0
+go: downloading github.com/jackc/puddle/v2 v2.2.2
+go: downloading github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761
+go: downloading github.com/jackc/pgpassfile v1.0.0
+go: downloading golang.org/x/text v0.43.0
+go: downloading golang.org/x/sync v0.24.0
+go: downloading golang.org/x/sys v0.49.0
+
+2026-10-29T13:06:00.204Z E1 cleanup compose down -v rc=0
+2026-10-29T13:06:00.204Z ASSERT ok   not(./scripts/test.sh rc=0 after 77 s (want 0); tail:  github.com/jackc/pgpassfile v1.0.0 go: downloading golang.org/x/text v0.43.0 go: downloading golang.org/x/sync v0.24.0 go: downloading golang.org/x/sys v0.49.0)

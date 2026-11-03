@@ -1,0 +1,160 @@
+2026-10-30T15:28:01.163Z PSQL user=coffer db=coffer rc=0 rows=14
+  sql: SELECT DISTINCT table_schema, table_name FROM information_schema.columns WHERE table_schema NOT IN ('pg_catalog','information_schema') ORDER BY 1,2;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:01.567Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: SELECT row_to_json(t)::text FROM "public"."audit_chains" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:01.927Z PSQL user=coffer db=coffer rc=0 rows=1209
+  sql: SELECT row_to_json(t)::text FROM "public"."audit_events" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:02.297Z PSQL user=coffer db=coffer rc=0 rows=67
+  sql: SELECT row_to_json(t)::text FROM "public"."change_requests" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:02.688Z PSQL user=coffer db=coffer rc=0 rows=10
+  sql: SELECT row_to_json(t)::text FROM "public"."environments" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:03.084Z PSQL user=coffer db=coffer rc=0 rows=3
+  sql: SELECT row_to_json(t)::text FROM "public"."grants" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:03.476Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: SELECT row_to_json(t)::text FROM "public"."login_failures" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:03.869Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: SELECT row_to_json(t)::text FROM "public"."master_key_check" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:04.261Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: SELECT row_to_json(t)::text FROM "public"."orgs" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:04.651Z PSQL user=coffer db=coffer rc=0 rows=9
+  sql: SELECT row_to_json(t)::text FROM "public"."projects" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:05.042Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: SELECT row_to_json(t)::text FROM "public"."schema_migrations" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:05.446Z PSQL user=coffer db=coffer rc=0 rows=169
+  sql: SELECT row_to_json(t)::text FROM "public"."secret_versions" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:05.844Z PSQL user=coffer db=coffer rc=0 rows=89
+  sql: SELECT row_to_json(t)::text FROM "public"."secrets" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:06.242Z PSQL user=coffer db=coffer rc=0 rows=51
+  sql: SELECT row_to_json(t)::text FROM "public"."tokens" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:06.587Z PSQL user=coffer db=coffer rc=0 rows=9
+  sql: SELECT row_to_json(t)::text FROM "public"."users" t WHERE EXISTS (SELECT 1 FROM json_each_text(row_to_json(t)) j WHERE lower(j.value) IN ('admin2@acme.test','admin@acme.test','admin@example.com','nogrant@acme.test','owner@acme.test','owner@globex.test','reader@acme.test','viewer@acme.test','writer@acme.test','usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj','usr_764cnv53gai3qsmtqqnstgooc6sz7r4b','usr_zsxf7ikyrvmz447g6rok7ywwlphysxla','usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw','usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq','usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp','usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx','usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl','usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'));
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:28:06.588Z ASSERT ok   not(admin2@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL admin2@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(admin@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL admin@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(admin@example.com: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT ok   not(nogrant@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL nogrant@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(owner@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL owner@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(owner@globex.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL owner@globex.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(reader@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL reader@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(viewer@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL viewer@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.588Z ASSERT ok   not(writer@acme.test: public.users.password_hash = argon2id)
+2026-10-30T15:28:06.588Z ASSERT FAIL writer@acme.test: public.users.password_changed_at = unrecognized (prefix '2026-10-30', len 32)
+2026-10-30T15:28:06.595Z HTTP POST /api/v1/members actor=owner@acme -> 400 4ms
+  req: {"email": "x5-32637@acme.test", "role": "member", "password": "«pw:x5-11-1»"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:06.595Z ASSERT ok   not(POST /members 11-char password -> 400 (want 400/422))
+2026-10-30T15:28:06.643Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x5-32637@acme.test", "password": "«pw:x5-11-1»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:06.644Z ASSERT ok   not(login as rejected 11-char member -> 401 (want not 2xx))
+2026-10-30T15:28:06.694Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "x5-41ba2@acme.test", "role": "member", "password": "«pw:x5-12-2»"}
+  resp: {"id":"usr_nf7iirfiyiphqi2ht6xuqbxifakc2yuy","email":"x5-41ba2@acme.test","role":"member","created_at":"2026-10-30T15:28:06.686555Z"}
+
+2026-10-30T15:28:06.694Z CONTROL ok: POST /members with 12-char password (201)
+2026-10-30T15:28:06.745Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x5-5f432@acme.test", "role": "member", "password": "«pw0:x5-5f432@acme»"}
+  resp: {"id":"usr_bcn4qsf36o6sl5hota4hqsc5xtn52ozn","email":"x5-5f432@acme.test","role":"member","created_at":"2026-10-30T15:28:06.737673Z"}
+
+2026-10-30T15:28:06.794Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x5-5f432@acme.test", "password": "«pw0:x5-5f432@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:06.746339Z","token":"<redacted-token>","user":{"id":"usr_bcn4qsf36o6sl5hota4hqsc5xtn52ozn","email":"x5-5f432@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:06.797Z HTTP GET /api/v1/projects actor=x5-5f432@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:06.798Z HTTP POST /api/v1/auth/password actor=x5-5f432@acme -> 400 1ms
+  req: {"current_password": "«pw0:x5-5f432@acme»", "new_password": "«pw:x5-11-1»"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:06.798Z ASSERT ok   not(POST /auth/password new 11-char -> 400 (want 400/422))
+2026-10-30T15:28:06.845Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x5-5f432@acme.test", "password": "«pw0:x5-5f432@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:06.799093Z","token":"<redacted-token>","user":{"id":"usr_bcn4qsf36o6sl5hota4hqsc5xtn52ozn","email":"x5-5f432@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:06.845Z ASSERT ok   not(old password still logs in after rejected change -> 201)
+2026-10-30T15:28:06.939Z HTTP POST /api/v1/auth/password actor=x5-5f432@acme -> 200 91ms
+  req: {"current_password": "«pw0:x5-5f432@acme»", "new_password": "«pw:x5-chg-6»"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:06.939Z CONTROL ok: POST /auth/password with 12-char new password (200)
+2026-10-30T15:28:06.941Z HTTP POST /api/v1/admin/orgs actor=root -> 400 2ms
+  req: {"slug": "x5-713e6", "owner_email": "owner@x5-713e6.test", "owner_password": "«pw:x5-11-1»"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:06.941Z ASSERT ok   not(POST /admin/orgs owner 11-char password -> 400 (want 400/422))
+2026-10-30T15:28:06.990Z HTTP POST /api/v1/admin/orgs actor=root -> 201 50ms
+  req: {"slug": "x5-83a32", "owner_email": "owner@x5-83a32.test", "owner_password": "«pw:x5-12-2»"}
+  resp: {"id":"org_cshkmen3idhu5csoivft6bh7eklveful","slug":"x5-83a32","disabled":false,"created_at":"2026-10-30T15:28:06.981944Z","owner":{"id":"usr_2hzsnxhh37tgiksuuucudcyakfkjh7st","email":"owner@x5-83a32.test","role":"owner"}}
+
+2026-10-30T15:28:06.991Z CONTROL ok: POST /admin/orgs with 12-char owner password (201)
+2026-10-30T15:28:06.995Z CLI coffer whoami actor=anon home=/home/grader2/work-c2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 4ms stdin=0B
+  out: type: user
+id: usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+email: owner@acme.test
+role: owner
+org_id: org_xyap7smmpbnuafybnstbwwbvhp32ccah
+org_slug: acme
+must_change_password: false
+
+  err: 
+2026-10-30T15:28:06.999Z CLI coffer member add x5-9682d@acme.test --role member actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=6 3ms stdin=12B
+  out: 
+  err: error: password must be at least 12 characters (validation)
+
+2026-10-30T15:28:06.999Z ASSERT ok   not(coffer member add with 11-char password -> rc=6 (want 6))
+2026-10-30T15:28:07.050Z CLI coffer member add x5-10c585@acme.test --role member actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 51ms stdin=13B
+  out: added x5-10c585@acme.test as member (usr_dbxyombnks2bk5bh2kgqm253ch37tdml)
+
+  err: 
+2026-10-30T15:28:07.050Z CONTROL ok: coffer member add with 12-char password (rc=0)

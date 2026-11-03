@@ -1,0 +1,2578 @@
+2026-10-30T15:28:09.336Z HTTP POST /api/v1/members actor=owner@acme -> 201 52ms
+  req: {"email": "x10-13f3e@acme.test", "role": "member", "password": "«pw0:x10-13f3e@acme»"}
+  resp: {"id":"usr_36skbzqxhnt3pbpai5zhjyylr4je3scm","email":"x10-13f3e@acme.test","role":"member","created_at":"2026-10-30T15:28:09.328855Z"}
+
+2026-10-30T15:28:09.385Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x10-13f3e@acme.test", "password": "«pw0:x10-13f3e@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:09.337917Z","token":"<redacted-token>","user":{"id":"usr_36skbzqxhnt3pbpai5zhjyylr4je3scm","email":"x10-13f3e@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:09.388Z HTTP GET /api/v1/projects actor=x10-13f3e@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:09.435Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-13f3e@acme.test", "password": "«pw0:x10-13f3e@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:09.389347Z","token":"<redacted-token>","user":{"id":"usr_36skbzqxhnt3pbpai5zhjyylr4je3scm","email":"x10-13f3e@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:09.437Z login gate X10 start try 1 after 0s: fresh-account correct login -> 201
+2026-10-30T15:28:09.443Z HTTP POST /api/v1/projects actor=owner@acme -> 201 6ms
+  req: {"slug": "x10-31c05"}
+  resp: {"id":"prj_gwxs36h2dvy7gjat2kja4pc2htt6id3b","slug":"x10-31c05","created_at":"2026-10-30T15:28:09.438360Z"}
+
+2026-10-30T15:28:09.448Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_ji5qdtxeyqxdokxrdhe7bfwmwytktgig","slug":"dev","protected":false,"created_at":"2026-10-30T15:28:09.444078Z"}
+
+2026-10-30T15:28:09.453Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "prot", "protected": true}
+  resp: {"id":"env_77v2svjnto72chxh77omr77ab2hifotk","slug":"prot","protected":true,"created_at":"2026-10-30T15:28:09.448969Z"}
+
+2026-10-30T15:28:09.459Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 200 6ms
+  req: {"value": "BgkHOR0qYsLF9URa9QK83eV9"}
+  resp: {"version":1}
+
+2026-10-30T15:28:09.464Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 200 5ms
+  req: {"value": "lQiWMuiwkClJBSruN9bu7fjf"}
+  resp: {"version":2}
+
+2026-10-30T15:28:09.515Z HTTP POST /api/v1/admin/orgs actor=root -> 201 49ms
+  req: {"slug": "x10-48a71", "owner_email": "owner-x10-48a71@x10-48a71.test", "owner_password": "«pw0:owner@x10-48a71»"}
+  resp: {"id":"org_yu5zshr5l6dolxejywbuey6beigk7pgm","slug":"x10-48a71","disabled":false,"created_at":"2026-10-30T15:28:09.507928Z","owner":{"id":"usr_4qr5jxnww4jozzfbkbwfy3sb2pwe6ubg","email":"owner-x10-48a71@x10-48a71.test","role":"owner"}}
+
+2026-10-30T15:28:09.574Z HTTP POST /api/v1/auth/token actor=anon -> 201 59ms
+  req: {"email": "owner-x10-48a71@x10-48a71.test", "password": "«pw0:owner@x10-48a71»"}
+  resp: {"expires_at":"2026-11-29T15:28:09.516446Z","token":"<redacted-token>","user":{"id":"usr_4qr5jxnww4jozzfbkbwfy3sb2pwe6ubg","email":"owner-x10-48a71@x10-48a71.test","role":"owner","org_id":"org_yu5zshr5l6dolxejywbuey6beigk7pgm","org_slug":"x10-48a71","must_change_password":false}}
+
+2026-10-30T15:28:09.577Z HTTP GET /api/v1/projects actor=owner@x10-48a71 -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:09.627Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x10-53100@acme.test", "role": "member", "password": "«pw0:x10-53100@acme»"}
+  resp: {"id":"usr_rsgny64tohjr52co3ourp6grwzamoamc","email":"x10-53100@acme.test","role":"member","created_at":"2026-10-30T15:28:09.619878Z"}
+
+2026-10-30T15:28:09.692Z HTTP POST /api/v1/auth/token actor=anon -> 201 65ms
+  req: {"email": "x10-53100@acme.test", "password": "«pw0:x10-53100@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:09.629083Z","token":"<redacted-token>","user":{"id":"usr_rsgny64tohjr52co3ourp6grwzamoamc","email":"x10-53100@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:09.696Z HTTP GET /api/v1/projects actor=x10-53100@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:09.747Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x10-6d454@acme.test", "role": "member", "password": "«pw0:x10-6d454@acme»"}
+  resp: {"id":"usr_a6q7h2zqeq5sr3s2unnvda5ujups3nsg","email":"x10-6d454@acme.test","role":"member","created_at":"2026-10-30T15:28:09.739570Z"}
+
+2026-10-30T15:28:09.796Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x10-6d454@acme.test", "password": "«pw0:x10-6d454@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:09.748331Z","token":"<redacted-token>","user":{"id":"usr_a6q7h2zqeq5sr3s2unnvda5ujups3nsg","email":"x10-6d454@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:09.799Z HTTP GET /api/v1/projects actor=x10-6d454@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:09.849Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "x10-7587a@acme.test", "role": "member", "password": "«pw0:x10-7587a@acme»"}
+  resp: {"id":"usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk","email":"x10-7587a@acme.test","role":"member","created_at":"2026-10-30T15:28:09.842022Z"}
+
+2026-10-30T15:28:09.897Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-7587a@acme.test", "password": "«pw0:x10-7587a@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:09.850529Z","token":"<redacted-token>","user":{"id":"usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk","email":"x10-7587a@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:09.900Z HTTP GET /api/v1/projects actor=x10-7587a@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:09.908Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 7ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-8a54c"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:09.901518Z","id":"tok_vute6pxnsbjz3mowy7z2yc7xgkc2nt3w","name":"x10-8a54c","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:09.916Z HTTP PUT /api/v1/projects/x10-31c05/envs/prot/secrets/JUNK_X10_9 actor=owner@acme -> 202 6ms
+  req: {"value": "x8MHlKtc7PXenskRhOVB"}
+  resp: {"change_id":"chg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2","status":"pending"}
+
+2026-10-30T15:28:09.921Z HTTP PUT /api/v1/projects/x10-31c05/envs/prot/secrets/JUNK_X10_10 actor=owner@acme -> 202 6ms
+  req: {"value": "D8sBYlJFohJjR75zA4UI"}
+  resp: {"change_id":"chg_s6aqhjlsunorelqtgcfjlvjr4jahba46","status":"pending"}
+
+2026-10-30T15:28:09.923Z HTTP GET /api/v1/projects/api/envs actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"env_kbsj4uoxxnutcd5kyukejkcr4tt2dhrj","slug":"dev","protected":false,"created_at":"2026-10-30T15:24:45.772538Z"},{"id":"env_uyieigvpq2ofdzgozapa56hxvrwhv3mv","slug":"prod","protected":true,"created_at":"2026-10-30T15:24:45.781722Z"}]
+
+2026-10-30T15:28:09.923Z CONTROL ok: X10 envs control (200)
+2026-10-30T15:28:09.927Z HTTP GET /api/v1/projects/%27%20OR%201%3D1--/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.931Z HTTP GET /api/v1/projects/'%20OR%201=1--/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.935Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.940Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.945Z HTTP GET /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.946Z HTTP GET /api/v1/projects/../../etc/passwd/envs actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.951Z HTTP GET /api/v1/projects/%2500/envs actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.956Z HTTP GET /api/v1/projects/%00/envs actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.960Z HTTP GET /api/v1/projects/%D0%B0pi/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.965Z HTTP GET /api/v1/projects/аpi/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.970Z HTTP GET /api/v1/projects/%EF%BD%81pi/envs actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.975Z HTTP GET /api/v1/projects/ａpi/envs actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.977Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=7f6957530c2128977addac9acc23229aa1fa702f495b7321d6311f9224fae7b1 len=4670]
+2026-10-30T15:28:09.978Z CONTROL ok: X10 list control (200)
+2026-10-30T15:28:09.983Z HTTP GET /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.987Z HTTP GET /api/v1/projects/'%20OR%201=1--/envs/dev/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.991Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:09.997Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.002Z HTTP GET /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.003Z HTTP GET /api/v1/projects/../../etc/passwd/envs/dev/secrets actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.008Z HTTP GET /api/v1/projects/%2500/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.013Z HTTP GET /api/v1/projects/%00/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.017Z HTTP GET /api/v1/projects/%D0%B0pi/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.022Z HTTP GET /api/v1/projects/аpi/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.027Z HTTP GET /api/v1/projects/%EF%BD%81pi/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.032Z HTTP GET /api/v1/projects/ａpi/envs/dev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.037Z HTTP GET /api/v1/projects/api/envs/%27%20OR%201%3D1--/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.042Z HTTP GET /api/v1/projects/api/envs/'%20OR%201=1--/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.046Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.051Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.055Z HTTP GET /api/v1/projects/api/envs/..%2F..%2Fetc%2Fpasswd/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.056Z HTTP GET /api/v1/projects/api/envs/../../etc/passwd/secrets actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.060Z HTTP GET /api/v1/projects/api/envs/%2500/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.064Z HTTP GET /api/v1/projects/api/envs/%00/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.068Z HTTP GET /api/v1/projects/api/envs/d%D0%B5v/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.072Z HTTP GET /api/v1/projects/api/envs/dеv/secrets actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.077Z HTTP GET /api/v1/projects/api/envs/%EF%BD%84ev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.082Z HTTP GET /api/v1/projects/api/envs/ｄev/secrets actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.087Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:28:10.087Z CONTROL ok: X10 get control (200)
+2026-10-30T15:28:10.091Z HTTP GET /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.096Z HTTP GET /api/v1/projects/'%20OR%201=1--/envs/dev/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.101Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.105Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.110Z HTTP GET /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.111Z HTTP GET /api/v1/projects/../../etc/passwd/envs/dev/secrets/CANARY actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.115Z HTTP GET /api/v1/projects/%2500/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.119Z HTTP GET /api/v1/projects/%00/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.124Z HTTP GET /api/v1/projects/%D0%B0pi/envs/dev/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.129Z HTTP GET /api/v1/projects/аpi/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.135Z HTTP GET /api/v1/projects/%EF%BD%81pi/envs/dev/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.139Z HTTP GET /api/v1/projects/ａpi/envs/dev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.144Z HTTP GET /api/v1/projects/api/envs/%27%20OR%201%3D1--/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.148Z HTTP GET /api/v1/projects/api/envs/'%20OR%201=1--/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.152Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.156Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.161Z HTTP GET /api/v1/projects/api/envs/..%2F..%2Fetc%2Fpasswd/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.162Z HTTP GET /api/v1/projects/api/envs/../../etc/passwd/secrets/CANARY actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.167Z HTTP GET /api/v1/projects/api/envs/%2500/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.172Z HTTP GET /api/v1/projects/api/envs/%00/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.177Z HTTP GET /api/v1/projects/api/envs/d%D0%B5v/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.183Z HTTP GET /api/v1/projects/api/envs/dеv/secrets/CANARY actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.188Z HTTP GET /api/v1/projects/api/envs/%EF%BD%84ev/secrets/CANARY actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.194Z HTTP GET /api/v1/projects/api/envs/ｄev/secrets/CANARY actor=owner@acme -> 404 7ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.195Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.196Z HTTP GET /api/v1/projects/api/envs/dev/secrets/'%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.198Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.199Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.200Z HTTP GET /api/v1/projects/api/envs/dev/secrets/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.200Z HTTP GET /api/v1/projects/api/envs/dev/secrets/../../etc/passwd actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.201Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.201Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%00 actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.202Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%D0%A1ANARY actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.203Z HTTP GET /api/v1/projects/api/envs/dev/secrets/СANARY actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.203Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%EF%BC%A3ANARY actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.204Z HTTP GET /api/v1/projects/api/envs/dev/secrets/ＣANARY actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.205Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:45.867335Z","created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"}]
+
+2026-10-30T15:28:10.205Z CONTROL ok: X10 versions control (200)
+2026-10-30T15:28:10.209Z HTTP GET /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.213Z HTTP GET /api/v1/projects/'%20OR%201=1--/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.218Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.223Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.228Z HTTP GET /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.229Z HTTP GET /api/v1/projects/../../etc/passwd/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.233Z HTTP GET /api/v1/projects/%2500/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.238Z HTTP GET /api/v1/projects/%00/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.242Z HTTP GET /api/v1/projects/%D0%B0pi/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.247Z HTTP GET /api/v1/projects/аpi/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.251Z HTTP GET /api/v1/projects/%EF%BD%81pi/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.255Z HTTP GET /api/v1/projects/ａpi/envs/dev/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.260Z HTTP GET /api/v1/projects/api/envs/%27%20OR%201%3D1--/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.265Z HTTP GET /api/v1/projects/api/envs/'%20OR%201=1--/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.269Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.274Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.279Z HTTP GET /api/v1/projects/api/envs/..%2F..%2Fetc%2Fpasswd/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.280Z HTTP GET /api/v1/projects/api/envs/../../etc/passwd/secrets/CANARY/versions actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.285Z HTTP GET /api/v1/projects/api/envs/%2500/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.289Z HTTP GET /api/v1/projects/api/envs/%00/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.294Z HTTP GET /api/v1/projects/api/envs/d%D0%B5v/secrets/CANARY/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.299Z HTTP GET /api/v1/projects/api/envs/dеv/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.304Z HTTP GET /api/v1/projects/api/envs/%EF%BD%84ev/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.309Z HTTP GET /api/v1/projects/api/envs/ｄev/secrets/CANARY/versions actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.311Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%27%20OR%201%3D1--/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.312Z HTTP GET /api/v1/projects/api/envs/dev/secrets/'%20OR%201=1--/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.313Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%22%3B%20DROP%20TABLE/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.314Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%22%3B%20DROP%20TABLE/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.314Z HTTP GET /api/v1/projects/api/envs/dev/secrets/..%2F..%2Fetc%2Fpasswd/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.315Z HTTP GET /api/v1/projects/api/envs/dev/secrets/../../etc/passwd/versions actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.315Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%2500/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.316Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%00/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.317Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%D0%A1ANARY/versions actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.317Z HTTP GET /api/v1/projects/api/envs/dev/secrets/СANARY/versions actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.318Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%EF%BC%A3ANARY/versions actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.319Z HTTP GET /api/v1/projects/api/envs/dev/secrets/ＣANARY/versions actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.323Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:28:10.323Z CONTROL ok: X10 version control (200)
+2026-10-30T15:28:10.328Z HTTP GET /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.333Z HTTP GET /api/v1/projects/'%20OR%201=1--/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.337Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.343Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.347Z HTTP GET /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.349Z HTTP GET /api/v1/projects/../../etc/passwd/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.353Z HTTP GET /api/v1/projects/%2500/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.358Z HTTP GET /api/v1/projects/%00/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.363Z HTTP GET /api/v1/projects/%D0%B0pi/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.368Z HTTP GET /api/v1/projects/аpi/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.373Z HTTP GET /api/v1/projects/%EF%BD%81pi/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.378Z HTTP GET /api/v1/projects/ａpi/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.383Z HTTP GET /api/v1/projects/api/envs/%27%20OR%201%3D1--/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.388Z HTTP GET /api/v1/projects/api/envs/'%20OR%201=1--/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.393Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.397Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.402Z HTTP GET /api/v1/projects/api/envs/..%2F..%2Fetc%2Fpasswd/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.403Z HTTP GET /api/v1/projects/api/envs/../../etc/passwd/secrets/CANARY/versions/1 actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.408Z HTTP GET /api/v1/projects/api/envs/%2500/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.414Z HTTP GET /api/v1/projects/api/envs/%00/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.419Z HTTP GET /api/v1/projects/api/envs/d%D0%B5v/secrets/CANARY/versions/1 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.423Z HTTP GET /api/v1/projects/api/envs/dеv/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.427Z HTTP GET /api/v1/projects/api/envs/%EF%BD%84ev/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.432Z HTTP GET /api/v1/projects/api/envs/ｄev/secrets/CANARY/versions/1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.433Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%27%20OR%201%3D1--/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.434Z HTTP GET /api/v1/projects/api/envs/dev/secrets/'%20OR%201=1--/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.435Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%22%3B%20DROP%20TABLE/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.436Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%22%3B%20DROP%20TABLE/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.437Z HTTP GET /api/v1/projects/api/envs/dev/secrets/..%2F..%2Fetc%2Fpasswd/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.438Z HTTP GET /api/v1/projects/api/envs/dev/secrets/../../etc/passwd/versions/1 actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.439Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%2500/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.439Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%00/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.440Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%D0%A1ANARY/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.441Z HTTP GET /api/v1/projects/api/envs/dev/secrets/СANARY/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.442Z HTTP GET /api/v1/projects/api/envs/dev/secrets/%EF%BC%A3ANARY/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.442Z HTTP GET /api/v1/projects/api/envs/dev/secrets/ＣANARY/versions/1 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.443Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.444Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/'%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.445Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.446Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.446Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.447Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/../../etc/passwd actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.448Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.449Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/%00 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.449Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1%D0%B0 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.450Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1а actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.451Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/%EF%BC%91 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.451Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/１ actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:10.459Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@acme -> 200 7ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_D59A493A":"«canary:F17:v2»","F2_BIG_F37A6220":"«canary:F2:big»","F2_EMPTY_POS_D8F43BE3":"","F2_EMPTY_STDIN_131CA018":"","F2_MULTI_50E8EF4A":"«canary:acme/api/dev/MULTI»","F2_NL_598FE677":"«canary:F2:nl»\n","F2_ONE_98B58392":"U","F3_MAX_82773D2C":"«canary:F3:max»","F4_HIST_2EF66BE8":"«canary:F4:v1»","F5_DEL_EF0C80FE":"«canary:F5:b»","F6_CAS_FD81F1B4":"«canary:F6:3»","F7_PAR_6CF4CACA":"«canary:F7:p0»","JUNK_S14_1":"s14b","JUNK_S14_2":"v1","JUNK_S18_3":"w1"…[sha256=ea9cd972c546ffc66ac78cfce2c8a8de896ba6892cd6bfcada1e30947f25847c len=132438]
+2026-10-30T15:28:10.459Z CONTROL ok: X10 export control (200)
+2026-10-30T15:28:10.464Z HTTP GET /api/v1/projects/%27%20OR%201%3D1--/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.468Z HTTP GET /api/v1/projects/'%20OR%201=1--/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.473Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.477Z HTTP GET /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.481Z HTTP GET /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.482Z HTTP GET /api/v1/projects/../../etc/passwd/envs/dev/export?format=json actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.487Z HTTP GET /api/v1/projects/%2500/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.491Z HTTP GET /api/v1/projects/%00/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.495Z HTTP GET /api/v1/projects/%D0%B0pi/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.499Z HTTP GET /api/v1/projects/аpi/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.503Z HTTP GET /api/v1/projects/%EF%BD%81pi/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.508Z HTTP GET /api/v1/projects/ａpi/envs/dev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.513Z HTTP GET /api/v1/projects/api/envs/%27%20OR%201%3D1--/export?format=json actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.517Z HTTP GET /api/v1/projects/api/envs/'%20OR%201=1--/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.522Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/export?format=json actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.527Z HTTP GET /api/v1/projects/api/envs/%22%3B%20DROP%20TABLE/export?format=json actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.532Z HTTP GET /api/v1/projects/api/envs/..%2F..%2Fetc%2Fpasswd/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.532Z HTTP GET /api/v1/projects/api/envs/../../etc/passwd/export?format=json actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.537Z HTTP GET /api/v1/projects/api/envs/%2500/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.541Z HTTP GET /api/v1/projects/api/envs/%00/export?format=json actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.546Z HTTP GET /api/v1/projects/api/envs/d%D0%B5v/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.550Z HTTP GET /api/v1/projects/api/envs/dеv/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.555Z HTTP GET /api/v1/projects/api/envs/%EF%BD%84ev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.560Z HTTP GET /api/v1/projects/api/envs/ｄev/export?format=json actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.565Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_11 actor=owner@acme -> 200 5ms
+  req: {"value": "x10"}
+  resp: {"version":1}
+
+2026-10-30T15:28:10.565Z CONTROL ok: X10 put control (200)
+2026-10-30T15:28:10.570Z HTTP PUT /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.575Z HTTP PUT /api/v1/projects/'%20OR%201=1--/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.580Z HTTP PUT /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.585Z HTTP PUT /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.589Z HTTP PUT /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.590Z HTTP PUT /api/v1/projects/../../etc/passwd/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 0ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.595Z HTTP PUT /api/v1/projects/%2500/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.599Z HTTP PUT /api/v1/projects/%00/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.604Z HTTP PUT /api/v1/projects/%D1%8510-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.609Z HTTP PUT /api/v1/projects/х10-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.613Z HTTP PUT /api/v1/projects/%EF%BD%9810-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.618Z HTTP PUT /api/v1/projects/ｘ10-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.623Z HTTP PUT /api/v1/projects/x10-31c05/envs/%27%20OR%201%3D1--/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.627Z HTTP PUT /api/v1/projects/x10-31c05/envs/'%20OR%201=1--/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.632Z HTTP PUT /api/v1/projects/x10-31c05/envs/%22%3B%20DROP%20TABLE/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.637Z HTTP PUT /api/v1/projects/x10-31c05/envs/%22%3B%20DROP%20TABLE/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.642Z HTTP PUT /api/v1/projects/x10-31c05/envs/..%2F..%2Fetc%2Fpasswd/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.643Z HTTP PUT /api/v1/projects/x10-31c05/envs/../../etc/passwd/secrets/X10_SEED actor=owner@acme -> 404 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.647Z HTTP PUT /api/v1/projects/x10-31c05/envs/%2500/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.651Z HTTP PUT /api/v1/projects/x10-31c05/envs/%00/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.656Z HTTP PUT /api/v1/projects/x10-31c05/envs/d%D0%B5v/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.660Z HTTP PUT /api/v1/projects/x10-31c05/envs/dеv/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.665Z HTTP PUT /api/v1/projects/x10-31c05/envs/%EF%BD%84ev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.669Z HTTP PUT /api/v1/projects/x10-31c05/envs/ｄev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.670Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.671Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/'%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.672Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.673Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.674Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.674Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/../../etc/passwd actor=owner@acme -> 404 0ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.675Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%2500 actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.676Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%00 actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.677Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%D0%A510_SEED actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.678Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/Х10_SEED actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.678Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/%EF%BC%B810_SEED actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.679Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/Ｘ10_SEED actor=owner@acme -> 400 1ms
+  req: {"value": "x10"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.684Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_12 actor=owner@acme -> 200 5ms
+  req: {"value": "d"}
+  resp: {"version":1}
+
+2026-10-30T15:28:10.689Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_12 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"version":2}
+
+2026-10-30T15:28:10.689Z CONTROL ok: X10 delete control (200)
+2026-10-30T15:28:10.694Z HTTP DELETE /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.698Z HTTP DELETE /api/v1/projects/'%20OR%201=1--/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.702Z HTTP DELETE /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.707Z HTTP DELETE /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.711Z HTTP DELETE /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.712Z HTTP DELETE /api/v1/projects/../../etc/passwd/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.716Z HTTP DELETE /api/v1/projects/%2500/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.720Z HTTP DELETE /api/v1/projects/%00/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.724Z HTTP DELETE /api/v1/projects/%D1%8510-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.729Z HTTP DELETE /api/v1/projects/х10-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.733Z HTTP DELETE /api/v1/projects/%EF%BD%9810-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.738Z HTTP DELETE /api/v1/projects/ｘ10-31c05/envs/dev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.743Z HTTP DELETE /api/v1/projects/x10-31c05/envs/%27%20OR%201%3D1--/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.748Z HTTP DELETE /api/v1/projects/x10-31c05/envs/'%20OR%201=1--/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.752Z HTTP DELETE /api/v1/projects/x10-31c05/envs/%22%3B%20DROP%20TABLE/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.756Z HTTP DELETE /api/v1/projects/x10-31c05/envs/%22%3B%20DROP%20TABLE/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.761Z HTTP DELETE /api/v1/projects/x10-31c05/envs/..%2F..%2Fetc%2Fpasswd/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.762Z HTTP DELETE /api/v1/projects/x10-31c05/envs/../../etc/passwd/secrets/X10_SEED actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.767Z HTTP DELETE /api/v1/projects/x10-31c05/envs/%2500/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.772Z HTTP DELETE /api/v1/projects/x10-31c05/envs/%00/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.776Z HTTP DELETE /api/v1/projects/x10-31c05/envs/d%D0%B5v/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.780Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dеv/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.785Z HTTP DELETE /api/v1/projects/x10-31c05/envs/%EF%BD%84ev/secrets/X10_SEED actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.790Z HTTP DELETE /api/v1/projects/x10-31c05/envs/ｄev/secrets/X10_SEED actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.791Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.792Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/'%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.793Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.794Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.794Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.795Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/../../etc/passwd actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.795Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.796Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%00 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.797Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%D0%A510_SEED actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.797Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/Х10_SEED actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.798Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/%EF%BC%B810_SEED actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.799Z HTTP DELETE /api/v1/projects/x10-31c05/envs/dev/secrets/Ｘ10_SEED actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.803Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 200 4ms
+  req: {"to": 1}
+  resp: {"version":3}
+
+2026-10-30T15:28:10.803Z CONTROL ok: X10 rollback control (200)
+2026-10-30T15:28:10.807Z HTTP POST /api/v1/projects/%27%20OR%201%3D1--/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.812Z HTTP POST /api/v1/projects/'%20OR%201=1--/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.816Z HTTP POST /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.820Z HTTP POST /api/v1/projects/%22%3B%20DROP%20TABLE/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.824Z HTTP POST /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.825Z HTTP POST /api/v1/projects/../../etc/passwd/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.830Z HTTP POST /api/v1/projects/%2500/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 5ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.836Z HTTP POST /api/v1/projects/%00/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 6ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.841Z HTTP POST /api/v1/projects/%D1%8510-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 5ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.846Z HTTP POST /api/v1/projects/х10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.851Z HTTP POST /api/v1/projects/%EF%BD%9810-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 5ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.855Z HTTP POST /api/v1/projects/ｘ10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.860Z HTTP POST /api/v1/projects/x10-31c05/envs/%27%20OR%201%3D1--/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.864Z HTTP POST /api/v1/projects/x10-31c05/envs/'%20OR%201=1--/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.868Z HTTP POST /api/v1/projects/x10-31c05/envs/%22%3B%20DROP%20TABLE/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.873Z HTTP POST /api/v1/projects/x10-31c05/envs/%22%3B%20DROP%20TABLE/secrets/X10_SEED/rollback actor=owner@acme -> 404 5ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.878Z HTTP POST /api/v1/projects/x10-31c05/envs/..%2F..%2Fetc%2Fpasswd/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.878Z HTTP POST /api/v1/projects/x10-31c05/envs/../../etc/passwd/secrets/X10_SEED/rollback actor=owner@acme -> 404 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.882Z HTTP POST /api/v1/projects/x10-31c05/envs/%2500/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.887Z HTTP POST /api/v1/projects/x10-31c05/envs/%00/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.891Z HTTP POST /api/v1/projects/x10-31c05/envs/d%D0%B5v/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.896Z HTTP POST /api/v1/projects/x10-31c05/envs/dеv/secrets/X10_SEED/rollback actor=owner@acme -> 404 5ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.900Z HTTP POST /api/v1/projects/x10-31c05/envs/%EF%BD%84ev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.904Z HTTP POST /api/v1/projects/x10-31c05/envs/ｄev/secrets/X10_SEED/rollback actor=owner@acme -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.905Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%27%20OR%201%3D1--/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.906Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/'%20OR%201=1--/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.907Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%22%3B%20DROP%20TABLE/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.908Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%22%3B%20DROP%20TABLE/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.909Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/..%2F..%2Fetc%2Fpasswd/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.910Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/../../etc/passwd/rollback actor=owner@acme -> 404 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.911Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%2500/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.912Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%00/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.913Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%D0%A510_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.914Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/Х10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.914Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/%EF%BC%B810_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.915Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/Ｘ10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": 1}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:10.919Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 201 4ms
+  req: {"slug": "x10-137545", "protected": false}
+  resp: {"id":"env_vwjihdb7wdhqymn3x7u3c6sibdanwc7j","slug":"x10-137545","protected":false,"created_at":"2026-10-30T15:28:10.916112Z"}
+
+2026-10-30T15:28:10.920Z CONTROL ok: X10 env-create control (201)
+2026-10-30T15:28:10.924Z HTTP POST /api/v1/projects/%27%20OR%201%3D1--/envs actor=owner@acme -> 404 4ms
+  req: {"slug": "x10-142f5f", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.929Z HTTP POST /api/v1/projects/'%20OR%201=1--/envs actor=owner@acme -> 404 5ms
+  req: {"slug": "x10-15dd44", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.934Z HTTP POST /api/v1/projects/%22%3B%20DROP%20TABLE/envs actor=owner@acme -> 404 5ms
+  req: {"slug": "x10-1647c0", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.939Z HTTP POST /api/v1/projects/%22%3B%20DROP%20TABLE/envs actor=owner@acme -> 404 4ms
+  req: {"slug": "x10-175d4e", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.944Z HTTP POST /api/v1/projects/..%2F..%2Fetc%2Fpasswd/envs actor=owner@acme -> 404 5ms
+  req: {"slug": "x10-18e134", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.945Z HTTP POST /api/v1/projects/../../etc/passwd/envs actor=owner@acme -> 404 1ms
+  req: {"slug": "x10-1941e4", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.949Z HTTP POST /api/v1/projects/%2500/envs actor=owner@acme -> 404 4ms
+  req: {"slug": "x10-20dbe3", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.954Z HTTP POST /api/v1/projects/%00/envs actor=owner@acme -> 404 4ms
+  req: {"slug": "x10-21ff55", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.959Z HTTP POST /api/v1/projects/%D1%8510-31c05/envs actor=owner@acme -> 404 5ms
+  req: {"slug": "x10-2277bb", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.964Z HTTP POST /api/v1/projects/х10-31c05/envs actor=owner@acme -> 404 5ms
+  req: {"slug": "x10-23f5a1", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.969Z HTTP POST /api/v1/projects/%EF%BD%9810-31c05/envs actor=owner@acme -> 404 5ms
+  req: {"slug": "x10-24b4c2", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.973Z HTTP POST /api/v1/projects/ｘ10-31c05/envs actor=owner@acme -> 404 4ms
+  req: {"slug": "x10-25068b", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.975Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 200 1ms
+  req: {"role": "member"}
+  resp: {"id":"usr_rsgny64tohjr52co3ourp6grwzamoamc","email":"x10-53100@acme.test","role":"member","created_at":"2026-10-30T15:28:09.619878Z"}
+
+2026-10-30T15:28:10.975Z CONTROL ok: X10 member-patch control (200)
+2026-10-30T15:28:10.980Z HTTP PATCH /api/v1/members/%27%20OR%201%3D1-- actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.986Z HTTP PATCH /api/v1/members/'%20OR%201=1-- actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.991Z HTTP PATCH /api/v1/members/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:10.996Z HTTP PATCH /api/v1/members/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.001Z HTTP PATCH /api/v1/members/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.002Z HTTP PATCH /api/v1/members/../../etc/passwd actor=owner@acme -> 404 1ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.007Z HTTP PATCH /api/v1/members/%2500 actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.012Z HTTP PATCH /api/v1/members/%00 actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.017Z HTTP PATCH /api/v1/members/usr_rsgn%D1%8364tohjr52co3ourp6grwzamoamc actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.022Z HTTP PATCH /api/v1/members/usr_rsgnу64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 404 4ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.027Z HTTP PATCH /api/v1/members/%EF%BD%95sr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 404 5ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.031Z HTTP PATCH /api/v1/members/ｕsr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 404 4ms
+  req: {"role": "member"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.081Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "x10-263091@acme.test", "role": "member", "password": "«pw0:x10-263091@acme»"}
+  resp: {"id":"usr_cg2eqgcu4jpslgpgf4ekecarn73helkc","email":"x10-263091@acme.test","role":"member","created_at":"2026-10-30T15:28:11.072780Z"}
+
+2026-10-30T15:28:11.127Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-263091@acme.test", "password": "«pw0:x10-263091@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:11.082457Z","token":"<redacted-token>","user":{"id":"usr_cg2eqgcu4jpslgpgf4ekecarn73helkc","email":"x10-263091@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:11.131Z HTTP GET /api/v1/projects actor=x10-263091@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.139Z HTTP DELETE /api/v1/members/usr_cg2eqgcu4jpslgpgf4ekecarn73helkc actor=owner@acme -> 200 8ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:28:11.139Z CONTROL ok: X10 member-delete control (200)
+2026-10-30T15:28:11.145Z HTTP DELETE /api/v1/members/%27%20OR%201%3D1-- actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.150Z HTTP DELETE /api/v1/members/'%20OR%201=1-- actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.156Z HTTP DELETE /api/v1/members/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.161Z HTTP DELETE /api/v1/members/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.165Z HTTP DELETE /api/v1/members/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.166Z HTTP DELETE /api/v1/members/../../etc/passwd actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.171Z HTTP DELETE /api/v1/members/%2500 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.175Z HTTP DELETE /api/v1/members/%00 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.180Z HTTP DELETE /api/v1/members/usr_%D0%B06q7h2zqeq5sr3s2unnvda5ujups3nsg actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.185Z HTTP DELETE /api/v1/members/usr_а6q7h2zqeq5sr3s2unnvda5ujups3nsg actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.190Z HTTP DELETE /api/v1/members/%EF%BD%95sr_a6q7h2zqeq5sr3s2unnvda5ujups3nsg actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.195Z HTTP DELETE /api/v1/members/ｕsr_a6q7h2zqeq5sr3s2unnvda5ujups3nsg actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.200Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"x10-31c05","user_id":"usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk"}
+
+2026-10-30T15:28:11.201Z CONTROL ok: X10 grant-put control (200)
+2026-10-30T15:28:11.205Z HTTP PUT /api/v1/members/%27%20OR%201%3D1--/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.210Z HTTP PUT /api/v1/members/'%20OR%201=1--/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.215Z HTTP PUT /api/v1/members/%22%3B%20DROP%20TABLE/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.220Z HTTP PUT /api/v1/members/%22%3B%20DROP%20TABLE/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.225Z HTTP PUT /api/v1/members/..%2F..%2Fetc%2Fpasswd/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.226Z HTTP PUT /api/v1/members/../../etc/passwd/grants/x10-31c05 actor=owner@acme -> 404 1ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.230Z HTTP PUT /api/v1/members/%2500/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.235Z HTTP PUT /api/v1/members/%00/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.240Z HTTP PUT /api/v1/members/usr_zg%D1%80ejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.245Z HTTP PUT /api/v1/members/usr_zgрejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.250Z HTTP PUT /api/v1/members/%EF%BD%95sr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.254Z HTTP PUT /api/v1/members/ｕsr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.259Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"x10-31c05","user_id":"usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk"}
+
+2026-10-30T15:28:11.264Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:28:11.264Z CONTROL ok: X10 grant-delete control (200)
+2026-10-30T15:28:11.269Z HTTP DELETE /api/v1/members/%27%20OR%201%3D1--/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.274Z HTTP DELETE /api/v1/members/'%20OR%201=1--/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.279Z HTTP DELETE /api/v1/members/%22%3B%20DROP%20TABLE/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.285Z HTTP DELETE /api/v1/members/%22%3B%20DROP%20TABLE/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.290Z HTTP DELETE /api/v1/members/..%2F..%2Fetc%2Fpasswd/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.291Z HTTP DELETE /api/v1/members/../../etc/passwd/grants/x10-31c05 actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.296Z HTTP DELETE /api/v1/members/%2500/grants/x10-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.300Z HTTP DELETE /api/v1/members/%00/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.304Z HTTP DELETE /api/v1/members/usr_zg%D1%80ejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.309Z HTTP DELETE /api/v1/members/usr_zgрejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.313Z HTTP DELETE /api/v1/members/%EF%BD%95sr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.318Z HTTP DELETE /api/v1/members/ｕsr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.323Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-27cb7b"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:11.318884Z","id":"tok_5g2ej7hhiyawaogtyp226qrgfhccmq5h","name":"x10-27cb7b","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:11.329Z HTTP DELETE /api/v1/tokens/tok_5g2ej7hhiyawaogtyp226qrgfhccmq5h actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:28:11.329Z CONTROL ok: X10 token-delete control (200)
+2026-10-30T15:28:11.333Z HTTP DELETE /api/v1/tokens/%27%20OR%201%3D1-- actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.338Z HTTP DELETE /api/v1/tokens/'%20OR%201=1-- actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.343Z HTTP DELETE /api/v1/tokens/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.347Z HTTP DELETE /api/v1/tokens/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.352Z HTTP DELETE /api/v1/tokens/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.352Z HTTP DELETE /api/v1/tokens/../../etc/passwd actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.357Z HTTP DELETE /api/v1/tokens/%2500 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.361Z HTTP DELETE /api/v1/tokens/%00 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.366Z HTTP DELETE /api/v1/tokens/t%D0%BEk_vute6pxnsbjz3mowy7z2yc7xgkc2nt3w actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.370Z HTTP DELETE /api/v1/tokens/tоk_vute6pxnsbjz3mowy7z2yc7xgkc2nt3w actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.375Z HTTP DELETE /api/v1/tokens/%EF%BD%94ok_vute6pxnsbjz3mowy7z2yc7xgkc2nt3w actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.379Z HTTP DELETE /api/v1/tokens/ｔok_vute6pxnsbjz3mowy7z2yc7xgkc2nt3w actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.385Z HTTP POST /api/v1/changes/chg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2/approve actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"id":"chg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2","status":"approved","version":1}
+
+2026-10-30T15:28:11.385Z CONTROL ok: X10 change-approve control (200)
+2026-10-30T15:28:11.392Z HTTP POST /api/v1/changes/%27%20OR%201%3D1--/approve actor=admin@acme -> 404 7ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.397Z HTTP POST /api/v1/changes/'%20OR%201=1--/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.402Z HTTP POST /api/v1/changes/%22%3B%20DROP%20TABLE/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.407Z HTTP POST /api/v1/changes/%22%3B%20DROP%20TABLE/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.411Z HTTP POST /api/v1/changes/..%2F..%2Fetc%2Fpasswd/approve actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.412Z HTTP POST /api/v1/changes/../../etc/passwd/approve actor=admin@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.416Z HTTP POST /api/v1/changes/%2500/approve actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.421Z HTTP POST /api/v1/changes/%00/approve actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.426Z HTTP POST /api/v1/changes/%D1%81hg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.431Z HTTP POST /api/v1/changes/сhg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.435Z HTTP POST /api/v1/changes/%EF%BD%83hg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.441Z HTTP POST /api/v1/changes/ｃhg_d6ipr3pc4ojvmttuvg7fpnv7kwmrw5r2/approve actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.446Z HTTP POST /api/v1/changes/chg_s6aqhjlsunorelqtgcfjlvjr4jahba46/reject actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chg_s6aqhjlsunorelqtgcfjlvjr4jahba46","status":"rejected"}
+
+2026-10-30T15:28:11.446Z CONTROL ok: X10 change-reject control (200)
+2026-10-30T15:28:11.451Z HTTP POST /api/v1/changes/%27%20OR%201%3D1--/reject actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.455Z HTTP POST /api/v1/changes/'%20OR%201=1--/reject actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.459Z HTTP POST /api/v1/changes/%22%3B%20DROP%20TABLE/reject actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.463Z HTTP POST /api/v1/changes/%22%3B%20DROP%20TABLE/reject actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.468Z HTTP POST /api/v1/changes/..%2F..%2Fetc%2Fpasswd/reject actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.469Z HTTP POST /api/v1/changes/../../etc/passwd/reject actor=admin@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.473Z HTTP POST /api/v1/changes/%2500/reject actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.478Z HTTP POST /api/v1/changes/%00/reject actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.483Z HTTP POST /api/v1/changes/%D1%81hg_s6aqhjlsunorelqtgcfjlvjr4jahba46/reject actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.487Z HTTP POST /api/v1/changes/сhg_s6aqhjlsunorelqtgcfjlvjr4jahba46/reject actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.492Z HTTP POST /api/v1/changes/%EF%BD%83hg_s6aqhjlsunorelqtgcfjlvjr4jahba46/reject actor=admin@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.497Z HTTP POST /api/v1/changes/ｃhg_s6aqhjlsunorelqtgcfjlvjr4jahba46/reject actor=admin@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.501Z HTTP POST /api/v1/admin/orgs/x10-48a71/disable actor=root -> 200 4ms
+  req: 
+  resp: {"id":"org_yu5zshr5l6dolxejywbuey6beigk7pgm","slug":"x10-48a71","disabled":true,"created_at":"2026-10-30T15:28:09.507928Z"}
+
+2026-10-30T15:28:11.501Z CONTROL ok: X10 org-disable control (200)
+2026-10-30T15:28:11.506Z HTTP POST /api/v1/admin/orgs/%27%20OR%201%3D1--/disable actor=root -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.512Z HTTP POST /api/v1/admin/orgs/'%20OR%201=1--/disable actor=root -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.517Z HTTP POST /api/v1/admin/orgs/%22%3B%20DROP%20TABLE/disable actor=root -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.522Z HTTP POST /api/v1/admin/orgs/%22%3B%20DROP%20TABLE/disable actor=root -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.527Z HTTP POST /api/v1/admin/orgs/..%2F..%2Fetc%2Fpasswd/disable actor=root -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.528Z HTTP POST /api/v1/admin/orgs/../../etc/passwd/disable actor=root -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.533Z HTTP POST /api/v1/admin/orgs/%2500/disable actor=root -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.537Z HTTP POST /api/v1/admin/orgs/%00/disable actor=root -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.542Z HTTP POST /api/v1/admin/orgs/%D1%8510-48a71/disable actor=root -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.547Z HTTP POST /api/v1/admin/orgs/х10-48a71/disable actor=root -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.552Z HTTP POST /api/v1/admin/orgs/%EF%BD%9810-48a71/disable actor=root -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.557Z HTTP POST /api/v1/admin/orgs/ｘ10-48a71/disable actor=root -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.562Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%27%20OR%201%3D1-- actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.567Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/'%20OR%201=1-- actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.572Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 4ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.577Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.582Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.583Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/../../etc/passwd actor=owner@acme -> 404 1ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.588Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%2500 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.594Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%00 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.599Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%D1%8510-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.603Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/х10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.608Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%EF%BD%9810-31c05 actor=owner@acme -> 404 4ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.613Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/ｘ10-31c05 actor=owner@acme -> 404 5ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.617Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%27%20OR%201%3D1-- actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.622Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/'%20OR%201=1-- actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.627Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.632Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%22%3B%20DROP%20TABLE actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.636Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.637Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/../../etc/passwd actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.641Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%2500 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.647Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%00 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.651Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%D1%8510-31c05 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.656Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/х10-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.660Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/%EF%BD%9810-31c05 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.668Z HTTP DELETE /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/ｘ10-31c05 actor=owner@acme -> 404 7ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:11.670Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.670Z CONTROL ok: X10 changes?status control (200)
+2026-10-30T15:28:11.671Z HTTP GET /api/v1/changes?status=%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.672Z HTTP GET /api/v1/changes?status='%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.673Z HTTP GET /api/v1/changes?status=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.673Z HTTP GET /api/v1/changes?status=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.674Z HTTP GET /api/v1/changes?status=..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.675Z HTTP GET /api/v1/changes?status=../../etc/passwd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.676Z HTTP GET /api/v1/changes?status=%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.676Z HTTP GET /api/v1/changes?status=%00 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.677Z HTTP GET /api/v1/changes?status=%D1%80ending actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.678Z HTTP GET /api/v1/changes?status=рending actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.678Z HTTP GET /api/v1/changes?status=%EF%BD%90ending actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.679Z HTTP GET /api/v1/changes?status=ｐending actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"status must be one of pending, approved, rejected, stale"}}
+2026-10-30T15:28:11.686Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_D59A493A":"«canary:F17:v2»","F2_BIG_F37A6220":"«canary:F2:big»","F2_EMPTY_POS_D8F43BE3":"","F2_EMPTY_STDIN_131CA018":"","F2_MULTI_50E8EF4A":"«canary:acme/api/dev/MULTI»","F2_NL_598FE677":"«canary:F2:nl»\n","F2_ONE_98B58392":"U","F3_MAX_82773D2C":"«canary:F3:max»","F4_HIST_2EF66BE8":"«canary:F4:v1»","F5_DEL_EF0C80FE":"«canary:F5:b»","F6_CAS_FD81F1B4":"«canary:F6:3»","F7_PAR_6CF4CACA":"«canary:F7:p0»","JUNK_S14_1":"s14b","JUNK_S14_2":"v1","JUNK_S18_3":"w1"…[sha256=ea9cd972c546ffc66ac78cfce2c8a8de896ba6892cd6bfcada1e30947f25847c len=132438]
+2026-10-30T15:28:11.687Z CONTROL ok: X10 export?format control (200)
+2026-10-30T15:28:11.688Z HTTP GET /api/v1/projects/api/envs/dev/export?format=%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.688Z HTTP GET /api/v1/projects/api/envs/dev/export?format='%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.689Z HTTP GET /api/v1/projects/api/envs/dev/export?format=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.690Z HTTP GET /api/v1/projects/api/envs/dev/export?format=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.691Z HTTP GET /api/v1/projects/api/envs/dev/export?format=..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.692Z HTTP GET /api/v1/projects/api/envs/dev/export?format=../../etc/passwd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.693Z HTTP GET /api/v1/projects/api/envs/dev/export?format=%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.693Z HTTP GET /api/v1/projects/api/envs/dev/export?format=%00 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.694Z HTTP GET /api/v1/projects/api/envs/dev/export?format=js%D0%BEn actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.695Z HTTP GET /api/v1/projects/api/envs/dev/export?format=jsоn actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.695Z HTTP GET /api/v1/projects/api/envs/dev/export?format=%EF%BD%8Ason actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.696Z HTTP GET /api/v1/projects/api/envs/dev/export?format=ｊson actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:11.701Z HTTP GET /api/v1/audit actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"seq":1607,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/X18_D7CB9B_V","source_ip":"10.89.0.13","result":"success","details":{"version":3,"via":"export"},"prev_hash":"4b93e2b85202dbfbba86e2837229d7fcbaa24e5f4a48777cfa0e6672f2d2f49c","hash":"d9601fd741004d6ce87a13f149f65c72de91b28a7d28fd7d5e598b3b682669b1"},{"seq":1606,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgoo…[sha256=33659738f003cff1855e49b4568a66fb50d6c2a3572253945f11e678a31d176e len=43150]
+2026-10-30T15:28:11.701Z CONTROL ok: X10 audit?since control (200)
+2026-10-30T15:28:11.702Z HTTP GET /api/v1/audit?since=%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.703Z HTTP GET /api/v1/audit?since='%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.703Z HTTP GET /api/v1/audit?since=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.704Z HTTP GET /api/v1/audit?since=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.705Z HTTP GET /api/v1/audit?since=..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.705Z HTTP GET /api/v1/audit?since=../../etc/passwd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.706Z HTTP GET /api/v1/audit?since=%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.707Z HTTP GET /api/v1/audit?since=%00 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.707Z HTTP GET /api/v1/audit?since=2020-01-01%D0%A200%3A00%3A00Z actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.708Z HTTP GET /api/v1/audit?since=2020-01-01Т00:00:00Z actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.709Z HTTP GET /api/v1/audit?since=%EF%BC%92020-01-01T00%3A00%3A00Z actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.709Z HTTP GET /api/v1/audit?since=２020-01-01T00:00:00Z actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:11.710Z HTTP GET /api/v1/audit actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"seq":1607,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/X18_D7CB9B_V","source_ip":"10.89.0.13","result":"success","details":{"version":3,"via":"export"},"prev_hash":"4b93e2b85202dbfbba86e2837229d7fcbaa24e5f4a48777cfa0e6672f2d2f49c","hash":"d9601fd741004d6ce87a13f149f65c72de91b28a7d28fd7d5e598b3b682669b1"},{"seq":1606,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/MULTI","source_ip":"10.89.0.13","result":"success","details":{"version":1,"via":"export"},"prev_hash":"20ebe130068679a58dd884d3233446a236ec338a253d785ab584d3ac834e6266","hash":"4b93e2b85202dbfbba86e2837229d7fcbaa24e5f4a48777cfa0e6672f2d2f49c"},{"seq":1605,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/JUNK_S8_7","source_ip":"10.89.0.13","result":"success","details":{"version":1,"via":"export"},"prev_hash":"5d154c68fbedaf1d0bf0b7d1c2e0744a794e99856470372e47154a97acb64711","hash":"20ebe130068679a58dd884d3233446a236ec338a253d785ab584d3ac834e6266"},{"seq":1604,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/JUNK_S8_3","source_ip":"10.89.0.13","result":"success","details":{"version":3,"via":"export"},"prev_hash":"7c29be6ab633daef4905f448052d82adb15fead9fd38e483793dae946bac307b","hash":"5d154c68fbedaf1d0bf0b7d1c2e0744a794e99856470372e47154a97acb64711"},{"seq":1603,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/JUNK_S8_1","source_ip":"10.89.0.13","result":"success","details":{"version":1,"via":"export"},"prev_hash":"804cb045cef444f929eead97fca1fcc7d100f4aa3947a912cc40fcb3c4fc7a00","hash":"7c29be6ab633daef4905f448052d82adb15fead9fd38e483793dae946bac307b"}]
+
+2026-10-30T15:28:11.711Z CONTROL ok: X10 audit?limit control (200)
+2026-10-30T15:28:11.711Z HTTP GET /api/v1/audit?limit=%27%20OR%201%3D1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.712Z HTTP GET /api/v1/audit?limit='%20OR%201=1-- actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.713Z HTTP GET /api/v1/audit?limit=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.713Z HTTP GET /api/v1/audit?limit=%22%3B%20DROP%20TABLE actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.714Z HTTP GET /api/v1/audit?limit=..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.715Z HTTP GET /api/v1/audit?limit=../../etc/passwd actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.715Z HTTP GET /api/v1/audit?limit=%2500 actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.716Z HTTP GET /api/v1/audit?limit=%00 actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.716Z HTTP GET /api/v1/audit?limit=5%D0%B0 actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.717Z HTTP GET /api/v1/audit?limit=5а actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.718Z HTTP GET /api/v1/audit?limit=%EF%BC%95 actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.718Z HTTP GET /api/v1/audit?limit=５ actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.722Z HTTP GET /api/v1/audit actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"seq":1607,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/X18_D7CB9B_V","source_ip":"10.89.0.13","result":"success","details":{"version":3,"via":"export"},"prev_hash":"4b93e2b85202dbfbba86e2837229d7fcbaa24e5f4a48777cfa0e6672f2d2f49c","hash":"d9601fd741004d6ce87a13f149f65c72de91b28a7d28fd7d5e598b3b682669b1"},{"seq":1606,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgoo…[sha256=ec183216260bfe847ab0ab41e9201e54928bf10da220b823fc4f57d84aaa5b83 len=43810]
+2026-10-30T15:28:11.723Z CONTROL ok: X10 audit?actor control (200)
+2026-10-30T15:28:11.724Z HTTP GET /api/v1/audit?actor=%27%20OR%201%3D1-- actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.725Z HTTP GET /api/v1/audit?actor='%20OR%201=1-- actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.726Z HTTP GET /api/v1/audit?actor=%22%3B%20DROP%20TABLE actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.728Z HTTP GET /api/v1/audit?actor=%22%3B%20DROP%20TABLE actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.729Z HTTP GET /api/v1/audit?actor=..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.731Z HTTP GET /api/v1/audit?actor=../../etc/passwd actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.732Z HTTP GET /api/v1/audit?actor=%2500 actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.736Z HTTP GET /api/v1/audit?actor=%00 actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"seq":1607,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/X18_D7CB9B_V","source_ip":"10.89.0.13","result":"success","details":{"version":3,"via":"export"},"prev_hash":"4b93e2b85202dbfbba86e2837229d7fcbaa24e5f4a48777cfa0e6672f2d2f49c","hash":"d9601fd741004d6ce87a13f149f65c72de91b28a7d28fd7d5e598b3b682669b1"},{"seq":1606,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgoo…[sha256=33659738f003cff1855e49b4568a66fb50d6c2a3572253945f11e678a31d176e len=43150]
+2026-10-30T15:28:11.737Z ASSERT FAIL GET audit?actor=nul/raw: 200 with non-empty/unknown result (want 4xx or [])
+2026-10-30T15:28:11.739Z HTTP GET /api/v1/audit?actor=usr_764%D1%81nv53gai3qsmtqqnstgooc6sz7r4b actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.740Z HTTP GET /api/v1/audit?actor=usr_764сnv53gai3qsmtqqnstgooc6sz7r4b actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.741Z HTTP GET /api/v1/audit?actor=%EF%BD%95sr_764cnv53gai3qsmtqqnstgooc6sz7r4b actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.742Z HTTP GET /api/v1/audit?actor=ｕsr_764cnv53gai3qsmtqqnstgooc6sz7r4b actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.743Z HTTP GET /api/v1/audit actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.743Z CONTROL ok: X10 audit?action control (200)
+2026-10-30T15:28:11.744Z HTTP GET /api/v1/audit?action=%27%20OR%201%3D1-- actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.745Z HTTP GET /api/v1/audit?action='%20OR%201=1-- actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.746Z HTTP GET /api/v1/audit?action=%22%3B%20DROP%20TABLE actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.747Z HTTP GET /api/v1/audit?action=%22%3B%20DROP%20TABLE actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.748Z HTTP GET /api/v1/audit?action=..%2F..%2Fetc%2Fpasswd actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.749Z HTTP GET /api/v1/audit?action=../../etc/passwd actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.750Z HTTP GET /api/v1/audit?action=%2500 actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.754Z HTTP GET /api/v1/audit?action=%00 actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"seq":1607,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/X18_D7CB9B_V","source_ip":"10.89.0.13","result":"success","details":{"version":3,"via":"export"},"prev_hash":"4b93e2b85202dbfbba86e2837229d7fcbaa24e5f4a48777cfa0e6672f2d2f49c","hash":"d9601fd741004d6ce87a13f149f65c72de91b28a7d28fd7d5e598b3b682669b1"},{"seq":1606,"ts":"2026-10-30T15:28:11.680907Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgoo…[sha256=33659738f003cff1855e49b4568a66fb50d6c2a3572253945f11e678a31d176e len=43150]
+2026-10-30T15:28:11.755Z ASSERT FAIL GET audit?action=nul/raw: 200 with non-empty/unknown result (want 4xx or [])
+2026-10-30T15:28:11.756Z HTTP GET /api/v1/audit?action=l%D0%BEgin actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.758Z HTTP GET /api/v1/audit?action=lоgin actor=owner@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.759Z HTTP GET /api/v1/audit?action=%EF%BD%8Cogin actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.761Z HTTP GET /api/v1/audit?action=ｌogin actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.762Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":76,"ts":"2026-10-30T15:28:11.553727Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"authz.denied","target":"POST /admin/orgs/{org}/disable org=ｘ10-48a71","source_ip":"10.89.0.13","result":"denied","details":{"status":404},"prev_hash":"d856708c2653a3aba639a219b1b9f4426f51fc3972f67de347827048038b8c47","hash":"6433c9bbcfe61c7ba895d199c7af46c8ad8b33001a74699bc31036da3cc63ec3"},{"seq":75,"ts":"2026-10-30T15:28:11.548523Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlr…[sha256=d562bd2106f1bfc8ba30edb0c812a5792698b491ac9cd409fa352fe45def862f len=2074]
+2026-10-30T15:28:11.762Z CONTROL ok: X10 admin/audit?limit control (200)
+2026-10-30T15:28:11.763Z HTTP GET /api/v1/admin/audit?limit=%27%20OR%201%3D1-- actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.764Z HTTP GET /api/v1/admin/audit?limit='%20OR%201=1-- actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.764Z HTTP GET /api/v1/admin/audit?limit=%22%3B%20DROP%20TABLE actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.765Z HTTP GET /api/v1/admin/audit?limit=%22%3B%20DROP%20TABLE actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.766Z HTTP GET /api/v1/admin/audit?limit=..%2F..%2Fetc%2Fpasswd actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.767Z HTTP GET /api/v1/admin/audit?limit=../../etc/passwd actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.769Z HTTP GET /api/v1/admin/audit?limit=%2500 actor=root -> 400 2ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.770Z HTTP GET /api/v1/admin/audit?limit=%00 actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.771Z HTTP GET /api/v1/admin/audit?limit=5%D0%B0 actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.771Z HTTP GET /api/v1/admin/audit?limit=5а actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.772Z HTTP GET /api/v1/admin/audit?limit=%EF%BC%95 actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.773Z HTTP GET /api/v1/admin/audit?limit=５ actor=root -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:11.824Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x10-28816d@acme.test", "role": "member", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"id":"usr_komfp4ajbame4yywv2xnsdj5xkxm7o4c","email":"x10-28816d@acme.test","role":"member","created_at":"2026-10-30T15:28:11.816800Z"}
+
+2026-10-30T15:28:11.872Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-28816d@acme.test", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:11.825844Z","token":"<redacted-token>","user":{"id":"usr_komfp4ajbame4yywv2xnsdj5xkxm7o4c","email":"x10-28816d@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:11.875Z HTTP GET /api/v1/projects actor=x10-28816d@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:11.925Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x10-2948e5@acme.test", "role": "member", "password": "«pw0:x10-2948e5@acme»"}
+  resp: {"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","created_at":"2026-10-30T15:28:11.918657Z"}
+
+2026-10-30T15:28:11.974Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x10-2948e5@acme.test", "password": "«pw0:x10-2948e5@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:11.926993Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:11.977Z HTTP GET /api/v1/projects actor=x10-2948e5@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:12.024Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-28816d@acme.test", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:11.977737Z","token":"<redacted-token>","user":{"id":"usr_komfp4ajbame4yywv2xnsdj5xkxm7o4c","email":"x10-28816d@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:12.026Z CONTROL ok: X10 json auth/token.email control (201)
+2026-10-30T15:28:12.074Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "' OR 1=1--", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.121Z HTTP POST /api/v1/auth/token actor=anon -> 401 47ms
+  req: {"email": "\"; DROP TABLE", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.168Z HTTP POST /api/v1/auth/token actor=anon -> 401 47ms
+  req: {"email": "../../etc/passwd", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.216Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "%00", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.263Z HTTP POST /api/v1/auth/token actor=anon -> 401 46ms
+  req: {"email": "х10-28816d@acme.test", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.311Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "ｘ10-28816d@acme.test", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.359Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x10-28816d@acme.test\u0000", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.408Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x10-28816d@acme.test", "password": "«pw0:x10-28816d@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:12.360954Z","token":"<redacted-token>","user":{"id":"usr_komfp4ajbame4yywv2xnsdj5xkxm7o4c","email":"x10-28816d@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:12.409Z CONTROL ok: X10 json auth/token.password control (201)
+2026-10-30T15:28:12.457Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x10-28816d@acme.test", "password": "' OR 1=1--"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.510Z HTTP POST /api/v1/auth/token actor=anon -> 401 53ms
+  req: {"email": "x10-28816d@acme.test", "password": "\"; DROP TABLE"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.559Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x10-28816d@acme.test", "password": "../../etc/passwd"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.624Z HTTP POST /api/v1/auth/token actor=anon -> 401 65ms
+  req: {"email": "x10-28816d@acme.test", "password": "%00"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.674Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x10-28816d@acme.test", "password": "Z3Uj9ХMDimSmA2vT"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:12.680Z HTTP POST /api/v1/auth/token actor=anon -> 429 6ms
+  req: {"email": "x10-28816d@acme.test", "password": "Ｚ3Uj9XMDimSmA2vT"}
+  resp: {"error":{"code":"rate_limited","message":"too many failed login attempts; try again later"}}
+2026-10-30T15:28:12.685Z HTTP POST /api/v1/auth/token actor=anon -> 429 5ms
+  req: {"email": "x10-28816d@acme.test", "password": "«pw0:x10-28816d@acme»\u0000"}
+  resp: {"error":{"code":"rate_limited","message":"too many failed login attempts; try again later"}}
+2026-10-30T15:28:12.772Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 200 87ms
+  req: {"current_password": "«pw0:x10-2948e5@acme»", "new_password": "<redacted-password>"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:12.819Z HTTP POST /api/v1/auth/token actor=anon -> 201 46ms
+  req: {"email": "x10-2948e5@acme.test", "password": "<redacted-password>"}
+  resp: {"expires_at":"2026-11-29T15:28:12.773899Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:12.820Z CONTROL ok: X10 json auth/password.new_password control (200)
+2026-10-30T15:28:12.822Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 400 2ms
+  req: {"current_password": "<redacted-password>", "new_password": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:12.913Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 200 90ms
+  req: {"current_password": "<redacted-password>", "new_password": "\"; DROP TABLE"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:12.962Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x10-2948e5@acme.test", "password": "\"; DROP TABLE"}
+  resp: {"expires_at":"2026-11-29T15:28:12.914800Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.012Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x10-2948e5@acme.test", "password": "\"; DROP TABLE"}
+  resp: {"expires_at":"2026-11-29T15:28:12.965196Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.103Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 200 89ms
+  req: {"current_password": "\"; DROP TABLE", "new_password": "../../etc/passwd"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:13.150Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-2948e5@acme.test", "password": "../../etc/passwd"}
+  resp: {"expires_at":"2026-11-29T15:28:13.104930Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.199Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-2948e5@acme.test", "password": "../../etc/passwd"}
+  resp: {"expires_at":"2026-11-29T15:28:13.153173Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.202Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 400 1ms
+  req: {"current_password": "../../etc/passwd", "new_password": "%00"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:13.291Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 200 89ms
+  req: {"current_password": "../../etc/passwd", "new_password": "«pw0:x10-2948e5@acme»а"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:13.338Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x10-2948e5@acme.test", "password": "«pw0:x10-2948e5@acme»а"}
+  resp: {"expires_at":"2026-11-29T15:28:13.292415Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.388Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x10-2948e5@acme.test", "password": "«pw0:x10-2948e5@acme»а"}
+  resp: {"expires_at":"2026-11-29T15:28:13.340965Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.478Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 200 89ms
+  req: {"current_password": "«pw0:x10-2948e5@acme»а", "new_password": "ＪL4hU4YwshW6w36Q"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:13.526Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x10-2948e5@acme.test", "password": "ＪL4hU4YwshW6w36Q"}
+  resp: {"expires_at":"2026-11-29T15:28:13.480075Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.576Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x10-2948e5@acme.test", "password": "ＪL4hU4YwshW6w36Q"}
+  resp: {"expires_at":"2026-11-29T15:28:13.528916Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.579Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 400 1ms
+  req: {"current_password": "ＪL4hU4YwshW6w36Q", "new_password": "«pw0:x10-2948e5@acme»\u0000"}
+  resp: {"error":{"code":"validation","message":"password must not contain NUL"}}
+2026-10-30T15:28:13.669Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 200 90ms
+  req: {"current_password": "ＪL4hU4YwshW6w36Q", "new_password": "<redacted-password>"}
+  resp: {"status":"password_changed"}
+
+2026-10-30T15:28:13.718Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x10-2948e5@acme.test", "password": "<redacted-password>"}
+  resp: {"expires_at":"2026-11-29T15:28:13.671078Z","token":"<redacted-token>","user":{"id":"usr_ga7w4ztbijg3feykyz3obpvu5atytxlh","email":"x10-2948e5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:13.719Z CONTROL ok: X10 json auth/password.current_password control (200)
+2026-10-30T15:28:13.766Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 403 46ms
+  req: {"current_password": "' OR 1=1--", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:28:13.814Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 403 48ms
+  req: {"current_password": "\"; DROP TABLE", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:28:13.862Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 403 48ms
+  req: {"current_password": "../../etc/passwd", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:28:13.908Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 403 45ms
+  req: {"current_password": "%00", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:28:13.958Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 403 50ms
+  req: {"current_password": "«pw0:x10-2948e5@acme»а", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:28:13.964Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 429 6ms
+  req: {"current_password": "ＪL4hU4YwshW6w36Q", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"rate_limited","message":"too many failed login attempts; try again later"}}
+2026-10-30T15:28:13.969Z HTTP POST /api/v1/auth/password actor=x10-2948e5@acme -> 429 5ms
+  req: {"current_password": "«pw0:x10-2948e5@acme»\u0000", "new_password": "<redacted-password>"}
+  resp: {"error":{"code":"rate_limited","message":"too many failed login attempts; try again later"}}
+2026-10-30T15:28:14.021Z HTTP POST /api/v1/admin/orgs actor=root -> 201 51ms
+  req: {"slug": "x10-526c36", "owner_email": "owner-x10-51d5e2@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"id":"org_w5bhb3yq4pazrfaddsqvjmzr2hvjvwhr","slug":"x10-526c36","disabled":false,"created_at":"2026-10-30T15:28:14.012679Z","owner":{"id":"usr_njsoixfgc4qw53kcugpof3i65lmvim74","email":"owner-x10-51d5e2@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.021Z CONTROL ok: X10 json admin/orgs.slug control (201)
+2026-10-30T15:28:14.023Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "' OR 1=1--", "owner_email": "owner-x10-547c14@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.024Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "\"; DROP TABLE", "owner_email": "owner-x10-5612ce@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.025Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "../../etc/passwd", "owner_email": "owner-x10-58411d@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.027Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "%00", "owner_email": "owner-x10-60e116@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.028Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "аcme", "owner_email": "owner-x10-6227cb@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.029Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "ａcme", "owner_email": "owner-x10-642311@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.029Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "acme\u0000", "owner_email": "owner-x10-663bdb@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.077Z HTTP POST /api/v1/admin/orgs actor=root -> 201 47ms
+  req: {"slug": "x10-692deb", "owner_email": "owner-x10-71ddfb@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"id":"org_acawnhhftuft7cd4zoc3x7oobenhh5k5","slug":"x10-692deb","disabled":false,"created_at":"2026-10-30T15:28:14.070791Z","owner":{"id":"usr_pfdi6mucbwrb6visfqslcqd7zv45iwgz","email":"owner-x10-71ddfb@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.077Z CONTROL ok: X10 json admin/orgs.owner_email control (201)
+2026-10-30T15:28:14.079Z HTTP POST /api/v1/admin/orgs actor=root -> 400 2ms
+  req: {"slug": "x10-72bdad", "owner_email": "' OR 1=1--", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid owner_email"}}
+2026-10-30T15:28:14.080Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "x10-740dd8", "owner_email": "\"; DROP TABLE", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid owner_email"}}
+2026-10-30T15:28:14.081Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "x10-769bea", "owner_email": "../../etc/passwd", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid owner_email"}}
+2026-10-30T15:28:14.082Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "x10-78c2b1", "owner_email": "%00", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid owner_email"}}
+2026-10-30T15:28:14.133Z HTTP POST /api/v1/admin/orgs actor=root -> 201 51ms
+  req: {"slug": "x10-800343", "owner_email": "оwner@acme.test", "owner_password": "<redacted-password>"}
+  resp: {"id":"org_4zzkvio5djertxoi7b6uwzdvwbgsr73e","slug":"x10-800343","disabled":false,"created_at":"2026-10-30T15:28:14.124196Z","owner":{"id":"usr_pq2vu7a4i54sdvdhc7vai2kjxdalzou6","email":"оwner@acme.test","role":"owner"}}
+
+2026-10-30T15:28:14.133Z X10 INFO (not scored): admin/orgs.owner_email=homoglyph -> 201
+2026-10-30T15:28:14.184Z HTTP POST /api/v1/admin/orgs actor=root -> 201 51ms
+  req: {"slug": "x10-82a857", "owner_email": "ｏwner@acme.test", "owner_password": "<redacted-password>"}
+  resp: {"id":"org_tkiqptruyy47g4ugtrxvn2vltgusfkfz","slug":"x10-82a857","disabled":false,"created_at":"2026-10-30T15:28:14.175156Z","owner":{"id":"usr_dhxja6fnnzwakgzx2sh4eob6vtiumhaz","email":"ｏwner@acme.test","role":"owner"}}
+
+2026-10-30T15:28:14.184Z X10 INFO (not scored): admin/orgs.owner_email=fullwidth -> 201
+2026-10-30T15:28:14.186Z HTTP POST /api/v1/admin/orgs actor=root -> 400 2ms
+  req: {"slug": "x10-843363", "owner_email": "owner@acme.test\u0000", "owner_password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid owner_email"}}
+2026-10-30T15:28:14.235Z HTTP POST /api/v1/admin/orgs actor=root -> 201 49ms
+  req: {"slug": "x10-86af4f", "owner_email": "owner-x10-8723a8@x10.test", "owner_password": "<redacted-password>"}
+  resp: {"id":"org_xlkvcogpukgq6luj355o6bgitfz4wslg","slug":"x10-86af4f","disabled":false,"created_at":"2026-10-30T15:28:14.226975Z","owner":{"id":"usr_6v2vt4cssdttv2uhqmubje524ejnrusj","email":"owner-x10-8723a8@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.235Z CONTROL ok: X10 json admin/orgs.owner_password control (201)
+2026-10-30T15:28:14.236Z HTTP POST /api/v1/admin/orgs actor=root -> 400 1ms
+  req: {"slug": "x10-88ab5b", "owner_email": "owner-x10-89abec@x10.test", "owner_password": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:14.287Z HTTP POST /api/v1/admin/orgs actor=root -> 201 50ms
+  req: {"slug": "x10-90486b", "owner_email": "owner-x10-911d38@x10.test", "owner_password": "\"; DROP TABLE"}
+  resp: {"id":"org_lfcjn4bmzuclwpk5qiuqcbopqutmujos","slug":"x10-90486b","disabled":false,"created_at":"2026-10-30T15:28:14.278607Z","owner":{"id":"usr_p7det3dss43dvcqu5lokpmz33tcy2rri","email":"owner-x10-911d38@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.337Z HTTP POST /api/v1/admin/orgs actor=root -> 201 50ms
+  req: {"slug": "x10-9218d9", "owner_email": "owner-x10-9386a3@x10.test", "owner_password": "../../etc/passwd"}
+  resp: {"id":"org_qtpipzfwti7wx5dzh3tk43jqnjv7jrbu","slug":"x10-9218d9","disabled":false,"created_at":"2026-10-30T15:28:14.328018Z","owner":{"id":"usr_5blqqbl7ydo24ykzr35fdxgdn34m5trd","email":"owner-x10-9386a3@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.339Z HTTP POST /api/v1/admin/orgs actor=root -> 400 2ms
+  req: {"slug": "x10-94dbd4", "owner_email": "owner-x10-956a96@x10.test", "owner_password": "%00"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:14.406Z HTTP POST /api/v1/admin/orgs actor=root -> 201 67ms
+  req: {"slug": "x10-967112", "owner_email": "owner-x10-97eb7d@x10.test", "owner_password": "РwDgG3RP91l2s28a"}
+  resp: {"id":"org_a7p3vjqhw7fiuppuclk5wz3g7g2chjol","slug":"x10-967112","disabled":false,"created_at":"2026-10-30T15:28:14.397553Z","owner":{"id":"usr_gqug7l3bhxest7qlxyfohh3wsow4mdlq","email":"owner-x10-97eb7d@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.457Z HTTP POST /api/v1/admin/orgs actor=root -> 201 50ms
+  req: {"slug": "x10-98daf5", "owner_email": "owner-x10-990428@x10.test", "owner_password": "ＰwDgG3RP91l2s28a"}
+  resp: {"id":"org_34dunhs4hm5ujgjiw7defx54a3pq6n4y","slug":"x10-98daf5","disabled":false,"created_at":"2026-10-30T15:28:14.448878Z","owner":{"id":"usr_op3zx5czuxxkzrqsmoq5e3v4jhij32zr","email":"owner-x10-990428@x10.test","role":"owner"}}
+
+2026-10-30T15:28:14.459Z HTTP POST /api/v1/admin/orgs actor=root -> 400 2ms
+  req: {"slug": "x10-100145d", "owner_email": "owner-x10-101410c@x10.test", "owner_password": "<redacted-password>\u0000"}
+  resp: {"error":{"code":"validation","message":"password must not contain NUL"}}
+2026-10-30T15:28:14.509Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x10-10488d1@acme.test", "role": "member", "password": "<redacted-password>"}
+  resp: {"id":"usr_2hm4nhn42kdzmtz33yd6cylj6vywzka3","email":"x10-10488d1@acme.test","role":"member","created_at":"2026-10-30T15:28:14.501585Z"}
+
+2026-10-30T15:28:14.509Z CONTROL ok: X10 json members.email control (201)
+2026-10-30T15:28:14.511Z HTTP POST /api/v1/members actor=owner@acme -> 400 2ms
+  req: {"email": "' OR 1=1--", "role": "member", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid email address"}}
+2026-10-30T15:28:14.512Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "\"; DROP TABLE", "role": "member", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid email address"}}
+2026-10-30T15:28:14.513Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "../../etc/passwd", "role": "member", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid email address"}}
+2026-10-30T15:28:14.514Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "%00", "role": "member", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid email address"}}
+2026-10-30T15:28:14.561Z HTTP POST /api/v1/members actor=owner@acme -> 201 47ms
+  req: {"email": "wrіter@acme.test", "role": "member", "password": "<redacted-password>"}
+  resp: {"id":"usr_o2dmxdutzmpgw2yzfts4kuswq47xitv2","email":"wrіter@acme.test","role":"member","created_at":"2026-10-30T15:28:14.554083Z"}
+
+2026-10-30T15:28:14.561Z X10 INFO (not scored): members.email=homoglyph -> 201
+2026-10-30T15:28:14.627Z HTTP POST /api/v1/members actor=owner@acme -> 201 65ms
+  req: {"email": "ｗriter@acme.test", "role": "member", "password": "<redacted-password>"}
+  resp: {"id":"usr_2v2ltbenijiflp22mh4zl5upmob2rqct","email":"ｗriter@acme.test","role":"member","created_at":"2026-10-30T15:28:14.619835Z"}
+
+2026-10-30T15:28:14.627Z X10 INFO (not scored): members.email=fullwidth -> 201
+2026-10-30T15:28:14.629Z HTTP POST /api/v1/members actor=owner@acme -> 400 2ms
+  req: {"email": "writer@acme.test\u0000", "role": "member", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"invalid email address"}}
+2026-10-30T15:28:14.679Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "x10-112684d@acme.test", "role": "member", "password": "<redacted-password>"}
+  resp: {"id":"usr_gaiouqytyzuzyyyzrepgmaudbayk2ni7","email":"x10-112684d@acme.test","role":"member","created_at":"2026-10-30T15:28:14.670815Z"}
+
+2026-10-30T15:28:14.679Z CONTROL ok: X10 json members.role control (201)
+2026-10-30T15:28:14.681Z HTTP POST /api/v1/members actor=owner@acme -> 400 2ms
+  req: {"email": "x10-11311d9@acme.test", "role": "' OR 1=1--", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.682Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-114ae33@acme.test", "role": "\"; DROP TABLE", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.682Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-1153526@acme.test", "role": "../../etc/passwd", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.683Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-116d266@acme.test", "role": "%00", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.684Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-117e1e4@acme.test", "role": "mеmber", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.685Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-11820b4@acme.test", "role": "ｍember", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.686Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-119db8a@acme.test", "role": "member\u0000", "password": "<redacted-password>"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.732Z HTTP POST /api/v1/members actor=owner@acme -> 201 46ms
+  req: {"email": "x10-1200b13@acme.test", "role": "member", "password": "<redacted-password>"}
+  resp: {"id":"usr_2migru5slmviri6elzh6dvve6hqmmuz2","email":"x10-1200b13@acme.test","role":"member","created_at":"2026-10-30T15:28:14.725985Z"}
+
+2026-10-30T15:28:14.732Z CONTROL ok: X10 json members.password control (201)
+2026-10-30T15:28:14.734Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "x10-12199c9@acme.test", "role": "member", "password": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:14.779Z HTTP POST /api/v1/members actor=owner@acme -> 201 46ms
+  req: {"email": "x10-122837c@acme.test", "role": "member", "password": "\"; DROP TABLE"}
+  resp: {"id":"usr_4xpb4vm5kzvp5nilotzri6jbfwruvjzb","email":"x10-122837c@acme.test","role":"member","created_at":"2026-10-30T15:28:14.774274Z"}
+
+2026-10-30T15:28:14.828Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "x10-12365fb@acme.test", "role": "member", "password": "../../etc/passwd"}
+  resp: {"id":"usr_zgf5itwrn3ie4xnqm3w774upynsvvtlk","email":"x10-12365fb@acme.test","role":"member","created_at":"2026-10-30T15:28:14.821181Z"}
+
+2026-10-30T15:28:14.830Z HTTP POST /api/v1/members actor=owner@acme -> 400 2ms
+  req: {"email": "x10-12455a8@acme.test", "role": "member", "password": "%00"}
+  resp: {"error":{"code":"validation","message":"password must be at least 12 characters"}}
+2026-10-30T15:28:14.884Z HTTP POST /api/v1/members actor=owner@acme -> 201 54ms
+  req: {"email": "x10-125e51b@acme.test", "role": "member", "password": "РwZhsBCAY2lEWgvF"}
+  resp: {"id":"usr_2toea7vb4eetwakrviddzgbjg4unwsqq","email":"x10-125e51b@acme.test","role":"member","created_at":"2026-10-30T15:28:14.872205Z"}
+
+2026-10-30T15:28:14.934Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x10-12662bc@acme.test", "role": "member", "password": "ＰwZhsBCAY2lEWgvF"}
+  resp: {"id":"usr_bzd5bzxdpneasyle6flr2ra3q7uc7h67","email":"x10-12662bc@acme.test","role":"member","created_at":"2026-10-30T15:28:14.925970Z"}
+
+2026-10-30T15:28:14.935Z HTTP POST /api/v1/members actor=owner@acme -> 400 2ms
+  req: {"email": "x10-1273ef5@acme.test", "role": "member", "password": "<redacted-password>\u0000"}
+  resp: {"error":{"code":"validation","message":"password must not contain NUL"}}
+2026-10-30T15:28:14.937Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 200 1ms
+  req: {"role": "member"}
+  resp: {"id":"usr_rsgny64tohjr52co3ourp6grwzamoamc","email":"x10-53100@acme.test","role":"member","created_at":"2026-10-30T15:28:09.619878Z"}
+
+2026-10-30T15:28:14.937Z CONTROL ok: X10 json members/{id} PATCH.role control (200)
+2026-10-30T15:28:14.937Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 1ms
+  req: {"role": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.939Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 1ms
+  req: {"role": "\"; DROP TABLE"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.940Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 1ms
+  req: {"role": "../../etc/passwd"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.940Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 1ms
+  req: {"role": "%00"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.941Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 1ms
+  req: {"role": "mеmber"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.942Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 0ms
+  req: {"role": "ｍember"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.943Z HTTP PATCH /api/v1/members/usr_rsgny64tohjr52co3ourp6grwzamoamc actor=owner@acme -> 400 0ms
+  req: {"role": "member\u0000"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:14.947Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"x10-31c05","user_id":"usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk"}
+
+2026-10-30T15:28:14.948Z CONTROL ok: X10 json grants PUT.level control (200)
+2026-10-30T15:28:14.948Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 1ms
+  req: {"level": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.949Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 1ms
+  req: {"level": "\"; DROP TABLE"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.950Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 0ms
+  req: {"level": "../../etc/passwd"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.950Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 0ms
+  req: {"level": "%00"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.951Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 0ms
+  req: {"level": "vіewer"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.952Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 0ms
+  req: {"level": "ｖiewer"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.952Z HTTP PUT /api/v1/members/usr_zgpejtccfvbmqkhtzhhy4kfw6v2rzhrk/grants/x10-31c05 actor=owner@acme -> 400 1ms
+  req: {"level": "viewer\u0000"}
+  resp: {"error":{"code":"validation","message":"level must be viewer, reader or writer"}}
+2026-10-30T15:28:14.957Z HTTP POST /api/v1/projects actor=owner@acme -> 201 4ms
+  req: {"slug": "x10-128951a"}
+  resp: {"id":"prj_wfztyxhbch25lj5fr6eyivd4b4jlyrbh","slug":"x10-128951a","created_at":"2026-10-30T15:28:14.953353Z"}
+
+2026-10-30T15:28:14.957Z CONTROL ok: X10 json projects.slug control (201)
+2026-10-30T15:28:14.957Z HTTP POST /api/v1/projects actor=owner@acme -> 400 1ms
+  req: {"slug": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.958Z HTTP POST /api/v1/projects actor=owner@acme -> 400 1ms
+  req: {"slug": "\"; DROP TABLE"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.959Z HTTP POST /api/v1/projects actor=owner@acme -> 400 1ms
+  req: {"slug": "../../etc/passwd"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.959Z HTTP POST /api/v1/projects actor=owner@acme -> 400 1ms
+  req: {"slug": "%00"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.960Z HTTP POST /api/v1/projects actor=owner@acme -> 400 0ms
+  req: {"slug": "аpi"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.961Z HTTP POST /api/v1/projects actor=owner@acme -> 400 0ms
+  req: {"slug": "ａpi"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.961Z HTTP POST /api/v1/projects actor=owner@acme -> 400 1ms
+  req: {"slug": "api\u0000"}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.966Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 201 4ms
+  req: {"slug": "x10-13123e7", "protected": false}
+  resp: {"id":"env_6nges57go52n345vajlhvxed6uriyoso","slug":"x10-13123e7","protected":false,"created_at":"2026-10-30T15:28:14.962422Z"}
+
+2026-10-30T15:28:14.966Z CONTROL ok: X10 json envs.slug control (201)
+2026-10-30T15:28:14.966Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "' OR 1=1--", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.967Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "\"; DROP TABLE", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.968Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "../../etc/passwd", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.969Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "%00", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.969Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "dеv", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.970Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "ｄev", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.971Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "dev\u0000", "protected": false}
+  resp: {"error":{"code":"validation","message":"slug must match ^[a-z0-9][a-z0-9-]{0,62}$"}}
+2026-10-30T15:28:14.975Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 201 4ms
+  req: {"slug": "x10-1392de7", "protected": false}
+  resp: {"id":"env_kpbov3zi7ddiuk56y3cjlpb37m27c6uf","slug":"x10-1392de7","protected":false,"created_at":"2026-10-30T15:28:14.971976Z"}
+
+2026-10-30T15:28:14.975Z CONTROL ok: X10 json envs.protected control (201)
+2026-10-30T15:28:14.976Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-140f62f", "protected": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.977Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-141e2fa", "protected": "\"; DROP TABLE"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.977Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-1420d97", "protected": "../../etc/passwd"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.978Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-1435238", "protected": "%00"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.979Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-1442e68", "protected": "truе"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.980Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-1452c6f", "protected": "ｔrue"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.980Z HTTP POST /api/v1/projects/x10-31c05/envs actor=owner@acme -> 400 1ms
+  req: {"slug": "x10-146eaa1", "protected": "true\u0000"}
+  resp: {"error":{"code":"validation","message":"invalid type for field \"protected\""}}
+2026-10-30T15:28:14.985Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 4ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-147edb7"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:14.981422Z","id":"tok_dyf7n3l4ol6ul3xuyci37riamgw6o77o","name":"x10-147edb7","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:14.986Z CONTROL ok: X10 json tokens.project control (201)
+2026-10-30T15:28:14.991Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 4ms
+  req: {"project": "' OR 1=1--", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-149e790"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:14.996Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "\"; DROP TABLE", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-1501fdb"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.001Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "../../etc/passwd", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-15105b5"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.006Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "%00", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-1522d35"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.013Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 7ms
+  req: {"project": "х10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-15397ba"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.018Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "ｘ10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-154df50"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.023Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05\u0000", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-15599ab"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.029Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-156c465"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.024447Z","id":"tok_a3iggzytrcctlk54uobukpjr7wwvwh25","name":"x10-156c465","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.030Z CONTROL ok: X10 json tokens.env control (201)
+2026-10-30T15:28:15.035Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05", "env": "' OR 1=1--", "access": "read", "ttl_seconds": 3600, "name": "x10-158a485"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.041Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05", "env": "\"; DROP TABLE", "access": "read", "ttl_seconds": 3600, "name": "x10-15951e1"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.046Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05", "env": "../../etc/passwd", "access": "read", "ttl_seconds": 3600, "name": "x10-1604f9d"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.051Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05", "env": "%00", "access": "read", "ttl_seconds": 3600, "name": "x10-16194da"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.056Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 4ms
+  req: {"project": "x10-31c05", "env": "dеv", "access": "read", "ttl_seconds": 3600, "name": "x10-16275f8"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.061Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05", "env": "ｄev", "access": "read", "ttl_seconds": 3600, "name": "x10-1631bcc"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.066Z HTTP POST /api/v1/tokens actor=owner@acme -> 404 5ms
+  req: {"project": "x10-31c05", "env": "dev\u0000", "access": "read", "ttl_seconds": 3600, "name": "x10-164cbb4"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:15.071Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-165a180"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.066933Z","id":"tok_mdclr2qm5v2qciqgkzxdbkkvijzgwxxs","name":"x10-165a180","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.072Z CONTROL ok: X10 json tokens.access control (201)
+2026-10-30T15:28:15.073Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "' OR 1=1--", "ttl_seconds": 3600, "name": "x10-16720aa"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.074Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "\"; DROP TABLE", "ttl_seconds": 3600, "name": "x10-1682997"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.074Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "../../etc/passwd", "ttl_seconds": 3600, "name": "x10-169e1b8"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.075Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "%00", "ttl_seconds": 3600, "name": "x10-17083c4"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.076Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "rеad", "ttl_seconds": 3600, "name": "x10-171af3f"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.077Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "ｒead", "ttl_seconds": 3600, "name": "x10-172aa5d"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.078Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read\u0000", "ttl_seconds": 3600, "name": "x10-1731f31"}
+  resp: {"error":{"code":"validation","message":"access must be read or read-write"}}
+2026-10-30T15:28:15.083Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "x10-174a782"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.079136Z","id":"tok_nprpouvcpmyjxxe3lsnlftlbcblc6pur","name":"x10-174a782","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.085Z CONTROL ok: X10 json tokens.ttl_seconds control (201)
+2026-10-30T15:28:15.086Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "' OR 1=1--", "name": "x10-176482e"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.086Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "\"; DROP TABLE", "name": "x10-177c5ba"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.087Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "../../etc/passwd", "name": "x10-178a6f4"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.088Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "%00", "name": "x10-179659f"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.089Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "3600а", "name": "x10-1806039"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.090Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "３600", "name": "x10-1818295"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.091Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": "3600\u0000", "name": "x10-182fcc2"}
+  resp: {"error":{"code":"validation","message":"ttl_seconds must be an integer between 60 and 7776000"}}
+2026-10-30T15:28:15.096Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "ci"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.091808Z","id":"tok_2kigz7uujrrfov2qa55ysskdbukg33re","name":"ci","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.097Z CONTROL ok: X10 json tokens.name control (201)
+2026-10-30T15:28:15.102Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "' OR 1=1--"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.098524Z","id":"tok_yc5ifgrydluyua5c74lr6e3u75k2ip5u","name":"' OR 1=1--","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.105Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_yc5ifgrydluyua5c74lr6e3u75k2ip5u","name":"' OR 1=1--","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.098524Z","expires_at":"2026-10-30T16:28:15.098524Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":null},{"id":"tok_2kigz7uujrrfov2qa55ysskdbukg33re","name":"ci","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.091808Z","expires_at":"2026-10-30T16:28:15.091808Z","revoked_at":null,"created…[sha256=fc9f7414800e8f719000d7a42a8e008320396abd8bdb2991e362568bd8bc1bea len=6395]
+2026-10-30T15:28:15.111Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "\"; DROP TABLE"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.107112Z","id":"tok_x5jq5mmsytpvc6aeud2tz3bczz7sibvb","name":"\"; DROP TABLE","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.114Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_x5jq5mmsytpvc6aeud2tz3bczz7sibvb","name":"\"; DROP TABLE","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.107112Z","expires_at":"2026-10-30T16:28:15.107112Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":null},{"id":"tok_yc5ifgrydluyua5c74lr6e3u75k2ip5u","name":"' OR 1=1--","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.098524Z","expires_at":"2026-10-30T16:28:15.098524Z","revoked_at":n…[sha256=e6051a39ae9a051f35f7b7a327b7fcab653871ef33b67529a1637b214316d4a0 len=6691]
+2026-10-30T15:28:15.119Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "../../etc/passwd"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.115607Z","id":"tok_roxfot3y6g2r553aqqfmd7d4hhx3fm57","name":"../../etc/passwd","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.122Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_roxfot3y6g2r553aqqfmd7d4hhx3fm57","name":"../../etc/passwd","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.115607Z","expires_at":"2026-10-30T16:28:15.115607Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":null},{"id":"tok_x5jq5mmsytpvc6aeud2tz3bczz7sibvb","name":"\"; DROP TABLE","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.107112Z","expires_at":"2026-10-30T16:28:15.107112Z","revoked…[sha256=fafb52f61fde5e2b9a5ac3a697f7d8313fd8aa53a6151664d7d81d6bf8429ebe len=6989]
+2026-10-30T15:28:15.128Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "%00"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.123621Z","id":"tok_qptkuxw5mdqjc7pffhg5zwknam5jp65n","name":"%00","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.131Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_qptkuxw5mdqjc7pffhg5zwknam5jp65n","name":"%00","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.123621Z","expires_at":"2026-10-30T16:28:15.123621Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":null},{"id":"tok_roxfot3y6g2r553aqqfmd7d4hhx3fm57","name":"../../etc/passwd","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.115607Z","expires_at":"2026-10-30T16:28:15.115607Z","revoked_at":null,"…[sha256=4295e08430fb713e90bb6de9bdb05354e3559f497c69996fafb64d2ecda86ea2 len=7274]
+2026-10-30T15:28:15.135Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "сi"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.131888Z","id":"tok_zn6penmehviok3sdmjpiezu34viro4et","name":"сi","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.139Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_zn6penmehviok3sdmjpiezu34viro4et","name":"сi","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.131888Z","expires_at":"2026-10-30T16:28:15.131888Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":null},{"id":"tok_qptkuxw5mdqjc7pffhg5zwknam5jp65n","name":"%00","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.123621Z","expires_at":"2026-10-30T16:28:15.123621Z","revoked_at":null,"created_by":"u…[sha256=4882e75474b4cba96f8e25cfcfb087082e813773a73906a041da5568967518c0 len=7559]
+2026-10-30T15:28:15.144Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "ｃi"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:28:15.139795Z","id":"tok_amc7exhlmmnmznk477w7qtmsa6pndn6g","name":"ｃi","project":"x10-31c05","token":"<redacted-token>"}
+
+2026-10-30T15:28:15.147Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_amc7exhlmmnmznk477w7qtmsa6pndn6g","name":"ｃi","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.139795Z","expires_at":"2026-10-30T16:28:15.139795Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":null},{"id":"tok_zn6penmehviok3sdmjpiezu34viro4et","name":"сi","project":"x10-31c05","env":"dev","access":"read","created_at":"2026-10-30T15:28:15.131888Z","expires_at":"2026-10-30T16:28:15.131888Z","revoked_at":null,"created_by":"us…[sha256=72648bda3b38b921e0d74bf0d5bc35368729dce08f92468ebe1ed07841826073 len=7845]
+2026-10-30T15:28:15.148Z HTTP POST /api/v1/tokens actor=owner@acme -> 400 1ms
+  req: {"project": "x10-31c05", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "ci\u0000"}
+  resp: {"error":{"code":"validation","message":"name must not contain control characters"}}
+2026-10-30T15:28:15.154Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "v"}
+  resp: {"version":1}
+
+2026-10-30T15:28:15.154Z CONTROL ok: X10 json secrets PUT.value control (200)
+2026-10-30T15:28:15.159Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "' OR 1=1--"}
+  resp: {"version":2}
+
+2026-10-30T15:28:15.164Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X10_VAL","version":2,"value":"' OR 1=1--"}
+
+2026-10-30T15:28:15.169Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "\"; DROP TABLE"}
+  resp: {"version":3}
+
+2026-10-30T15:28:15.175Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X10_VAL","version":3,"value":"\"; DROP TABLE"}
+
+2026-10-30T15:28:15.181Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 6ms
+  req: {"value": "../../etc/passwd"}
+  resp: {"version":4}
+
+2026-10-30T15:28:15.186Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"key":"X10_VAL","version":4,"value":"../../etc/passwd"}
+
+2026-10-30T15:28:15.191Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "%00"}
+  resp: {"version":5}
+
+2026-10-30T15:28:15.196Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X10_VAL","version":5,"value":"%00"}
+
+2026-10-30T15:28:15.201Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "vа"}
+  resp: {"version":6}
+
+2026-10-30T15:28:15.206Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"X10_VAL","version":6,"value":"vа"}
+
+2026-10-30T15:28:15.211Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "ｖ"}
+  resp: {"version":7}
+
+2026-10-30T15:28:15.216Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"X10_VAL","version":7,"value":"ｖ"}
+
+2026-10-30T15:28:15.221Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 5ms
+  req: {"value": "v\u0000"}
+  resp: {"version":8}
+
+2026-10-30T15:28:15.226Z HTTP GET /api/v1/projects/x10-31c05/envs/dev/secrets/X10_VAL actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"X10_VAL","version":8,"value":"v\u0000"}
+
+2026-10-30T15:28:15.231Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_204 actor=owner@acme -> 200 5ms
+  req: {"value": "x"}
+  resp: {"version":1}
+
+2026-10-30T15:28:15.231Z CONTROL ok: X10 json secrets PUT.expected_version control (200)
+2026-10-30T15:28:15.232Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_205 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.232Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_206 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "\"; DROP TABLE"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.233Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_207 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "../../etc/passwd"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.234Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_208 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "%00"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.235Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_209 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "1а"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.236Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_210 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "１"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.237Z HTTP PUT /api/v1/projects/x10-31c05/envs/dev/secrets/JUNK_X10_211 actor=owner@acme -> 400 1ms
+  req: {"value": "x", "expected_version": "1\u0000"}
+  resp: {"error":{"code":"validation","message":"expected_version must be an integer \u003e= 0"}}
+2026-10-30T15:28:15.241Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 200 4ms
+  req: {"to": 1}
+  resp: {"version":4}
+
+2026-10-30T15:28:15.242Z CONTROL ok: X10 json rollback.to control (200)
+2026-10-30T15:28:15.242Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "' OR 1=1--"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.243Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "\"; DROP TABLE"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.244Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "../../etc/passwd"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.245Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "%00"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.246Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "1а"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.246Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "１"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.247Z HTTP POST /api/v1/projects/x10-31c05/envs/dev/secrets/X10_SEED/rollback actor=owner@acme -> 400 1ms
+  req: {"to": "1\u0000"}
+  resp: {"error":{"code":"validation","message":"to must be an integer"}}
+2026-10-30T15:28:15.248Z wait_ready(30s) -> True (last status 200)
+2026-10-30T15:28:15.248Z ASSERT ok   not(/readyz not 200 after injection probes)
+2026-10-30T15:28:15.252Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:28:15.252Z ASSERT ok   not(after X10: acme/api/dev/CANARY read by owner -> 200, value matches)
+2026-10-30T15:28:15.257Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+
+2026-10-30T15:28:15.257Z ASSERT ok   not(after X10: acme/api/dev/MULTI read by owner -> 200, value matches)
+2026-10-30T15:28:15.262Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+
+2026-10-30T15:28:15.262Z ASSERT ok   not(after X10: acme/api/prod/CANARY read by owner -> 200, value matches)
+2026-10-30T15:28:15.267Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+
+2026-10-30T15:28:15.267Z ASSERT ok   not(after X10: acme/web/dev/CANARY read by owner -> 200, value matches)
+2026-10-30T15:28:15.272Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:28:15.273Z ASSERT ok   not(after X10: globex/api/dev/CANARY read by owner -> 200, value matches)
+2026-10-30T15:28:15.278Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+
+2026-10-30T15:28:15.278Z ASSERT ok   not(after X10: globex/api/prod/CANARY read by owner -> 200, value matches)
+2026-10-30T15:28:15.279Z HTTP GET /api/v1/me actor=writer@acme -> 200 1ms
+  req: 
+  resp: {"email":"writer@acme.test","id":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","must_change_password":false,"org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","role":"member","type":"user"}
+
+2026-10-30T15:28:15.279Z ASSERT ok   not(after X10: writer@acme GET /me -> 200)
+2026-10-30T15:28:15.280Z HTTP GET /api/v1/me actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"email":"reader@acme.test","id":"usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx","must_change_password":false,"org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","role":"member","type":"user"}
+
+2026-10-30T15:28:15.280Z ASSERT ok   not(after X10: reader@acme GET /me -> 200)
+2026-10-30T15:28:15.281Z HTTP GET /api/v1/me actor=viewer@acme -> 200 1ms
+  req: 
+  resp: {"email":"viewer@acme.test","id":"usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl","must_change_password":false,"org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","role":"member","type":"user"}
+
+2026-10-30T15:28:15.281Z ASSERT ok   not(after X10: viewer@acme GET /me -> 200)
+2026-10-30T15:28:15.282Z HTTP GET /api/v1/me actor=admin@acme -> 200 1ms
+  req: 
+  resp: {"email":"admin@acme.test","id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","must_change_password":false,"org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","role":"admin","type":"user"}
+
+2026-10-30T15:28:15.282Z ASSERT ok   not(after X10: admin@acme GET /me -> 200)
+2026-10-30T15:28:15.283Z HTTP GET /api/v1/projects actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"id":"prj_ohjjz2zyokikyfxhjtwi6klnkrqyches","slug":"api","created_at":"2026-10-30T15:24:45.839211Z"}]
+
+2026-10-30T15:28:15.283Z ASSERT ok   not(after X10: owner@globex GET /projects -> 200)
+2026-10-30T15:28:15.283Z X10 probes judged: 665
+2026-10-30T15:28:15.957Z pg_dumpall pre-rollback-X10 -> rc=0 0009-X10-pre-rollback-X10.sql
+2026-10-30T15:28:16.354Z sweep_snapshot pre-rollback-X10: dump=0009-X10-pre-rollback-X10.sql logs=2
+2026-10-30T15:28:34Z [runner] rollback: ok

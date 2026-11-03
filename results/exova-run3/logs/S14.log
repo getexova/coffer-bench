@@ -1,0 +1,139 @@
+2026-10-29T12:57:00.561Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=T_prod_rw -> 200 4ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.779192Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F12_PROT_BD032AFE","version":1,"updated_at":"2026-10-29T12:55:54.717212Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F13_REJ_09BCA637","version":1,"updated_at":"2026-10-29T12:55:55.345252Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALEAPI_512A84DA","version":1,"updated_at":"2026-10-29T12:55:56.335464Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14…[sha256=db250fc298682a0d04261c174bd09ad4c3e5fa5392960074e0dc0e7e1e43b53d len=3262]
+2026-10-29T12:57:00.562Z CONTROL ok: T_dev_rw GET api/prod list (200)
+2026-10-29T12:57:00.567Z HTTP GET /api/v1/projects/api/envs/zz-absent-3efbb40e/secrets actor=T_dev_rw -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.572Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=T_dev_rw -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.572Z ASSERT ok   not(T_dev_rw GET api/prod list: 404 identical to absent)
+2026-10-29T12:57:00.577Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=T_prod_rw -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:57:00.577Z CONTROL ok: T_dev_rw GET api/prod/CANARY (200)
+2026-10-29T12:57:00.582Z HTTP GET /api/v1/projects/api/envs/zz-absent-3efbb40e/secrets/CANARY actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.586Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.586Z ASSERT ok   not(T_dev_rw GET api/prod/CANARY: 404 identical to absent)
+2026-10-29T12:57:00.689Z HTTP GET /api/v1/projects/api/envs/prod/export actor=T_prod_rw -> 200 103ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/prod/CANARY»","F12_PROT_BD032AFE":"«canary:F12:prot»","F13_REJ_09BCA637":"«canary:F13:v1»","F14_STALEAPI_512A84DA":"«canary:F14:c»","F14_STALE_E004D236":"«canary:F14:a»","JUNK_S10_1":"JUNK_S10_1-cr","JUNK_S10_2":"JUNK_S10_2-cr","JUNK_S10_3":"JUNK_S10_3-cr","JUNK_S10_4":"JUNK_S10_4-cr","JUNK_S10_5":"JUNK_S10_5-cr","JUNK_S10_6":"JUNK_S10_6-cr","JUNK_S10_8":"JUNK_S10_8-cr","JUNK_S4_2":"JUNK_S4_2-cr","JUNK_S5_10":"JUNK_S5_10-v2","JUNK_S5_11":"JUNK_S5_11-v2","JUNK_S5_12":"JUNK_S5_12-v2","JUNK_S5_9":"JUNK_S5_9-v2","JUNK_S6_10":"JUNK_S6_10-v2","JUNK_S6_11":"JUNK_S6_11-v2","JUNK_S6_12":"JUNK_S6_12-v2","JUNK_S6_9":"JUNK_S6_9-v2","JUNK_S7_10":"JUNK_S7_10-v2","JUNK_S7_11":"JUNK_S7_11-v2","JUNK_S7_12":"JUNK_S7_12-v2","JUNK_S7_9":"JUNK_S7_9-v2","JUNK_S8_5":"JUNK_S8_5-v2","JUNK_S8_6":"JUNK_S8_6-v2"}
+2026-10-29T12:57:00.689Z CONTROL ok: T_dev_rw export api/prod (200)
+2026-10-29T12:57:00.694Z HTTP GET /api/v1/projects/api/envs/zz-absent-3efbb40e/export actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.698Z HTTP GET /api/v1/projects/api/envs/prod/export actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.699Z ASSERT ok   not(T_dev_rw export api/prod: 404 identical to absent)
+2026-10-29T12:57:00.704Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S14_1 actor=T_dev_rw -> 200 5ms
+  req: {"value": "s14"}
+  resp: {"version":1}
+2026-10-29T12:57:00.704Z CONTROL ok: T_dev_rw PUT api/prod junk (200)
+2026-10-29T12:57:00.708Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S14_1 actor=T_dev_rw -> 404 4ms
+  req: {"value": "s14"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.708Z ASSERT ok   not(T_dev_rw PUT api/prod junk: denied 404)
+2026-10-29T12:57:00.713Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S14_1 actor=T_dev_rw -> 200 5ms
+  req: 
+  resp: {"key":"JUNK_S14_1","version":1,"value":"s14"}
+2026-10-29T12:57:00.713Z CONTROL ok: T_dev_rw DELETE api/prod/CANARY (200)
+2026-10-29T12:57:00.718Z HTTP DELETE /api/v1/projects/api/envs/prod/secrets/CANARY actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.718Z ASSERT ok   not(T_dev_rw DELETE api/prod/CANARY: denied 404)
+2026-10-29T12:57:00.719Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.52727Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_1","version":2,"updated_at":"2026-10-29T12:56:10.313622Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_2","version":2,"updated_at":"2026-10-29T12:56:10.323483Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_5","version":1,"updated_at":"2026-10-29T12:56:10.496661Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_7","version":3,"updated_at":"2026-10-29T12:56:10.545138Z","updated_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:57:00.719Z CONTROL ok: T_dev_rw GET web/dev list (200)
+2026-10-29T12:57:00.723Z HTTP GET /api/v1/projects/zz-absent-babde25b/envs/dev/secrets actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.727Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.727Z ASSERT ok   not(T_dev_rw GET web/dev list: 404 identical to absent)
+2026-10-29T12:57:00.732Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:57:00.732Z CONTROL ok: T_dev_rw GET web/dev/CANARY (200)
+2026-10-29T12:57:00.736Z HTTP GET /api/v1/projects/zz-absent-babde25b/envs/dev/secrets/CANARY actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.741Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=T_dev_rw -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.741Z ASSERT ok   not(T_dev_rw GET web/dev/CANARY: 404 identical to absent)
+2026-10-29T12:57:00.745Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S14_1 actor=T_dev_rw -> 200 4ms
+  req: {"value": "s14b"}
+  resp: {"version":2}
+2026-10-29T12:57:00.746Z CONTROL ok: T_dev_rw PUT web/dev junk (200)
+2026-10-29T12:57:00.750Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S14_1 actor=T_dev_rw -> 404 4ms
+  req: {"value": "s14"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:57:00.750Z ASSERT ok   not(T_dev_rw PUT web/dev junk: denied 404)
+2026-10-29T12:57:00.754Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=T_dev_rw -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:57:00.754Z ASSERT ok   not(T_dev_rw GET api/dev/CANARY -> 200, acme value=True)
+2026-10-29T12:57:00.755Z ASSERT ok   not(T_dev_rw GET api/dev/CANARY returned the globex canary)
+2026-10-29T12:57:00.756Z HTTP GET /api/v1/members actor=owner@globex -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_6a34f6e1a538bc7473cd8192","email":"owner@globex.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:55:28.961355Z"}]}
+2026-10-29T12:57:00.756Z CONTROL ok: T_dev_rw PATCH globex owner (200)
+2026-10-29T12:57:00.760Z HTTP PATCH /api/v1/members/usr_6a34f6e1a538bc7473cd8192 actor=T_dev_rw -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:00.760Z ASSERT ok   not(T_dev_rw PATCH globex owner: denied 403)
+2026-10-29T12:57:00.762Z HTTP GET /api/v1/members actor=owner@globex -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_6a34f6e1a538bc7473cd8192","email":"owner@globex.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:55:28.961355Z"}]}
+2026-10-29T12:57:00.762Z CONTROL ok: T_dev_rw PUT grant globex owner (200)
+2026-10-29T12:57:00.766Z HTTP PUT /api/v1/members/usr_6a34f6e1a538bc7473cd8192/grants/api actor=T_dev_rw -> 403 4ms
+  req: {"level": "viewer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:00.766Z ASSERT ok   not(T_dev_rw PUT grant globex owner: denied 403)
+2026-10-29T12:57:00.771Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2 actor=T_dev_rw -> 200 5ms
+  req: {"value": "v1"}
+  resp: {"version":1}
+2026-10-29T12:57:00.771Z CONTROL ok: T_dev_r PUT api/dev junk (200)
+2026-10-29T12:57:00.775Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2 actor=T_dev_r -> 403 4ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:00.775Z ASSERT ok   not(T_dev_r PUT api/dev junk: denied 403)
+2026-10-29T12:57:00.780Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2 actor=T_dev_rw -> 200 4ms
+  req: {"value": "v2"}
+  resp: {"version":2}
+2026-10-29T12:57:00.780Z CONTROL ok: T_dev_r rollback api/dev junk (200)
+2026-10-29T12:57:00.784Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2/rollback actor=T_dev_r -> 403 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:00.784Z ASSERT ok   not(T_dev_r rollback api/dev junk: denied 403)
+2026-10-29T12:57:00.789Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2/rollback actor=T_dev_rw -> 200 5ms
+  req: {"to": 1}
+  resp: {"version":3}
+2026-10-29T12:57:00.789Z CONTROL ok: T_dev_r rollback (after rw rollback) (200)
+2026-10-29T12:57:00.793Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2/rollback actor=T_dev_r -> 403 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:00.793Z ASSERT ok   not(T_dev_r rollback (after rw rollback): denied 403)
+2026-10-29T12:57:00.798Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S14_3 actor=T_dev_rw -> 200 5ms
+  req: {"value": "del"}
+  resp: {"version":1}
+2026-10-29T12:57:00.802Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S14_3 actor=T_dev_rw -> 200 4ms
+  req: 
+  resp: {"version":2}
+2026-10-29T12:57:00.803Z CONTROL ok: T_dev_r DELETE api/dev junk (200)
+2026-10-29T12:57:00.807Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2 actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:00.807Z ASSERT ok   not(T_dev_r DELETE api/dev junk: denied 403)
+2026-10-29T12:57:00.811Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S14_2 actor=T_dev_rw -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S14_2","version":3,"value":"v1"}
+2026-10-29T12:57:00.811Z ASSERT ok   not(junk key JUNK_S14_2 still present after T_dev_r DELETE -> 200)

@@ -1,0 +1,78 @@
+2026-10-30T15:30:50.546Z pg_dumpall pre-env-override -> rc=0 0020-X3-pre-env-override.sql
+2026-10-30T15:30:50.666Z sweep_snapshot pre-env-override: dump=0020-X3-pre-env-override.sql logs=2
+2026-10-30T15:30:50.666Z env_override set=[] unset=[]
+2026-10-30T15:30:51.647Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 556ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:30:51.647Z   compose up out: 6f8c99d5bfaed6925a99ba18d96226badac9c43851bcf882cb9e65a7e60de976
+repo_server_1
+
+2026-10-30T15:30:52.426Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid f35f308786cb -> 6f8c99d5bfae recreated=True
+  logs: {"ts":"2026-10-30T15:30:51.694697Z","level":"info","msg":"listening","addr":"[::]:8420"}
+{"ts":"2026-10-30T15:30:51.700228Z","level":"info","msg":"migrations applied"}
+{"ts":"2026-10-30T15:30:51.702295Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":503,"duration_ms":0.028,"request_id":"1ca79947e3712d5f3edcde2784554c97"}
+{"ts":"2026-10-30T15:30:51.714147Z","level":"info","msg":"using restricted database role","role":"coffer_app"}
+{"ts":"2026-10-30T15:30:51.839393Z","level":"info","msg":"ready"}
+{"ts":"2026-10-30T15:30:52.284363Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":200,"duration_ms":1.382,"request_id":"53ec25982039ac56f22da046dc4b8910"}
+
+2026-10-30T15:30:52.426Z CONTROL ok: env_override with unchanged .env -> ready
+2026-10-30T15:30:52.985Z pg_dumpall pre-env-override -> rc=0 0021-X3-pre-env-override.sql
+2026-10-30T15:30:53.102Z sweep_snapshot pre-env-override: dump=0021-X3-pre-env-override.sql logs=2
+2026-10-30T15:30:53.103Z env_override set=['COFFER_MASTER_KEY'] unset=[]
+2026-10-30T15:30:53.972Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 552ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:30:53.973Z   compose up out: 4bc068a7001ad27b4153548e13cfcd2ae9f91ba02b3fad6347896a8106b56bac
+repo_server_1
+
+2026-10-30T15:30:55.316Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid 6f8c99d5bfae -> 4bc068a7001a recreated=True
+  logs: config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+
+2026-10-30T15:30:55.316Z ASSERT ok   not(master key placeholder: server became ready (want refuse to start))
+2026-10-30T15:30:56.137Z pg_dumpall pre-env-override -> rc=0 0022-X3-pre-env-override.sql
+2026-10-30T15:30:56.463Z sweep_snapshot pre-env-override: dump=0022-X3-pre-env-override.sql logs=2
+2026-10-30T15:30:56.463Z env_override set=['COFFER_MASTER_KEY'] unset=[]
+2026-10-30T15:30:57.861Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 564ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:30:57.861Z   compose up out: 798a6059cf98431b40d2c3ffe94442c759296958213c8f98869e33541ce740f3
+repo_server_1
+
+2026-10-30T15:30:59.193Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid 4bc068a7001a -> 798a6059cf98 recreated=True
+  logs: config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+config error: invalid environment variable COFFER_MASTER_KEY: must decode to exactly 32 bytes (got 16)
+
+2026-10-30T15:30:59.193Z ASSERT ok   not(master key 16-byte key: server became ready (want refuse to start))
+2026-10-30T15:30:59.964Z pg_dumpall pre-env-override -> rc=0 0023-X3-pre-env-override.sql
+2026-10-30T15:31:00.316Z sweep_snapshot pre-env-override: dump=0023-X3-pre-env-override.sql logs=2
+2026-10-30T15:31:00.317Z env_override set=[] unset=['COFFER_MASTER_KEY']
+2026-10-30T15:31:01.715Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 558ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:01.715Z   compose up out: fec671a8e1aa52b6c759aee64b0abb062bf72c2dca37fe038f89498887499108
+repo_server_1
+
+2026-10-30T15:31:03.017Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid 798a6059cf98 -> fec671a8e1aa recreated=True
+  logs: config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+
+2026-10-30T15:31:03.017Z ASSERT ok   not(master key unset: server became ready (want refuse to start))
+2026-10-30T15:31:03.771Z pg_dumpall pre-rollback-X3 -> rc=0 0024-X3-pre-rollback-X3.sql
+2026-10-30T15:31:04.242Z sweep_snapshot pre-rollback-X3: dump=0024-X3-pre-rollback-X3.sql logs=2
+2026-10-30T15:31:19Z [runner] rollback: ok

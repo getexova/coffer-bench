@@ -1,0 +1,123 @@
+2026-10-30T15:25:13.869Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 9ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:25:13.869Z CONTROL ok: owner@acme GET api/dev/CANARY (200)
+2026-10-30T15:25:13.869Z ASSERT ok   not(acme and globex api/dev canaries are not distinct)
+2026-10-30T15:25:13.873Z CLI coffer whoami actor=anon home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 4ms stdin=0B
+  out: type: user
+id: usr_zsxf7ikyrvmz447g6rok7ywwlphysxla
+email: owner@globex.test
+role: owner
+org_id: org_vx52qjv4ol5vw65z3qaeqxr7tdplmvhl
+org_slug: globex
+must_change_password: false
+
+  err: 
+2026-10-30T15:25:13.880Z CLI coffer secrets get CANARY -p api -e dev actor=owner@globex home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: «canary:globex/api/dev/CANARY»
+  err: 
+2026-10-30T15:25:13.880Z ASSERT ok   globex `secrets get CANARY -p api -e dev` -> globex's value
+2026-10-30T15:25:13.887Z CLI coffer secrets get CANARY -p api -e prod actor=owner@globex home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: «canary:globex/api/prod/CANARY»
+  err: 
+2026-10-30T15:25:13.887Z ASSERT ok   globex `secrets get CANARY -p api -e prod` -> globex's value
+2026-10-30T15:25:13.892Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:25:13.892Z ASSERT ok   globex GET api/dev/CANARY -> 200, globex's value
+2026-10-30T15:25:13.896Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:25:13.896Z ASSERT ok   not(globex GET api/dev/CANARY/versions/1 -> 200)
+2026-10-30T15:25:13.897Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:45.916105Z","created_by":"usr_zsxf7ikyrvmz447g6rok7ywwlphysxla"}]
+
+2026-10-30T15:25:13.898Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.916105Z","updated_by":"usr_zsxf7ikyrvmz447g6rok7ywwlphysxla"}]
+
+2026-10-30T15:25:13.898Z ASSERT ok   not(globex list api/dev -> 200 keys=['CANARY'])
+2026-10-30T15:25:13.903Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"CANARY":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:25:13.903Z ASSERT ok   not(globex export json api/dev -> 200, not exactly globex values)
+2026-10-30T15:25:13.907Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@globex -> 200 4ms
+  req: 
+  resp: CANARY="«canary:globex/api/dev/CANARY»"
+
+2026-10-30T15:25:13.914Z CLI coffer secrets export -p api -e dev --format dotenv actor=owner@globex home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: CANARY="«canary:globex/api/dev/CANARY»"
+
+  err: 
+2026-10-30T15:25:13.914Z ASSERT ok   not(globex CLI export api/dev rc=0)
+2026-10-30T15:25:13.921Z CLI coffer run -p api -e dev -- /bin/sh -c [ "$CANARY" = "$S_EXPECT" ] actor=owner@globex home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: 
+  err: 
+2026-10-30T15:25:13.921Z ASSERT ok   not(globex run api/dev: CANARY in child is not globex's (rc=0))
+2026-10-30T15:25:13.926Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+
+2026-10-30T15:25:13.926Z ASSERT ok   globex GET api/prod/CANARY -> 200, globex's value
+2026-10-30T15:25:13.931Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions/1 actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+
+2026-10-30T15:25:13.931Z ASSERT ok   not(globex GET api/prod/CANARY/versions/1 -> 200)
+2026-10-30T15:25:13.932Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:45.925011Z","created_by":"usr_zsxf7ikyrvmz447g6rok7ywwlphysxla"}]
+
+2026-10-30T15:25:13.933Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.925011Z","updated_by":"usr_zsxf7ikyrvmz447g6rok7ywwlphysxla"}]
+
+2026-10-30T15:25:13.933Z ASSERT ok   not(globex list api/prod -> 200 keys=['CANARY'])
+2026-10-30T15:25:13.937Z HTTP GET /api/v1/projects/api/envs/prod/export actor=owner@globex -> 200 4ms
+  req: 
+  resp: {"CANARY":"«canary:globex/api/prod/CANARY»"}
+
+2026-10-30T15:25:13.937Z ASSERT ok   not(globex export json api/prod -> 200, not exactly globex values)
+2026-10-30T15:25:13.942Z HTTP GET /api/v1/projects/api/envs/prod/export actor=owner@globex -> 200 4ms
+  req: 
+  resp: CANARY="«canary:globex/api/prod/CANARY»"
+
+2026-10-30T15:25:13.948Z CLI coffer secrets export -p api -e prod --format dotenv actor=owner@globex home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: CANARY="«canary:globex/api/prod/CANARY»"
+
+  err: 
+2026-10-30T15:25:13.948Z ASSERT ok   not(globex CLI export api/prod rc=0)
+2026-10-30T15:25:13.957Z CLI coffer run -p api -e prod -- /bin/sh -c [ "$CANARY" = "$S_EXPECT" ] actor=owner@globex home=/home/grader2/work-c2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: 
+  err: 
+2026-10-30T15:25:13.957Z ASSERT ok   not(globex run api/prod: CANARY in child is not globex's (rc=0))
+2026-10-30T15:25:13.962Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@globex -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:25:13.962Z ASSERT ok   not(globex GET api/dev/MULTI (acme-only key) -> 404 (want 404))
+2026-10-30T15:25:13.963Z HTTP GET /api/v1/changes actor=owner@globex -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:25:13.965Z HTTP GET /api/v1/audit actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"seq":72,"ts":"2026-10-30T15:25:13.958645Z","actor":{"type":"user","id":"usr_zsxf7ikyrvmz447g6rok7ywwlphysxla"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=MULTI","source_ip":"10.89.0.3","result":"denied","details":{"status":404},"prev_hash":"c9b9c0b0ce93d9ee7c15246dab79ba047172beb9882de194fde0a2fbba8d3790","hash":"9e2b9e1e0eafc38021432940913edfb116d00ac18938592380af7767cadf1ec9"},{"seq":71,"ts":"2026-10-30T15:25:13.952021Z","actor":{"type":"user","id":"usr_z…[sha256=7066223e19144793c8f8169553807cfa8dca189a2dbcb0d0a1968ef754af762f len=30465]
+2026-10-30T15:25:13.970Z HTTP POST /api/v1/tokens actor=owner@globex -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s2-110b3"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:13.965928Z","id":"tok_tnneh46ceeq4py5kxn3tj6p724owgpzm","name":"s2-110b3","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:13.979Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=tok:s2-110b3 -> 200 8ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:25:13.979Z ASSERT ok   globex token GET api/dev/CANARY -> 200, globex's value
+2026-10-30T15:25:13.984Z HTTP GET /api/v1/projects/api/envs/dev/export actor=tok:s2-110b3 -> 200 4ms
+  req: 
+  resp: CANARY="«canary:globex/api/dev/CANARY»"
+
+2026-10-30T15:25:13.984Z ASSERT ok   no acme canary in any of 23 globex responses

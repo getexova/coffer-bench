@@ -1,0 +1,71 @@
+2026-10-30T15:34:26.596Z HTTP GET /api/v1/audit actor=owner@acme -> 200 9ms
+  req: 
+  resp: [{"seq":3121,"ts":"2026-10-30T15:34:25.261109Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/CANARY","source_ip":"10.89.0.122","result":"success","details":{"version":1},"prev_hash":"4fe11166484664f421d4e534d2e933ce0ecdf4e9702f9807bac4ebca6dac24e3","hash":"bbe2f657784a6499e45e9be9fc3d2f354e7c68307049e6836e03c90c98afbebf"},{"seq":3120,"ts":"2026-10-30T15:33:50.694304Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":…[sha256=8a88e676cf2100635941d4b51c19abdab8bb7bca4ba9629b7b14ac1bc733df2c len=394750]
+2026-10-30T15:34:26.628Z CLI coffer audit verify actor=owner@acme home=/home/grader2/work-c2/tmp/A5/home-pat-b2c02f6d url=http://127.0.0.1:8420 -> rc=0 28ms stdin=0B
+  out: chain valid
+
+  err: 
+2026-10-30T15:34:26.651Z HTTP GET /api/v1/audit/verify actor=owner@acme -> 200 23ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+
+2026-10-30T15:34:26.651Z verify: cli rc=0 api=200 {'valid': True, 'first_invalid_seq': None}
+2026-10-30T15:34:26.992Z PSQL user=coffer db=coffer rc=0 rows=14
+  sql: SELECT table_schema, table_name, string_agg(column_name || ':' || data_type, ',') FROM information_schema.columns WHERE table_schema NOT IN ('pg_catalog','information_schema') AND (table_schema, table_name) IN (SELECT table_schema, table_name FROM information_schema.tables WHERE table_type='BASE TABLE') GROUP BY 1,2;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:26.993Z audit-like tables: [('public', 'audit_events')]
+2026-10-30T15:34:27.346Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT count(*) FROM "public"."audit_events" WHERE "hash"::text = 'abc73695b382a77b0b19f01f1066958b868e9ffc23971b8d9c14cad07e953dee';
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:27.688Z PSQL user=coffer db=coffer rc=0 rows=1
+  sql: SELECT row_to_json(x)::text FROM "public"."audit_events" x WHERE "hash"::text = 'abc73695b382a77b0b19f01f1066958b868e9ffc23971b8d9c14cad07e953dee';
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:28.035Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: BEGIN; SET LOCAL session_replication_role = replica; UPDATE "public"."audit_events" SET "target" = coalesce("target",'') || '~A5' WHERE "hash"::text = 'abc73695b382a77b0b19f01f1066958b868e9ffc23971b8d9c14cad07e953dee'; COMMIT;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:28.035Z tampered: UPDATE audit_events.target at seq 2622
+2026-10-30T15:34:28.056Z CLI coffer audit verify actor=owner@acme home=/home/grader2/work-c2/tmp/A5/home-pat-6a1225e9 url=http://127.0.0.1:8420 -> rc=9 20ms stdin=0B
+  out: chain invalid at seq 2622
+
+  err: 
+2026-10-30T15:34:28.074Z HTTP GET /api/v1/audit/verify actor=owner@acme -> 200 18ms
+  req: 
+  resp: {"valid":false,"first_invalid_seq":2622}
+
+2026-10-30T15:34:28.074Z verify: cli rc=9 api=200 {'valid': False, 'first_invalid_seq': 2622}
+2026-10-30T15:34:28.074Z ASSERT ok   not(UPDATE audit_events.target at seq 2622: coffer audit verify rc=9 (want 9))
+2026-10-30T15:34:28.074Z ASSERT ok   not(UPDATE audit_events.target at seq 2622: GET /audit/verify -> 200 {'valid': False, 'first_invalid_seq': 2622} (want valid:false))
+2026-10-30T15:34:28.074Z ASSERT ok   not(UPDATE audit_events.target at seq 2622: first_invalid_seq=2622 (want 2622))
+2026-10-30T15:34:28.104Z CLI coffer --json audit verify actor=owner@acme home=/home/grader2/work-c2/tmp/A5/home-pat-e5d52b17 url=http://127.0.0.1:8420 -> rc=9 29ms stdin=0B
+  out: {
+  "valid": false,
+  "first_invalid_seq": 2622
+}
+
+  err: 
+2026-10-30T15:34:28.104Z ASSERT ok   not(UPDATE audit_events.target at seq 2622: CLI --json first_invalid_seq=2622 (want 2622))
+2026-10-30T15:34:28.451Z PSQL user=coffer db=coffer rc=0 rows=0
+  sql: BEGIN; SET LOCAL session_replication_role = replica; UPDATE "public"."audit_events" SET "target" = (json_populate_record(NULL::"public"."audit_events", $q4be69b81ee0a${"chain":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","seq":2622,"ts":"2026-10-30T15:30:16.949857+00:00","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","actor_type":"user","actor_id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","action":"secret.write","target":"o10-1fb57/dev/O10_K0716","source_ip":"10.89.0.3","result":"success","details":{"version": 1},"prev_hash":"8a1992bb96d4806d01e9641da30cd2f4cbcb3e7388ec929d45a5b7d543c0606d","hash":"abc73695b382a77b0b19f01f1066958b868e9ffc23971b8d9c14cad07e953dee"}$q4be69b81ee0a$::json))."target" WHERE "hash"::text = 'abc73695b382a77b0b19f01f1066958b868e9ffc23971b8d9c14cad07e953dee'; COMMIT;
+  err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:34:28.482Z CLI coffer audit verify actor=owner@acme home=/home/grader2/work-c2/tmp/A5/home-pat-e74ff87e url=http://127.0.0.1:8420 -> rc=0 30ms stdin=0B
+  out: chain valid
+
+  err: 
+2026-10-30T15:34:28.508Z HTTP GET /api/v1/audit/verify actor=owner@acme -> 200 26ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+
+2026-10-30T15:34:28.508Z verify: cli rc=0 api=200 {'valid': True, 'first_invalid_seq': None}
+2026-10-30T15:34:29.179Z pg_dumpall pre-rollback-A5 -> rc=0 0044-A5-pre-rollback-A5.sql
+2026-10-30T15:34:29.304Z sweep_snapshot pre-rollback-A5: dump=0044-A5-pre-rollback-A5.sql logs=2
+2026-10-30T15:34:44Z [runner] rollback: ok

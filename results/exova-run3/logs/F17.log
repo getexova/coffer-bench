@@ -1,0 +1,131 @@
+2026-10-29T12:56:00.014Z CLI coffer secrets set F17_PERSIST_CC9191E0 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=40B
+  out: Set F17_PERSIST_CC9191E0 (version 1)
+
+  err: 
+2026-10-29T12:56:00.014Z ASSERT ok   not(pre set failed)
+2026-10-29T12:56:00.130Z CLI coffer secrets set F17_PERSIST_CC9191E0 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 116ms stdin=40B
+  out: Set F17_PERSIST_CC9191E0 (version 2)
+
+  err: 
+2026-10-29T12:56:00.130Z ASSERT ok   not(pre set failed)
+2026-10-29T12:56:00.135Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:00.139Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+2026-10-29T12:56:00.142Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:56:00.145Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:56:00.148Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+2026-10-29T12:56:00.151Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+2026-10-29T12:56:00.651Z pg_dumpall pre-down -> rc=0 0002-F17-pre-down.sql
+2026-10-29T12:56:00.731Z sweep_snapshot pre-down: dump=0002-F17-pre-down.sql logs=2
+2026-10-29T12:56:01.629Z SCRIPT down.sh  -> rc=0 898ms
+  out: Stopping the Coffer stack with: docker compose down
+repo_server_1
+repo_db_1
+repo_server_1
+repo_db_1
+1426fac71723003429098aec469eb051a9005ee985773bf010b231fc50fa2f4a
+repo_default
+Stack stopped. The db_data volume was kept, so ./scripts/up.sh brings back
+every secret, version and audit event.
+
+  err: Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:56:01.629Z ASSERT ok   not(down.sh rc=0)
+2026-10-29T12:56:01.630Z readyz after down.sh -> 0 ConnectionRefusedError: [Errno 111] Connection refused
+2026-10-29T12:56:01.900Z container discovery: nothing found for project repo; compose ps rc=0 out='CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES\n' err='\x1b[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<\n\n\x1b[0m' | podman ps -a: 0 containers; named like 'repo': 
+2026-10-29T12:56:01.918Z sweep_snapshot pre-up: dump=None logs=0
+2026-10-29T12:56:04.487Z SCRIPT up.sh  -> rc=0 2569ms
+  out: ache fd13e92bee550ed2eb01ab32e306e8e39f2e1edbc46a9033378d7ffadd9b0db1
+--> fd13e92bee55
+[2/2] STEP 4/9: ENV COFFER_BIND_ADDR=0.0.0.0     COFFER_PORT=8420
+--> Using cache 8c64049d3d28974610c54067eded5ec06ecd87129f6ec67f66f0d2b4b1ee93c0
+--> 8c64049d3d28
+[2/2] STEP 5/9: USER 10001:10001
+--> Using cache cd5c047fe864ea63295a0df71eea0bc4abc033c65e115404f6bff981fcdd1e88
+--> cd5c047fe864
+[2/2] STEP 6/9: WORKDIR /home/coffer
+--> Using cache 768f91c9d59bc42326dd33739688cf90f3d08a41eef262eca17bf39e65b0dfbb
+--> 768f91c9d59b
+[2/2] STEP 7/9: EXPOSE 8420
+--> Using cache 3ba042813b0fd9670f902aaad323d7e56b17043c78a738edd955c7aebaf23e5a
+--> 3ba042813b0f
+[2/2] STEP 8/9: ENTRYPOINT ["/usr/local/bin/coffer"]
+--> Using cache 142f85755b9760e8d423e6221a8346898edd67df71e2c6e868c44bbe43abc27e
+--> 142f85755b97
+[2/2] STEP 9/9: CMD ["server"]
+--> Using cache b85b0978c6b55b2d3c1c3c143ad5efd9c9c9d2a02b19e9ff4f542fafb6847552
+[2/2] COMMIT repo_server
+--> b85b0978c6b5
+Successfully tagged localhost/repo_server:latest
+b85b0978c6b55b2d3c1c3c143ad5efd9c9c9d2a02b19e9ff4f542fafb6847552
+74d436cb49d3398cf7b5d7b33635d43623d9e4da4b93c22db453f7d5d81181b1
+e8c3d9659dc6e42cb93da0c86ccb0b154c1cc074e575e81bf527209bd75a75cd
+3bf374fcd70824b5a917cec7599a4514a2a8f97bd8a453007ce8271ffaa87072
+f12d03eeac6a9ae70ef7e66ca4026870657caba1986401ebf81aa46c5f27ebfe
+repo_db_1
+repo_server_1
+Waiting up to 180 s for http://127.0.0.1:8420/readyz
+
+Coffer is ready (after 1 s).
+API: http://127.0.0.1:8420/api/v1
+Health: http://127.0.0.1:8420/readyz
+
+  err: Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mEmulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:56:04.489Z wait_ready(30.0s) -> True (last status 200)
+2026-10-29T12:56:04.489Z ASSERT ok   not(up.sh rc=0)
+2026-10-29T12:56:04.490Z wait_ready(60.0s) -> True (last status 200)
+2026-10-29T12:56:04.498Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 8ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:04.498Z ASSERT ok   not(after down/up acme/api/dev/CANARY: 200 exact=True)
+2026-10-29T12:56:04.503Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+2026-10-29T12:56:04.503Z ASSERT ok   not(after down/up acme/api/dev/MULTI: 200 exact=True)
+2026-10-29T12:56:04.508Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:56:04.508Z ASSERT ok   not(after down/up acme/web/dev/CANARY: 200 exact=True)
+2026-10-29T12:56:04.513Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:56:04.513Z ASSERT ok   not(after down/up acme/api/prod/CANARY: 200 exact=True)
+2026-10-29T12:56:04.518Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+2026-10-29T12:56:04.518Z ASSERT ok   not(after down/up globex/api/dev/CANARY: 200 exact=True)
+2026-10-29T12:56:04.523Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+2026-10-29T12:56:04.523Z ASSERT ok   not(after down/up globex/api/prod/CANARY: 200 exact=True)
+2026-10-29T12:56:04.651Z CLI coffer secrets get F17_PERSIST_CC9191E0 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 128ms stdin=0B
+  out: «canary:F17:v2»
+  err: 
+2026-10-29T12:56:04.651Z ASSERT ok   not(marker current after restart exact=True rc=0)
+2026-10-29T12:56:04.773Z CLI coffer secrets get F17_PERSIST_CC9191E0 -p api -e dev --version 1 actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: «canary:F17:v1»
+  err: 
+2026-10-29T12:56:04.773Z ASSERT ok   not(marker v1 after restart exact=True)
+2026-10-29T12:56:04.775Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F17_PERSIST_CC9191E0/versions actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:56:00.005483Z","created_by":"usr_36d0d9963bd156b5caddacec"},{"version":2,"deleted":false,"created_at":"2026-10-29T12:56:00.122813Z","created_by":"usr_36d0d9963bd156b5caddacec"}]
+2026-10-29T12:56:04.775Z ASSERT ok   not(marker versions after restart=[(1, False), (2, False)])

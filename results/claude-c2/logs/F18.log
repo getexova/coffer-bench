@@ -1,0 +1,43 @@
+2026-10-30T15:24:56.901Z CLI coffer member add f18-546fba4b@acme.test --role member actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 56ms stdin=17B
+  out: added f18-546fba4b@acme.test as member (usr_5bqahud3p3qbb4hwotpfsgk5hvkg7yyx)
+
+  err: 
+2026-10-30T15:24:56.901Z ASSERT ok   not(member add rc=0)
+2026-10-30T15:24:56.961Z CLI coffer login --email f18-546fba4b@acme.test actor=anon home=/home/grader2/work-c2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 59ms stdin=17B
+  out: logged in as f18-546fba4b@acme.test
+
+  err: 
+2026-10-30T15:24:56.961Z ASSERT ok   not(login with initial password rc=0 (passwd needs a session))
+2026-10-30T15:24:56.968Z CLI coffer project list actor=anon home=/home/grader2/work-c2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 7ms stdin=0B
+  out: ID	SLUG	LEVEL	CREATED_AT
+
+  err: 
+2026-10-30T15:24:56.968Z ASSERT FAIL before passwd: project list rc=0 (want refused)
+2026-10-30T15:24:57.016Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "f18-546fba4b@acme.test", "password": "«pw0:f18-546fba4b@acme.test»"}
+  resp: {"expires_at":"2026-11-29T15:24:56.970234Z","token":"<redacted-token>","user":{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg7yyx","email":"f18-546fba4b@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:24:57.019Z HTTP GET /api/v1/projects actor=anon -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:57.019Z ASSERT FAIL before passwd: API GET /projects -> 200 (want refused)
+2026-10-30T15:24:57.130Z CLI coffer passwd actor=anon home=/home/grader2/work-c2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 110ms stdin=34B
+  out: password changed
+
+  err: 
+2026-10-30T15:24:57.130Z ASSERT ok   not(passwd rc=0 (want 0))
+2026-10-30T15:24:57.137Z CLI coffer project list actor=anon home=/home/grader2/work-c2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 7ms stdin=0B
+  out: ID	SLUG	LEVEL	CREATED_AT
+
+  err: 
+2026-10-30T15:24:57.137Z ASSERT ok   not(after passwd: project list rc=0 (want 0))
+2026-10-30T15:24:57.185Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "f18-546fba4b@acme.test", "password": "«pw1:f18-546fba4b@acme.test»"}
+  resp: {"expires_at":"2026-11-29T15:24:57.138006Z","token":"<redacted-token>","user":{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg7yyx","email":"f18-546fba4b@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:24:57.185Z ASSERT ok   not(raw login new password -> 201)
+2026-10-30T15:24:57.236Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "f18-546fba4b@acme.test", "password": "«pw0:f18-546fba4b@acme.test»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:24:57.236Z ASSERT ok   not(raw login old password -> 401 (want 401))

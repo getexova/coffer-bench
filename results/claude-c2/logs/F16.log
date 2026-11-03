@@ -1,0 +1,110 @@
+2026-10-30T15:24:56.691Z CLI coffer --json secrets list -p api -e dev actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 8ms stdin=0B
+  out: [
+  {
+    "key": "CANARY",
+    "version": 1,
+    "updated_at": "2026-10-30T15:24:45.867335Z",
+    "updated_by": "usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"
+  },
+  {
+    "key": "F2_BIG_F37A6220",
+    "version": 1,
+    "updated_at": "2026-10-30T15:24:53.339447Z",
+    "updated_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"
+  },
+  {
+    "key": "F2_EMPTY_POS_D8F43BE3",
+    "version": 1,
+    "updated_at": "2026-10-30T15:24:53.271765Z",
+    "updated_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"
+  },
+  {
+    "key": "F2_EMPTY…[sha256=6442403a5ee5e9dec80b195131587ae2e99aaa6873f3f231d2850c148a4dc537 len=2120]
+  err: 
+2026-10-30T15:24:56.691Z ASSERT ok   not(secrets list --json rc=0)
+2026-10-30T15:24:56.691Z ASSERT ok   not(secrets list: CANARY key missing or value shown)
+2026-10-30T15:24:56.705Z CLI coffer --json secrets get CANARY -p api -e dev actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 14ms stdin=0B
+  out: {
+  "key": "CANARY",
+  "version": 1,
+  "value": "«canary:acme/api/dev/CANARY»"
+}
+
+  err: 
+2026-10-30T15:24:56.705Z ASSERT ok   not(secrets get --json rc=0)
+2026-10-30T15:24:56.705Z ASSERT ok   not(secrets get --json: value missing)
+2026-10-30T15:24:56.712Z CLI coffer --json secrets history CANARY -p api -e dev actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 6ms stdin=0B
+  out: [
+  {
+    "version": 1,
+    "deleted": false,
+    "created_at": "2026-10-30T15:24:45.867335Z",
+    "created_by": "usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"
+  }
+]
+
+  err: 
+2026-10-30T15:24:56.712Z ASSERT ok   not(history --json rc=0)
+2026-10-30T15:24:56.712Z ASSERT ok   not(history --json has no version list: [{'version': 1, 'deleted': False, 'created_at': '2026-10-30T15:24:45.867335Z', ')
+2026-10-30T15:24:56.712Z CLI-SPAWN coffer --json token create -p api -e dev --access read --ttl 30m --name f16-23fc67 actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme
+2026-10-30T15:24:56.722Z QCLI coffer token create -p api -e dev --access read --ttl 30m --name f16-23fc67 -> rc=0
+  out: {
+  "access": "read",
+  "env": "dev",
+  "expires_at": "2026-10-30T15:54:56.716049Z",
+  "id": "tok_mmb4p625sv3co2flieoj5pk3atj43mdo",
+  "name": "f16-23fc67",
+  "project": "api",
+  "token": "«token:F16:64c354»"
+}
+
+  err: 
+2026-10-30T15:24:56.722Z ASSERT ok   not(token create --json rc=0)
+2026-10-30T15:24:56.722Z ASSERT ok   not(token create --json: no cof_st_ token field)
+2026-10-30T15:24:56.731Z CLI coffer token revoke tok_mmb4p625sv3co2flieoj5pk3atj43mdo actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: revoked token tok_mmb4p625sv3co2flieoj5pk3atj43mdo
+
+  err: 
+2026-10-30T15:24:56.737Z CLI coffer --json change list actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 5ms stdin=0B
+  out: [
+  {
+    "id": "chg_y6dquvhuse7vackb7medxmed6mn4ahzi",
+    "project": "api",
+    "env": "prod",
+    "key": "F15_PDR_456BE408",
+    "op": "delete",
+    "status": "approved",
+    "proposed_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp",
+    "created_at": "2026-10-30T15:24:56.511014Z",
+    "decided_by": "usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw",
+    "decided_at": "2026-10-30T15:24:56.526328Z",
+    "base_version": 3,
+    "rollback_to": null,
+    "applied_version": 4
+  },
+  {
+    "id": "chg_td4li7bnnxiobqjjtni6gghb5b…[sha256=36714431809a7058c1918f8d8e8a1a8c3d37d98c4ee8a7ebe95cba785ca3adaa len=6024]
+  err: 
+2026-10-30T15:24:56.737Z ASSERT ok   not(change list --json rc=0)
+2026-10-30T15:24:56.737Z ASSERT ok   not(change list --json has no list)
+2026-10-30T15:24:56.743Z CLI coffer --json audit list --limit 5 actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 6ms stdin=0B
+  out: [
+  {
+    "seq": 265,
+    "ts": "2026-10-30T15:24:56.726975Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw"
+    },
+    "action": "token.revoke",
+    "target": "tok_mmb4p625sv3co2flieoj5pk3atj43mdo",
+    "source_ip": "10.89.0.3",
+    "result": "success",
+    "details": {
+      "already_revoked": false
+    },
+    "prev_hash": "07e44fde0e128a8a39244a02660fe6132478f7f2a61becac4746e4d8f0ff934e",
+    "hash": "c899a0ed63ee63c79d2928c910af9c97915915014dc54f0fc794e2b58ff0a8…[sha256=0ed701cd07afe2a14dc464d7b2caa8a7de25b4c17fdbc381dd82616b07894ebe len=2688]
+  err: 
+2026-10-30T15:24:56.743Z ASSERT ok   not(audit list --json rc=0)
+2026-10-30T15:24:56.743Z ASSERT ok   not(audit list --json has no events)

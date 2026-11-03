@@ -1,0 +1,127 @@
+2026-10-30T15:29:07.625Z HTTP POST /api/v1/admin/orgs actor=root -> 201 50ms
+  req: {"slug": "a8-16385", "owner_email": "owner-a8-16385@a8-16385.test", "owner_password": "«pw0:owner@a8-16385»"}
+  resp: {"id":"org_wx7mviu3apzl2zryf3khlfgjanvuyv5g","slug":"a8-16385","disabled":false,"created_at":"2026-10-30T15:29:07.619801Z","owner":{"id":"usr_jjag2cydsjzxosrpztvske5bfphcyecb","email":"owner-a8-16385@a8-16385.test","role":"owner"}}
+
+2026-10-30T15:29:07.677Z HTTP POST /api/v1/auth/token actor=anon -> 201 51ms
+  req: {"email": "owner-a8-16385@a8-16385.test", "password": "«pw0:owner@a8-16385»"}
+  resp: {"expires_at":"2026-11-29T15:29:07.626970Z","token":"<redacted-token>","user":{"id":"usr_jjag2cydsjzxosrpztvske5bfphcyecb","email":"owner-a8-16385@a8-16385.test","role":"owner","org_id":"org_wx7mviu3apzl2zryf3khlfgjanvuyv5g","org_slug":"a8-16385","must_change_password":false}}
+
+2026-10-30T15:29:07.680Z HTTP GET /api/v1/projects actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:29:07.689Z HTTP POST /api/v1/projects actor=owner@a8-16385 -> 201 9ms
+  req: {"slug": "a8-2a66c"}
+  resp: {"id":"prj_u3vrmpihr3klup44vlw5nvwb35hjfq5l","slug":"a8-2a66c","created_at":"2026-10-30T15:29:07.681275Z"}
+
+2026-10-30T15:29:07.694Z HTTP POST /api/v1/projects/a8-2a66c/envs actor=owner@a8-16385 -> 201 5ms
+  req: {"slug": "prod", "protected": true}
+  resp: {"id":"env_wninmvovzwcx2rhct4jn3lh3syhzxvcz","slug":"prod","protected":true,"created_at":"2026-10-30T15:29:07.690685Z"}
+
+2026-10-30T15:29:07.742Z HTTP POST /api/v1/members actor=owner@a8-16385 -> 201 46ms
+  req: {"email": "a8-38eec@a8-16385.test", "role": "admin", "password": "«pw0:a8-38eec@a8-16385»"}
+  resp: {"id":"usr_x7uwiw2ehesznnotfl6qny442gelddol","email":"a8-38eec@a8-16385.test","role":"admin","created_at":"2026-10-30T15:29:07.737718Z"}
+
+2026-10-30T15:29:07.789Z HTTP POST /api/v1/auth/token actor=anon -> 201 46ms
+  req: {"email": "a8-38eec@a8-16385.test", "password": "«pw0:a8-38eec@a8-16385»"}
+  resp: {"expires_at":"2026-11-29T15:29:07.743867Z","token":"<redacted-token>","user":{"id":"usr_x7uwiw2ehesznnotfl6qny442gelddol","email":"a8-38eec@a8-16385.test","role":"admin","org_id":"org_wx7mviu3apzl2zryf3khlfgjanvuyv5g","org_slug":"a8-16385","must_change_password":false}}
+
+2026-10-30T15:29:07.792Z HTTP GET /api/v1/projects actor=a8-38eec@a8-16385 -> 200 2ms
+  req: 
+  resp: [{"id":"prj_u3vrmpihr3klup44vlw5nvwb35hjfq5l","slug":"a8-2a66c","created_at":"2026-10-30T15:29:07.681275Z"}]
+
+2026-10-30T15:29:07.843Z HTTP POST /api/v1/members actor=owner@a8-16385 -> 201 49ms
+  req: {"email": "a8-47505@a8-16385.test", "role": "member", "password": "«pw0:a8-47505@a8-16385»"}
+  resp: {"id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac","email":"a8-47505@a8-16385.test","role":"member","created_at":"2026-10-30T15:29:07.835062Z"}
+
+2026-10-30T15:29:07.849Z HTTP PUT /api/v1/members/usr_irrmkinjlfslarvi5cnamaiyyvnnceac/grants/a8-2a66c actor=owner@a8-16385 -> 200 6ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"a8-2a66c","user_id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac"}
+
+2026-10-30T15:29:07.898Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "a8-47505@a8-16385.test", "password": "«pw0:a8-47505@a8-16385»"}
+  resp: {"expires_at":"2026-11-29T15:29:07.850272Z","token":"<redacted-token>","user":{"id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac","email":"a8-47505@a8-16385.test","role":"member","org_id":"org_wx7mviu3apzl2zryf3khlfgjanvuyv5g","org_slug":"a8-16385","must_change_password":false}}
+
+2026-10-30T15:29:07.902Z HTTP GET /api/v1/projects actor=a8-47505@a8-16385 -> 200 2ms
+  req: 
+  resp: [{"id":"prj_u3vrmpihr3klup44vlw5nvwb35hjfq5l","slug":"a8-2a66c","created_at":"2026-10-30T15:29:07.681275Z","level":"writer"}]
+
+2026-10-30T15:29:07.904Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":9,"ts":"2026-10-30T15:29:07.892566Z","actor":{"type":"user","id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac"},"action":"auth.login","target":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_edghjwzywtzssijyh2jwvl2qge3y2ij5"},"prev_hash":"5843908b612b340b71f9f2194ad862a2fd17a1f3f841e349b70df841dfaa55aa","hash":"0e67cb9056695fa8bbdf99724addc3e06a155fe1f07608471fd59823b461c6df"},{"seq":8,"ts":"2026-10-30T15:29:07.845443Z","actor":{"type":"user","i…[sha256=3cc892721b5f03caeeea6ea16ed74fd88ccf47b3ad001bea3624bff90e3792a4 len=3936]
+2026-10-30T15:29:07.905Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":9,"ts":"2026-10-30T15:29:07.892566Z","actor":{"type":"user","id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac"},"action":"auth.login","target":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_edghjwzywtzssijyh2jwvl2qge3y2ij5"},"prev_hash":"5843908b612b340b71f9f2194ad862a2fd17a1f3f841e349b70df841dfaa55aa","hash":"0e67cb9056695fa8bbdf99724addc3e06a155fe1f07608471fd59823b461c6df"},{"seq":8,"ts":"2026-10-30T15:29:07.845443Z","actor":{"type":"user","i…[sha256=3cc892721b5f03caeeea6ea16ed74fd88ccf47b3ad001bea3624bff90e3792a4 len=3936]
+2026-10-30T15:29:07.916Z CLI coffer --json secrets set A8_2AA2263DFF -p a8-2a66c -e prod actor=a8-47505@a8-16385 home=/home/grader2/work-c2/tmp/A8/home-anon-5 url=http://127.0.0.1:8420 -> rc=7 8ms stdin=40B
+  out: {
+  "change_id": "chg_7z4vthhspnj4ospkujtcfmslxoaibb23",
+  "status": "pending"
+}
+
+  err: 
+2026-10-30T15:29:07.916Z ASSERT ok   not(protected set a rc=7 (want 7))
+2026-10-30T15:29:07.926Z CLI coffer --json secrets set A8_2AA2263DFF -p a8-2a66c -e prod actor=a8-47505@a8-16385 home=/home/grader2/work-c2/tmp/A8/home-anon-6 url=http://127.0.0.1:8420 -> rc=7 8ms stdin=40B
+  out: {
+  "change_id": "chg_npshp2lhrma5dxn5clebtm5mluf5pvd6",
+  "status": "pending"
+}
+
+  err: 
+2026-10-30T15:29:07.926Z ASSERT ok   not(protected set b rc=7 (want 7))
+2026-10-30T15:29:07.937Z CLI coffer --json secrets set A8_72C688F0F2 -p a8-2a66c -e prod actor=a8-47505@a8-16385 home=/home/grader2/work-c2/tmp/A8/home-anon-7 url=http://127.0.0.1:8420 -> rc=7 9ms stdin=40B
+  out: {
+  "change_id": "chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla",
+  "status": "pending"
+}
+
+  err: 
+2026-10-30T15:29:07.937Z ASSERT ok   not(protected set r rc=7 (want 7))
+2026-10-30T15:29:07.938Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":12,"ts":"2026-10-30T15:29:07.932180Z","actor":{"type":"user","id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac"},"action":"change.create","target":"a8-2a66c/prod/A8_72C688F0F2","source_ip":"10.89.0.17","result":"success","details":{"base_version":0,"change_id":"chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla","op":"set"},"prev_hash":"d3580fc0822bf4c9a2915c575f9c883111ac985e1d4cf685299687c84d4b75d7","hash":"44b72f767d2f34cf1ab75a619864683335203babc5acccfe97e6868ff2fa51fd"},{"seq":11,"ts":"2026-10-30T15:29:07.920797Z",…[sha256=94e7bf40f815e9b504fbc27a1c3e6ff749a672f25f9c6831a33d928cc89ec0d9 len=5334]
+2026-10-30T15:29:07.940Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":12,"ts":"2026-10-30T15:29:07.932180Z","actor":{"type":"user","id":"usr_irrmkinjlfslarvi5cnamaiyyvnnceac"},"action":"change.create","target":"a8-2a66c/prod/A8_72C688F0F2","source_ip":"10.89.0.17","result":"success","details":{"base_version":0,"change_id":"chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla","op":"set"},"prev_hash":"d3580fc0822bf4c9a2915c575f9c883111ac985e1d4cf685299687c84d4b75d7","hash":"44b72f767d2f34cf1ab75a619864683335203babc5acccfe97e6868ff2fa51fd"},{"seq":11,"ts":"2026-10-30T15:29:07.920797Z",…[sha256=94e7bf40f815e9b504fbc27a1c3e6ff749a672f25f9c6831a33d928cc89ec0d9 len=5334]
+2026-10-30T15:29:07.941Z ASSERT ok   not(CR chg_7z4vthhspnj4ospkujtcfmslxoaibb23 created: no event by proposer mentioning it)
+2026-10-30T15:29:07.941Z ASSERT ok   not(CR chg_npshp2lhrma5dxn5clebtm5mluf5pvd6 created: no event by proposer mentioning it)
+2026-10-30T15:29:07.941Z ASSERT ok   not(CR chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla created: no event by proposer mentioning it)
+2026-10-30T15:29:07.941Z ASSERT ok   not(two CRs on A8_2AA2263DFF: only 2 distinct created events)
+2026-10-30T15:29:07.949Z CLI coffer change approve chg_npshp2lhrma5dxn5clebtm5mluf5pvd6 actor=a8-38eec@a8-16385 home=/home/grader2/work-c2/tmp/A8/home-anon-8 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: approved change chg_npshp2lhrma5dxn5clebtm5mluf5pvd6 (version 1)
+
+  err: 
+2026-10-30T15:29:07.949Z ASSERT ok   not(approve CR b rc=0)
+2026-10-30T15:29:07.950Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":14,"ts":"2026-10-30T15:29:07.944757Z","actor":{"type":"user","id":"usr_x7uwiw2ehesznnotfl6qny442gelddol"},"action":"secret.write","target":"a8-2a66c/prod/A8_2AA2263DFF","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_npshp2lhrma5dxn5clebtm5mluf5pvd6","version":1},"prev_hash":"18127959af81a179330303490da5df15106bd408da6200b276083fc88bda55d4","hash":"463dd21642ced62f9992b8f4eccbbb5837bc725d0f7e6dae80ee7788b3f06b4f"},{"seq":13,"ts":"2026-10-30T15:29:07.944757Z","actor":{"type":"…[sha256=e20ea32b75d915462ebc76c3cad08cc848ae03f4501711a0ffd94f6a1beab334 len=6234]
+2026-10-30T15:29:07.952Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":14,"ts":"2026-10-30T15:29:07.944757Z","actor":{"type":"user","id":"usr_x7uwiw2ehesznnotfl6qny442gelddol"},"action":"secret.write","target":"a8-2a66c/prod/A8_2AA2263DFF","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_npshp2lhrma5dxn5clebtm5mluf5pvd6","version":1},"prev_hash":"18127959af81a179330303490da5df15106bd408da6200b276083fc88bda55d4","hash":"463dd21642ced62f9992b8f4eccbbb5837bc725d0f7e6dae80ee7788b3f06b4f"},{"seq":13,"ts":"2026-10-30T15:29:07.944757Z","actor":{"type":"…[sha256=e20ea32b75d915462ebc76c3cad08cc848ae03f4501711a0ffd94f6a1beab334 len=6234]
+2026-10-30T15:29:07.953Z approved: 1 matching of 2 new; seq=13 action=change.approve result=success actor=['user', 'usr_x7uwiw2ehesznnotfl6qny442gelddol'] text={"action": "change.approve", "details": {"change_id": "chg_npshp2lhrma5dxn5clebtm5mluf5pvd6", "version": 1}, "result": "success", "target": "a8-2a66c/prod/A8_2A
+2026-10-30T15:29:07.953Z ASSERT ok   not(approved: 1 matching audit event(s) (want >= 1) among 2 new)
+2026-10-30T15:29:07.960Z CLI coffer change approve chg_7z4vthhspnj4ospkujtcfmslxoaibb23 actor=a8-38eec@a8-16385 home=/home/grader2/work-c2/tmp/A8/home-anon-9 url=http://127.0.0.1:8420 -> rc=8 7ms stdin=0B
+  out: 
+  err: error: the key has changed since the change was proposed; the change is now stale (conflict)
+
+2026-10-30T15:29:07.960Z ASSERT ok   not(approve stale CR a rc=8 (want 8 / 409))
+2026-10-30T15:29:07.962Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.956191Z","actor":{"type":"user","id":"usr_x7uwiw2ehesznnotfl6qny442gelddol"},"action":"change.stale","target":"a8-2a66c/prod/A8_2AA2263DFF","source_ip":"10.89.0.17","result":"failed","details":{"base_version":0,"change_id":"chg_7z4vthhspnj4ospkujtcfmslxoaibb23"},"prev_hash":"463dd21642ced62f9992b8f4eccbbb5837bc725d0f7e6dae80ee7788b3f06b4f","hash":"ed06eac2c0550e0ad61b70667815df4539ab741db049e1501cf6f24745fb217e"},{"seq":14,"ts":"2026-10-30T15:29:07.944757Z","actor":{"typ…[sha256=95f51142e7717be1705e1f59142cf4707fd8c00f41366c6dbbb41128e4e1d7da len=6687]
+2026-10-30T15:29:07.964Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.956191Z","actor":{"type":"user","id":"usr_x7uwiw2ehesznnotfl6qny442gelddol"},"action":"change.stale","target":"a8-2a66c/prod/A8_2AA2263DFF","source_ip":"10.89.0.17","result":"failed","details":{"base_version":0,"change_id":"chg_7z4vthhspnj4ospkujtcfmslxoaibb23"},"prev_hash":"463dd21642ced62f9992b8f4eccbbb5837bc725d0f7e6dae80ee7788b3f06b4f","hash":"ed06eac2c0550e0ad61b70667815df4539ab741db049e1501cf6f24745fb217e"},{"seq":14,"ts":"2026-10-30T15:29:07.944757Z","actor":{"typ…[sha256=95f51142e7717be1705e1f59142cf4707fd8c00f41366c6dbbb41128e4e1d7da len=6687]
+2026-10-30T15:29:07.965Z stale: 1 matching of 1 new; seq=15 action=change.stale result=failed actor=['user', 'usr_x7uwiw2ehesznnotfl6qny442gelddol'] text={"action": "change.stale", "details": {"base_version": 0, "change_id": "chg_7z4vthhspnj4ospkujtcfmslxoaibb23"}, "result": "failed", "target": "a8-2a66c/prod/A8_
+2026-10-30T15:29:07.965Z ASSERT ok   not(stale: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:07.971Z CLI coffer change reject chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla actor=a8-38eec@a8-16385 home=/home/grader2/work-c2/tmp/A8/home-anon-10 url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: rejected change chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla
+
+  err: 
+2026-10-30T15:29:07.971Z ASSERT ok   not(reject CR r rc=0)
+2026-10-30T15:29:07.973Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":16,"ts":"2026-10-30T15:29:07.967846Z","actor":{"type":"user","id":"usr_x7uwiw2ehesznnotfl6qny442gelddol"},"action":"change.reject","target":"a8-2a66c/prod/A8_72C688F0F2","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla"},"prev_hash":"ed06eac2c0550e0ad61b70667815df4539ab741db049e1501cf6f24745fb217e","hash":"08976598c60e972bad50a9f5aa12a6636e52fc655b05b30c95baadbca35502a9"},{"seq":15,"ts":"2026-10-30T15:29:07.956191Z","actor":{"type":"user","id":…[sha256=315829315003cd08ec1672284288376bdafb9bbcbdb69de1ca59b497f10ed9f8 len=7125]
+2026-10-30T15:29:07.975Z HTTP GET /api/v1/audit actor=owner@a8-16385 -> 200 1ms
+  req: 
+  resp: [{"seq":16,"ts":"2026-10-30T15:29:07.967846Z","actor":{"type":"user","id":"usr_x7uwiw2ehesznnotfl6qny442gelddol"},"action":"change.reject","target":"a8-2a66c/prod/A8_72C688F0F2","source_ip":"10.89.0.17","result":"success","details":{"change_id":"chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla"},"prev_hash":"ed06eac2c0550e0ad61b70667815df4539ab741db049e1501cf6f24745fb217e","hash":"08976598c60e972bad50a9f5aa12a6636e52fc655b05b30c95baadbca35502a9"},{"seq":15,"ts":"2026-10-30T15:29:07.956191Z","actor":{"type":"user","id":…[sha256=315829315003cd08ec1672284288376bdafb9bbcbdb69de1ca59b497f10ed9f8 len=7125]
+2026-10-30T15:29:07.975Z rejected: 1 matching of 1 new; seq=16 action=change.reject result=success actor=['user', 'usr_x7uwiw2ehesznnotfl6qny442gelddol'] text={"action": "change.reject", "details": {"change_id": "chg_524rmvaoxucf7mdurdmjtvmrcj3qhgla"}, "result": "success", "target": "a8-2a66c/prod/A8_72C688F0F2"}
+2026-10-30T15:29:07.975Z ASSERT ok   not(rejected: 1 matching audit event(s) (want >= 1) among 1 new)

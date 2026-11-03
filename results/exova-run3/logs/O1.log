@@ -1,0 +1,40 @@
+2026-10-29T12:59:13.481Z HTTP GET /healthz actor=anon -> 200 2ms
+  req: 
+  resp: {"status":"ok"}
+2026-10-29T12:59:13.481Z ASSERT ok   not(/healthz -> 200 (want 200))
+2026-10-29T12:59:13.482Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+2026-10-29T12:59:13.530Z server identity before: {'id': '0abdf5a6b96f8d1f9db670074d46756d990147dafeb01c5471b6dccb3eedd3f0', 'started': '2026-10-29T12:58:55.030681564Z', 'pid': 239285, 'restarts': 0}
+2026-10-29T12:59:14.052Z pg_dumpall pre-compose-stop -> rc=0 0011-O1-pre-compose-stop.sql
+2026-10-29T12:59:14.148Z sweep_snapshot pre-compose-stop: dump=0011-O1-pre-compose-stop.sql logs=2
+2026-10-29T12:59:15.547Z COMPOSE stop db -> rc=0 1399ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:59:18.079Z HTTP GET /readyz actor=anon -> 503 2531ms
+  req: 
+  resp: {"reason":"database","status":"not_ready"}
+2026-10-29T12:59:18.079Z ASSERT ok   not(/readyz never 503 within 10 s of db stop (saw [503]))
+2026-10-29T12:59:18.079Z ASSERT ok   not(/readyz returned [] during db outage (only 503 allowed))
+2026-10-29T12:59:18.081Z HTTP GET /healthz actor=anon -> 200 2ms
+  req: 
+  resp: {"status":"ok"}
+2026-10-29T12:59:18.081Z ASSERT ok   not(/healthz with db down -> 200 (want 200: process is up))
+2026-10-29T12:59:18.416Z COMPOSE start db -> rc=0 335ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T12:59:18.416Z compose start db rc=0
+2026-10-29T12:59:18.418Z HTTP GET /readyz actor=anon -> 503 2ms
+  req: 
+  resp: {"reason":"database","status":"not_ready"}
+2026-10-29T12:59:18.925Z HTTP GET /readyz actor=anon -> 200 6ms
+  req: 
+  resp: {"status":"ready"}
+2026-10-29T12:59:18.925Z ASSERT ok   not(/readyz not 200 within 60 s of db start (last [503, 200]))
+2026-10-29T12:59:18.925Z ASSERT ok   not(/readyz returned [] during recovery)
+2026-10-29T12:59:18.973Z server identity after: {'id': '0abdf5a6b96f8d1f9db670074d46756d990147dafeb01c5471b6dccb3eedd3f0', 'started': '2026-10-29T12:58:55.030681564Z', 'pid': 239285, 'restarts': 0}
+2026-10-29T12:59:18.974Z ASSERT ok   not(server restarted during db outage: before={'id': '0abdf5a6b96f8d1f9db670074d46756d990147dafeb01c5471b6dccb3eedd3f0', 'started': '2026-10-29T12:58:55.030681564Z', 'pid': 239285, 'restarts': 0} after={'id': '0abdf5a6b96f8d1f9db670074d46756d990147dafeb01c5471b6dccb3eedd3f0', 'started': '2026-10-29T12:58:55.030681564Z', 'pid': 239285, 'restarts': 0})
+2026-10-29T12:59:18.982Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 9ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:59:18.983Z ASSERT ok   not(after recovery owner GET acme/api/dev/CANARY -> 200 (value match=True))

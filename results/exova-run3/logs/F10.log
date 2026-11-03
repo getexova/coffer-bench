@@ -1,0 +1,71 @@
+2026-10-29T12:55:52.754Z HTTP POST /api/v1/projects actor=owner@acme -> 201 7ms
+  req: {"slug": "f10-1d9cb"}
+  resp: {"project":{"created_at":"2026-10-29T12:55:52.750121Z","id":"prj_97889615509703b543ad621d","slug":"f10-1d9cb"}}
+2026-10-29T12:55:52.759Z HTTP POST /api/v1/projects/f10-1d9cb/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"created_at":"2026-10-29T12:55:52.755787Z","id":"env_3f126a66a45587c238addf37","protected":false,"slug":"dev"}
+2026-10-29T12:55:52.767Z HTTP PUT /api/v1/projects/f10-1d9cb/envs/dev/secrets/F10_A actor=owner@acme -> 200 5ms
+  req: {"value": "«canary:F10:a»"}
+  resp: {"version":1}
+2026-10-29T12:55:52.771Z HTTP PUT /api/v1/projects/f10-1d9cb/envs/dev/secrets/F10_MULTI actor=owner@acme -> 200 5ms
+  req: {"value": "«canary:acme/api/dev/MULTI»"}
+  resp: {"version":1}
+2026-10-29T12:55:52.776Z HTTP PUT /api/v1/projects/f10-1d9cb/envs/dev/secrets/HOME actor=owner@acme -> 200 4ms
+  req: {"value": "«canary:F10:home»"}
+  resp: {"version":1}
+2026-10-29T12:55:52.846Z HTTP POST /api/v1/members actor=owner@acme -> 201 69ms
+  req: {"email": "f10-22d0b@acme.test", "role": "member", "password": "«pw0:f10-22d0b@acme»"}
+  resp: {"member":{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:55:52.839032Z"}}
+2026-10-29T12:55:52.849Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_18850c3d628afc43eb072844","email":"nogrant@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.603785Z"},{"id":"usr_493b9b638f8b78d524ce5e65","email":"owner@acme.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:55:28.775207Z"},{"id":"usr_6e86cc0773114aea3459def6","email":"reader@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.237160Z"},{"id":"usr_554c11ae7f1f108a03ed204b","email":"viewer@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.425265Z"},{"id":"usr_36d0d9963bd156b5caddacec","email":"writer@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.033571Z"},{"id":"usr_8b7a08a3fb67f78f228eddb8","email":"x17-1dcd7@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:44.009182Z"}]}
+2026-10-29T12:55:52.854Z HTTP PUT /api/v1/members/usr_1e4672fc8ca0226448d0c991/grants/f10-1d9cb actor=owner@acme -> 200 5ms
+  req: {"level": "reader"}
+  resp: {"grant":{"level":"reader","project":"f10-1d9cb","user_id":"usr_1e4672fc8ca0226448d0c991"}}
+2026-10-29T12:55:52.934Z HTTP POST /api/v1/auth/token actor=anon -> 200 80ms
+  req: {"email": "f10-22d0b@acme.test", "password": "«pw0:f10-22d0b@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:52.937Z HTTP GET /api/v1/projects actor=f10-22d0b@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:55:53.070Z HTTP POST /api/v1/auth/password actor=f10-22d0b@acme -> 200 131ms
+  req: {"current_password": "«pw0:f10-22d0b@acme»", "new_password": "«pw:f10-22d0b@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:55:53.143Z HTTP POST /api/v1/auth/token actor=anon -> 200 73ms
+  req: {"email": "f10-22d0b@acme.test", "password": "«pw:f10-22d0b@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:53.292Z CLI coffer run -p f10-1d9cb -e dev -- /usr/bin/python3 -I -c import os,json,sys;print(json.dumps({k:os.environ.get(k,'').encode('utf-8','surrogateescape').hex() if k in os.environ else None for k in sys.argv[1:]})) F10_A F10_MULTI HOME PATH actor=f10-22d0b@acme home=/home/grader1/work-r2/tmp/F10/home-anon-3 url=http://127.0.0.1:18420 -> rc=0 148ms stdin=0B
+  out: {"F10_A": "324345526b616b6b4b424a334148575066557a4a4e6b4c7958616d596d34387348676e5743413465", "F10_MULTI": "4671774d5666627a5464385a584347764b785043624f57385545796a777952635676593354304849225c24484f4d450a0d0af09f9880014948305433597656635279776a79455538574f624350784b764743585a3864547a6266564d777146", "HOME": "715867736e57554b39434569713973426270475273374b3757664333704e6c32736d724c4155324a", "PATH": "2f7573722f6c6f63616c2f62696e3a2f7573722f62696e3a2f62696e"}
+
+  err: 
+2026-10-29T12:55:53.292Z ASSERT ok   not(run env dump rc=0)
+2026-10-29T12:55:53.292Z ASSERT ok   not(child env F10_A: exact (secret must override parent))
+2026-10-29T12:55:53.292Z ASSERT ok   not(child env F10_MULTI: exact)
+2026-10-29T12:55:53.292Z ASSERT ok   not(child env HOME: exact (secret must override parent))
+2026-10-29T12:55:53.292Z ASSERT ok   not(child lost the parent env (PATH missing))
+2026-10-29T12:55:53.419Z CLI coffer run -p f10-1d9cb -e dev -- /bin/sh -c exit 42 actor=f10-22d0b@acme home=/home/grader1/work-r2/tmp/F10/home-anon-4 url=http://127.0.0.1:18420 -> rc=42 127ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:55:53.419Z ASSERT ok   not(child exit 42 -> rc=42 (want 42))
+2026-10-29T12:55:53.547Z CLI coffer run -p f10-1d9cb -e dev -- /bin/sh -c kill -TERM $$ actor=f10-22d0b@acme home=/home/grader1/work-r2/tmp/F10/home-anon-5 url=http://127.0.0.1:18420 -> rc=143 127ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:55:53.547Z ASSERT ok   not(child killed by SIGTERM -> rc=143 (want 143))
+2026-10-29T12:55:53.547Z CLI-SPAWN coffer run -p f10-1d9cb -e dev -- /usr/bin/python3 -I -c import signal,sys,time,pathlib
+m=pathlib.Path(sys.argv[1])
+def h(s,f):
+ m.write_text('TERM');sys.exit(0)
+signal.signal(signal.SIGTERM,h)
+print('ready',flush=True)
+time.sleep(30)
+m.write_text('TIMEOUT')
+ /home/grader1/work-r2/tmp/F10/f10-term.marker actor=f10-22d0b@acme home=/home/grader1/work-r2/tmp/F10/home-anon-6
+2026-10-29T12:55:53.937Z SIGTERM to coffer pid 224278: marker='TERM' coffer rc=0
+2026-10-29T12:55:53.937Z ASSERT ok   not(SIGTERM to coffer run did not reach the child (marker='TERM'))
+2026-10-29T12:55:53.937Z ASSERT ok   not(coffer run still running 15 s after its child handled SIGTERM)
+2026-10-29T12:55:54.069Z CLI coffer run -p f10-1d9cb -e dev -- /bin/cat actor=f10-22d0b@acme home=/home/grader1/work-r2/tmp/F10/home-anon-7 url=http://127.0.0.1:18420 -> rc=0 130ms stdin=47B
+  out: «canary:F10:stdin»
+line2
+
+  err: 
+2026-10-29T12:55:54.069Z ASSERT ok   not(stdin passthrough rc=0 exact=True)

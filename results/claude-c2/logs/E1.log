@@ -1,0 +1,31 @@
+2026-10-30T15:35:55.602Z GIT clone --no-hardlinks /home/grader2/work-c2/repo /home/grader2/work-c2/tmp/E1/e1 -> rc=0 11ms err=Cloning into '/home/grader2/work-c2/tmp/E1/e1'...
+done.
+
+2026-10-30T15:35:55.603Z GIT rev-parse HEAD -> rc=0 1ms err=
+2026-10-30T15:35:55.608Z GIT status --porcelain --ignored -> rc=0 5ms err=
+2026-10-30T15:37:42.458Z E1 test.sh rc=0 106.8s out=701B err=480B
+--- stdout tail ---
+?   	github.com/coffer-dev/coffer/cmd/coffer	[no test files]
+?   	github.com/coffer-dev/coffer/cmd/coffer-server	[no test files]
+ok  	github.com/coffer-dev/coffer/internal/cli	1.245s
+ok  	github.com/coffer-dev/coffer/internal/server/api	72.723s
+ok  	github.com/coffer-dev/coffer/internal/server/app	15.360s
+ok  	github.com/coffer-dev/coffer/internal/server/audit	1.012s
+ok  	github.com/coffer-dev/coffer/internal/server/config	1.010s
+ok  	github.com/coffer-dev/coffer/internal/server/crypto	1.401s
+?   	github.com/coffer-dev/coffer/internal/server/db	[no test files]
+?   	github.com/coffer-dev/coffer/internal/server/testutil	[no test files]
+?   	github.com/coffer-dev/coffer/test/e2e	[no test files]
+
+--- stderr tail ---
+==> .env.example documents every variable read by the server, the CLI, the e2e suite and the scripts
+==> starting throwaway docker.io/library/postgres:16 (coffer-test-pg-232758-24629)
+==> test database ready on 127.0.0.1:39721
+==> no suitable local Go; running tests inside docker.io/library/golang:1.26.10-alpine3.24@sha256:a2012b4a1d1f9f7e9f44e0d39b805a901e856b1dd80b4e6ee4338db547050308 with podman
+==> gofmt ok
+==> go vet ok
+==> unit/integration tests ok
+==> all tests passed
+
+2026-10-30T15:37:42.638Z E1 cleanup compose down -v rc=1
+2026-10-30T15:37:42.639Z ASSERT ok   not(./scripts/test.sh rc=0 after 107 s (want 0); tail: ha256:a2012b4a1d1f9f7e9f44e0d39b805a901e856b1dd80b4e6ee4338db547050308 with podman ==> gofmt ok ==> go vet ok ==> unit/integration tests ok ==> all tests passed)

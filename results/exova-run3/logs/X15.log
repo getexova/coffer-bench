@@ -1,0 +1,16 @@
+2026-10-29T12:55:43.035Z osv-scanner /home/grader1/work-r2/tmp/X15/osv-control -> rc=1 1942ms
+  err: Scanning dir /home/grader1/work-r2/tmp/X15/osv-control
+Starting filesystem walk for root: /
+Scanned /home/grader1/work-r2/tmp/X15/osv-control/requirements.txt file and found 1 package
+End status: 1 dirs visited, 2 inodes visited, 1 Extract calls, 119.072µs elapsed, 119.162µs wall time
+
+2026-10-29T12:55:43.039Z CONTROL ok: osv control finds High/Critical (rc=0)
+2026-10-29T12:55:43.345Z osv-scanner /home/grader1/work-r2/repo -> rc=1 306ms
+  err: Scanning dir /home/grader1/work-r2/repo
+Starting filesystem walk for root: /
+Scanned /home/grader1/work-r2/repo/go.mod file and found 9 packages
+End status: 45 dirs visited, 217 inodes visited, 1 Extract calls, 2.554217ms elapsed, 2.554322ms wall time
+Skipping call analysis on Go code since Go is not installed.
+
+2026-10-29T12:55:43.345Z lockfiles scanned: ['go.mod (9 pkgs)']
+2026-10-29T12:55:43.345Z ASSERT ok   not(0 High/Critical)

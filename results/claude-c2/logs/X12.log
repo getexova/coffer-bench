@@ -1,0 +1,23 @@
+2026-10-30T15:28:35.828Z RAW PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X12_1 len=15 chunked=False -> 200 7ms sent=15 err=None
+  resp: {"version":1}
+
+2026-10-30T15:28:35.833Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X12_1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_X12_1","version":1,"value":"ok"}
+
+2026-10-30T15:28:35.833Z CONTROL ok: small PUT stored and readable (200)
+2026-10-30T15:28:35.837Z RAW PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X12_2 len=2097164 chunked=False -> 413 1ms sent=1835008 err=send stopped after 1835008B: [Errno 32] Broken pipe
+  resp: {"error":{"code":"payload_too_large","message":"request body too large"}}
+2026-10-30T15:28:35.837Z ASSERT ok   not(2 MiB PUT secret -> 413 (want 413))
+2026-10-30T15:28:35.837Z ASSERT ok   not(2 MiB PUT secret took 1 ms (want < 1000))
+2026-10-30T15:28:35.841Z RAW POST /api/v1/auth/token len=2097186 chunked=False -> 413 1ms sent=2097186 err=None
+  resp: {"error":{"code":"payload_too_large","message":"request body too large"}}
+2026-10-30T15:28:35.841Z ASSERT ok   not(2 MiB POST /auth/token -> 413 (want 413))
+2026-10-30T15:28:35.841Z ASSERT ok   not(2 MiB POST /auth/token took 1 ms (want < 1000))
+2026-10-30T15:28:35.846Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_X12_2 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.846Z ASSERT ok   not(oversized key after 413: GET -> 404 (want 404, not stored))
+2026-10-30T15:28:35.848Z RAW PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X12_3 len=2097164 chunked=True -> 413 1ms sent=2097164 err=None
+  resp: {"error":{"code":"payload_too_large","message":"request body too large"}}
+2026-10-30T15:28:35.848Z INFO chunked 2 MiB PUT -> 413 in 1 ms (not scored)

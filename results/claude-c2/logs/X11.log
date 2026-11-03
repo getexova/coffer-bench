@@ -1,0 +1,134 @@
+2026-10-30T15:28:35.610Z HTTP GET /api/v1/projects actor=owner@acme -> 200 3ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"},{"id":"prj_edozicjs7o3ahqxej2xzraxsq5crtixm","slug":"x9-24d1d","created_at":"2026-10-30T15:28:34.475467Z"},{"id":"prj_tak5s5bcv6jfrhwnzmc4kfoovvloyxch","slug":"x9-41f4d","created_at":"2026-10-30T15:28:34.850201Z"}]
+
+2026-10-30T15:28:35.610Z CONTROL ok: owner GET /projects (200)
+2026-10-30T15:28:35.611Z HTTP POST /api/v1/auth/token actor=anon -> 400 1ms
+  req: {"email": "a@b.test", "password": 
+  resp: {"error":{"code":"validation","message":"invalid JSON"}}
+2026-10-30T15:28:35.611Z ASSERT ok   not(malformed JSON /auth/token: got 400 (want 4xx))
+2026-10-30T15:28:35.611Z ASSERT ok   not(malformed JSON /auth/token: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.612Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X11_1 actor=owner@acme -> 400 1ms
+  req: {"value": 
+  resp: {"error":{"code":"validation","message":"invalid JSON"}}
+2026-10-30T15:28:35.613Z ASSERT ok   not(malformed JSON PUT secret: got 400 (want 4xx))
+2026-10-30T15:28:35.613Z ASSERT ok   not(malformed JSON PUT secret: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.614Z HTTP POST /api/v1/auth/token actor=anon -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"request body required"}}
+2026-10-30T15:28:35.614Z ASSERT ok   not(empty JSON body /auth/token: got 400 (want 4xx))
+2026-10-30T15:28:35.614Z ASSERT ok   not(empty JSON body /auth/token: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.614Z HTTP POST /api/v1/auth/token actor=anon -> 400 1ms
+  req: [1, 2]
+  resp: {"error":{"code":"validation","message":"request body must be a JSON object"}}
+2026-10-30T15:28:35.615Z ASSERT ok   not(JSON array /auth/token: got 400 (want 4xx))
+2026-10-30T15:28:35.615Z ASSERT ok   not(JSON array /auth/token: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.615Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/1ABC actor=owner@acme -> 400 1ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}}
+2026-10-30T15:28:35.616Z ASSERT ok   not(bad key 1ABC: got 400 (want 4xx))
+2026-10-30T15:28:35.616Z ASSERT ok   not(bad key 1ABC: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.616Z HTTP POST /api/v1/members actor=owner@acme -> 400 1ms
+  req: {"email": "not-an-email", "role": "emperor", "password": "x"}
+  resp: {"error":{"code":"validation","message":"role must be member, admin or owner"}}
+2026-10-30T15:28:35.616Z ASSERT ok   not(bad member body: got 400 (want 4xx))
+2026-10-30T15:28:35.617Z ASSERT ok   not(bad member body: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.620Z HTTP GET /api/v1/projects/zz-absent-a7edafa1/envs/dev/secrets actor=owner@acme -> 404 3ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.620Z ASSERT ok   not(absent project: got 404 (want 403/404))
+2026-10-30T15:28:35.620Z ASSERT ok   not(absent project: 404 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.624Z HTTP GET /api/v1/projects/api/envs/dev/secrets/ZZ_ABSENT_X11 actor=owner@acme -> 404 3ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.624Z ASSERT ok   not(absent secret: got 404 (want 404))
+2026-10-30T15:28:35.624Z ASSERT ok   not(absent secret: 404 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.624Z HTTP GET /api/v1/zz-no-such-route actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.624Z ASSERT ok   not(unknown api route: got 404 (want 404))
+2026-10-30T15:28:35.624Z ASSERT ok   not(unknown api route: 404 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.625Z HTTP GET /zz-no-such-path actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.625Z ASSERT ok   not(unknown root path: got 404 (want 404))
+2026-10-30T15:28:35.625Z ASSERT ok   not(unknown root path: 404 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.626Z HTTP DELETE /api/v1/me actor=owner@acme -> 405 1ms
+  req: 
+  resp: {"error":{"code":"method_not_allowed","message":"method not allowed"}}
+2026-10-30T15:28:35.626Z ASSERT ok   not(wrong method DELETE /me: got 405 (want 404/405))
+2026-10-30T15:28:35.626Z ASSERT ok   not(wrong method DELETE /me: 405 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.627Z HTTP PATCH /api/v1/projects actor=owner@acme -> 405 0ms
+  req: {}
+  resp: {"error":{"code":"method_not_allowed","message":"method not allowed"}}
+2026-10-30T15:28:35.627Z ASSERT ok   not(wrong method PATCH /projects: got 405 (want 404/405))
+2026-10-30T15:28:35.627Z ASSERT ok   not(wrong method PATCH /projects: 405 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.627Z HTTP DELETE /api/v1/audit actor=owner@acme -> 405 0ms
+  req: 
+  resp: {"error":{"code":"method_not_allowed","message":"method not allowed"}}
+2026-10-30T15:28:35.627Z ASSERT ok   not(wrong method DELETE /audit: got 405 (want 404/405))
+2026-10-30T15:28:35.627Z ASSERT ok   not(wrong method DELETE /audit: 405 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.628Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:35.628Z ASSERT ok   not(anon GET /projects: got 401 (want 401))
+2026-10-30T15:28:35.628Z ASSERT ok   not(anon GET /projects: 401 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.628Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:35.628Z ASSERT ok   not(garbage bearer: got 401 (want 401))
+2026-10-30T15:28:35.628Z ASSERT ok   not(garbage bearer: 401 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.629Z HTTP GET /api/v1/audit actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}}
+2026-10-30T15:28:35.629Z ASSERT ok   not(audit limit=abc: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.630Z HTTP GET /api/v1/audit actor=owner@acme -> 400 0ms
+  req: 
+  resp: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}}
+2026-10-30T15:28:35.630Z ASSERT ok   not(audit since=bad: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.630Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"format must be dotenv or json"}}
+2026-10-30T15:28:35.630Z ASSERT ok   not(export format=xml: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.678Z HTTP POST /api/v1/auth/token actor=anon -> 401 47ms
+  req: {"email":"a@b.test","password":"x"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:35.678Z ASSERT ok   not(text/plain login: 401 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.682Z HTTP GET /api/v1/projects/%00/envs actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.682Z ASSERT ok   not(NUL in path: 404 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.684Z HTTP GET /api/v1/projects/api/envs/dev/secrets/ZZ_ABSENT_X11/versions/abc actor=owner@acme -> 400 1ms
+  req: 
+  resp: {"error":{"code":"validation","message":"version must be an integer"}}
+2026-10-30T15:28:35.684Z ASSERT ok   not(version=abc: 400 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.687Z RAW PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X11_1 len=2097164 chunked=False -> 413 1ms sent=2097164 err=None
+  resp: {"error":{"code":"payload_too_large","message":"request body too large"}}
+2026-10-30T15:28:35.688Z ASSERT ok   not(2 MiB PUT secret: got 413 (want 413))
+2026-10-30T15:28:35.688Z ASSERT ok   not(2 MiB PUT: 413 body not {error:{code,message}} (ok))
+2026-10-30T15:28:35.688Z ASSERT ok   not(status 400 never elicited (seen [400, 401, 404, 405, 413]))
+2026-10-30T15:28:35.688Z ASSERT ok   not(status 404 never elicited (seen [400, 401, 404, 405, 413]))
+2026-10-30T15:28:35.688Z ASSERT ok   not(status 413 never elicited (seen [400, 401, 404, 405, 413]))
+2026-10-30T15:28:35.688Z ASSERT ok   not(control GET /projects: body leaks []: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioj)
+2026-10-30T15:28:35.688Z ASSERT ok   not(malformed JSON /auth/token: body leaks []: {"error":{"code":"validation","message":"invalid JSON"}})
+2026-10-30T15:28:35.688Z ASSERT ok   not(malformed JSON PUT secret: body leaks []: {"error":{"code":"validation","message":"invalid JSON"}})
+2026-10-30T15:28:35.688Z ASSERT ok   not(empty JSON body /auth/token: body leaks []: {"error":{"code":"validation","message":"request body required"}})
+2026-10-30T15:28:35.688Z ASSERT ok   not(JSON array /auth/token: body leaks []: {"error":{"code":"validation","message":"request body must be a JSON object"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(bad key 1ABC: body leaks []: {"error":{"code":"validation","message":"invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(bad member body: body leaks []: {"error":{"code":"validation","message":"role must be member, admin or owner"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(absent project: body leaks []: {"error":{"code":"not_found","message":"not found"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(absent secret: body leaks []: {"error":{"code":"not_found","message":"not found"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(unknown api route: body leaks []: {"error":{"code":"not_found","message":"not found"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(unknown root path: body leaks []: {"error":{"code":"not_found","message":"not found"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(wrong method DELETE /me: body leaks []: {"error":{"code":"method_not_allowed","message":"method not allowed"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(wrong method PATCH /projects: body leaks []: {"error":{"code":"method_not_allowed","message":"method not allowed"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(wrong method DELETE /audit: body leaks []: {"error":{"code":"method_not_allowed","message":"method not allowed"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(anon GET /projects: body leaks []: {"error":{"code":"unauthenticated","message":"authentication required"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(garbage bearer: body leaks []: {"error":{"code":"unauthenticated","message":"authentication required"}})
+2026-10-30T15:28:35.689Z ASSERT ok   not(audit limit=abc: body leaks []: {"error":{"code":"validation","message":"limit must be an integer between 1 and 1000"}})
+2026-10-30T15:28:35.690Z ASSERT ok   not(audit since=bad: body leaks []: {"error":{"code":"validation","message":"since must be an RFC 3339 timestamp"}})
+2026-10-30T15:28:35.690Z ASSERT ok   not(export format=xml: body leaks []: {"error":{"code":"validation","message":"format must be dotenv or json"}})
+2026-10-30T15:28:35.690Z ASSERT ok   not(text/plain login: body leaks []: {"error":{"code":"unauthenticated","message":"invalid credentials"}})
+2026-10-30T15:28:35.690Z ASSERT ok   not(NUL in path: body leaks []: {"error":{"code":"not_found","message":"not found"}})
+2026-10-30T15:28:35.690Z ASSERT ok   not(version=abc: body leaks []: {"error":{"code":"validation","message":"version must be an integer"}})
+2026-10-30T15:28:35.690Z ASSERT ok   not(2MiB PUT: body leaks []: {"error":{"code":"payload_too_large","message":"request body too large"}})

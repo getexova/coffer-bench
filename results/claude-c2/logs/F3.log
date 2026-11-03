@@ -1,0 +1,62 @@
+2026-10-30T15:24:53.545Z CLI coffer secrets set F3_MAX_82773D2C -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 13ms stdin=65536B
+  out: set F3_MAX_82773D2C (version 1)
+
+  err: 
+2026-10-30T15:24:53.545Z ASSERT ok   not(control: 65,536 B set rc=0 (want 0))
+2026-10-30T15:24:53.572Z CLI coffer secrets set F3_OVER_BC272829 -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=6 3ms stdin=65537B
+  out: 
+  err: error: value exceeds 65536 bytes
+
+2026-10-30T15:24:53.572Z ASSERT ok   not(65,537 B set rc=6 (want 6))
+2026-10-30T15:24:53.580Z CLI coffer secrets get F3_OVER_BC272829 -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=5 9ms stdin=0B
+  out: 
+  err: error: not found (not_found)
+
+2026-10-30T15:24:53.581Z ASSERT ok   not(after 65,537 B: get rc=5 (want 5, nothing stored))
+2026-10-30T15:24:53.586Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F3_OVER_BC272829 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:24:53.586Z ASSERT ok   not(after 65,537 B: API GET -> 404 (want 404))
+2026-10-30T15:24:53.590Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F3_OVER_BC272829/versions actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:24:53.590Z versions after oversize: None
+2026-10-30T15:24:53.593Z HTTP POST /api/v1/projects actor=owner@acme -> 201 4ms
+  req: {"slug": "f3-1fe1c"}
+  resp: {"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"}
+
+2026-10-30T15:24:53.597Z HTTP POST /api/v1/projects/f3-1fe1c/envs actor=owner@acme -> 201 3ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_rudppjcplmwz66sbdka2nn3jh2ifujuz","slug":"dev","protected":false,"created_at":"2026-10-30T15:24:53.594692Z"}
+
+2026-10-30T15:24:53.609Z CLI coffer secrets set F3_JDST_WT40CNW7SNG6U6LV_BVK0SB20ILBTTFUYK4GCNY4RZUE5KJZN8G6FTOC9AU2H1EFF9CTPSSWRGS559PFTBAFR1QVGTY_8RZQLTDLLI3RINRJWNEEYYL5OHV9 -p f3-1fe1c -e dev actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=1B
+  out: set F3_JDST_WT40CNW7SNG6U6LV_BVK0SB20ILBTTFUYK4GCNY4RZUE5KJZN8G6FTOC9AU2H1EFF9CTPSSWRGS559PFTBAFR1QVGTY_8RZQLTDLLI3RINRJWNEEYYL5OHV9 (version 1)
+
+  err: 
+2026-10-30T15:24:53.609Z ASSERT ok   not(control: 128-char key set rc=0 (want 0))
+2026-10-30T15:24:53.614Z CLI coffer secrets set lower -p f3-1fe1c -e dev actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=6 5ms stdin=1B
+  out: 
+  err: error: invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$ (validation)
+
+2026-10-30T15:24:53.614Z ASSERT ok   not(bad key lower(5): rc=6 (want 6))
+2026-10-30T15:24:53.619Z CLI coffer secrets set 1ABC -p f3-1fe1c -e dev actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=6 5ms stdin=1B
+  out: 
+  err: error: invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$ (validation)
+
+2026-10-30T15:24:53.619Z ASSERT ok   not(bad key 1ABC(4): rc=6 (want 6))
+2026-10-30T15:24:53.624Z CLI coffer secrets set A-B -p f3-1fe1c -e dev actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=6 5ms stdin=1B
+  out: 
+  err: error: invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$ (validation)
+
+2026-10-30T15:24:53.624Z ASSERT ok   not(bad key A-B(3): rc=6 (want 6))
+2026-10-30T15:24:53.629Z CLI coffer secrets set AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -p f3-1fe1c -e dev actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=6 5ms stdin=1B
+  out: 
+  err: error: invalid key: must match ^[A-Z_][A-Z0-9_]{0,127}$ (validation)
+
+2026-10-30T15:24:53.629Z ASSERT ok   not(bad key AAAAAAAAAAAA..(129): rc=6 (want 6))
+2026-10-30T15:24:53.630Z HTTP GET /api/v1/projects/f3-1fe1c/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"F3_JDST_WT40CNW7SNG6U6LV_BVK0SB20ILBTTFUYK4GCNY4RZUE5KJZN8G6FTOC9AU2H1EFF9CTPSSWRGS559PFTBAFR1QVGTY_8RZQLTDLLI3RINRJWNEEYYL5OHV9","version":1,"updated_at":"2026-10-30T15:24:53.601569Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"}]
+
+2026-10-30T15:24:53.630Z scratch keys after bad-key attempts: ['F3_JDST_WT40CNW7SNG6U6LV_BVK0SB20ILBTTFUYK4GCNY4RZUE5KJZN8G6FTOC9AU2H1EFF9CTPSSWRGS559PFTBAFR1QVGTY_8RZQLTDLLI3RINRJWNEEYYL5OHV9']
+2026-10-30T15:24:53.631Z ASSERT ok   not(a bad key was stored anyway)

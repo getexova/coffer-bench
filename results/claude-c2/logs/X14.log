@@ -1,0 +1,66 @@
+2026-10-30T15:28:36.408Z HTTP POST /api/v1/members actor=owner@acme -> 201 52ms
+  req: {"email": "x14-17b4f@acme.test", "role": "member", "password": "«pw0:x14-17b4f@acme»"}
+  resp: {"id":"usr_l5iy2gsmendfgama2rakm4sxdtozvtxs","email":"x14-17b4f@acme.test","role":"member","created_at":"2026-10-30T15:28:36.400089Z"}
+
+2026-10-30T15:28:36.456Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x14-17b4f@acme.test", "password": "«pw0:x14-17b4f@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:36.410266Z","token":"<redacted-token>","user":{"id":"usr_l5iy2gsmendfgama2rakm4sxdtozvtxs","email":"x14-17b4f@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:36.460Z HTTP GET /api/v1/projects actor=x14-17b4f@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:36.514Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader2/work-c2/tmp/X14/home-3 url=http://127.0.0.1:8420 -> rc=0 54ms stdin=25B
+  out: logged in as owner@acme.test
+
+  err: 
+2026-10-30T15:28:36.569Z CLI coffer login --email admin@example.com actor=anon home=/home/grader2/work-c2/tmp/X14/home-4 url=http://127.0.0.1:8420 -> rc=0 54ms stdin=33B
+  out: logged in as admin@example.com
+
+  err: 
+2026-10-30T15:28:36.572Z CLI-SPAWN coffer login --email x14-17b4f@acme.test actor=anon home=/home/grader2/work-c2/tmp/X14/home-2
+2026-10-30T15:28:37.310Z login: rc=0 samples=8 pid_seen=True leaks=[]
+  out: logged in as x14-17b4f@acme.test
+
+  err: 
+2026-10-30T15:28:37.359Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x14-17b4f@acme.test", "password": "«pw0:x14-17b4f@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:37.311170Z","token":"<redacted-token>","user":{"id":"usr_l5iy2gsmendfgama2rakm4sxdtozvtxs","email":"x14-17b4f@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:37.411Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "x14-17b4f@acme.test", "password": "«pw0:x14-17b4f@acme»-wrong"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:37.463Z CLI coffer login --email x14-17b4f@acme.test actor=anon home=/home/grader2/work-c2/tmp/X14/home-5 url=http://127.0.0.1:8420 -> rc=3 51ms stdin=23B
+  out: 
+  err: error: invalid credentials (unauthenticated)
+
+2026-10-30T15:28:37.463Z CONTROL ok: login seen in ps, exited 0, stdin password effective on the server (rc=0)
+2026-10-30T15:28:37.463Z ASSERT ok   not(login: password visible in ps argv ())
+2026-10-30T15:28:37.463Z CLI-SPAWN coffer member add x14-25582cda@acme.test --role member actor=anon home=/home/grader2/work-c2/tmp/X14/home-3
+2026-10-30T15:28:38.199Z member add: rc=0 samples=8 pid_seen=True leaks=[]
+  out: added x14-25582cda@acme.test as member (usr_xif6eejbwozj5eun3g6nh3vvf3oa372g)
+
+  err: 
+2026-10-30T15:28:38.249Z HTTP POST /api/v1/auth/token actor=anon -> 201 50ms
+  req: {"email": "x14-25582cda@acme.test", "password": "«pw0:x14-member»"}
+  resp: {"expires_at":"2026-11-29T15:28:38.200998Z","token":"<redacted-token>","user":{"id":"usr_xif6eejbwozj5eun3g6nh3vvf3oa372g","email":"x14-25582cda@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:38.300Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x14-25582cda@acme.test", "password": "«pw0:x14-member»-wrong"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:38.300Z CONTROL ok: member add seen in ps, exited 0, stdin password effective on the server (rc=0)
+2026-10-30T15:28:38.300Z ASSERT ok   not(member add: password visible in ps argv ())
+2026-10-30T15:28:38.300Z CLI-SPAWN coffer admin org create x14-d69909 --owner-email owner@x14-d69909.test actor=anon home=/home/grader2/work-c2/tmp/X14/home-4
+2026-10-30T15:28:39.033Z admin org create: rc=0 samples=8 pid_seen=True leaks=[]
+  out: created org x14-d69909 (org_xhwvsf4kna5mmbh7h2fprdmr2ucs4ot2) with owner owner@x14-d69909.test
+
+  err: 
+2026-10-30T15:28:39.082Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "owner@x14-d69909.test", "password": "«pw0:owner@x14-d69909»"}
+  resp: {"expires_at":"2026-11-29T15:28:39.035005Z","token":"<redacted-token>","user":{"id":"usr_jzfugkds6pejrcm5eyjp4pywwy2qv7rr","email":"owner@x14-d69909.test","role":"owner","org_id":"org_xhwvsf4kna5mmbh7h2fprdmr2ucs4ot2","org_slug":"x14-d69909","must_change_password":false}}
+
+2026-10-30T15:28:39.133Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "owner@x14-d69909.test", "password": "«pw0:owner@x14-d69909»-wrong"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:39.133Z CONTROL ok: admin org create seen in ps, exited 0, stdin password effective on the server (rc=0)
+2026-10-30T15:28:39.133Z ASSERT ok   not(admin org create: password visible in ps argv ())

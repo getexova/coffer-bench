@@ -1,0 +1,749 @@
+2026-10-30T15:25:43.578Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_1 actor=owner@acme -> 202 10ms
+  req: {"value": "JUNK_S9_1-cr"}
+  resp: {"change_id":"chg_jqzka57utt45be3ymnz5yczuybycngf7","status":"pending"}
+
+2026-10-30T15:25:43.584Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-2c4c2"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:43.579875Z","id":"tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk","name":"s9-2c4c2","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:43.635Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s9-43228@acme.test", "role": "member", "password": "«pw0:s9-43228@acme.test»"}
+  resp: {"id":"usr_e5t6ospoc5ootz6i332ih74pyzlgh43g","email":"s9-43228@acme.test","role":"member","created_at":"2026-10-30T15:25:43.628074Z"}
+
+2026-10-30T15:25:43.641Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_5 actor=owner@acme -> 202 6ms
+  req: {"value": "JUNK_S9_5-cr"}
+  resp: {"change_id":"chg_mvkhc2mhkj4hzarg5betaf6kpalhedtb","status":"pending"}
+
+2026-10-30T15:25:43.647Z HTTP POST /api/v1/changes/chg_mvkhc2mhkj4hzarg5betaf6kpalhedtb/approve actor=admin@acme -> 200 6ms
+  req: {}
+  resp: {"id":"chg_mvkhc2mhkj4hzarg5betaf6kpalhedtb","status":"approved","version":1}
+
+2026-10-30T15:25:43.648Z CONTROL ok: writer@acme approve (200)
+2026-10-30T15:25:43.652Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/approve actor=writer@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:43.652Z ASSERT ok   not(writer@acme approve: denied 403)
+2026-10-30T15:25:43.655Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg_mvkhc2mhkj4hzarg5betaf6kpalhedtb","project":"api","env":"prod","key":"JUNK_S9_5","op":"set","status":"approved","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:43.637343Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:43.642699Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_jqzka57utt45be3ymnz5yczuybycngf7","project":"api","env":"prod","key":"JUNK_S9_1","op":"set","status":"pending","proposed_by":"usr…[sha256=6c7e50d9c4df0ac354e976c4b8a4a5d29b311ddd0ed8562e7258772d07f5f766 len=22406]
+2026-10-30T15:25:43.655Z ASSERT ok   not(writer@acme approve: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:43.661Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_6 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_6-cr"}
+  resp: {"change_id":"chg_vkusnlth7h2z7vdc6mwrvga5sud46dfx","status":"pending"}
+
+2026-10-30T15:25:43.666Z HTTP POST /api/v1/changes/chg_vkusnlth7h2z7vdc6mwrvga5sud46dfx/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg_vkusnlth7h2z7vdc6mwrvga5sud46dfx","status":"rejected"}
+
+2026-10-30T15:25:43.666Z CONTROL ok: writer@acme reject (200)
+2026-10-30T15:25:43.671Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/reject actor=writer@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:43.671Z ASSERT ok   not(writer@acme reject: denied 403)
+2026-10-30T15:25:43.673Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_vkusnlth7h2z7vdc6mwrvga5sud46dfx","project":"api","env":"prod","key":"JUNK_S9_6","op":"set","status":"rejected","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:43.656369Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:43.662022Z","base_version":0,"rollback_to":null,"applied_version":null},{"id":"chg_mvkhc2mhkj4hzarg5betaf6kpalhedtb","project":"api","env":"prod","key":"JUNK_S9_5","op":"set","status":"approved","proposed_by":…[sha256=bbb92c5788f41b359c21772f3c6b716311dd9db4e56ec561b4674dd50d896a9a len=22780]
+2026-10-30T15:25:43.674Z ASSERT ok   not(writer@acme reject: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:43.723Z HTTP POST /api/v1/members actor=admin@acme -> 201 48ms
+  req: {"email": "s9-7b2ae@acme.test", "role": "member", "password": "«pw0:s9-7b2ae@acme.test»"}
+  resp: {"id":"usr_tbmrbsex7ipr43b5kyxlrelwo6bctllr","email":"s9-7b2ae@acme.test","role":"member","created_at":"2026-10-30T15:25:43.715809Z"}
+
+2026-10-30T15:25:43.723Z CONTROL ok: writer@acme m_add (201)
+2026-10-30T15:25:43.730Z HTTP POST /api/v1/members actor=writer@acme -> 403 6ms
+  req: {"email": "s9-8cf35@acme.test", "role": "member", "password": "«pw0:s9-8cf35@acme.test»"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:43.730Z ASSERT ok   not(writer@acme m_add: denied 403)
+2026-10-30T15:25:43.732Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=6e4f54bacd932b1ea3a77606e6f1dcffddb600e8a7ae5b7ffbca7744e7ef88ea len=2327]
+2026-10-30T15:25:43.732Z ASSERT ok   not(writer@acme m_add: member s9-8cf35@acme.test exists after denied add)
+2026-10-30T15:25:43.781Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-94fba@acme.test", "role": "member", "password": "«pw0:s9-94fba@acme.test»"}
+  resp: {"id":"usr_qpd5mzwjkaa2k33xze3q647hrwncpyio","email":"s9-94fba@acme.test","role":"member","created_at":"2026-10-30T15:25:43.773698Z"}
+
+2026-10-30T15:25:43.787Z HTTP PATCH /api/v1/members/usr_qpd5mzwjkaa2k33xze3q647hrwncpyio actor=admin@acme -> 200 6ms
+  req: {"role": "admin"}
+  resp: {"id":"usr_qpd5mzwjkaa2k33xze3q647hrwncpyio","email":"s9-94fba@acme.test","role":"admin","created_at":"2026-10-30T15:25:43.773698Z"}
+
+2026-10-30T15:25:43.787Z CONTROL ok: writer@acme m_role (200)
+2026-10-30T15:25:43.793Z HTTP PATCH /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g actor=writer@acme -> 403 6ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:43.793Z ASSERT ok   not(writer@acme m_role: denied 403)
+2026-10-30T15:25:43.795Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=e32450739dc9ec9f80d78ab3e9683eca4975e2e089daf6f41491f6bffcaf4b2f len=2472]
+2026-10-30T15:25:43.795Z ASSERT ok   not(writer@acme m_role: target role is 'member' (want member))
+2026-10-30T15:25:43.845Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s9-101ddc@acme.test", "role": "member", "password": "«pw0:s9-101ddc@acme.test»"}
+  resp: {"id":"usr_xipqxthiohbgasvqyazmqvuz5zxehbbi","email":"s9-101ddc@acme.test","role":"member","created_at":"2026-10-30T15:25:43.838128Z"}
+
+2026-10-30T15:25:43.895Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-118740@acme.test", "role": "member", "password": "«pw0:s9-118740@acme.test»"}
+  resp: {"id":"usr_euv6eldjdenyc77iqilxxj45lplevzuw","email":"s9-118740@acme.test","role":"member","created_at":"2026-10-30T15:25:43.889494Z"}
+
+2026-10-30T15:25:43.900Z HTTP DELETE /api/v1/members/usr_xipqxthiohbgasvqyazmqvuz5zxehbbi actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:25:43.901Z CONTROL ok: writer@acme m_rm (200)
+2026-10-30T15:25:43.905Z HTTP DELETE /api/v1/members/usr_euv6eldjdenyc77iqilxxj45lplevzuw actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:43.905Z ASSERT ok   not(writer@acme m_rm: denied 403)
+2026-10-30T15:25:43.907Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=76732f44b523285b9aad8dcee745087e1f4afac556bb705f0d074a63d14f0c4d len=2619]
+2026-10-30T15:25:43.907Z ASSERT ok   not(writer@acme m_rm: target member gone after denied remove)
+2026-10-30T15:25:43.956Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-125b48@acme.test", "role": "member", "password": "«pw0:s9-125b48@acme.test»"}
+  resp: {"id":"usr_vkedeo63x2nqg5y322kmwkrben3lhpsa","email":"s9-125b48@acme.test","role":"member","created_at":"2026-10-30T15:25:43.949384Z"}
+
+2026-10-30T15:25:43.962Z HTTP PUT /api/v1/members/usr_vkedeo63x2nqg5y322kmwkrben3lhpsa/grants/api actor=admin@acme -> 200 6ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"api","user_id":"usr_vkedeo63x2nqg5y322kmwkrben3lhpsa"}
+
+2026-10-30T15:25:43.963Z CONTROL ok: writer@acme g_set (200)
+2026-10-30T15:25:43.967Z HTTP PUT /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g/grants/api actor=writer@acme -> 403 5ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:43.968Z ASSERT ok   not(writer@acme g_set: denied 403)
+2026-10-30T15:25:44.017Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-1338a8@acme.test", "role": "member", "password": "«pw0:s9-1338a8@acme.test»"}
+  resp: {"id":"usr_dkjbmneagmry5l7gjodttztgqgrkc3li","email":"s9-1338a8@acme.test","role":"member","created_at":"2026-10-30T15:25:44.009919Z"}
+
+2026-10-30T15:25:44.023Z HTTP PUT /api/v1/members/usr_dkjbmneagmry5l7gjodttztgqgrkc3li/grants/api actor=owner@acme -> 200 6ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_dkjbmneagmry5l7gjodttztgqgrkc3li"}
+
+2026-10-30T15:25:44.073Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-1472a4@acme.test", "role": "member", "password": "«pw0:s9-1472a4@acme.test»"}
+  resp: {"id":"usr_cn7bahgoptrad7z4myc2lmqztfvxl6g7","email":"s9-1472a4@acme.test","role":"member","created_at":"2026-10-30T15:25:44.066255Z"}
+
+2026-10-30T15:25:44.079Z HTTP PUT /api/v1/members/usr_cn7bahgoptrad7z4myc2lmqztfvxl6g7/grants/api actor=owner@acme -> 200 6ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_cn7bahgoptrad7z4myc2lmqztfvxl6g7"}
+
+2026-10-30T15:25:44.084Z HTTP DELETE /api/v1/members/usr_dkjbmneagmry5l7gjodttztgqgrkc3li/grants/api actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:44.084Z CONTROL ok: writer@acme g_rev (200)
+2026-10-30T15:25:44.089Z HTTP DELETE /api/v1/members/usr_cn7bahgoptrad7z4myc2lmqztfvxl6g7/grants/api actor=writer@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.089Z ASSERT ok   not(writer@acme g_rev: denied 403)
+2026-10-30T15:25:44.095Z HTTP POST /api/v1/tokens actor=admin@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-154bf0"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:44.090689Z","id":"tok_qye7cmwouwvi4zbbkrsgz6xjfk5x5ngh","name":"s9-154bf0","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:44.096Z CONTROL ok: writer@acme t_new (201)
+2026-10-30T15:25:44.101Z HTTP POST /api/v1/tokens actor=writer@acme -> 403 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-171403"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.101Z ASSERT ok   not(writer@acme t_new: denied 403)
+2026-10-30T15:25:44.107Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-18f411"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:44.102714Z","id":"tok_63hfz6rba5s6dx34t3uzz7hxszvg4xko","name":"s9-18f411","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:44.113Z HTTP DELETE /api/v1/tokens/tok_63hfz6rba5s6dx34t3uzz7hxszvg4xko actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:44.113Z CONTROL ok: writer@acme t_rev (200)
+2026-10-30T15:25:44.118Z HTTP DELETE /api/v1/tokens/tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk actor=writer@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.118Z ASSERT ok   not(writer@acme t_rev: denied 403)
+2026-10-30T15:25:44.120Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=939ff609674021f36ae6f1a2a91cfc89e04d3ee8e0d501fff03060c9489238fc len=4286]
+2026-10-30T15:25:44.120Z ASSERT ok   not(writer@acme t_rev: target token no longer works (200))
+2026-10-30T15:25:44.122Z HTTP GET /api/v1/audit actor=admin@acme -> 200 2ms
+  req: 
+  resp: [{"seq":1086,"ts":"2026-10-30T15:25:44.114366Z","actor":{"type":"user","id":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},"action":"authz.denied","target":"DELETE /tokens/{id} id=tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk","source_ip":"10.89.0.5","result":"denied","details":{"status":403},"prev_hash":"f7968e7f46ecdbf232429bece903ee45e3c2642f98f2b4d2c2f80fcb537894cc","hash":"5108acef42facb77635e2202d4c951e479ec66b820419ffcf1fa7167c6615be6"},{"seq":1085,"ts":"2026-10-30T15:25:44.109344Z","actor":{"type":"user","id":"usr_…[sha256=cf34d7afcc78c7a06b8820fc1f6a68b120f63bec33d3fd70e891dde99c4c1324 len=2153]
+2026-10-30T15:25:44.122Z CONTROL ok: writer@acme audit (200)
+2026-10-30T15:25:44.129Z HTTP GET /api/v1/audit actor=writer@acme -> 403 7ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.129Z ASSERT ok   not(writer@acme audit: denied 403)
+2026-10-30T15:25:44.136Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_20 actor=owner@acme -> 202 7ms
+  req: {"value": "JUNK_S9_20-cr"}
+  resp: {"change_id":"chg_tf4z5qalrrm5nanfqjawa3zwelrqv7d2","status":"pending"}
+
+2026-10-30T15:25:44.143Z HTTP POST /api/v1/changes/chg_tf4z5qalrrm5nanfqjawa3zwelrqv7d2/approve actor=admin@acme -> 200 7ms
+  req: {}
+  resp: {"id":"chg_tf4z5qalrrm5nanfqjawa3zwelrqv7d2","status":"approved","version":1}
+
+2026-10-30T15:25:44.143Z CONTROL ok: reader@acme approve (200)
+2026-10-30T15:25:44.149Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/approve actor=reader@acme -> 403 6ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.149Z ASSERT ok   not(reader@acme approve: denied 403)
+2026-10-30T15:25:44.152Z HTTP GET /api/v1/changes actor=owner@acme -> 200 3ms
+  req: 
+  resp: [{"id":"chg_tf4z5qalrrm5nanfqjawa3zwelrqv7d2","project":"api","env":"prod","key":"JUNK_S9_20","op":"set","status":"approved","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:44.130709Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:44.137694Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_vkusnlth7h2z7vdc6mwrvga5sud46dfx","project":"api","env":"prod","key":"JUNK_S9_6","op":"set","status":"rejected","proposed_by":"u…[sha256=d1a73e946984e26b281c1a3d1ab922cf4bbbdfeaedbad2bd555c2ff5ad58262d len=23152]
+2026-10-30T15:25:44.153Z ASSERT ok   not(reader@acme approve: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:44.158Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_21 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_21-cr"}
+  resp: {"change_id":"chg_yptfoce44epwv7mjhqb3763d5nsep4hv","status":"pending"}
+
+2026-10-30T15:25:44.163Z HTTP POST /api/v1/changes/chg_yptfoce44epwv7mjhqb3763d5nsep4hv/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg_yptfoce44epwv7mjhqb3763d5nsep4hv","status":"rejected"}
+
+2026-10-30T15:25:44.163Z CONTROL ok: reader@acme reject (200)
+2026-10-30T15:25:44.168Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/reject actor=reader@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.168Z ASSERT ok   not(reader@acme reject: denied 403)
+2026-10-30T15:25:44.171Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_yptfoce44epwv7mjhqb3763d5nsep4hv","project":"api","env":"prod","key":"JUNK_S9_21","op":"set","status":"rejected","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:44.154694Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:44.159513Z","base_version":0,"rollback_to":null,"applied_version":null},{"id":"chg_tf4z5qalrrm5nanfqjawa3zwelrqv7d2","project":"api","env":"prod","key":"JUNK_S9_20","op":"set","status":"approved","proposed_by…[sha256=1645da9c8e83c062b0f2058bb9dbbe19736af7e7510142a7d63377a99a5c2f23 len=23527]
+2026-10-30T15:25:44.171Z ASSERT ok   not(reader@acme reject: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:44.220Z HTTP POST /api/v1/members actor=admin@acme -> 201 48ms
+  req: {"email": "s9-22eeca@acme.test", "role": "member", "password": "«pw0:s9-22eeca@acme.test»"}
+  resp: {"id":"usr_46oxpg3375q6zsvnixfa6wajzazqi3i6","email":"s9-22eeca@acme.test","role":"member","created_at":"2026-10-30T15:25:44.211980Z"}
+
+2026-10-30T15:25:44.220Z CONTROL ok: reader@acme m_add (201)
+2026-10-30T15:25:44.227Z HTTP POST /api/v1/members actor=reader@acme -> 403 5ms
+  req: {"email": "s9-231d3f@acme.test", "role": "member", "password": "«pw0:s9-231d3f@acme.test»"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.227Z ASSERT ok   not(reader@acme m_add: denied 403)
+2026-10-30T15:25:44.228Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=85f10f6c848b95801a7079fd86a00ebd0b00d1f555aad97758f6dd610d4651fe len=3275]
+2026-10-30T15:25:44.229Z ASSERT ok   not(reader@acme m_add: member s9-231d3f@acme.test exists after denied add)
+2026-10-30T15:25:44.278Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-248ebd@acme.test", "role": "member", "password": "«pw0:s9-248ebd@acme.test»"}
+  resp: {"id":"usr_g7oaf4i5edfm2kigd6r644tfsxrrsgy6","email":"s9-248ebd@acme.test","role":"member","created_at":"2026-10-30T15:25:44.270610Z"}
+
+2026-10-30T15:25:44.284Z HTTP PATCH /api/v1/members/usr_g7oaf4i5edfm2kigd6r644tfsxrrsgy6 actor=admin@acme -> 200 6ms
+  req: {"role": "admin"}
+  resp: {"id":"usr_g7oaf4i5edfm2kigd6r644tfsxrrsgy6","email":"s9-248ebd@acme.test","role":"admin","created_at":"2026-10-30T15:25:44.270610Z"}
+
+2026-10-30T15:25:44.284Z CONTROL ok: reader@acme m_role (200)
+2026-10-30T15:25:44.289Z HTTP PATCH /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g actor=reader@acme -> 403 5ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.289Z ASSERT ok   not(reader@acme m_role: denied 403)
+2026-10-30T15:25:44.290Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=0f1574dce34e41f1a2f42ced007f2352f1e55cca2c94688c197853f3f92e9576 len=3421]
+2026-10-30T15:25:44.291Z ASSERT ok   not(reader@acme m_role: target role is 'member' (want member))
+2026-10-30T15:25:44.340Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-251cf7@acme.test", "role": "member", "password": "«pw0:s9-251cf7@acme.test»"}
+  resp: {"id":"usr_ofxy6gjjnt2sq2lvkk5r5uhk3eb2rujy","email":"s9-251cf7@acme.test","role":"member","created_at":"2026-10-30T15:25:44.332750Z"}
+
+2026-10-30T15:25:44.392Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s9-26d27e@acme.test", "role": "member", "password": "«pw0:s9-26d27e@acme.test»"}
+  resp: {"id":"usr_kuwspleuajhqqzthsk473x3wckwf7jr6","email":"s9-26d27e@acme.test","role":"member","created_at":"2026-10-30T15:25:44.383923Z"}
+
+2026-10-30T15:25:44.397Z HTTP DELETE /api/v1/members/usr_ofxy6gjjnt2sq2lvkk5r5uhk3eb2rujy actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:25:44.397Z CONTROL ok: reader@acme m_rm (200)
+2026-10-30T15:25:44.402Z HTTP DELETE /api/v1/members/usr_kuwspleuajhqqzthsk473x3wckwf7jr6 actor=reader@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.402Z ASSERT ok   not(reader@acme m_rm: denied 403)
+2026-10-30T15:25:44.403Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=090a0252c6db138d0df0141d3f455984003cd99cc5215d9bb3efbdd97bd31b74 len=3568]
+2026-10-30T15:25:44.403Z ASSERT ok   not(reader@acme m_rm: target member gone after denied remove)
+2026-10-30T15:25:44.452Z HTTP POST /api/v1/members actor=owner@acme -> 201 47ms
+  req: {"email": "s9-279ebe@acme.test", "role": "member", "password": "«pw0:s9-279ebe@acme.test»"}
+  resp: {"id":"usr_n3hcmbjxgjaqnf4bkikugx3pvci6y3zs","email":"s9-279ebe@acme.test","role":"member","created_at":"2026-10-30T15:25:44.445036Z"}
+
+2026-10-30T15:25:44.458Z HTTP PUT /api/v1/members/usr_n3hcmbjxgjaqnf4bkikugx3pvci6y3zs/grants/api actor=admin@acme -> 200 6ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"api","user_id":"usr_n3hcmbjxgjaqnf4bkikugx3pvci6y3zs"}
+
+2026-10-30T15:25:44.458Z CONTROL ok: reader@acme g_set (200)
+2026-10-30T15:25:44.463Z HTTP PUT /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g/grants/api actor=reader@acme -> 403 5ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.463Z ASSERT ok   not(reader@acme g_set: denied 403)
+2026-10-30T15:25:44.515Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s9-28b2a1@acme.test", "role": "member", "password": "«pw0:s9-28b2a1@acme.test»"}
+  resp: {"id":"usr_i67kpg5j5bdaifph5vtgue4pdenvgi5t","email":"s9-28b2a1@acme.test","role":"member","created_at":"2026-10-30T15:25:44.506971Z"}
+
+2026-10-30T15:25:44.521Z HTTP PUT /api/v1/members/usr_i67kpg5j5bdaifph5vtgue4pdenvgi5t/grants/api actor=owner@acme -> 200 6ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_i67kpg5j5bdaifph5vtgue4pdenvgi5t"}
+
+2026-10-30T15:25:44.570Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-299fc7@acme.test", "role": "member", "password": "«pw0:s9-299fc7@acme.test»"}
+  resp: {"id":"usr_gvqqxf77axgneank3gk5pxsvowqqwy5g","email":"s9-299fc7@acme.test","role":"member","created_at":"2026-10-30T15:25:44.562446Z"}
+
+2026-10-30T15:25:44.576Z HTTP PUT /api/v1/members/usr_gvqqxf77axgneank3gk5pxsvowqqwy5g/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_gvqqxf77axgneank3gk5pxsvowqqwy5g"}
+
+2026-10-30T15:25:44.580Z HTTP DELETE /api/v1/members/usr_i67kpg5j5bdaifph5vtgue4pdenvgi5t/grants/api actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:44.580Z CONTROL ok: reader@acme g_rev (200)
+2026-10-30T15:25:44.585Z HTTP DELETE /api/v1/members/usr_gvqqxf77axgneank3gk5pxsvowqqwy5g/grants/api actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.585Z ASSERT ok   not(reader@acme g_rev: denied 403)
+2026-10-30T15:25:44.591Z HTTP POST /api/v1/tokens actor=admin@acme -> 201 6ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-30ad11"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:44.586382Z","id":"tok_aisqdbkr7htk7xgb6odpaqg65pswkdje","name":"s9-30ad11","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:44.593Z CONTROL ok: reader@acme t_new (201)
+2026-10-30T15:25:44.598Z HTTP POST /api/v1/tokens actor=reader@acme -> 403 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-32bb6d"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.598Z ASSERT ok   not(reader@acme t_new: denied 403)
+2026-10-30T15:25:44.602Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-33cb8b"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:44.598828Z","id":"tok_vvooa6k5kep55oga47rgxudcnsrjfklc","name":"s9-33cb8b","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:44.609Z HTTP DELETE /api/v1/tokens/tok_vvooa6k5kep55oga47rgxudcnsrjfklc actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:44.609Z CONTROL ok: reader@acme t_rev (200)
+2026-10-30T15:25:44.613Z HTTP DELETE /api/v1/tokens/tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk actor=reader@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.614Z ASSERT ok   not(reader@acme t_rev: denied 403)
+2026-10-30T15:25:44.615Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=939ff609674021f36ae6f1a2a91cfc89e04d3ee8e0d501fff03060c9489238fc len=4286]
+2026-10-30T15:25:44.615Z ASSERT ok   not(reader@acme t_rev: target token no longer works (200))
+2026-10-30T15:25:44.617Z HTTP GET /api/v1/audit actor=admin@acme -> 200 2ms
+  req: 
+  resp: [{"seq":1117,"ts":"2026-10-30T15:25:44.609883Z","actor":{"type":"user","id":"usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx"},"action":"authz.denied","target":"DELETE /tokens/{id} id=tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk","source_ip":"10.89.0.5","result":"denied","details":{"status":403},"prev_hash":"9ff6a78f4dd3b64dacf0e2274cbea5752ed818b68f38cb09e7145bfd9c97c4ed","hash":"a221339fa935e991d9ca0802a60126603f069c21281cfe8e60f19b6f75685a29"},{"seq":1116,"ts":"2026-10-30T15:25:44.605091Z","actor":{"type":"user","id":"usr_…[sha256=7136e767b4aa8981375d821c43800746a0f1dcc66523d7d64523bbd33cb35410 len=2153]
+2026-10-30T15:25:44.618Z CONTROL ok: reader@acme audit (200)
+2026-10-30T15:25:44.622Z HTTP GET /api/v1/audit actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.622Z ASSERT ok   not(reader@acme audit: denied 403)
+2026-10-30T15:25:44.627Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_35 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_35-cr"}
+  resp: {"change_id":"chg_bgbphi7jy2fdzoub7u5tups4d7llnjom","status":"pending"}
+
+2026-10-30T15:25:44.633Z HTTP POST /api/v1/changes/chg_bgbphi7jy2fdzoub7u5tups4d7llnjom/approve actor=admin@acme -> 200 6ms
+  req: {}
+  resp: {"id":"chg_bgbphi7jy2fdzoub7u5tups4d7llnjom","status":"approved","version":1}
+
+2026-10-30T15:25:44.633Z CONTROL ok: viewer@acme approve (200)
+2026-10-30T15:25:44.637Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/approve actor=viewer@acme -> 403 4ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.637Z ASSERT ok   not(viewer@acme approve: denied 403)
+2026-10-30T15:25:44.639Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_bgbphi7jy2fdzoub7u5tups4d7llnjom","project":"api","env":"prod","key":"JUNK_S9_35","op":"set","status":"approved","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:44.623310Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:44.628252Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_yptfoce44epwv7mjhqb3763d5nsep4hv","project":"api","env":"prod","key":"JUNK_S9_21","op":"set","status":"rejected","proposed_by":"…[sha256=54bfcb8c235473dd193fd29a42231c6fc7927d4ab0a9badba73e8b9217f0d30a len=23899]
+2026-10-30T15:25:44.640Z ASSERT ok   not(viewer@acme approve: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:44.644Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_36 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_36-cr"}
+  resp: {"change_id":"chg_vorwvlablseemrgh645uf45miwofd4jm","status":"pending"}
+
+2026-10-30T15:25:44.649Z HTTP POST /api/v1/changes/chg_vorwvlablseemrgh645uf45miwofd4jm/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg_vorwvlablseemrgh645uf45miwofd4jm","status":"rejected"}
+
+2026-10-30T15:25:44.649Z CONTROL ok: viewer@acme reject (200)
+2026-10-30T15:25:44.654Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/reject actor=viewer@acme -> 403 4ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.654Z ASSERT ok   not(viewer@acme reject: denied 403)
+2026-10-30T15:25:44.656Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_vorwvlablseemrgh645uf45miwofd4jm","project":"api","env":"prod","key":"JUNK_S9_36","op":"set","status":"rejected","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:44.640833Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:44.645497Z","base_version":0,"rollback_to":null,"applied_version":null},{"id":"chg_bgbphi7jy2fdzoub7u5tups4d7llnjom","project":"api","env":"prod","key":"JUNK_S9_35","op":"set","status":"approved","proposed_by…[sha256=2f64a8f122d5a8b3662f86dbbf0eb00295aa18b846b84525884d77c489dd5e11 len=24274]
+2026-10-30T15:25:44.656Z ASSERT ok   not(viewer@acme reject: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:44.703Z HTTP POST /api/v1/members actor=admin@acme -> 201 46ms
+  req: {"email": "s9-37f305@acme.test", "role": "member", "password": "«pw0:s9-37f305@acme.test»"}
+  resp: {"id":"usr_5vxnt7u2etdisiu3ei53t3tvwgm2ix45","email":"s9-37f305@acme.test","role":"member","created_at":"2026-10-30T15:25:44.699042Z"}
+
+2026-10-30T15:25:44.704Z CONTROL ok: viewer@acme m_add (201)
+2026-10-30T15:25:44.710Z HTTP POST /api/v1/members actor=viewer@acme -> 403 6ms
+  req: {"email": "s9-38805b@acme.test", "role": "member", "password": "«pw0:s9-38805b@acme.test»"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.710Z ASSERT ok   not(viewer@acme m_add: denied 403)
+2026-10-30T15:25:44.712Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=cf2762c9b6ef340d061308f39c44de784021a76c55eea349542a72c1c3333fe0 len=4224]
+2026-10-30T15:25:44.712Z ASSERT ok   not(viewer@acme m_add: member s9-38805b@acme.test exists after denied add)
+2026-10-30T15:25:44.761Z HTTP POST /api/v1/members actor=owner@acme -> 201 47ms
+  req: {"email": "s9-390031@acme.test", "role": "member", "password": "«pw0:s9-390031@acme.test»"}
+  resp: {"id":"usr_ywtkjmnn6xlctpcywjcfklft6lf2ciep","email":"s9-390031@acme.test","role":"member","created_at":"2026-10-30T15:25:44.754366Z"}
+
+2026-10-30T15:25:44.767Z HTTP PATCH /api/v1/members/usr_ywtkjmnn6xlctpcywjcfklft6lf2ciep actor=admin@acme -> 200 6ms
+  req: {"role": "admin"}
+  resp: {"id":"usr_ywtkjmnn6xlctpcywjcfklft6lf2ciep","email":"s9-390031@acme.test","role":"admin","created_at":"2026-10-30T15:25:44.754366Z"}
+
+2026-10-30T15:25:44.767Z CONTROL ok: viewer@acme m_role (200)
+2026-10-30T15:25:44.772Z HTTP PATCH /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g actor=viewer@acme -> 403 5ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.772Z ASSERT ok   not(viewer@acme m_role: denied 403)
+2026-10-30T15:25:44.774Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=75a416eab3644295a58c5ad3bb22e8e7acef5e3abe860d84940361819f49c884 len=4370]
+2026-10-30T15:25:44.774Z ASSERT ok   not(viewer@acme m_role: target role is 'member' (want member))
+2026-10-30T15:25:44.823Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-40575a@acme.test", "role": "member", "password": "«pw0:s9-40575a@acme.test»"}
+  resp: {"id":"usr_wqw2lhs4xixwdockfl5tdlx2xqeiewfk","email":"s9-40575a@acme.test","role":"member","created_at":"2026-10-30T15:25:44.816506Z"}
+
+2026-10-30T15:25:44.873Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-412154@acme.test", "role": "member", "password": "«pw0:s9-412154@acme.test»"}
+  resp: {"id":"usr_tr57gxqeel72s4o3trbtmndmdd6nkubo","email":"s9-412154@acme.test","role":"member","created_at":"2026-10-30T15:25:44.867391Z"}
+
+2026-10-30T15:25:44.879Z HTTP DELETE /api/v1/members/usr_wqw2lhs4xixwdockfl5tdlx2xqeiewfk actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:25:44.879Z CONTROL ok: viewer@acme m_rm (200)
+2026-10-30T15:25:44.884Z HTTP DELETE /api/v1/members/usr_tr57gxqeel72s4o3trbtmndmdd6nkubo actor=viewer@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.884Z ASSERT ok   not(viewer@acme m_rm: denied 403)
+2026-10-30T15:25:44.885Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=60ecf9305508a57ddedeb2314256e88f776e4f9cdf389cd8f56533c9b4e2f480 len=4517]
+2026-10-30T15:25:44.886Z ASSERT ok   not(viewer@acme m_rm: target member gone after denied remove)
+2026-10-30T15:25:44.947Z HTTP POST /api/v1/members actor=owner@acme -> 201 60ms
+  req: {"email": "s9-4299ed@acme.test", "role": "member", "password": "«pw0:s9-4299ed@acme.test»"}
+  resp: {"id":"usr_i57vlgchnlx5zdht3yi7g6ft75ycftnm","email":"s9-4299ed@acme.test","role":"member","created_at":"2026-10-30T15:25:44.940794Z"}
+
+2026-10-30T15:25:44.953Z HTTP PUT /api/v1/members/usr_i57vlgchnlx5zdht3yi7g6ft75ycftnm/grants/api actor=admin@acme -> 200 6ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"api","user_id":"usr_i57vlgchnlx5zdht3yi7g6ft75ycftnm"}
+
+2026-10-30T15:25:44.953Z CONTROL ok: viewer@acme g_set (200)
+2026-10-30T15:25:44.959Z HTTP PUT /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g/grants/api actor=viewer@acme -> 403 5ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:44.959Z ASSERT ok   not(viewer@acme g_set: denied 403)
+2026-10-30T15:25:45.010Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s9-43859d@acme.test", "role": "member", "password": "«pw0:s9-43859d@acme.test»"}
+  resp: {"id":"usr_wzshfasw2ovf57c4qoxev4e2tsmlvebi","email":"s9-43859d@acme.test","role":"member","created_at":"2026-10-30T15:25:45.002318Z"}
+
+2026-10-30T15:25:45.018Z HTTP PUT /api/v1/members/usr_wzshfasw2ovf57c4qoxev4e2tsmlvebi/grants/api actor=owner@acme -> 200 8ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_wzshfasw2ovf57c4qoxev4e2tsmlvebi"}
+
+2026-10-30T15:25:45.071Z HTTP POST /api/v1/members actor=owner@acme -> 201 52ms
+  req: {"email": "s9-4431fd@acme.test", "role": "member", "password": "«pw0:s9-4431fd@acme.test»"}
+  resp: {"id":"usr_kw2jlk7fi5fcvzr3vnkhzioys3zl3dpd","email":"s9-4431fd@acme.test","role":"member","created_at":"2026-10-30T15:25:45.062835Z"}
+
+2026-10-30T15:25:45.078Z HTTP PUT /api/v1/members/usr_kw2jlk7fi5fcvzr3vnkhzioys3zl3dpd/grants/api actor=owner@acme -> 200 7ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_kw2jlk7fi5fcvzr3vnkhzioys3zl3dpd"}
+
+2026-10-30T15:25:45.085Z HTTP DELETE /api/v1/members/usr_wzshfasw2ovf57c4qoxev4e2tsmlvebi/grants/api actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:45.085Z CONTROL ok: viewer@acme g_rev (200)
+2026-10-30T15:25:45.090Z HTTP DELETE /api/v1/members/usr_kw2jlk7fi5fcvzr3vnkhzioys3zl3dpd/grants/api actor=viewer@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.090Z ASSERT ok   not(viewer@acme g_rev: denied 403)
+2026-10-30T15:25:45.097Z HTTP POST /api/v1/tokens actor=admin@acme -> 201 7ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-45aeb3"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:45.091501Z","id":"tok_trt2w6ft27f5cm7cnsbqdb4g64w5lkmn","name":"s9-45aeb3","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:45.098Z CONTROL ok: viewer@acme t_new (201)
+2026-10-30T15:25:45.103Z HTTP POST /api/v1/tokens actor=viewer@acme -> 403 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-47d5d1"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.103Z ASSERT ok   not(viewer@acme t_new: denied 403)
+2026-10-30T15:25:45.109Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 6ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-48e39e"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:45.104235Z","id":"tok_chheezj7al3imqrsh3sogg6sexagav32","name":"s9-48e39e","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:45.115Z HTTP DELETE /api/v1/tokens/tok_chheezj7al3imqrsh3sogg6sexagav32 actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:45.115Z CONTROL ok: viewer@acme t_rev (200)
+2026-10-30T15:25:45.120Z HTTP DELETE /api/v1/tokens/tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk actor=viewer@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.120Z ASSERT ok   not(viewer@acme t_rev: denied 403)
+2026-10-30T15:25:45.121Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=939ff609674021f36ae6f1a2a91cfc89e04d3ee8e0d501fff03060c9489238fc len=4286]
+2026-10-30T15:25:45.122Z ASSERT ok   not(viewer@acme t_rev: target token no longer works (200))
+2026-10-30T15:25:45.123Z HTTP GET /api/v1/audit actor=admin@acme -> 200 1ms
+  req: 
+  resp: [{"seq":1148,"ts":"2026-10-30T15:25:45.116108Z","actor":{"type":"user","id":"usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl"},"action":"authz.denied","target":"DELETE /tokens/{id} id=tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk","source_ip":"10.89.0.5","result":"denied","details":{"status":403},"prev_hash":"612def16b9a3d2634ac689d81721f69a4affa6e70b797b1201952d5c8bac6e75","hash":"614f8eb24d3c860763525860192bea65a41a33c98fddf5fa12e68cdd3e2d8c31"},{"seq":1147,"ts":"2026-10-30T15:25:45.111086Z","actor":{"type":"user","id":"usr_…[sha256=2066cc39aa1f7237855559b3a676a5f50b46da6350c78e04e6ef33f4cc9ea4a5 len=2153]
+2026-10-30T15:25:45.123Z CONTROL ok: viewer@acme audit (200)
+2026-10-30T15:25:45.127Z HTTP GET /api/v1/audit actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.127Z ASSERT ok   not(viewer@acme audit: denied 403)
+2026-10-30T15:25:45.133Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_50 actor=owner@acme -> 202 6ms
+  req: {"value": "JUNK_S9_50-cr"}
+  resp: {"change_id":"chg_5jklge54taj5gpakcq5xktonzzwnm2uv","status":"pending"}
+
+2026-10-30T15:25:45.140Z HTTP POST /api/v1/changes/chg_5jklge54taj5gpakcq5xktonzzwnm2uv/approve actor=admin@acme -> 200 6ms
+  req: {}
+  resp: {"id":"chg_5jklge54taj5gpakcq5xktonzzwnm2uv","status":"approved","version":1}
+
+2026-10-30T15:25:45.140Z CONTROL ok: nogrant@acme approve (200)
+2026-10-30T15:25:45.145Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/approve actor=nogrant@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.145Z ASSERT ok   not(nogrant@acme approve: denied 403)
+2026-10-30T15:25:45.148Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg_5jklge54taj5gpakcq5xktonzzwnm2uv","project":"api","env":"prod","key":"JUNK_S9_50","op":"set","status":"approved","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:45.128646Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:45.134607Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_vorwvlablseemrgh645uf45miwofd4jm","project":"api","env":"prod","key":"JUNK_S9_36","op":"set","status":"rejected","proposed_by":"…[sha256=12bb28eef63d31e8be793d265c6646c38afb8df2662b4ab76f3baaa6cd1a1b7e len=24646]
+2026-10-30T15:25:45.148Z ASSERT ok   not(nogrant@acme approve: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:45.153Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_51 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_51-cr"}
+  resp: {"change_id":"chg_v43r62irvwtcblvzgf7q3l2zwvyyswd3","status":"pending"}
+
+2026-10-30T15:25:45.160Z HTTP POST /api/v1/changes/chg_v43r62irvwtcblvzgf7q3l2zwvyyswd3/reject actor=admin@acme -> 200 6ms
+  req: {}
+  resp: {"id":"chg_v43r62irvwtcblvzgf7q3l2zwvyyswd3","status":"rejected"}
+
+2026-10-30T15:25:45.160Z CONTROL ok: nogrant@acme reject (200)
+2026-10-30T15:25:45.165Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/reject actor=nogrant@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.165Z ASSERT ok   not(nogrant@acme reject: denied 403)
+2026-10-30T15:25:45.168Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg_v43r62irvwtcblvzgf7q3l2zwvyyswd3","project":"api","env":"prod","key":"JUNK_S9_51","op":"set","status":"rejected","proposed_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","created_at":"2026-10-30T15:25:45.149392Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:25:45.155157Z","base_version":0,"rollback_to":null,"applied_version":null},{"id":"chg_5jklge54taj5gpakcq5xktonzzwnm2uv","project":"api","env":"prod","key":"JUNK_S9_50","op":"set","status":"approved","proposed_by…[sha256=cf05f55f284875ec83809c3173ad89babc4bb88fdbfe91a78edb04b8165b8fab len=25021]
+2026-10-30T15:25:45.168Z ASSERT ok   not(nogrant@acme reject: target change status 'pending' after probe (want pending))
+2026-10-30T15:25:45.219Z HTTP POST /api/v1/members actor=admin@acme -> 201 49ms
+  req: {"email": "s9-52aca4@acme.test", "role": "member", "password": "«pw0:s9-52aca4@acme.test»"}
+  resp: {"id":"usr_dxy6sievzdnbr67cjmmxi3xn6yfqumc4","email":"s9-52aca4@acme.test","role":"member","created_at":"2026-10-30T15:25:45.210426Z"}
+
+2026-10-30T15:25:45.219Z CONTROL ok: nogrant@acme m_add (201)
+2026-10-30T15:25:45.227Z HTTP POST /api/v1/members actor=nogrant@acme -> 403 7ms
+  req: {"email": "s9-53fbbb@acme.test", "role": "member", "password": "«pw0:s9-53fbbb@acme.test»"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.228Z ASSERT ok   not(nogrant@acme m_add: denied 403)
+2026-10-30T15:25:45.230Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=22a9c1fc6888004ebb4b871d009f6516410c5dd5e3bbf1b88cccec6b38f067d9 len=5173]
+2026-10-30T15:25:45.230Z ASSERT ok   not(nogrant@acme m_add: member s9-53fbbb@acme.test exists after denied add)
+2026-10-30T15:25:45.281Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s9-5498a1@acme.test", "role": "member", "password": "«pw0:s9-5498a1@acme.test»"}
+  resp: {"id":"usr_nvxx4sdt4a622g6mf5vp6zt572cmyk53","email":"s9-5498a1@acme.test","role":"member","created_at":"2026-10-30T15:25:45.272671Z"}
+
+2026-10-30T15:25:45.287Z HTTP PATCH /api/v1/members/usr_nvxx4sdt4a622g6mf5vp6zt572cmyk53 actor=admin@acme -> 200 6ms
+  req: {"role": "admin"}
+  resp: {"id":"usr_nvxx4sdt4a622g6mf5vp6zt572cmyk53","email":"s9-5498a1@acme.test","role":"admin","created_at":"2026-10-30T15:25:45.272671Z"}
+
+2026-10-30T15:25:45.287Z CONTROL ok: nogrant@acme m_role (200)
+2026-10-30T15:25:45.292Z HTTP PATCH /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g actor=nogrant@acme -> 403 5ms
+  req: {"role": "admin"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.292Z ASSERT ok   not(nogrant@acme m_role: denied 403)
+2026-10-30T15:25:45.293Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=7b4ade95d83852c26a66a5cc0e0484e47018b67361709b8b5d7bf79ebe0a9af6 len=5319]
+2026-10-30T15:25:45.294Z ASSERT ok   not(nogrant@acme m_role: target role is 'member' (want member))
+2026-10-30T15:25:45.343Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-555471@acme.test", "role": "member", "password": "«pw0:s9-555471@acme.test»"}
+  resp: {"id":"usr_ejjdsy3kyperb26z65qbiho3to7v5l33","email":"s9-555471@acme.test","role":"member","created_at":"2026-10-30T15:25:45.335780Z"}
+
+2026-10-30T15:25:45.395Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "s9-563fb4@acme.test", "role": "member", "password": "«pw0:s9-563fb4@acme.test»"}
+  resp: {"id":"usr_aqk7i773vahjpcsngmlgxpme3l67fnal","email":"s9-563fb4@acme.test","role":"member","created_at":"2026-10-30T15:25:45.388135Z"}
+
+2026-10-30T15:25:45.401Z HTTP DELETE /api/v1/members/usr_ejjdsy3kyperb26z65qbiho3to7v5l33 actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"status":"removed"}
+
+2026-10-30T15:25:45.401Z CONTROL ok: nogrant@acme m_rm (200)
+2026-10-30T15:25:45.407Z HTTP DELETE /api/v1/members/usr_aqk7i773vahjpcsngmlgxpme3l67fnal actor=nogrant@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.407Z ASSERT ok   not(nogrant@acme m_rm: denied 403)
+2026-10-30T15:25:45.408Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=9890358dc2c888af42ff7bb7e14ea07482dce2c43129d6f29792bf7339d0e55d len=5466]
+2026-10-30T15:25:45.408Z ASSERT ok   not(nogrant@acme m_rm: target member gone after denied remove)
+2026-10-30T15:25:45.457Z HTTP POST /api/v1/members actor=owner@acme -> 201 47ms
+  req: {"email": "s9-575c8b@acme.test", "role": "member", "password": "«pw0:s9-575c8b@acme.test»"}
+  resp: {"id":"usr_iybymv2jcz5j2gmjmrz3j3gkiym4m2cg","email":"s9-575c8b@acme.test","role":"member","created_at":"2026-10-30T15:25:45.450923Z"}
+
+2026-10-30T15:25:45.463Z HTTP PUT /api/v1/members/usr_iybymv2jcz5j2gmjmrz3j3gkiym4m2cg/grants/api actor=admin@acme -> 200 6ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"api","user_id":"usr_iybymv2jcz5j2gmjmrz3j3gkiym4m2cg"}
+
+2026-10-30T15:25:45.463Z CONTROL ok: nogrant@acme g_set (200)
+2026-10-30T15:25:45.468Z HTTP PUT /api/v1/members/usr_e5t6ospoc5ootz6i332ih74pyzlgh43g/grants/api actor=nogrant@acme -> 403 5ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.468Z ASSERT ok   not(nogrant@acme g_set: denied 403)
+2026-10-30T15:25:45.518Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "s9-582407@acme.test", "role": "member", "password": "«pw0:s9-582407@acme.test»"}
+  resp: {"id":"usr_shngxzvhembotz7xaugroqdzrw3vryzj","email":"s9-582407@acme.test","role":"member","created_at":"2026-10-30T15:25:45.512002Z"}
+
+2026-10-30T15:25:45.524Z HTTP PUT /api/v1/members/usr_shngxzvhembotz7xaugroqdzrw3vryzj/grants/api actor=owner@acme -> 200 6ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_shngxzvhembotz7xaugroqdzrw3vryzj"}
+
+2026-10-30T15:25:45.574Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "s9-59a0b7@acme.test", "role": "member", "password": "«pw0:s9-59a0b7@acme.test»"}
+  resp: {"id":"usr_reumuktnkh2wzfco6anoyvisaqxtriat","email":"s9-59a0b7@acme.test","role":"member","created_at":"2026-10-30T15:25:45.566895Z"}
+
+2026-10-30T15:25:45.583Z HTTP PUT /api/v1/members/usr_reumuktnkh2wzfco6anoyvisaqxtriat/grants/api actor=owner@acme -> 200 8ms
+  req: {"level": "viewer"}
+  resp: {"level":"viewer","project":"api","user_id":"usr_reumuktnkh2wzfco6anoyvisaqxtriat"}
+
+2026-10-30T15:25:45.587Z HTTP DELETE /api/v1/members/usr_shngxzvhembotz7xaugroqdzrw3vryzj/grants/api actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:45.587Z CONTROL ok: nogrant@acme g_rev (200)
+2026-10-30T15:25:45.593Z HTTP DELETE /api/v1/members/usr_reumuktnkh2wzfco6anoyvisaqxtriat/grants/api actor=nogrant@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.593Z ASSERT ok   not(nogrant@acme g_rev: denied 403)
+2026-10-30T15:25:45.598Z HTTP POST /api/v1/tokens actor=admin@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-606bef"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:45.593869Z","id":"tok_qgy4k7326hdxeaq7sk6i7jfvikr46lrx","name":"s9-606bef","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:45.600Z CONTROL ok: nogrant@acme t_new (201)
+2026-10-30T15:25:45.604Z HTTP POST /api/v1/tokens actor=nogrant@acme -> 403 4ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-62bcfe"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.604Z ASSERT ok   not(nogrant@acme t_new: denied 403)
+2026-10-30T15:25:45.609Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-63eb06"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:45.605159Z","id":"tok_lgos54fksxl3eeolmcdh34ar3tmx3hag","name":"s9-63eb06","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:45.615Z HTTP DELETE /api/v1/tokens/tok_lgos54fksxl3eeolmcdh34ar3tmx3hag actor=admin@acme -> 200 4ms
+  req: 
+  resp: {"status":"revoked"}
+
+2026-10-30T15:25:45.615Z CONTROL ok: nogrant@acme t_rev (200)
+2026-10-30T15:25:45.619Z HTTP DELETE /api/v1/tokens/tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.620Z ASSERT ok   not(nogrant@acme t_rev: denied 403)
+2026-10-30T15:25:45.621Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=939ff609674021f36ae6f1a2a91cfc89e04d3ee8e0d501fff03060c9489238fc len=4286]
+2026-10-30T15:25:45.621Z ASSERT ok   not(nogrant@acme t_rev: target token no longer works (200))
+2026-10-30T15:25:45.622Z HTTP GET /api/v1/audit actor=admin@acme -> 200 2ms
+  req: 
+  resp: [{"seq":1179,"ts":"2026-10-30T15:25:45.616203Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"authz.denied","target":"DELETE /tokens/{id} id=tok_5ttbrfrrz7yuewqqp4p6i34xi6hcoyzk","source_ip":"10.89.0.5","result":"denied","details":{"status":403},"prev_hash":"3e98c89b0bce7b9060eff623da6a44a985c23643f35cf9e7bf51544f1ef85453","hash":"8d5fc9089630a7ae15627cfc85ccab2c2070138bb5b915b66306afc87f769a6a"},{"seq":1178,"ts":"2026-10-30T15:25:45.611887Z","actor":{"type":"user","id":"usr_…[sha256=6756afd898ebe891bee5c4f29aadea029037eaf70a860e8572acc3dba85cb3d7 len=2153]
+2026-10-30T15:25:45.623Z CONTROL ok: nogrant@acme audit (200)
+2026-10-30T15:25:45.627Z HTTP GET /api/v1/audit actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:25:45.627Z ASSERT ok   not(nogrant@acme audit: denied 403)
+2026-10-30T15:25:45.628Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=9e988af60d0ea32ccc6dd3938db11e3fa2d8de0ccdf69a0316cb57e33c10f6aa len=5975]
+2026-10-30T15:25:45.633Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_65 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_65-cr"}
+  resp: {"change_id":"chg_4vga3wpsuhiap7wlxa76rb3cjiowe5xu","status":"pending"}
+
+2026-10-30T15:25:45.638Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S9_66 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S9_66-cr"}
+  resp: {"change_id":"chg_crlqdtig64qnnijg6tb2nml6ybx5bb57","status":"pending"}
+
+2026-10-30T15:25:45.694Z CLI coffer login --email admin@acme.test actor=anon home=/home/grader2/work-c2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=0 55ms stdin=25B
+  out: logged in as admin@acme.test
+
+  err: 
+2026-10-30T15:25:45.694Z homebind: admin@acme home /home/grader2/work-c2/homes/admin@acme is bound to http://127.0.0.1:18420; using /home/grader2/work-c2/homes/admin@acme~base for http://127.0.0.1:8420
+2026-10-30T15:25:45.703Z CLI coffer change approve chg_crlqdtig64qnnijg6tb2nml6ybx5bb57 actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=0 9ms stdin=0B
+  out: approved change chg_crlqdtig64qnnijg6tb2nml6ybx5bb57 (version 1)
+
+  err: 
+2026-10-30T15:25:45.704Z CONTROL ok: reader CLI change approve (rc=0)
+2026-10-30T15:25:45.707Z CLI coffer whoami actor=anon home=/home/grader2/work-c2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 3ms stdin=0B
+  out: type: user
+id: usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx
+email: reader@acme.test
+role: member
+org_id: org_xyap7smmpbnuafybnstbwwbvhp32ccah
+org_slug: acme
+must_change_password: false
+
+  err: 
+2026-10-30T15:25:45.713Z CLI coffer change approve chg_4vga3wpsuhiap7wlxa76rb3cjiowe5xu actor=reader@acme home=/home/grader2/work-c2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=4 6ms stdin=0B
+  out: 
+  err: error: forbidden (forbidden)
+
+2026-10-30T15:25:45.714Z ASSERT ok   not(reader CLI change approve: denied rc=4)
+2026-10-30T15:25:45.718Z CLI coffer audit list --limit 5 actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme~base url=http://127.0.0.1:8420 -> rc=0 4ms stdin=0B
+  out: SEQ	TS	ACTOR	ACTION	TARGET	RESULT	SOURCE_IP
+1186	2026-10-30T15:25:45.709981Z	user:usr_3wj57uep7wmoju2zq7jqyv3ji3rxkfcx	authz.denied	POST /changes/{id}/approve id=chg_4vga3wpsuhiap7wlxa76rb3cjiowe5xu	denied	10.89.0.5
+1185	2026-10-30T15:25:45.698952Z	user:usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw	secret.write	api/prod/JUNK_S9_66	success	10.89.0.5
+1184	2026-10-30T15:25:45.698952Z	user:usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw	change.approve	api/prod/JUNK_S9_66	success	10.89.0.5
+1183	2026-10-30T15:25:45.682680Z	user:usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw	auth.login	usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw	success	10.89.0.5
+1182	2026-10-30T15:25:45.634787Z	user:usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	change.create	api/prod/JUNK_S9_66	success	10.89.0.5
+
+  err: 
+2026-10-30T15:25:45.718Z CONTROL ok: writer CLI audit list (rc=0)
+2026-10-30T15:25:45.720Z CLI coffer whoami actor=anon home=/home/grader2/work-c2/homes/writer@acme~base url=http://127.0.0.1:8420 -> rc=0 3ms stdin=0B
+  out: type: user
+id: usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+email: writer@acme.test
+role: member
+org_id: org_xyap7smmpbnuafybnstbwwbvhp32ccah
+org_slug: acme
+must_change_password: false
+
+  err: 
+2026-10-30T15:25:45.727Z CLI coffer audit list --limit 5 actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme~base url=http://127.0.0.1:8420 -> rc=4 6ms stdin=0B
+  out: 
+  err: error: forbidden (forbidden)
+
+2026-10-30T15:25:45.727Z ASSERT ok   not(writer CLI audit list: denied rc=4)
+2026-10-30T15:25:45.732Z HTTP POST /api/v1/tokens actor=admin@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s9-67f17f"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-30T16:25:45.727907Z","id":"tok_x3rmwbpcfpfacbews3ki6lzji2dx5nsl","name":"s9-67f17f","project":"api","token":"<redacted-token>"}
+
+2026-10-30T15:25:45.733Z CONTROL ok: writer CLI token create (201)
+2026-10-30T15:25:45.739Z CLI coffer token create -p api -e dev --access read --ttl 1h actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme~base url=http://127.0.0.1:8420 -> rc=4 6ms stdin=0B
+  out: 
+  err: error: forbidden (forbidden)
+
+2026-10-30T15:25:45.739Z ASSERT ok   not(writer CLI token create: denied rc=4)
+2026-10-30T15:25:45.745Z HTTP POST /api/v1/changes/chg_jqzka57utt45be3ymnz5yczuybycngf7/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg_jqzka57utt45be3ymnz5yczuybycngf7","status":"rejected"}
+
+2026-10-30T15:25:45.746Z HTTP POST /api/v1/changes/chg_mvkhc2mhkj4hzarg5betaf6kpalhedtb/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.747Z HTTP POST /api/v1/changes/chg_vkusnlth7h2z7vdc6mwrvga5sud46dfx/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.748Z HTTP POST /api/v1/changes/chg_tf4z5qalrrm5nanfqjawa3zwelrqv7d2/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.749Z HTTP POST /api/v1/changes/chg_yptfoce44epwv7mjhqb3763d5nsep4hv/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.749Z HTTP POST /api/v1/changes/chg_bgbphi7jy2fdzoub7u5tups4d7llnjom/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.750Z HTTP POST /api/v1/changes/chg_vorwvlablseemrgh645uf45miwofd4jm/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.751Z HTTP POST /api/v1/changes/chg_5jklge54taj5gpakcq5xktonzzwnm2uv/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.752Z HTTP POST /api/v1/changes/chg_v43r62irvwtcblvzgf7q3l2zwvyyswd3/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:45.756Z HTTP POST /api/v1/changes/chg_4vga3wpsuhiap7wlxa76rb3cjiowe5xu/reject actor=admin@acme -> 200 4ms
+  req: {}
+  resp: {"id":"chg_4vga3wpsuhiap7wlxa76rb3cjiowe5xu","status":"rejected"}
+
+2026-10-30T15:25:45.757Z HTTP POST /api/v1/changes/chg_crlqdtig64qnnijg6tb2nml6ybx5bb57/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change is not pending"}}
+2026-10-30T15:25:46.369Z pg_dumpall pre-rollback-S9 -> rc=0 0005-S9-pre-rollback-S9.sql
+2026-10-30T15:25:46.584Z sweep_snapshot pre-rollback-S9: dump=0005-S9-pre-rollback-S9.sql logs=2
+2026-10-30T15:26:01Z [runner] rollback: ok

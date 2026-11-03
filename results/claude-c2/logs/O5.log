@@ -1,0 +1,9 @@
+2026-10-30T15:35:36.218Z log files: 45 (39 server), 2547936 bytes
+2026-10-30T15:35:36.221Z HTTP GET /healthz actor=anon -> 200 2ms
+  req: 
+  resp: {"status":"ok"}
+
+2026-10-30T15:35:36.221Z CONTROL ok: scanner self-test + server up (200)
+2026-10-30T15:35:36.788Z sweep.scan sources=('logs',) kinds=('canary', 'token', 'password') needles=373 hits=0
+2026-10-30T15:35:36.788Z ASSERT ok   not(no needle hits)
+2026-10-30T15:35:36.838Z ASSERT ok   not(no shapes)

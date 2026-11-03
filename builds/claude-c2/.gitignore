@@ -1,0 +1,14 @@
+/bin/
+/.env
+*.dump
+*.backup
+/coverage*
+/tmp/
+.env.*
+!.env.example
+.env.tmp.*
+/test/e2e/*.log
+*.test
+*.out
+.idea/
+.vscode/

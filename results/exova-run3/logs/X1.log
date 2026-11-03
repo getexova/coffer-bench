@@ -1,0 +1,63 @@
+2026-10-29T13:03:47.748Z SCRIPT backup.sh /home/grader1/work-r2/backups/X1-x1.bak -> rc=0 993ms
+  out: Backing up database coffer to /home/grader1/work-r2/backups/X1-x1.bak
+Wrote /home/grader1/work-r2/backups/X1-x1.bak (558031 bytes).
+The file holds only ciphertext: restoring it needs the same COFFER_MASTER_KEY.
+
+  err: Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-29T13:03:47.755Z X1 backup.sh rc=0 exists=True
+2026-10-29T13:03:48.271Z pg_dumpall final -> rc=0 0046-X1-final.sql
+2026-10-29T13:03:48.347Z sweep_snapshot final: dump=0046-X1-final.sql logs=2
+2026-10-29T13:03:48.407Z HTTP GET /api/v1/audit actor=owner@acme -> 200 10ms
+  req: 
+  resp: {"events":[{"seq":3128,"timestamp":"2026-10-29T13:03:46.664163Z","actor":"usr_493b9b638f8b78d524ce5e65","action":"secret.read","target":"prj_9b5ed80f66b6e14db5e07a4d/env_1161efd8271530cd160dcf3e/CANARY","source_ip":"10.89.0.14","result":"success","prev_hash":"807d8723ce42dabe4a9911650913b2cd9452e4a945e1b9348ce079730af2ff00","hash":"ab4871bdc116bc26cac5a0670cb6245c0ed26ffcff6144bdf27582c4caa52c54"},{"seq":3127,"timestamp":"2026-10-29T13:03:36.845430Z","actor":"usr_493b9b638f8b78d524ce5e65","action":"secret.r…[sha256=0608ed7c1fb6b5b98f3f3bf1f444e0d48764909d9621aca9594074d8324653a5 len=392787]
+2026-10-29T13:03:48.409Z audit_list owner@acme /audit -> 200 n=1000 complete=False tried=[(100000, 200)]
+2026-10-29T13:03:48.409Z sweep: audit acme -> 200, 1000 events, complete=False
+2026-10-29T13:03:48.420Z HTTP GET /api/v1/audit actor=owner@globex -> 200 2ms
+  req: 
+  resp: {"events":[{"seq":82,"timestamp":"2026-10-29T12:59:43.397726Z","actor":"usr_6a34f6e1a538bc7473cd8192","action":"secret.read","target":"prj_d1a75eebc02b36825bd71b38/env_1dfb65e44815e4d1c527575d/CANARY","source_ip":"10.89.0.3","result":"success","prev_hash":"211218a7e984a83f133d78c52328396f32e1e5bd6af50adb3a4472fd4e764df1","hash":"6fcf20746b9e38a6d8f6997d32aacfb329e1d166d1c0a7241fbdb815193cda71"},{"seq":81,"timestamp":"2026-10-29T12:59:43.394769Z","actor":"usr_6a34f6e1a538bc7473cd8192","action":"secret.read",…[sha256=55c19b0e371771c48693687e51936984c2ccf09687d856ec2581527c217d03ff len=29984]
+2026-10-29T13:03:48.420Z audit_list owner@globex /audit -> 200 n=82 complete=True tried=[(100000, 200)]
+2026-10-29T13:03:48.420Z sweep: audit globex -> 200, 82 events, complete=True
+2026-10-29T13:03:48.426Z HTTP GET /api/v1/admin/audit actor=root -> 200 2ms
+  req: 
+  resp: {"events":[{"seq":65,"timestamp":"2026-10-29T12:59:11.526915Z","actor":"pat_7e0f18efd9ef7fdbb1404947","action":"organization.created","target":"organization/a8-1ee74","source_ip":"10.89.0.10","result":"success","prev_hash":"da5a3a5be0514900c3eccba3a3976fda78ebfbf562c46c58fe0dd1d0580116b3","hash":"0a5fc238a8f48a316cb5bfdfb143f0959c808658a8422bbcf2b6b7c8707ebc74"},{"seq":64,"timestamp":"2026-10-29T12:59:05.502237Z","actor":"pat_7e0f18efd9ef7fdbb1404947","action":"organization.created","target":"organization/a…[sha256=4b53a9838300a9a9370c0d78dee0dfc1973eab90614ff65572157bbe07864588 len=22231]
+2026-10-29T13:03:48.426Z audit_list root /admin/audit -> 200 n=65 complete=True tried=[(100000, 200)]
+2026-10-29T13:03:48.426Z sweep: audit platform -> 200, 65 events, complete=True
+2026-10-29T13:03:48.427Z CONTROL ok: sweep scanner finds a planted needle raw/hex/b64
+2026-10-29T13:03:48.427Z X1 needles {'canary': 108, 'token': 171, 'password': 173}
+2026-10-29T13:03:48.432Z CONTROL ok: final dump contains fixture emails and org ids
+2026-10-29T13:03:48.471Z X1 SPEC-5 request lines in swept logs: 9666
+2026-10-29T13:03:48.471Z CONTROL ok: server logs contain 9666 JSON request lines
+2026-10-29T13:04:11.923Z sweep.scan sources=('dumps', 'logs', 'backups', 'homes') kinds=('canary', 'token', 'password') needles=452 hits=0
+2026-10-29T13:04:12.019Z ASSERT ok   not(home A1-home-31 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.019Z ASSERT ok   not(home F18-home-1 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home S12-home-2 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X13-home-2 holds 0 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X14-home-2 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X14-home-3 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X14-home-4 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X17-home-2 holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X18-home-1 holds 0 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home X18-home-3 holds 0 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home _calib holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home admin2@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home admin2@acme_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home admin@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home nogrant@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home nogrant@acme_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home owner@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home owner@acme_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.020Z ASSERT ok   not(home owner@globex holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home owner@globex_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home reader@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home reader@acme_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home root holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home root_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home viewer@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home viewer@acme_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home writer@acme holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z ASSERT ok   not(home writer@acme_base holds 1 distinct tokens (only its own allowed))
+2026-10-29T13:04:12.021Z CONTROL ok: a CLI config with its own token was found
+2026-10-29T13:04:12.021Z ASSERT ok   not(scanned 119 files for 452 needles)

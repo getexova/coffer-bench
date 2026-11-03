@@ -1,0 +1,177 @@
+2026-10-29T12:56:05.163Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 237ms stdin=25B
+  out: Logged in as owner@acme.test
+
+  err: 
+2026-10-29T12:56:05.281Z CLI coffer whoami actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 117ms stdin=0B
+  out: owner@acme.test
+  role: owner
+  organization: acme
+  user id: usr_493b9b638f8b78d524ce5e65
+
+  err: 
+2026-10-29T12:56:05.403Z CLI coffer secrets set X18_AC58A1_V -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 122ms stdin=40B
+  out: Set X18_AC58A1_V (version 1)
+
+  err: 
+2026-10-29T12:56:05.521Z CLI coffer secrets set X18_AC58A1_V -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 118ms stdin=40B
+  out: Set X18_AC58A1_V (version 2)
+
+  err: 
+2026-10-29T12:56:05.641Z CLI coffer secrets set X18_AC58A1_ARGV «canary:X18_AC58A1_ARGV» -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 120ms stdin=0B
+  out: Set X18_AC58A1_ARGV (version 1)
+
+  err: 
+2026-10-29T12:56:05.755Z CLI coffer secrets get X18_AC58A1_V -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 114ms stdin=0B
+  out: «canary:X18_AC58A1_V2»
+  err: 
+2026-10-29T12:56:05.876Z CLI coffer secrets get X18_AC58A1_V --version 1 -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 120ms stdin=0B
+  out: «canary:X18_AC58A1_V1»
+  err: 
+2026-10-29T12:56:05.990Z CLI coffer secrets list -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 114ms stdin=0B
+  out: KEY                      VERSION  UPDATED               UPDATED BY
+---                      -------  -------               ----------
+CANARY                   1        2026-10-29T12:55:37Z  usr_493b9b638f8b78d524ce5e65
+F17_PERSIST_CC9191E0     2        2026-10-29T12:56:00Z  usr_36d0d9963bd156b5caddacec
+F2_BIG_52A56062          1        2026-10-29T12:55:45Z  usr_36d0d9963bd156b5caddacec
+F2_EMPTY_POS_54786955    1        2026-10-29T12:55:45Z  usr_36d0d9963bd156b5caddacec
+F2_EMPTY_STDIN_4066FB55  1        2026-10-29T12:55:45Z  usr_36d0d9963bd156b5caddacec
+F2_MULTI_F31B149F        1        2026-10-29T12:55:46Z  usr_36d0d9963bd156b5caddacec
+F2_NL_B5FC211B           1        2026-10-29T12:55:46Z  usr_36d0d9963bd156b5caddacec
+F2_ONE_9904A704          1        2026-10-29T12:55:45Z  usr_36d0d9963bd156b5caddacec
+F3_MAX_2C199CC4          1        2026-10-29T12:55:46Z  usr_36d0d9963bd156b5caddacec
+F4_HIST_F2B56E22         4        2026-10-29T12:55:48Z  usr_36d0d9963bd156b5caddacec
+F5_DEL_5C6625B2          3        2026-10-29T12:55:49Z  usr_36d0d9963bd156b5caddacec
+F6_CAS_3987DC75          3        2026-10-29T12:55:50Z  usr_36d0d9963bd156b5caddacec
+F7_PAR_D36734FB          21       2026-10-29T12:55:51Z  usr_36d0d9963bd156b5caddacec
+MULTI                    1        2026-10-29T12:55:37Z  usr_493b9b638f8b78d524ce5e65
+X18_AC58A1_ARGV          1        2026-10-29T12:56:05Z  usr_493b9b638f8b78d524ce5e65
+X18_AC58A1_V             2        2026-10-29T12:56:05Z  usr_493b9b638f8b78d524ce5e65
+
+  err: 
+2026-10-29T12:56:06.101Z CLI coffer secrets history X18_AC58A1_V -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 111ms stdin=0B
+  out: VERSION  DELETED  CREATED               CREATED BY
+-------  -------  -------               ----------
+1        no       2026-10-29T12:56:05Z  usr_493b9b638f8b78d524ce5e65
+2        no       2026-10-29T12:56:05Z  usr_493b9b638f8b78d524ce5e65
+
+  err: 
+2026-10-29T12:56:06.286Z CLI coffer secrets export -p api -e dev --format dotenv actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 184ms stdin=0B
+  out: CANARY="«canary:acme/api/dev/CANARY»"
+F17_PERSIST_CC9191E0="«canary:F17:v2»"
+F2_BIG_52A56062="«canary:F2:big»"
+F2_EMPTY_POS_54786955=""
+F2_EMPTY_STDIN_4066FB55=""
+F2_MULTI_F31B149F="«canary:multi_core»\"\\\$HOME\n\r\n😀IH0T3YvVcRywjyEU8WObCPxKvGCXZ8dTzbfVMwqF"
+F2_NL_B5FC211B="«canary:F2:nl»\n"
+F2_ONE_9904A704="e"
+F3_MAX_2C199CC4="«canary:F3:max»"
+F4_HIST_F2B56E22="«canary:F4:v1»"
+F5_DEL_5C6625B2="«canary:F5:b»"
+F6_CAS_3987DC75="«canary:F6:3»"
+F7_PAR_D36734FB="«canary:F7:p10»"
+MULTI="«canary:multi_core»\"\\\…[sha256=75b2758438839c74f6af9c1d6d6f22e6c93d82c72b8ab28e4bf3c347f40fddff len=131940]
+  err: 
+2026-10-29T12:56:06.461Z CLI coffer secrets export -p api -e dev --format json actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 174ms stdin=0B
+  out: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_CC9191E0":"«canary:F17:v2»","F2_BIG_52A56062":"«canary:F2:big»","F2_EMPTY_POS_54786955":"","F2_EMPTY_STDIN_4066FB55":"","F2_MULTI_F31B149F":"«canary:acme/api/dev/MULTI»","F2_NL_B5FC211B":"«canary:F2:nl»\n","F2_ONE_9904A704":"e","F3_MAX_2C199CC4":"«canary:F3:max»","F4_HIST_F2B56E22":"«canary:F4:v1»","F5_DEL_5C6625B2":"«canary:F5:b»","F6_CAS_3987DC75":"«canary:F6:3»","F7_PAR_D36734FB":"«canary:F7:p10»","MULTI":"«canary:acme/api/dev/MULTI»","X18_AC58A1_ARGV…[sha256=4404d9c912c6fc33b34693b415c5467553bf878e9c5ca84f53157934500cc4ef len=131982]
+  err: 
+2026-10-29T12:56:06.632Z CLI coffer run -p api -e dev -- /bin/true actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 171ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:56:06.758Z CLI coffer --json token create -p api -e dev --access read --ttl 30m --name x18_ac58a1 actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 125ms stdin=0B
+  out: {
+  "id": "tok_aa1ee1d2df357ed8559bcb29",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-29T12:56:06.881Z CLI coffer secrets get X18_AC58A1_V -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-anon-2 url=http://127.0.0.1:18420 -> rc=0 122ms stdin=0B
+  out: «canary:X18_AC58A1_V2»
+  err: 
+2026-10-29T12:56:06.997Z CLI coffer token list actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 116ms stdin=0B
+  out: ID                            NAME        SCOPE     ACCESS      EXPIRES               STATUS
+--                            ----        -----     ------      -------               ------
+tok_aa1ee1d2df357ed8559bcb29  x18_ac58a1  api/dev   read        2026-10-29T13:26:06Z  active
+tok_44be8aa61c36ce554c8f6b1c  f16-3ea050  api/dev   read        2026-10-29T13:25:58Z  revoked
+tok_db80137464938bb2b72465ac  T_rev       api/dev   read        2026-11-05T12:55:38Z  revoked
+tok_b93437043426568346a2a4a9  T_exp       api/dev   read        2026-10-29T12:56:38Z  active
+tok_ad3b4b9fb525ee53e703100e  T_prod_rw   api/prod  read-write  2026-11-05T12:55:38Z  active
+tok_2e1a67f0957d8e6d629f148b  T_dev_rw    api/dev   read-write  2026-11-05T12:55:38Z  active
+tok_87cda107d3c46e2d276ef86b  T_dev_r     api/dev   read        2026-11-05T12:55:38Z  active
+
+  err: 
+2026-10-29T12:56:07.114Z CLI coffer token revoke tok_aa1ee1d2df357ed8559bcb29 actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 117ms stdin=0B
+  out: Revoked token tok_aa1ee1d2df357ed8559bcb29
+
+  err: 
+2026-10-29T12:56:07.233Z CLI coffer secrets delete X18_AC58A1_ARGV -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 119ms stdin=0B
+  out: Deleted X18_AC58A1_ARGV (version 2)
+
+  err: 
+2026-10-29T12:56:07.353Z CLI coffer secrets rollback X18_AC58A1_V --to 1 -p api -e dev actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 120ms stdin=0B
+  out: Rolled back X18_AC58A1_V (version 3)
+
+  err: 
+2026-10-29T12:56:07.476Z CLI coffer --json secrets set X18_AC58A1_PROT -p api -e prod actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=7 123ms stdin=40B
+  out: {
+  "change_id": "chge7e1ace27e291b574e4d686f",
+  "status": "pending"
+}
+
+  err: 
+2026-10-29T12:56:07.593Z CLI coffer change list --status pending actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 116ms stdin=0B
+  out: ID                           STATUS   OP   TARGET                    PROPOSER                      CREATED
+--                           ------   --   ------                    --------                      -------
+chge7e1ace27e291b574e4d686f  pending  set  api/prod:X18_AC58A1_PROT  usr_493b9b638f8b78d524ce5e65  2026-10-29T12:56:07Z
+
+  err: 
+2026-10-29T12:56:07.716Z CLI coffer change reject chge7e1ace27e291b574e4d686f actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 123ms stdin=0B
+  out: Rejected change chge7e1ace27e291b574e4d686f
+
+  err: 
+2026-10-29T12:56:07.836Z CLI coffer audit list --limit 5 actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 119ms stdin=0B
+  out: SEQ  TIME                  ACTOR                         ACTION           TARGET                                                                     RESULT   SOURCE IP
+---  ----                  -----                         ------           ------                                                                     ------   ---------
+338  2026-10-29T12:56:07Z  usr_493b9b638f8b78d524ce5e65  change.rejected  chge7e1ace27e291b574e4d686f                                                success  10.89.0.3
+337  2026-10-29T12:56:07Z  usr_493b9b638f8b78d524ce5e65  change.created   chge7e1ace27e291b574e4d686f                                                success  10.89.0.3
+336  2026-10-29T12:56:07Z  usr_493b9b638f8b78d524ce5e65  secret.rollback  prj_9b5ed80f66b6e14db5e07a4d/env_1161efd8271530cd160dcf3e/X18_AC58A1_V     success  10.89.0.3
+335  2026-10-29T12:56:07Z  usr_493b9b638f8b78d524ce5e65  secret.delete    prj_9b5ed80f66b6e14db5e07a4d/env_1161efd8271530cd160dcf3e/X18_AC58A1_ARGV  success  10.89.0.3
+334  2026-10-29T12:56:07Z  pat_0bf7e870cc7833e5b7cf6f4c  token.revoked    token/tok_aa1ee1d2df357ed8559bcb29                                         success  10.89.0.3
+
+  err: 
+2026-10-29T12:56:07.957Z CLI coffer audit verify actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: Audit chain valid.
+
+  err: 
+2026-10-29T12:56:08.181Z CLI coffer member add x18-2579ad8c@acme.test --role member actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 221ms stdin=17B
+  out: Added x18-2579ad8c@acme.test as member
+
+  err: 
+2026-10-29T12:56:08.369Z CLI coffer login --email x18-2579ad8c@acme.test actor=anon home=/home/grader1/work-r2/tmp/X18/home-3 url=http://127.0.0.1:18420 -> rc=0 188ms stdin=17B
+  out: Logged in as x18-2579ad8c@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:56:08.620Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/tmp/X18/home-3 url=http://127.0.0.1:18420 -> rc=0 251ms stdin=34B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:56:08.755Z CLI coffer logout actor=anon home=/home/grader1/work-r2/tmp/X18/home-3 url=http://127.0.0.1:18420 -> rc=0 134ms stdin=0B
+  out: Logged out.
+
+  err: 
+2026-10-29T12:56:08.948Z CLI coffer admin org create x18-6b6ef8 --owner-email owner@x18-6b6ef8.test actor=anon home=/home/grader1/work-r2/homes/root url=http://127.0.0.1:18420 -> rc=0 192ms stdin=17B
+  out: Created organization x18-6b6ef8
+Owner: owner@x18-6b6ef8.test
+
+  err: 
+2026-10-29T12:56:09.073Z CLI coffer logout actor=anon home=/home/grader1/work-r2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 126ms stdin=0B
+  out: Logged out.
+
+  err: 
+2026-10-29T12:56:10.074Z proxy capture: 196 lines total, 29 from this sequence
+2026-10-29T12:56:10.074Z CONTROL ok: CLI traffic captured by proxy (rc=0)
+2026-10-29T12:56:10.074Z needles: 116
+2026-10-29T12:56:10.081Z ASSERT ok   not(196 captured URLs clean)
+2026-10-29T12:56:10.158Z server log lines scanned: 361 (this sequence seen: False)
+2026-10-29T12:56:10.158Z ASSERT ok   not(log URLs clean)
+2026-10-29T12:56:10.158Z ASSERT ok   not(log lines clean)

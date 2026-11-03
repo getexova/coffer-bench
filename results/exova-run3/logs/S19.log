@@ -1,0 +1,148 @@
+2026-10-29T12:58:12.015Z HTTP POST /api/v1/admin/orgs actor=root -> 201 82ms
+  req: {"slug": "s19-1d4d5", "owner_email": "owner-s19-1d4d5@s19-1d4d5.test", "owner_password": "«pw0:owner@s19-1d4d5»"}
+  resp: {"id":"org_42a929accd18f92b4b6a7f90","organization":{"created_at":"2026-10-29T12:58:12.006746Z","disabled_at":null,"id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"},"owner":{"email":"owner-s19-1d4d5@s19-1d4d5.test","id":"usr_f826f98b6c1c073fbd184a0f","must_change_password":true,"role":"owner"},"slug":"s19-1d4d5"}
+2026-10-29T12:58:12.093Z HTTP POST /api/v1/auth/token actor=anon -> 200 78ms
+  req: {"email": "owner-s19-1d4d5@s19-1d4d5.test", "password": "«pw0:owner@s19-1d4d5»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_f826f98b6c1c073fbd184a0f","email":"owner-s19-1d4d5@s19-1d4d5.test","role":"owner","must_change_password":true,"organization":{"id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"}}}
+2026-10-29T12:58:12.096Z HTTP GET /api/v1/projects actor=owner@s19-1d4d5 -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:12.223Z HTTP POST /api/v1/auth/password actor=owner@s19-1d4d5 -> 200 125ms
+  req: {"current_password": "«pw0:owner@s19-1d4d5»", "new_password": "«pw:owner@s19-1d4d5»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:12.304Z HTTP POST /api/v1/auth/token actor=anon -> 200 81ms
+  req: {"email": "owner-s19-1d4d5@s19-1d4d5.test", "password": "«pw:owner@s19-1d4d5»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_f826f98b6c1c073fbd184a0f","email":"owner-s19-1d4d5@s19-1d4d5.test","role":"owner","must_change_password":false,"organization":{"id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"}}}
+2026-10-29T12:58:12.311Z HTTP POST /api/v1/projects actor=owner@s19-1d4d5 -> 201 5ms
+  req: {"slug": "s19-2dabe"}
+  resp: {"project":{"created_at":"2026-10-29T12:58:12.307139Z","id":"prj_994aab139322d9d4a4fb00fd","slug":"s19-2dabe"}}
+2026-10-29T12:58:12.316Z HTTP POST /api/v1/projects/s19-2dabe/envs actor=owner@s19-1d4d5 -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"created_at":"2026-10-29T12:58:12.312286Z","id":"env_1c1d6a9d247ca732c8b1c0af","protected":false,"slug":"dev"}
+2026-10-29T12:58:12.393Z HTTP POST /api/v1/members actor=owner@s19-1d4d5 -> 201 76ms
+  req: {"email": "s19-32a7f@s19-1d4d5.test", "role": "member", "password": "«pw0:s19-32a7f@s19-1d4d5»"}
+  resp: {"member":{"id":"usr_a7640c21eee43d95ae63f762","email":"s19-32a7f@s19-1d4d5.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:12.386212Z"}}
+2026-10-29T12:58:12.395Z HTTP GET /api/v1/members actor=owner@s19-1d4d5 -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_f826f98b6c1c073fbd184a0f","email":"owner-s19-1d4d5@s19-1d4d5.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:58:12.006746Z"},{"id":"usr_a7640c21eee43d95ae63f762","email":"s19-32a7f@s19-1d4d5.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:12.386212Z"}]}
+2026-10-29T12:58:12.400Z HTTP PUT /api/v1/members/usr_a7640c21eee43d95ae63f762/grants/s19-2dabe actor=owner@s19-1d4d5 -> 200 5ms
+  req: {"level": "reader"}
+  resp: {"grant":{"level":"reader","project":"s19-2dabe","user_id":"usr_a7640c21eee43d95ae63f762"}}
+2026-10-29T12:58:12.469Z HTTP POST /api/v1/auth/token actor=anon -> 200 69ms
+  req: {"email": "s19-32a7f@s19-1d4d5.test", "password": "«pw0:s19-32a7f@s19-1d4d5»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_a7640c21eee43d95ae63f762","email":"s19-32a7f@s19-1d4d5.test","role":"member","must_change_password":true,"organization":{"id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"}}}
+2026-10-29T12:58:12.472Z HTTP GET /api/v1/projects actor=s19-32a7f@s19-1d4d5 -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:12.607Z HTTP POST /api/v1/auth/password actor=s19-32a7f@s19-1d4d5 -> 200 133ms
+  req: {"current_password": "«pw0:s19-32a7f@s19-1d4d5»", "new_password": "«pw:s19-32a7f@s19-1d4d5»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:12.679Z HTTP POST /api/v1/auth/token actor=anon -> 200 72ms
+  req: {"email": "s19-32a7f@s19-1d4d5.test", "password": "«pw:s19-32a7f@s19-1d4d5»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_a7640c21eee43d95ae63f762","email":"s19-32a7f@s19-1d4d5.test","role":"member","must_change_password":false,"organization":{"id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"}}}
+2026-10-29T12:58:12.686Z HTTP POST /api/v1/tokens actor=owner@s19-1d4d5 -> 201 6ms
+  req: {"project": "s19-2dabe", "env": "dev", "access": "read", "ttl_seconds": 3600, "name": "s19-448bd"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:58:12.682105Z","id":"tok_3cd1ff7ce8e32082c03749ca","name":"s19-448bd","project":"s19-2dabe","token":"<redacted-token>"}
+2026-10-29T12:58:12.694Z HTTP PUT /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=owner@s19-1d4d5 -> 200 6ms
+  req: {"value": "«canary:s19»"}
+  resp: {"version":1}
+2026-10-29T12:58:12.696Z HTTP GET /api/v1/members actor=owner@s19-1d4d5 -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_f826f98b6c1c073fbd184a0f","email":"owner-s19-1d4d5@s19-1d4d5.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:58:12.006746Z"},{"id":"usr_a7640c21eee43d95ae63f762","email":"s19-32a7f@s19-1d4d5.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:58:12.386212Z"}]}
+2026-10-29T12:58:12.696Z CONTROL ok: before disable: owner GET /members (200)
+2026-10-29T12:58:12.697Z HTTP GET /api/v1/projects actor=owner@s19-1d4d5 -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:58:12.307139Z","id":"prj_994aab139322d9d4a4fb00fd","slug":"s19-2dabe"}]}
+2026-10-29T12:58:12.697Z CONTROL ok: before disable: owner GET /projects (200)
+2026-10-29T12:58:12.702Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=owner@s19-1d4d5 -> 200 4ms
+  req: 
+  resp: {"key":"S19_K","version":1,"value":"«canary:s19»"}
+2026-10-29T12:58:12.702Z CONTROL ok: before disable: owner GET value (200)
+2026-10-29T12:58:12.706Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=s19-32a7f@s19-1d4d5 -> 200 4ms
+  req: 
+  resp: {"key":"S19_K","version":1,"value":"«canary:s19»"}
+2026-10-29T12:58:12.706Z CONTROL ok: before disable: member GET value (200)
+2026-10-29T12:58:12.707Z HTTP GET /api/v1/me actor=s19-32a7f@s19-1d4d5 -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"},"role":"member","user":{"email":"s19-32a7f@s19-1d4d5.test","id":"usr_a7640c21eee43d95ae63f762","must_change_password":false}}
+2026-10-29T12:58:12.707Z CONTROL ok: before disable: member GET /me (200)
+2026-10-29T12:58:12.712Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=tok:s19-448bd -> 200 4ms
+  req: 
+  resp: {"key":"S19_K","version":1,"value":"«canary:s19»"}
+2026-10-29T12:58:12.712Z CONTROL ok: before disable: token GET value (200)
+2026-10-29T12:58:12.713Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets actor=tok:s19-448bd -> 200 1ms
+  req: 
+  resp: [{"key":"S19_K","version":1,"updated_at":"2026-10-29T12:58:12.690107Z","updated_by":"usr_f826f98b6c1c073fbd184a0f"}]
+2026-10-29T12:58:12.713Z CONTROL ok: before disable: token GET list (200)
+2026-10-29T12:58:12.721Z HTTP POST /api/v1/admin/orgs/s19-1d4d5/disable actor=root -> 200 7ms
+  req: 
+  resp: {"organization":{"created_at":"2026-10-29T12:58:12.006746Z","disabled_at":"2026-10-29T12:58:12.714365Z","id":"org_42a929accd18f92b4b6a7f90","slug":"s19-1d4d5"}}
+2026-10-29T12:58:12.721Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=tok:s19-448bd -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.722Z ASSERT ok   not(disabled org token next request -> 401 (want 401/403))
+2026-10-29T12:58:12.722Z ASSERT ok   not(first post-disable probe took 1 ms (want <= 1000))
+2026-10-29T12:58:12.722Z HTTP GET /api/v1/members actor=owner@s19-1d4d5 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.723Z ASSERT ok   not(after disable: owner GET /members -> 401 (want 401/403))
+2026-10-29T12:58:12.723Z HTTP GET /api/v1/projects actor=owner@s19-1d4d5 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.723Z ASSERT ok   not(after disable: owner GET /projects -> 401 (want 401/403))
+2026-10-29T12:58:12.724Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=owner@s19-1d4d5 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.724Z ASSERT ok   not(after disable: owner GET value -> 401 (want 401/403))
+2026-10-29T12:58:12.725Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=s19-32a7f@s19-1d4d5 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.725Z ASSERT ok   not(after disable: member GET value -> 401 (want 401/403))
+2026-10-29T12:58:12.726Z HTTP GET /api/v1/me actor=s19-32a7f@s19-1d4d5 -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.726Z ASSERT ok   not(after disable: member GET /me -> 401 (want 401/403))
+2026-10-29T12:58:12.726Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=tok:s19-448bd -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.727Z ASSERT ok   not(after disable: token GET value -> 401 (want 401/403))
+2026-10-29T12:58:12.727Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/secrets actor=tok:s19-448bd -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.727Z ASSERT ok   not(after disable: token GET list -> 401 (want 401/403))
+2026-10-29T12:58:12.728Z HTTP PUT /api/v1/projects/s19-2dabe/envs/dev/secrets/S19_K actor=owner@s19-1d4d5 -> 401 1ms
+  req: {"value": "x"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.728Z ASSERT ok   not(after disable: owner PUT secret -> 401 (want 401/403))
+2026-10-29T12:58:12.729Z HTTP POST /api/v1/tokens actor=owner@s19-1d4d5 -> 401 1ms
+  req: {"project": "s19-2dabe", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s19"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.729Z ASSERT ok   not(after disable: owner POST /tokens -> 401 (want 401/403))
+2026-10-29T12:58:12.729Z HTTP GET /api/v1/projects/s19-2dabe/envs/dev/export actor=tok:s19-448bd -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:12.729Z ASSERT ok   not(after disable: token export -> 401 (want 401/403))
+2026-10-29T12:58:12.795Z HTTP POST /api/v1/auth/token actor=anon -> 401 66ms
+  req: {"email": "owner-s19-1d4d5@s19-1d4d5.test", "password": "«pw:owner@s19-1d4d5»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:12.796Z S19 login after disable -> 401
+2026-10-29T12:58:12.801Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:58:12.801Z ASSERT ok   not(acme owner GET api/dev/CANARY after disable -> 200)
+2026-10-29T12:58:12.802Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_dev_r -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=d12680ab9528f65d4036d41c15df710433a96e59f6346e8fb69fb796aefa6127 len=4376]
+2026-10-29T12:58:12.802Z ASSERT ok   not(after disable: acme T_dev_r list -> 200 (want 200))
+2026-10-29T12:58:12.804Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=writer@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=d12680ab9528f65d4036d41c15df710433a96e59f6346e8fb69fb796aefa6127 len=4376]
+2026-10-29T12:58:12.804Z ASSERT ok   not(after disable: acme writer list -> 200 (want 200))
+2026-10-29T12:58:12.805Z HTTP GET /api/v1/projects actor=owner@globex -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:36.938361Z","id":"prj_d1a75eebc02b36825bd71b38","slug":"api"}]}
+2026-10-29T12:58:12.805Z ASSERT ok   not(after disable: globex owner GET /projects -> 200 (want 200))
+2026-10-29T12:58:12.806Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@globex -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.896508Z","updated_by":"usr_6a34f6e1a538bc7473cd8192"}]
+2026-10-29T12:58:12.806Z ASSERT ok   not(after disable: globex owner list api/dev -> 200 (want 200))

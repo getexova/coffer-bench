@@ -1,0 +1,173 @@
+2026-10-30T15:24:53.126Z GIT rev-list --count HEAD -> rc=0 2ms err=
+2026-10-30T15:24:53.134Z GIT log --stat --format=%h %ad %s --date=iso-strict HEAD -> rc=0 8ms err=
+2026-10-30T15:24:53.134Z E6 git log --stat (first 12000 chars):
+ba861e5 2026-10-30T12:59:28Z Record round-2 decisions; align login-audit docs with the code
+
+ README.md         |  2 +-
+ docs/CONTRACT.md  |  4 ++--
+ docs/DECISIONS.md | 17 +++++++++++++++--
+ 3 files changed, 18 insertions(+), 5 deletions(-)
+65236bc 2026-10-30T12:54:28Z Fix findings from adversarial review round 2; sync docs
+
+ .env.example                                       |  18 ++
+ README.md                                          | 191 +++++++++----
+ docs/ARCHITECTURE.md                               | 312 ++++++++++++++-------
+ docs/CLI.md                                        | 271 ++++++++++++++----
+ docs/CONTRACT.md                                   | 304 ++++++++++++--------
+ docs/DECISIONS.md                                  | 185 +++++++-----
+ docs/SECURITY.md                                   | 266 +++++++++++-------
+ internal/server/api/auth.go                        |  22 +-
+ internal/server/api/auth_test.go                   |   5 +-
+ internal/server/api/changes.go                     |  68 ++++-
+ internal/server/api/limits_test.go                 |  91 ++++++
+ internal/server/api/login_audit_test.go            |  53 +++-
+ internal/server/api/members.go                     |  90 +++---
+ internal/server/api/projects.go                    |   6 +
+ internal/server/api/reauth.go                      | 164 +++++++++++
+ internal/server/api/secrets.go                     | 277 +++++++++++++-----
+ internal/server/api/stale_principal_stress_test.go |  74 +++++
+ internal/server/api/stale_principal_test.go        | 311 ++++++++++++++++++++
+ internal/server/api/tokens.go                      |  23 +-
+ scripts/check-env-docs.sh                          |  15 +-
+ scripts/ops-smoke.sh                               |  46 ++-
+ scripts/restore.sh                                 | 161 +++++++++--
+ scripts/test.sh                                    |   7 +-
+ 23 files changed, 2277 insertions(+), 683 deletions(-)
+d870a41 2026-10-30T12:02:22Z Quiet the init-env next-step hint when called from up.sh
+
+ scripts/init-env.sh | 4 +++-
+ scripts/up.sh       | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+1fbcde8 2026-10-30T12:00:24Z Fix findings from adversarial review round 1; add e2e suite
+
+ .env.example                                   |  26 ++
+ .github/workflows/ci.yml                       |  25 +-
+ .golangci.yml                                  |  74 +++-
+ Dockerfile                                     |  13 +-
+ README.md                                      |  52 +--
+ docs/ARCHITECTURE.md                           |  11 +-
+ docs/CLI.md                                    |   9 +-
+ docs/CONTRACT.md                               |   4 +-
+ docs/DECISIONS.md                              |   6 +-
+ docs/SECURITY.md                               |  12 +-
+ internal/cli/app.go                            |   7 +-
+ internal/cli/cli_test.go                       |  85 +++++
+ internal/cli/client.go                         |   8 +-
+ internal/cli/secrets.go                        |   9 +
+ internal/server/api/auth.go                    | 105 ++++--
+ internal/server/api/changes.go                 |  66 +++-
+ internal/server/api/changes_revocation_test.go |  94 +++++
+ internal/server/api/http.go                    |  11 +-
+ internal/server/api/integrity_audit_test.go    |  67 ++++
+ internal/server/api/login_audit_test.go        | 203 ++++++++++
+ internal/server/api/projects.go                |  19 +-
+ internal/server/api/secrets.go                 |  46 ++-
+ internal/server/app/app.go                     |  28 +-
+ internal/server/app/app_test.go                | 131 +++++++
+ internal/server/crypto/crypto_test.go          |  17 +
+ internal/server/crypto/password.go             |   9 +
+ internal/server/db/db.go                       | 107 ++++--
+ scripts/build.sh                               |   4 +-
+ scripts/check-env-docs.sh                      |  36 ++
+ scripts/lib.sh                                 |  18 +
+ scripts/ops-smoke.sh                           | 166 +++++++++
+ scripts/restore.sh                             |   2 +-
+ scripts/test.sh                                |   4 +-
+ scripts/up.sh                                  |  24 +-
+ test/e2e/audit_http_test.go                    | 489 +++++++++++++++++++++++++
+ test/e2e/authz_test.go                         | 345 +++++++++++++++++
+ test/e2e/changes_tokens_test.go                | 316 ++++++++++++++++
+ test/e2e/cli_test.go                           | 215 +++++++++++
+ test/e2e/doc.go                                |  17 +
+ test/e2e/helpers_test.go                       | 407 ++++++++++++++++++++
+ test/e2e/perf_test.go                          |  79 ++++
+ test/e2e/quickstart_test.go                    | 144 ++++++++
+ test/e2e/secrets_test.go                       | 403 ++++++++++++++++++++
+ 43 files changed, 3783 insertions(+), 130 deletions(-)
+3fcbd71 2026-10-30T11:16:01Z Implement Coffer server, CLI, ops scripts and docs
+
+ .dockerignore                               |  16 +
+ .env.example                                |  85 +++
+ .github/workflows/ci.yml                    | 125 ++++
+ .gitignore                                  |   8 +
+ .golangci.yml                               |  50 ++
+ Dockerfile                                  |  37 ++
+ README.md                                   | 226 +++++++
+ cmd/coffer-server/main.go                   |  66 ++
+ cmd/coffer/main.go                          |  12 +
+ compose.yaml                                |  65 ++
+ docs/ARCHITECTURE.md                        | 144 +++++
+ docs/CLI.md                                 | 133 ++++
+ docs/DECISIONS.md                           |  87 +++
+ docs/SECURITY.md                            | 127 ++++
+ go.mod                                      |  16 +-
+ go.sum                                      |  30 +
+ internal/cli/app.go                         | 189 ++++++
+ internal/cli/auth.go                        | 181 ++++++
+ internal/cli/cli_test.go                    | 970 ++++++++++++++++++++++++++++
+ internal/cli/client.go                      | 228 +++++++
+ internal/cli/commands.go                    | 163 +++++
+ internal/cli/config.go                      | 181 ++++++
+ internal/cli/helpers_test.go                | 149 +++++
+ internal/cli/input.go                       | 111 ++++
+ internal/cli/org.go                         | 423 ++++++++++++
+ internal/cli/output.go                      | 163 +++++
+ internal/cli/parse.go                       | 276 ++++++++
+ internal/cli/run.go                         | 143 ++++
+ internal/cli/run_test.go                    | 182 ++++++
+ internal/cli/secrets.go                     | 249 +++++++
+ internal/cli/term_linux.go                  |  43 ++
+ internal/cli/term_other.go                  |  20 +
+ internal/cli/ttl.go                         |  32 +
+ internal/server/api/admin.go                | 320 +++++++++
+ internal/server/api/auth.go                 | 623 ++++++++++++++++++
+ internal/server/api/auth_test.go            | 237 +++++++
+ internal/server/api/authz_test.go           | 680 +++++++++++++++++++
+ internal/server/api/changes.go              | 281 ++++++++
+ internal/server/api/http.go                 | 544 ++++++++++++++++
+ internal/server/api/members.go              | 479 ++++++++++++++
+ internal/server/api/perf_test.go            |  85 +++
+ internal/server/api/projects.go             | 450 +++++++++++++
+ internal/server/api/secrets.go              | 720 +++++++++++++++++++++
+ internal/server/api/secrets_test.go         | 651 +++++++++++++++++++
+ internal/server/api/shapes_test.go          |  85 +++
+ internal/server/api/tokens.go               | 201 ++++++
+ internal/server/api/world_test.go           | 138 ++++
+ internal/server/app/app.go                  | 241 +++++++
+ internal/server/app/app_test.go             | 257 ++++++++
+ internal/server/audit/appender.go           | 139 ++++
+ internal/server/audit/audit.go              | 401 ++++++++++++
+ internal/server/audit/audit_test.go         |  95 +++
+ internal/server/config/config.go            | 240 +++++++
+ internal/server/config/config_test.go       | 122 ++++
+ internal/server/crypto/crypto.go            | 142 ++++
+ internal/server/crypto/crypto_test.go       | 136 ++++
+ internal/server/crypto/password.go          | 126 ++++
+ internal/server/db/db.go                    | 421 ++++++++++++
+ internal/server/db/migrations/0001_init.sql | 171 +++++
+ internal/server/testutil/logbuf.go          |  23 +
+ internal/server/testutil/race_off.go        |   7 +
+ internal/server/testutil/race_on.go         |   7 +
+ internal/server/testutil/testutil.go        | 271 ++++++++
+ scripts/backup.sh                           |  49 ++
+ scripts/build.sh                            |  83 +++
+ scripts/down.sh                             |  14 +
+ scripts/init-env.sh                         |  97 +++
+ scripts/lib.sh                              | 141 ++++
+ scripts/restore.sh                          |  60 ++
+ scripts/test.sh                             | 143 ++++
+ scripts/up.sh                               |  18 +
+ 71 files changed, 13827 insertions(+), 1 deletion(-)
+6eb8d38 2026-10-30T10:32:14Z Add spec, implementation contract and module scaffold
+
+ .gitignore       |   6 +
+ SPEC.md          | 292 ++++++++++++++++++++++++++++++++++++++++
+ docs/CONTRACT.md | 396 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ go.mod           |   3 +
+ 4 files changed, 697 insertions(+)
+
+2026-10-30T15:24:53.143Z GIT log --no-merges --numstat --format=@@C %H %ct %s HEAD -> rc=0 8ms err=
+2026-10-30T15:24:53.143Z E6 summary: {'commits': 6, 'non_merge': 6, 'touching': 6, 'added_lines_first_party': 20576, 'excluded_lines': {'lockfile': 30, 'vendor': 0, 'generated': 0}, 'largest_commit': '3fcbd71555', 'largest_subject': 'Implement Coffer server, CLI, ops scripts and docs', 'largest_share': 0.671, 'unit': 'lines', 'span_hours': 2.45, 'per_commit': [{'sha': 'ba861e566a', 'first_party_lines': 18, 'files': 3, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '65236bc96f', 'first_party_lines': 2277, 'files': 23, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': 'd870a41137', 'first_party_lines': 4, 'files': 2, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '1fbcde8e95', 'first_party_lines': 3783, 'files': 43, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}, {'sha': '3fcbd71555', 'first_party_lines': 13797, 'files': 71, 'excluded': {'lockfile': 30, 'vendor': 0, 'generated': 0}}, {'sha': '6eb8d386c1', 'first_party_lines': 697, 'files': 4, 'excluded': {'lockfile': 0, 'vendor': 0, 'generated': 0}}]}
+2026-10-30T15:24:53.143Z ASSERT ok   not(commits reachable from HEAD = 6 (want > 1))
+2026-10-30T15:24:53.143Z ASSERT ok   not(commits that change files = 6 (want >= 2))
+2026-10-30T15:24:53.143Z ASSERT ok   not(largest commit 3fcbd71555 holds 67% of added lines (first-party, dump threshold 80%))

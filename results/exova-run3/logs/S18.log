@@ -1,0 +1,105 @@
+2026-10-29T12:58:11.079Z HTTP POST /api/v1/members actor=owner@acme -> 201 114ms
+  req: {"email": "s18-18369@acme.test", "role": "member", "password": "«pw0:s18-18369@acme»"}
+  resp: {"member":{"id":"usr_0b41d803938cd640f44c0f10","email":"s18-18369@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:11.072264Z"}}
+2026-10-29T12:58:11.082Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=51df91f91ddabad3844ebab72b52820e953b5974419382c474e43a74c47420af len=2174]
+2026-10-29T12:58:11.087Z HTTP PUT /api/v1/members/usr_0b41d803938cd640f44c0f10/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "reader"}
+  resp: {"grant":{"level":"reader","project":"api","user_id":"usr_0b41d803938cd640f44c0f10"}}
+2026-10-29T12:58:11.172Z HTTP POST /api/v1/auth/token actor=anon -> 200 85ms
+  req: {"email": "s18-18369@acme.test", "password": "«pw0:s18-18369@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_0b41d803938cd640f44c0f10","email":"s18-18369@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:11.175Z HTTP GET /api/v1/projects actor=s18-18369@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:11.306Z HTTP POST /api/v1/auth/password actor=s18-18369@acme -> 200 129ms
+  req: {"current_password": "«pw0:s18-18369@acme»", "new_password": "«pw:s18-18369@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:11.376Z HTTP POST /api/v1/auth/token actor=anon -> 200 70ms
+  req: {"email": "s18-18369@acme.test", "password": "«pw:s18-18369@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_0b41d803938cd640f44c0f10","email":"s18-18369@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:11.380Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-18369@acme -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:58:11.380Z CONTROL ok: scratch reader lists api/dev before removal (200)
+2026-10-29T12:58:11.385Z HTTP DELETE /api/v1/members/usr_0b41d803938cd640f44c0f10 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"removed":true}
+2026-10-29T12:58:11.386Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-18369@acme -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:11.386Z ASSERT ok   not(removed user's PAT next request -> 401 (want 401))
+2026-10-29T12:58:11.387Z HTTP GET /api/v1/me actor=s18-18369@acme -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-29T12:58:11.387Z ASSERT ok   not(removed user's PAT GET /me -> 401 (want 401))
+2026-10-29T12:58:11.467Z HTTP POST /api/v1/members actor=owner@acme -> 201 78ms
+  req: {"email": "s18-2108c@acme.test", "role": "member", "password": "«pw0:s18-2108c@acme»"}
+  resp: {"member":{"id":"usr_c728ac8ef91f2ec16b5f5b75","email":"s18-2108c@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:11.461771Z"}}
+2026-10-29T12:58:11.469Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=58b1490295c8451fcc4f1ed5cb928a252ed7728a499918e2cdc65866828cb185 len=2174]
+2026-10-29T12:58:11.475Z HTTP PUT /api/v1/members/usr_c728ac8ef91f2ec16b5f5b75/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "writer"}
+  resp: {"grant":{"level":"writer","project":"api","user_id":"usr_c728ac8ef91f2ec16b5f5b75"}}
+2026-10-29T12:58:11.545Z HTTP POST /api/v1/auth/token actor=anon -> 200 69ms
+  req: {"email": "s18-2108c@acme.test", "password": "«pw0:s18-2108c@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_c728ac8ef91f2ec16b5f5b75","email":"s18-2108c@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:11.547Z HTTP GET /api/v1/projects actor=s18-2108c@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:11.690Z HTTP POST /api/v1/auth/password actor=s18-2108c@acme -> 200 141ms
+  req: {"current_password": "«pw0:s18-2108c@acme»", "new_password": "«pw:s18-2108c@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:11.767Z HTTP POST /api/v1/auth/token actor=anon -> 200 76ms
+  req: {"email": "s18-2108c@acme.test", "password": "«pw:s18-2108c@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_c728ac8ef91f2ec16b5f5b75","email":"s18-2108c@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:11.774Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-2108c@acme -> 200 6ms
+  req: {"value": "w1"}
+  resp: {"version":1}
+2026-10-29T12:58:11.774Z CONTROL ok: scratch writer PUT api/dev junk (200)
+2026-10-29T12:58:11.779Z HTTP PUT /api/v1/members/usr_c728ac8ef91f2ec16b5f5b75/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "reader"}
+  resp: {"grant":{"level":"reader","project":"api","user_id":"usr_c728ac8ef91f2ec16b5f5b75"}}
+2026-10-29T12:58:11.783Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-2108c@acme -> 403 4ms
+  req: {"value": "w2"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:58:11.783Z ASSERT ok   not(writer lowered to reader: next PUT -> 403 (want 403))
+2026-10-29T12:58:11.788Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-2108c@acme -> 200 5ms
+  req: 
+  resp: {"key":"JUNK_S18_3","version":1,"value":"w1"}
+2026-10-29T12:58:11.788Z CONTROL ok: reader still reads value (200)
+2026-10-29T12:58:11.793Z HTTP PUT /api/v1/members/usr_c728ac8ef91f2ec16b5f5b75/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"grant":{"level":"viewer","project":"api","user_id":"usr_c728ac8ef91f2ec16b5f5b75"}}
+2026-10-29T12:58:11.797Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S18_3 actor=s18-2108c@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:58:11.797Z ASSERT ok   not(reader lowered to viewer: next value GET -> 403 (want 403))
+2026-10-29T12:58:11.799Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-2108c@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=d12680ab9528f65d4036d41c15df710433a96e59f6346e8fb69fb796aefa6127 len=4376]
+2026-10-29T12:58:11.799Z CONTROL ok: viewer still lists (200)
+2026-10-29T12:58:11.803Z HTTP DELETE /api/v1/members/usr_c728ac8ef91f2ec16b5f5b75/grants/api actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"revoked":true}
+2026-10-29T12:58:11.808Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-2108c@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:58:11.808Z ASSERT ok   not(revoked grant: next list -> 404 (want 404))
+2026-10-29T12:58:11.809Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=d12680ab9528f65d4036d41c15df710433a96e59f6346e8fb69fb796aefa6127 len=4376]
+2026-10-29T12:58:11.809Z CONTROL ok: revoked-grant list vs absent project (200)
+2026-10-29T12:58:11.813Z HTTP GET /api/v1/projects/zz-absent-eadf29b2/envs/dev/secrets actor=s18-2108c@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:58:11.817Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=s18-2108c@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:58:11.818Z ASSERT ok   not(revoked-grant list vs absent project: 404 identical to absent)
+2026-10-29T12:58:11.818Z ASSERT ok   not(removed_ms: probe completed 1 ms after the change (want <= 1000))
+2026-10-29T12:58:11.818Z ASSERT ok   not(lowered_reader_ms: probe completed 4 ms after the change (want <= 1000))
+2026-10-29T12:58:11.818Z ASSERT ok   not(lowered_viewer_ms: probe completed 4 ms after the change (want <= 1000))
+2026-10-29T12:58:11.818Z ASSERT ok   not(revoked_grant_ms: probe completed 4 ms after the change (want <= 1000))

@@ -1,0 +1,43 @@
+2026-10-29T12:55:57.780Z CLI coffer --json secrets list -p api -e dev actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 123ms stdin=0B
+  out: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_STDIN_4066FB55","version":1,"updated_at":"2026-10-29T12:55:45.315677Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_MULTI_F31B149F","version":1,"updated_at":"2026-10-29T12:55:46.056638Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_NL_B5FC211B","version":1,"updated_at":"2026-10-29T12:55:46.295214Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_ONE_9904A704","version":1,"updated_at":"2026-10-29T12:55:45.564544Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F3_MAX_2C199CC4","version":1,"updated_at":"2026-10-29T12:55:46.789091Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F4_HIST_F2B56E22","version":4,"updated_at":"2026-10-29T12:55:48.606074Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F5_DEL_5C6625B2","version":3,"updated_at":"2026-10-29T12:55:49.574932Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F6_CAS_3987DC75","version":3,"updated_at":"2026-10-29T12:55:50.397328Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F7_PAR_D36734FB","version":21,"updated_at":"2026-10-29T12:55:51.41983Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"MULTI","version":1,"updated_at":"2026-10-29T12:55:37.411158Z","updated_by":"usr_493b9b638f8b78d524ce5e65"}]
+
+  err: 
+2026-10-29T12:55:57.780Z ASSERT ok   not(secrets list --json rc=0)
+2026-10-29T12:55:57.780Z ASSERT ok   not(secrets list: CANARY key missing or value shown)
+2026-10-29T12:55:57.902Z CLI coffer --json secrets get CANARY -p api -e dev actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+  err: 
+2026-10-29T12:55:57.902Z ASSERT ok   not(secrets get --json rc=0)
+2026-10-29T12:55:57.902Z ASSERT ok   not(secrets get --json: value missing)
+2026-10-29T12:55:58.030Z CLI coffer --json secrets history CANARY -p api -e dev actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 128ms stdin=0B
+  out: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:55:37.289735Z","created_by":"usr_493b9b638f8b78d524ce5e65"}]
+
+  err: 
+2026-10-29T12:55:58.031Z ASSERT ok   not(history --json rc=0)
+2026-10-29T12:55:58.031Z ASSERT ok   not(history --json has no version list: [{'version': 1, 'deleted': False, 'created_at': '2026-10-29T12:55:37.289735Z', ')
+2026-10-29T12:55:58.031Z CLI-SPAWN coffer --json token create -p api -e dev --access read --ttl 30m --name f16-3ea050 actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme
+2026-10-29T12:55:58.152Z QCLI coffer token create -p api -e dev --access read --ttl 30m --name f16-3ea050 -> rc=0
+  out: {
+  "id": "tok_44be8aa61c36ce554c8f6b1c",
+  "token": "«token:F16:968478»"
+}
+
+  err: 
+2026-10-29T12:55:58.152Z ASSERT ok   not(token create --json rc=0)
+2026-10-29T12:55:58.152Z ASSERT ok   not(token create --json: no cof_st_ token field)
+2026-10-29T12:55:58.278Z CLI coffer token revoke tok_44be8aa61c36ce554c8f6b1c actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 126ms stdin=0B
+  out: Revoked token tok_44be8aa61c36ce554c8f6b1c
+
+  err: 
+2026-10-29T12:55:58.404Z CLI coffer --json change list actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 126ms stdin=0B
+  out: [{"id":"chg59c57ba818c6577c3a000d0d","project":"api","env":"prod","key":"F15_PDR_71C1614A","op":"delete","base_version":3,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:55:57.368053Z","resolved_at":"2026-10-29T12:55:57.494957Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg996ec96607128fb4d1a867ce","project":"api","env":"prod","key":"F15_PDR_71C1614A","op":"rollback","base_version":2,"target_version":1,"status":"approved","proposer_id":"usr_36d0d9963bd…[sha256=223ec1d38576074774a69bdf733d92588365f52c2904a66a94a180d92a803713 len=4133]
+  err: 
+2026-10-29T12:55:58.405Z ASSERT ok   not(change list --json rc=0)
+2026-10-29T12:55:58.405Z ASSERT ok   not(change list --json has no list)
+2026-10-29T12:55:58.526Z CLI coffer --json audit list --limit 5 actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: {"events":[{"seq":260,"timestamp":"2026-10-29T12:55:58.269904Z","actor":"pat_8d2f988ee170207cf069b3cc","action":"token.revoked","target":"token/tok_44be8aa61c36ce554c8f6b1c","source_ip":"10.89.0.3","result":"success","prev_hash":"f689dc60d8677bff9cab5be09fc8a9ee737e309745898dbd3a240338b9a65924","hash":"af21b94c226af41ffe6475b8c71fb31a9aaf91ade81fedb57245d56f31bf750c"},{"seq":259,"timestamp":"2026-10-29T12:55:58.142797Z","actor":"pat_8d2f988ee170207cf069b3cc","action":"token.issued","target":"token/tok_44be8aa61c36ce554c8f6b1c/project/api/env/dev","source_ip":"10.89.0.3","result":"success","prev_hash":"dd6f4df964f309997b6425233c308ccc30a22bf077f8a0f8d41780dc3304f8a4","hash":"f689dc60d8677bff9cab5be09fc8a9ee737e309745898dbd3a240338b9a65924"},{"seq":258,"timestamp":"2026-10-29T12:55:57.894025Z","actor":"usr_b5e9134f655c5825fa5df3b8","action":"secret.read","target":"prj_9b5ed80f66b6e14db5e07a4d/env_1161efd8271530cd160dcf3e/CANARY","source_ip":"10.89.0.3","result":"success","prev_hash":"e132e58a8ac7b9d0b9c213af66deef69fda229a4846baebeb74f6c07c5d6dfc7","hash":"dd6f4df964f309997b6425233c308ccc30a22bf077f8a0f8d41780dc3304f8a4"},{"seq":257,"timestamp":"2026-10-29T12:55:57.506992Z","actor":"usr_493b9b638f8b78d524ce5e65","action":"denied","target":"GET /api/v1/projects/{p}/envs/{e}/secrets/{key}","source_ip":"10.89.0.3","result":"denied","prev_hash":"1ae974e712af2d70f5a623b04d46b5aeda0ca4f812eb4493feeae443a922ed98","hash":"e132e58a8ac7b9d0b9c213af66deef69fda229a4846baebeb74f6c07c5d6dfc7"},{"seq":256,"timestamp":"2026-10-29T12:55:57.494770Z","actor":"usr_b5e9134f655c5825fa5df3b8","action":"secret.delete","target":"prj_9b5ed80f66b6e14db5e07a4d/env_ddabcac9c2171ec0430de62a/F15_PDR_71C1614A","source_ip":"10.89.0.3","result":"success","prev_hash":"41d4253d43c89d1e2362177eac6016339696eba65114a1a4a1182c6f4015468f","hash":"1ae974e712af2d70f5a623b04d46b5aeda0ca4f812eb4493feeae443a922ed98"}]}
+
+  err: 
+2026-10-29T12:55:58.527Z ASSERT ok   not(audit list --json rc=0)
+2026-10-29T12:55:58.527Z ASSERT ok   not(audit list --json has no events)

@@ -1,0 +1,306 @@
+2026-10-30T15:29:03.451Z HTTP POST /api/v1/admin/orgs actor=root -> 201 53ms
+  req: {"slug": "a7-1a63b", "owner_email": "owner-a7-1a63b@a7-1a63b.test", "owner_password": "«pw0:owner@a7-1a63b»"}
+  resp: {"id":"org_ayxtxkbuarjtkvlz53jsd6tbydugiwgq","slug":"a7-1a63b","disabled":false,"created_at":"2026-10-30T15:29:03.442062Z","owner":{"id":"usr_dfxdryds775i7ifu5dawbh3j76j7ffg5","email":"owner-a7-1a63b@a7-1a63b.test","role":"owner"}}
+
+2026-10-30T15:29:03.501Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "owner-a7-1a63b@a7-1a63b.test", "password": "«pw0:owner@a7-1a63b»"}
+  resp: {"expires_at":"2026-11-29T15:29:03.452381Z","token":"<redacted-token>","user":{"id":"usr_dfxdryds775i7ifu5dawbh3j76j7ffg5","email":"owner-a7-1a63b@a7-1a63b.test","role":"owner","org_id":"org_ayxtxkbuarjtkvlz53jsd6tbydugiwgq","org_slug":"a7-1a63b","must_change_password":false}}
+
+2026-10-30T15:29:03.504Z HTTP GET /api/v1/projects actor=owner@a7-1a63b -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:29:03.513Z HTTP POST /api/v1/projects actor=owner@a7-1a63b -> 201 8ms
+  req: {"slug": "a7-244a7"}
+  resp: {"id":"prj_o5xfavegj4xqvhsq63cbuqkcaokg6ewh","slug":"a7-244a7","created_at":"2026-10-30T15:29:03.505808Z"}
+
+2026-10-30T15:29:03.518Z HTTP POST /api/v1/projects/a7-244a7/envs actor=owner@a7-1a63b -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_j65qgilosfvym5hfigf6rk3y4b6nqbqb","slug":"dev","protected":false,"created_at":"2026-10-30T15:29:03.514382Z"}
+
+2026-10-30T15:29:03.569Z HTTP POST /api/v1/members actor=owner@a7-1a63b -> 201 50ms
+  req: {"email": "a7-33878@a7-1a63b.test", "role": "member", "password": "«pw0:a7-33878@a7-1a63b»"}
+  resp: {"id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj","email":"a7-33878@a7-1a63b.test","role":"member","created_at":"2026-10-30T15:29:03.561516Z"}
+
+2026-10-30T15:29:03.575Z HTTP PUT /api/v1/members/usr_rnzsru63yhbhqxarrl566yejz24hx4cj/grants/a7-244a7 actor=owner@a7-1a63b -> 200 5ms
+  req: {"level": "writer"}
+  resp: {"level":"writer","project":"a7-244a7","user_id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"}
+
+2026-10-30T15:29:03.623Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "a7-33878@a7-1a63b.test", "password": "«pw0:a7-33878@a7-1a63b»"}
+  resp: {"expires_at":"2026-11-29T15:29:03.576189Z","token":"<redacted-token>","user":{"id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj","email":"a7-33878@a7-1a63b.test","role":"member","org_id":"org_ayxtxkbuarjtkvlz53jsd6tbydugiwgq","org_slug":"a7-1a63b","must_change_password":false}}
+
+2026-10-30T15:29:03.627Z HTTP GET /api/v1/projects actor=a7-33878@a7-1a63b -> 200 2ms
+  req: 
+  resp: [{"id":"prj_o5xfavegj4xqvhsq63cbuqkcaokg6ewh","slug":"a7-244a7","created_at":"2026-10-30T15:29:03.505808Z","level":"writer"}]
+
+2026-10-30T15:29:03.630Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 2ms
+  req: 
+  resp: [{"seq":7,"ts":"2026-10-30T15:29:03.618100Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"auth.login","target":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_iaxqotlefpy2i33bsidy7t7mad5wlgxb"},"prev_hash":"2dae9970631e0c8d968842190e84b57bbc99afcdee08c6d5f2d4f3996c7c62ae","hash":"d814a38cfb003dc9a105121d06631493456f105b230a2820cc6d13df8ba8db3b"},{"seq":6,"ts":"2026-10-30T15:29:03.571534Z","actor":{"type":"user","i…[sha256=2161c6a212fee9086c0c54fb876e1ae68545c5374806f329d2c91774a2b1a293 len=3087]
+2026-10-30T15:29:03.631Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":7,"ts":"2026-10-30T15:29:03.618100Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"auth.login","target":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_iaxqotlefpy2i33bsidy7t7mad5wlgxb"},"prev_hash":"2dae9970631e0c8d968842190e84b57bbc99afcdee08c6d5f2d4f3996c7c62ae","hash":"d814a38cfb003dc9a105121d06631493456f105b230a2820cc6d13df8ba8db3b"},{"seq":6,"ts":"2026-10-30T15:29:03.571534Z","actor":{"type":"user","i…[sha256=2161c6a212fee9086c0c54fb876e1ae68545c5374806f329d2c91774a2b1a293 len=3087]
+2026-10-30T15:29:03.642Z CLI coffer secrets set A7_031B67529E -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-4 url=http://127.0.0.1:8420 -> rc=0 9ms stdin=40B
+  out: set A7_031B67529E (version 1)
+
+  err: 
+2026-10-30T15:29:03.650Z CLI coffer secrets get A7_031B67529E -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-5 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=0B
+  out: «canary:A7:A7_031B67529E»
+  err: 
+2026-10-30T15:29:03.659Z CLI coffer secrets set A7_64787BE7B5 -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-6 url=http://127.0.0.1:8420 -> rc=0 8ms stdin=40B
+  out: set A7_64787BE7B5 (version 1)
+
+  err: 
+2026-10-30T15:29:03.666Z CLI coffer secrets get A7_64787BE7B5 -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-7 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: «canary:A7:A7_64787BE7B5»
+  err: 
+2026-10-30T15:29:04.870Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 3ms
+  req: 
+  resp: [{"seq":11,"ts":"2026-10-30T15:29:03.662469Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_64787BE7B5","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"7e5445a7800468acc18e219d6bfe592332cacddcec112b91f35d0858d0fdae0a","hash":"fccb22ed8ef9299d0ce4fe9b4f642f2be4f833832d9477d56c8b001af8e4b2a5"},{"seq":10,"ts":"2026-10-30T15:29:03.655199Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"a…[sha256=de99b1bd6bf333ec217d93f2dcffbf5cbcb7d0257f680b82254eae65fa84762e len=4671]
+2026-10-30T15:29:04.873Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 2ms
+  req: 
+  resp: [{"seq":11,"ts":"2026-10-30T15:29:03.662469Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_64787BE7B5","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"7e5445a7800468acc18e219d6bfe592332cacddcec112b91f35d0858d0fdae0a","hash":"fccb22ed8ef9299d0ce4fe9b4f642f2be4f833832d9477d56c8b001af8e4b2a5"},{"seq":10,"ts":"2026-10-30T15:29:03.655199Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"a…[sha256=de99b1bd6bf333ec217d93f2dcffbf5cbcb7d0257f680b82254eae65fa84762e len=4671]
+2026-10-30T15:29:04.874Z since mark 2026-10-30T15:29:04Z (newest pre-mark event ts 2026-10-30T15:29:03.662469+00:00)
+2026-10-30T15:29:07.385Z CLI coffer secrets set A7_6D85DB8102 -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-8 url=http://127.0.0.1:8420 -> rc=0 9ms stdin=40B
+  out: set A7_6D85DB8102 (version 1)
+
+  err: 
+2026-10-30T15:29:07.393Z CLI coffer secrets get A7_6D85DB8102 -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-9 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=0B
+  out: «canary:A7:A7_6D85DB8102»
+  err: 
+2026-10-30T15:29:07.401Z CLI coffer secrets set A7_07D34A0252 -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-10 url=http://127.0.0.1:8420 -> rc=0 7ms stdin=40B
+  out: set A7_07D34A0252 (version 1)
+
+  err: 
+2026-10-30T15:29:07.408Z CLI coffer secrets get A7_07D34A0252 -p a7-244a7 -e dev actor=a7-33878@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-11 url=http://127.0.0.1:8420 -> rc=0 6ms stdin=0B
+  out: «canary:A7:A7_07D34A0252»
+  err: 
+2026-10-30T15:29:07.409Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.404366Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7","hash":"a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"},{"seq":14,"ts":"2026-10-30T15:29:07.397701Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"a…[sha256=8754f340a51f7d08d43bc465f086c5f5bfb7fd87413473a189748a42a289984b len=6257]
+2026-10-30T15:29:07.410Z full=15 member-events=9 batch2-events=4
+2026-10-30T15:29:07.411Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.404366Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7","hash":"a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"}]
+
+2026-10-30T15:29:07.411Z CONTROL ok: owner audit list (200)
+2026-10-30T15:29:07.412Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.404366Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7","hash":"a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"},{"seq":14,"ts":"2026-10-30T15:29:07.397701Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.write","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4","hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7"},{"seq":13,"ts":"2026-10-30T15:29:07.388642Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_6D85DB8102","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"1258a80046061ff4a5f9ffb3b868f0b504cf8b63e23b3c2d3c234cbcb645d9dd","hash":"ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4"}]
+
+2026-10-30T15:29:07.412Z ASSERT ok   not(API limit=3 -> 200 3 events)
+2026-10-30T15:29:07.415Z CLI coffer --json audit list --limit 3 actor=owner@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-12 url=http://127.0.0.1:8420 -> rc=0 3ms stdin=0B
+  out: [
+  {
+    "seq": 15,
+    "ts": "2026-10-30T15:29:07.404366Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.read",
+    "target": "a7-244a7/dev/A7_07D34A0252",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7",
+    "hash": "a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"
+  },
+  {
+    "seq": 14,
+    "ts": "2026-10-30T15:29:07.397701Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.write",
+    "target": "a7-244a7/dev/A7_07D34A0252",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4",
+    "hash": "ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7"
+  },
+  {
+    "seq": 13,
+    "ts": "2026-10-30T15:29:07.388642Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.read",
+    "target": "a7-244a7/dev/A7_6D85DB8102",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "1258a80046061ff4a5f9ffb3b868f0b504cf8b63e23b3c2d3c234cbcb645d9dd",
+    "hash": "ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4"
+  }
+]
+
+  err: 
+2026-10-30T15:29:07.416Z ASSERT ok   not(CLI audit list --limit 3 -> rc=0 3 events)
+2026-10-30T15:29:07.417Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.404366Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7","hash":"a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"},{"seq":14,"ts":"2026-10-30T15:29:07.397701Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"a…[sha256=ef1d0ac84142ea4332f445600454910fbab7e3bcc4934fe22eec3e9db54136c2 len=3614]
+2026-10-30T15:29:07.420Z CLI coffer --json audit list --actor usr_rnzsru63yhbhqxarrl566yejz24hx4cj --limit 1000 actor=owner@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-13 url=http://127.0.0.1:8420 -> rc=0 3ms stdin=0B
+  out: [
+  {
+    "seq": 15,
+    "ts": "2026-10-30T15:29:07.404366Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.read",
+    "target": "a7-244a7/dev/A7_07D34A0252",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7",
+    "hash": "a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"
+  },
+  {
+    "seq":…[sha256=dd0f1d7a56cf2dd598ad40ef52fbd3448ebf9aa49c2d712f245805ff4ea26e57 len=4515]
+  err: 
+2026-10-30T15:29:07.421Z ASSERT ok   not(API --actor: 0 of 9 not by actor)
+2026-10-30T15:29:07.421Z ASSERT ok   not(API --actor: 0 of the member's 9 events missing)
+2026-10-30T15:29:07.421Z ASSERT ok   not(CLI --actor: 0 of 9 not by actor)
+2026-10-30T15:29:07.421Z ASSERT ok   not(CLI --actor: 0 of the member's 9 events missing)
+2026-10-30T15:29:07.422Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":7,"ts":"2026-10-30T15:29:03.618100Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"auth.login","target":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_iaxqotlefpy2i33bsidy7t7mad5wlgxb"},"prev_hash":"2dae9970631e0c8d968842190e84b57bbc99afcdee08c6d5f2d4f3996c7c62ae","hash":"d814a38cfb003dc9a105121d06631493456f105b230a2820cc6d13df8ba8db3b"},{"seq":2,"ts":"2026-10-30T15:29:03.495566Z","actor":{"type":"user","id":"usr_dfxdryds775i7ifu5dawbh3j76j7ffg5"},"action":"auth.login","target":"usr_dfxdryds775i7ifu5dawbh3j76j7ffg5","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_zfklatfgnxm577qfq45yhu7famveplra"},"prev_hash":"2c2ea147915b0423c72c9a3b1ecf729d430942ffe1f10f034fccf1514f1c054e","hash":"f7659b22445a11fe8e2e562b832ff098f348c80c023ec68ff77969755101b33b"}]
+
+2026-10-30T15:29:07.425Z CLI coffer --json audit list --action auth.login --limit 1000 actor=owner@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-14 url=http://127.0.0.1:8420 -> rc=0 3ms stdin=0B
+  out: [
+  {
+    "seq": 7,
+    "ts": "2026-10-30T15:29:03.618100Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "auth.login",
+    "target": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "token_id": "tok_iaxqotlefpy2i33bsidy7t7mad5wlgxb"
+    },
+    "prev_hash": "2dae9970631e0c8d968842190e84b57bbc99afcdee08c6d5f2d4f3996c7c62ae",
+    "hash": "d814a38cfb003dc9a105121d06631493456f105b230a2820cc6d13df8ba8db3b"
+  },
+  {
+    "seq": 2,
+    "ts": "2026-10-30T15:29:03.495566Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_dfxdryds775i7ifu5dawbh3j76j7ffg5"
+    },
+    "action": "auth.login",
+    "target": "usr_dfxdryds775i7ifu5dawbh3j76j7ffg5",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "token_id": "tok_zfklatfgnxm577qfq45yhu7famveplra"
+    },
+    "prev_hash": "2c2ea147915b0423c72c9a3b1ecf729d430942ffe1f10f034fccf1514f1c054e",
+    "hash": "f7659b22445a11fe8e2e562b832ff098f348c80c023ec68ff77969755101b33b"
+  }
+]
+
+  err: 
+2026-10-30T15:29:07.425Z ASSERT ok   not(API --action auth.login: 0 of 2 other actions)
+2026-10-30T15:29:07.425Z ASSERT ok   not(API --action auth.login: 0 of 2 expected events missing)
+2026-10-30T15:29:07.425Z ASSERT ok   not(CLI --action auth.login: 0 of 2 other actions)
+2026-10-30T15:29:07.425Z ASSERT ok   not(CLI --action auth.login: 0 of 2 expected events missing)
+2026-10-30T15:29:07.426Z HTTP GET /api/v1/audit actor=owner@a7-1a63b -> 200 1ms
+  req: 
+  resp: [{"seq":15,"ts":"2026-10-30T15:29:07.404366Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7","hash":"a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"},{"seq":14,"ts":"2026-10-30T15:29:07.397701Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.write","target":"a7-244a7/dev/A7_07D34A0252","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4","hash":"ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7"},{"seq":13,"ts":"2026-10-30T15:29:07.388642Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.read","target":"a7-244a7/dev/A7_6D85DB8102","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"1258a80046061ff4a5f9ffb3b868f0b504cf8b63e23b3c2d3c234cbcb645d9dd","hash":"ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4"},{"seq":12,"ts":"2026-10-30T15:29:07.380845Z","actor":{"type":"user","id":"usr_rnzsru63yhbhqxarrl566yejz24hx4cj"},"action":"secret.write","target":"a7-244a7/dev/A7_6D85DB8102","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"fccb22ed8ef9299d0ce4fe9b4f642f2be4f833832d9477d56c8b001af8e4b2a5","hash":"1258a80046061ff4a5f9ffb3b868f0b504cf8b63e23b3c2d3c234cbcb645d9dd"}]
+
+2026-10-30T15:29:07.429Z CLI coffer --json audit list --since 2026-10-30T15:29:04Z --limit 1000 actor=owner@a7-1a63b home=/home/grader2/work-c2/tmp/A7/home-anon-15 url=http://127.0.0.1:8420 -> rc=0 2ms stdin=0B
+  out: [
+  {
+    "seq": 15,
+    "ts": "2026-10-30T15:29:07.404366Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.read",
+    "target": "a7-244a7/dev/A7_07D34A0252",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7",
+    "hash": "a82498bab2b6ada3e50a2ce0199091dbd5d0261dbd13101dbf904c0b340ab4dd"
+  },
+  {
+    "seq": 14,
+    "ts": "2026-10-30T15:29:07.397701Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.write",
+    "target": "a7-244a7/dev/A7_07D34A0252",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4",
+    "hash": "ffb69d1f648e893c0e2510e137047cba9a969b81d1671621fa5bf0eb8d663fd7"
+  },
+  {
+    "seq": 13,
+    "ts": "2026-10-30T15:29:07.388642Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.read",
+    "target": "a7-244a7/dev/A7_6D85DB8102",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "1258a80046061ff4a5f9ffb3b868f0b504cf8b63e23b3c2d3c234cbcb645d9dd",
+    "hash": "ad8e2953ad5b170b89e58346d4c4b523b67bdf3c328a1f10bec991e01874b6a4"
+  },
+  {
+    "seq": 12,
+    "ts": "2026-10-30T15:29:07.380845Z",
+    "actor": {
+      "type": "user",
+      "id": "usr_rnzsru63yhbhqxarrl566yejz24hx4cj"
+    },
+    "action": "secret.write",
+    "target": "a7-244a7/dev/A7_6D85DB8102",
+    "source_ip": "10.89.0.17",
+    "result": "success",
+    "details": {
+      "version": 1
+    },
+    "prev_hash": "fccb22ed8ef9299d0ce4fe9b4f642f2be4f833832d9477d56c8b001af8e4b2a5",
+    "hash": "1258a80046061ff4a5f9ffb3b868f0b504cf8b63e23b3c2d3c234cbcb645d9dd"
+  }
+]
+
+  err: 
+2026-10-30T15:29:07.430Z ASSERT ok   not(API --since 2026-10-30T15:29:04Z: 0 events from before the mark)
+2026-10-30T15:29:07.430Z ASSERT ok   not(API --since 2026-10-30T15:29:04Z: 0 of 4 later events missing)
+2026-10-30T15:29:07.430Z ASSERT ok   not(CLI --since 2026-10-30T15:29:04Z: 0 events from before the mark)
+2026-10-30T15:29:07.430Z ASSERT ok   not(CLI --since 2026-10-30T15:29:04Z: 0 of 4 later events missing)
+2026-10-30T15:29:07.430Z full keys 15

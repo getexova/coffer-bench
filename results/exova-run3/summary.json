@@ -1,0 +1,21 @@
+{
+ "commit": "b5426446177dd2d3f5284be88ddd3951100ce35b",
+ "started": "2026-10-29T12:53:45Z",
+ "finished": "2026-10-29T13:06:00Z",
+ "partial": false,
+ "p0_possible": 148,
+ "p0_points": 132,
+ "p0_pct": 89.2,
+ "p1_points": 5,
+ "total_points": 137,
+ "blockers_failed": [
+  "X10",
+  "X2"
+ ],
+ "errors": [
+  "S16"
+ ],
+ "timeouts": [],
+ "verdict": "NOT SHIPPABLE",
+ "verdict_note": "G1 strict/assisted decided manually; SHIP possible only if G1 strict; PROVISIONAL: 1 errors; blockers in error (not passed, not failed): S16"
+}

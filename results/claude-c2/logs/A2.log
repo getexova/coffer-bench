@@ -1,0 +1,129 @@
+2026-10-30T15:29:01.639Z HTTP GET /api/v1/audit actor=owner@acme -> 200 6ms
+  req: 
+  resp: [{"seq":1315,"ts":"2026-10-30T15:29:00.330677Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"usr_q3zvoxzzb3h7o3juuxuaeicj4cyoekcj","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"7861afeccd5b8f6268f2533cfd7e34caa625c781c0de671c7003416cbdc79bbc","hash":"1cbb9e70c6c88e6268f6ea8938406099e98dfa04c97b9bee42c7a827b9b0d39c"},{"seq":1314,"ts":"2026-10-30T15:29:00.279666Z","actor":{"type":"user","id":"usr_q3zvoxzzb3h7o3juuxuaeicj4cyoekcj"},"action":"auth.login","target":"…[sha256=91643703b118b0d63b9d4d58275227a747d2d6ad7d1a51ce578e53634fe0a677 len=415920]
+2026-10-30T15:29:01.648Z HTTP GET /api/v1/audit actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"seq":1315,"ts":"2026-10-30T15:29:00.330677Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"usr_q3zvoxzzb3h7o3juuxuaeicj4cyoekcj","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"7861afeccd5b8f6268f2533cfd7e34caa625c781c0de671c7003416cbdc79bbc","hash":"1cbb9e70c6c88e6268f6ea8938406099e98dfa04c97b9bee42c7a827b9b0d39c"},{"seq":1314,"ts":"2026-10-30T15:29:00.279666Z","actor":{"type":"user","id":"usr_q3zvoxzzb3h7o3juuxuaeicj4cyoekcj"},"action":"auth.login","target":"…[sha256=dadd7a48d8dac52cc88317cd338b63c6b14bdf3914d0bce48bb3187a6f3ee4f6 len=55446]
+2026-10-30T15:29:01.654Z HTTP GET /api/v1/admin/audit actor=root -> 200 2ms
+  req: 
+  resp: [{"seq":75,"ts":"2026-10-30T15:29:01.364528Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:70cb5ce95870aa08","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254","hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352"},{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz…[sha256=a4e03d976e642ee436b316548c63e1c59bf97869d704be3cbedb91393439ecc1 len=31089]
+2026-10-30T15:29:01.658Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":75,"ts":"2026-10-30T15:29:01.364528Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:70cb5ce95870aa08","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"64f3fd3373390564405fbdd4668577b19d4cc279daf979a3bfc225fc177fb254","hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352"},{"seq":74,"ts":"2026-10-30T15:29:00.486035Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_pa7mybvt5zvcpz…[sha256=a4e03d976e642ee436b316548c63e1c59bf97869d704be3cbedb91393439ecc1 len=31089]
+2026-10-30T15:29:01.668Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=reader@acme -> 200 9ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:29:01.668Z CONTROL ok: viewer@acme GET CANARY (200)
+2026-10-30T15:29:01.673Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=viewer@acme -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:29:01.673Z ASSERT ok   not(viewer@acme GET CANARY: denied 403)
+2026-10-30T15:29:01.703Z HTTP GET /api/v1/audit actor=owner@acme -> 200 5ms
+  req: 
+  resp: [{"seq":1317,"ts":"2026-10-30T15:29:01.669550Z","actor":{"type":"user","id":"usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":403},"prev_hash":"7627187e6737a35479a62cebc021ca6ada31ae1b9011438271d794826a098ae5","hash":"27105bd64db94506a95f42ff3c1b57c8c45e50bab1535983ab91d0077e12e642"},{"seq":1316,"ts":"2026-10-30T15:29:01.660333Z","actor":{"type":"user","id":…[sha256=b56fd0afa210fa614e6871955c4688ac699b0dc96497ad7206beddc2cdd70fbf len=415926]
+2026-10-30T15:29:01.712Z HTTP GET /api/v1/audit actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"seq":1317,"ts":"2026-10-30T15:29:01.669550Z","actor":{"type":"user","id":"usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":403},"prev_hash":"7627187e6737a35479a62cebc021ca6ada31ae1b9011438271d794826a098ae5","hash":"27105bd64db94506a95f42ff3c1b57c8c45e50bab1535983ab91d0077e12e642"},{"seq":1316,"ts":"2026-10-30T15:29:01.660333Z","actor":{"type":"user","id":…[sha256=e4c1c6fc7c09f2fa237a2b7fa69018bfa4112626601727ad574738bb48a05c6b len=56268]
+2026-10-30T15:29:01.715Z viewer@acme denial in acme log: 1 matching of 2 new; seq=1317 action=authz.denied result=denied actor=['user', 'usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl'] text={"action": "authz.denied", "details": {"status": 403}, "result": "denied", "target": "GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY"}
+2026-10-30T15:29:01.715Z ASSERT ok   not(viewer@acme denial in acme log: 1 matching audit event(s) (want >= 1) among 2 new)
+2026-10-30T15:29:01.720Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=reader@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:29:01.720Z CONTROL ok: nogrant@acme GET CANARY (200)
+2026-10-30T15:29:01.728Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=nogrant@acme -> 404 8ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:29:01.728Z ASSERT ok   not(nogrant@acme GET CANARY: denied 404)
+2026-10-30T15:29:01.759Z HTTP GET /api/v1/audit actor=owner@acme -> 200 5ms
+  req: 
+  resp: [{"seq":1319,"ts":"2026-10-30T15:29:01.721522Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":404},"prev_hash":"34a27febe6c445f72e85ca3388e04e1a05f63aabc81c2dedaae5a758943cf156","hash":"ed437073e30817571e3c890f46b03c6cc67957405ee1c10ad46324abb2ace1c0"},{"seq":1318,"ts":"2026-10-30T15:29:01.716943Z","actor":{"type":"user","id":…[sha256=bee251ee1711b1f6a37dd01664b0a5ef96f11f411617b664bdc47ef95f6ae60a len=415941]
+2026-10-30T15:29:01.767Z HTTP GET /api/v1/audit actor=owner@acme -> 200 3ms
+  req: 
+  resp: [{"seq":1319,"ts":"2026-10-30T15:29:01.721522Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":404},"prev_hash":"34a27febe6c445f72e85ca3388e04e1a05f63aabc81c2dedaae5a758943cf156","hash":"ed437073e30817571e3c890f46b03c6cc67957405ee1c10ad46324abb2ace1c0"},{"seq":1318,"ts":"2026-10-30T15:29:01.716943Z","actor":{"type":"user","id":…[sha256=c48c8c458234c46b32de7d4ffe800b89a0b99c30a777adf93aaee5dab21e751a len=57090]
+2026-10-30T15:29:01.770Z nogrant@acme denial in acme log: 1 matching of 2 new; seq=1319 action=authz.denied result=denied actor=['user', 'usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x'] text={"action": "authz.denied", "details": {"status": 404}, "result": "denied", "target": "GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY"}
+2026-10-30T15:29:01.770Z ASSERT ok   not(nogrant@acme denial in acme log: 1 matching audit event(s) (want >= 1) among 2 new)
+2026-10-30T15:29:01.824Z HTTP POST /api/v1/admin/orgs actor=root -> 201 52ms
+  req: {"slug": "a2-141fb", "owner_email": "owner-a2-141fb@a2-141fb.test", "owner_password": "«pw0:owner@a2-141fb»"}
+  resp: {"id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","slug":"a2-141fb","disabled":false,"created_at":"2026-10-30T15:29:01.814957Z","owner":{"id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","email":"owner-a2-141fb@a2-141fb.test","role":"owner"}}
+
+2026-10-30T15:29:01.873Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "owner-a2-141fb@a2-141fb.test", "password": "«pw0:owner@a2-141fb»"}
+  resp: {"expires_at":"2026-11-29T15:29:01.825434Z","token":"<redacted-token>","user":{"id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","email":"owner-a2-141fb@a2-141fb.test","role":"owner","org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","org_slug":"a2-141fb","must_change_password":false}}
+
+2026-10-30T15:29:01.876Z HTTP GET /api/v1/projects actor=owner@a2-141fb -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:29:01.878Z HTTP GET /api/v1/audit actor=owner@a2-141fb -> 200 1ms
+  req: 
+  resp: [{"seq":2,"ts":"2026-10-30T15:29:01.867711Z","actor":{"type":"user","id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu"},"action":"auth.login","target":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_l4ukzvdr35jmuo5c64sye23bme4bll4w"},"prev_hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315","hash":"1a2031f3eac69cbdabf413234d3192ffcf5dbaa28b35961b6ad2834a8acb35e5"},{"seq":1,"ts":"2026-10-30T15:29:01.818091Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","owner_id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","slug":"a2-141fb"},"prev_hash":"0000000000000000000000000000000000000000000000000000000000000000","hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315"}]
+
+2026-10-30T15:29:01.879Z HTTP GET /api/v1/audit actor=owner@a2-141fb -> 200 1ms
+  req: 
+  resp: [{"seq":2,"ts":"2026-10-30T15:29:01.867711Z","actor":{"type":"user","id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu"},"action":"auth.login","target":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_l4ukzvdr35jmuo5c64sye23bme4bll4w"},"prev_hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315","hash":"1a2031f3eac69cbdabf413234d3192ffcf5dbaa28b35961b6ad2834a8acb35e5"},{"seq":1,"ts":"2026-10-30T15:29:01.818091Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","owner_id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","slug":"a2-141fb"},"prev_hash":"0000000000000000000000000000000000000000000000000000000000000000","hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315"}]
+
+2026-10-30T15:29:01.910Z HTTP GET /api/v1/audit actor=owner@acme -> 200 5ms
+  req: 
+  resp: [{"seq":1319,"ts":"2026-10-30T15:29:01.721522Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":404},"prev_hash":"34a27febe6c445f72e85ca3388e04e1a05f63aabc81c2dedaae5a758943cf156","hash":"ed437073e30817571e3c890f46b03c6cc67957405ee1c10ad46324abb2ace1c0"},{"seq":1318,"ts":"2026-10-30T15:29:01.716943Z","actor":{"type":"user","id":…[sha256=bee251ee1711b1f6a37dd01664b0a5ef96f11f411617b664bdc47ef95f6ae60a len=415941]
+2026-10-30T15:29:01.919Z HTTP GET /api/v1/audit actor=owner@acme -> 200 4ms
+  req: 
+  resp: [{"seq":1319,"ts":"2026-10-30T15:29:01.721522Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":404},"prev_hash":"34a27febe6c445f72e85ca3388e04e1a05f63aabc81c2dedaae5a758943cf156","hash":"ed437073e30817571e3c890f46b03c6cc67957405ee1c10ad46324abb2ace1c0"},{"seq":1318,"ts":"2026-10-30T15:29:01.716943Z","actor":{"type":"user","id":…[sha256=c48c8c458234c46b32de7d4ffe800b89a0b99c30a777adf93aaee5dab21e751a len=57090]
+2026-10-30T15:29:01.929Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 7ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:29:01.929Z CONTROL ok: cross-org GET acme CANARY (200)
+2026-10-30T15:29:01.935Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@a2-141fb -> 404 6ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:29:01.935Z ASSERT ok   not(cross-org GET acme CANARY: denied 404)
+2026-10-30T15:29:01.936Z HTTP GET /api/v1/audit actor=owner@a2-141fb -> 200 1ms
+  req: 
+  resp: [{"seq":3,"ts":"2026-10-30T15:29:01.930767Z","actor":{"type":"user","id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":404},"prev_hash":"1a2031f3eac69cbdabf413234d3192ffcf5dbaa28b35961b6ad2834a8acb35e5","hash":"37b95904368f4574a6dc1a2b40805fb4edb885e5a6c9b1a83c2859aeb52f344b"},{"seq":2,"ts":"2026-10-30T15:29:01.867711Z","actor":{"type":"user","id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu"},"action":"auth.login","target":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_l4ukzvdr35jmuo5c64sye23bme4bll4w"},"prev_hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315","hash":"1a2031f3eac69cbdabf413234d3192ffcf5dbaa28b35961b6ad2834a8acb35e5"},{"seq":1,"ts":"2026-10-30T15:29:01.818091Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","owner_id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","slug":"a2-141fb"},"prev_hash":"0000000000000000000000000000000000000000000000000000000000000000","hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315"}]
+
+2026-10-30T15:29:01.938Z HTTP GET /api/v1/audit actor=owner@a2-141fb -> 200 1ms
+  req: 
+  resp: [{"seq":3,"ts":"2026-10-30T15:29:01.930767Z","actor":{"type":"user","id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu"},"action":"authz.denied","target":"GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY","source_ip":"10.89.0.17","result":"denied","details":{"status":404},"prev_hash":"1a2031f3eac69cbdabf413234d3192ffcf5dbaa28b35961b6ad2834a8acb35e5","hash":"37b95904368f4574a6dc1a2b40805fb4edb885e5a6c9b1a83c2859aeb52f344b"},{"seq":2,"ts":"2026-10-30T15:29:01.867711Z","actor":{"type":"user","id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu"},"action":"auth.login","target":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","source_ip":"10.89.0.17","result":"success","details":{"token_id":"tok_l4ukzvdr35jmuo5c64sye23bme4bll4w"},"prev_hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315","hash":"1a2031f3eac69cbdabf413234d3192ffcf5dbaa28b35961b6ad2834a8acb35e5"},{"seq":1,"ts":"2026-10-30T15:29:01.818091Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","owner_id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","slug":"a2-141fb"},"prev_hash":"0000000000000000000000000000000000000000000000000000000000000000","hash":"8c4c3433a3b739e2c884f7512eb9eb32398fbc7817b2187de60197aff0c4c315"}]
+
+2026-10-30T15:29:01.938Z cross-org denial in actor's (scratch) org log: 1 matching of 1 new; seq=3 action=authz.denied result=denied actor=['user', 'usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu'] text={"action": "authz.denied", "details": {"status": 404}, "result": "denied", "target": "GET /projects/{p}/envs/{e}/secrets/{key} p=api e=dev key=CANARY"}
+2026-10-30T15:29:01.938Z ASSERT ok   not(cross-org denial in actor's (scratch) org log: 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:02.971Z HTTP GET /api/v1/audit actor=owner@acme -> 200 7ms
+  req: 
+  resp: [{"seq":1320,"ts":"2026-10-30T15:29:01.924938Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/CANARY","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ed437073e30817571e3c890f46b03c6cc67957405ee1c10ad46324abb2ace1c0","hash":"6c02deca31589cdae2bce4d51b7183b67add1cd55b378cf3783f5666d2854e80"},{"seq":1319,"ts":"2026-10-30T15:29:01.721522Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"…[sha256=bda130ba03bb793f989b18764749745bb1e2922897bf831754d2f50c84d422cc len=415919]
+2026-10-30T15:29:02.980Z HTTP GET /api/v1/audit actor=owner@acme -> 200 3ms
+  req: 
+  resp: [{"seq":1320,"ts":"2026-10-30T15:29:01.924938Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/CANARY","source_ip":"10.89.0.17","result":"success","details":{"version":1},"prev_hash":"ed437073e30817571e3c890f46b03c6cc67957405ee1c10ad46324abb2ace1c0","hash":"6c02deca31589cdae2bce4d51b7183b67add1cd55b378cf3783f5666d2854e80"},{"seq":1319,"ts":"2026-10-30T15:29:01.721522Z","actor":{"type":"user","id":"usr_qmcxvsgrj3o4rrw3ybiimwkqhwwnns4x"},"action":"…[sha256=4522d66c7e34c9e94ec4951e80193cc686afdf102f577c2c7a119a57055d2d86 len=57476]
+2026-10-30T15:29:02.983Z acme new events after cross-org probe: 1; by scratch owner: 0
+2026-10-30T15:29:02.983Z ASSERT ok   not(cross-org attempt visible in acme log: )
+2026-10-30T15:29:02.983Z ASSERT ok   not(acme log recorded nothing (not even the owner control read): tracker blind)
+2026-10-30T15:29:02.989Z HTTP GET /api/v1/admin/audit actor=root -> 200 3ms
+  req: 
+  resp: [{"seq":76,"ts":"2026-10-30T15:29:01.816805Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","owner_id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","slug":"a2-141fb"},"prev_hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352","hash":"dc6892eb531e0483009b1649301a8cab0d36fcf48f39ec98fb583b70501d0a6a"},{"…[sha256=022352a0fdfdabe0c042368c34d66b323425394f14216ecdba56de23b78e6a72 len=31598]
+2026-10-30T15:29:02.993Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":76,"ts":"2026-10-30T15:29:01.816805Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","source_ip":"10.89.0.17","result":"success","details":{"org_id":"org_7nmm76i56eqwjnc4we5cz743u5a3qjdl","owner_id":"usr_4rm5iwr4qtwvapf4quomkc7zkjvhubtu","slug":"a2-141fb"},"prev_hash":"8581f53190b83deca66acd5bbbf83d73707ab27847eb7a1f78091aeb2f6ef352","hash":"dc6892eb531e0483009b1649301a8cab0d36fcf48f39ec98fb583b70501d0a6a"},{"…[sha256=022352a0fdfdabe0c042368c34d66b323425394f14216ecdba56de23b78e6a72 len=31598]
+2026-10-30T15:29:03.042Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "a2-nobody-95086a33@nowhere.test", "password": "«pw:a2:a2-nobody-95086a33@nowhere.test»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:29:03.042Z ASSERT ok   not(unknown-email login -> 401 (want 401))
+2026-10-30T15:29:03.046Z HTTP GET /api/v1/admin/audit actor=root -> 200 2ms
+  req: 
+  resp: [{"seq":77,"ts":"2026-10-30T15:29:03.036192Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:1fd5528d33e451bb","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"dc6892eb531e0483009b1649301a8cab0d36fcf48f39ec98fb583b70501d0a6a","hash":"d0a3ae333ff89997cc239c83f4cf939649689fea1528efd249617f64d1879d33"},{"seq":76,"ts":"2026-10-30T15:29:01.816805Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjn…[sha256=dffbf7b610e6ebed862559e83004c71cd1d39521197df300966cf2ae52d27f50 len=31946]
+2026-10-30T15:29:03.050Z HTTP GET /api/v1/admin/audit actor=root -> 200 2ms
+  req: 
+  resp: [{"seq":77,"ts":"2026-10-30T15:29:03.036192Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:1fd5528d33e451bb","source_ip":"10.89.0.17","result":"failed","details":{},"prev_hash":"dc6892eb531e0483009b1649301a8cab0d36fcf48f39ec98fb583b70501d0a6a","hash":"d0a3ae333ff89997cc239c83f4cf939649689fea1528efd249617f64d1879d33"},{"seq":76,"ts":"2026-10-30T15:29:01.816805Z","actor":{"type":"user","id":"usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj"},"action":"org.create","target":"org_7nmm76i56eqwjn…[sha256=dffbf7b610e6ebed862559e83004c71cd1d39521197df300966cf2ae52d27f50 len=31946]
+2026-10-30T15:29:03.051Z unauth failed login: no event names the e-mail; 1 failed login-like event(s) in window: seq=77 action=auth.login result=failed actor=['anonymous', ''] text={"action": "auth.login", "details": {}, "result": "failed", "target": "email:1fd5528d33e451bb"}
+2026-10-30T15:29:03.051Z unauth failed login in platform log (one failed login-like event): 1 matching of 1 new; seq=77 action=auth.login result=failed actor=['anonymous', ''] text={"action": "auth.login", "details": {}, "result": "failed", "target": "email:1fd5528d33e451bb"}
+2026-10-30T15:29:03.051Z ASSERT ok   not(unauth failed login in platform log (one failed login-like event): 1 matching audit event(s) (want >= 1) among 1 new)
+2026-10-30T15:29:03.057Z CLI coffer admin audit list --limit 1000 actor=root home=/home/grader2/work-c2/tmp/A2/home-pat-ac39bb43 url=http://127.0.0.1:8420 -> rc=0 5ms stdin=0B
+  out: SEQ	TS	ACTOR	ACTION	TARGET	RESULT	SOURCE_IP
+77	2026-10-30T15:29:03.036192Z	anonymous:-	auth.login	email:1fd5528d33e451bb	failed	10.89.0.17
+76	2026-10-30T15:29:01.816805Z	user:usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj	org.create	org_7nmm76i56eqwjnc4we5cz743u5a3qjdl	success	10.89.0.17
+75	2026-10-30T15:29:01.364528Z	anonymous:-	auth.login	email:70cb5ce95870aa08	failed	10.89.0.17
+74	2026-10-30T15:29:00.486035Z	user:usr_dotx3d4w3fsyd65wlrivn3e2dq652dpj	org.create	org_pa7mybvt5zvcpz2irfwdjh2dxmctcven	success	10.89.0.1…[sha256=74fc52535063eaf47dfac9925a667ba79f7dbf552fcf7887b753a73debe238dd len=10578]
+  err: 
+2026-10-30T15:29:03.058Z ASSERT ok   not(coffer admin audit list rc=0)
+2026-10-30T15:29:03.058Z admin audit list: limit used 1000, platform events known 77, shown=True
+2026-10-30T15:29:03.058Z ASSERT ok   not(admin audit list does not show the failed unauth login)

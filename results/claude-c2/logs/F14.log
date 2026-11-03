@@ -1,0 +1,78 @@
+2026-10-30T15:24:56.198Z HTTP GET /api/v1/changes actor=owner@acme -> 200 3ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:56.212Z CLI coffer secrets set F14_STALE_3E1FFCD4 -p api -e prod actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 13ms stdin=40B
+  out: pending approval: change chg_up22lh4za3bxbedspchz2vrdtbfkzklr
+
+  err: 
+2026-10-30T15:24:56.212Z ASSERT ok   not(CR1: rc=7 (want 7))
+2026-10-30T15:24:56.213Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_up22lh4za3bxbedspchz2vrdtbfkzklr","project":"api","env":"prod","key":"F14_STALE_3E1FFCD4","op":"set","status":"pending","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.205347Z","decided_by":null,"decided_at":null,"base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.213Z ASSERT ok   not(CR1: change id not printed on stdout (new pending=1, stdout='pending approval: change chg_up22lh4za3bxbedspchz2vrdtbfkzklr'))
+2026-10-30T15:24:56.214Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_up22lh4za3bxbedspchz2vrdtbfkzklr","project":"api","env":"prod","key":"F14_STALE_3E1FFCD4","op":"set","status":"pending","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.205347Z","decided_by":null,"decided_at":null,"base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.224Z CLI coffer secrets set F14_STALE_3E1FFCD4 -p api -e prod actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 10ms stdin=40B
+  out: pending approval: change chg_gtc3du3btrholni32phywcfcrq2i343u
+
+  err: 
+2026-10-30T15:24:56.224Z ASSERT ok   not(CR2: rc=7 (want 7))
+2026-10-30T15:24:56.225Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_gtc3du3btrholni32phywcfcrq2i343u","project":"api","env":"prod","key":"F14_STALE_3E1FFCD4","op":"set","status":"pending","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.218499Z","decided_by":null,"decided_at":null,"base_version":0,"rollback_to":null,"applied_version":null},{"id":"chg_up22lh4za3bxbedspchz2vrdtbfkzklr","project":"api","env":"prod","key":"F14_STALE_3E1FFCD4","op":"set","status":"pending","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.205347Z","decided_by":null,"decided_at":null,"base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.225Z ASSERT ok   not(CR2: change id not printed on stdout (new pending=1, stdout='pending approval: change chg_gtc3du3btrholni32phywcfcrq2i343u'))
+2026-10-30T15:24:56.235Z CLI coffer change approve chg_up22lh4za3bxbedspchz2vrdtbfkzklr actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: approved change chg_up22lh4za3bxbedspchz2vrdtbfkzklr (version 1)
+
+  err: 
+2026-10-30T15:24:56.235Z ASSERT ok   not(approve first rc=0)
+2026-10-30T15:24:56.245Z CLI coffer change approve chg_gtc3du3btrholni32phywcfcrq2i343u actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=8 10ms stdin=0B
+  out: 
+  err: error: the key has changed since the change was proposed; the change is now stale (conflict)
+
+2026-10-30T15:24:56.245Z ASSERT ok   not(approve second (stale) rc=8 (want 8))
+2026-10-30T15:24:56.250Z HTTP GET /api/v1/projects/api/envs/prod/secrets/F14_STALE_3E1FFCD4 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F14_STALE_3E1FFCD4","version":1,"value":"«canary:F14:a»"}
+
+2026-10-30T15:24:56.250Z ASSERT ok   not(value == first CR's: True (status 200))
+2026-10-30T15:24:56.250Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:56.251Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_up22lh4za3bxbedspchz2vrdtbfkzklr","project":"api","env":"prod","key":"F14_STALE_3E1FFCD4","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.205347Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:56.229176Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6","project":"api","env":"prod","key":"F13_REJ_80A3E023","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.988907Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:56.003333Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_25fywplx2dr2v7ctadqht32t7476zqkk","project":"api","env":"prod","key":"F12_PROT_EF17B607","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.773007Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:55.795178Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_sposx3ut4klodbvy2k4p3fxl6bfm6qoj","project":"api","env":"prod","key":"CANARY","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:45.894797Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:45.906272Z","base_version":0,"rollback_to":null,"applied_version":1}]
+
+2026-10-30T15:24:56.252Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq","project":"api","env":"prod","key":"F13_REJ_80A3E023","op":"set","status":"rejected","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.020503Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:56.030769Z","base_version":1,"rollback_to":null,"applied_version":null},{"id":"chg_enkwhfvkohwx4mxrmst26mmw2az5onix","project":"api","env":"prod","key":"F12_PJ_7455FC86","op":"set","status":"rejected","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.817129Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:55.826583Z","base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.253Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_gtc3du3btrholni32phywcfcrq2i343u","project":"api","env":"prod","key":"F14_STALE_3E1FFCD4","op":"set","status":"stale","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.218499Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:56.239055Z","base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.253Z ASSERT ok   not(second CR status=stale (want stale))
+2026-10-30T15:24:56.263Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/F14_STALEAPI_AC6F1AE0 actor=writer@acme -> 202 8ms
+  req: {"value": "«canary:F14:c»"}
+  resp: {"change_id":"chg_dm3pnaa57kyez3ysm4gqchivpdkwc2i3","status":"pending"}
+
+2026-10-30T15:24:56.269Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/F14_STALEAPI_AC6F1AE0 actor=writer@acme -> 202 5ms
+  req: {"value": "«canary:F14:d»"}
+  resp: {"change_id":"chg_c5dsax7ztunil5mq3m2dxaqon2g3cagg","status":"pending"}
+
+2026-10-30T15:24:56.269Z ASSERT ok   not(API proposals -> change ids ['chg_dm3pnaa57kyez3ysm4gqchivpdkwc2i3', 'chg_c5dsax7ztunil5mq3m2dxaqon2g3cagg'])
+2026-10-30T15:24:56.275Z HTTP POST /api/v1/changes/chg_dm3pnaa57kyez3ysm4gqchivpdkwc2i3/approve actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"id":"chg_dm3pnaa57kyez3ysm4gqchivpdkwc2i3","status":"approved","version":1}
+
+2026-10-30T15:24:56.275Z ASSERT ok   not(API approve first -> 200)
+2026-10-30T15:24:56.282Z HTTP POST /api/v1/changes/chg_c5dsax7ztunil5mq3m2dxaqon2g3cagg/approve actor=admin@acme -> 409 7ms
+  req: 
+  resp: {"error":{"code":"conflict","message":"the key has changed since the change was proposed; the change is now stale"}}
+2026-10-30T15:24:56.282Z ASSERT ok   not(API approve stale -> 409 (want 409))

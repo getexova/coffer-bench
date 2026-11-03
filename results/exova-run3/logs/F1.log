@@ -1,0 +1,347 @@
+2026-10-29T12:55:28.516Z CLI coffer login --email admin@coffer.local actor=anon home=/home/grader1/work-r2/homes/root url=http://127.0.0.1:18420 -> rc=0 201ms stdin=33B
+  out: Logged in as admin@coffer.local
+
+  err: 
+2026-10-29T12:55:28.516Z F1 step [root] coffer login --email admin@coffer.local -> rc=0 want=0
+2026-10-29T12:55:28.590Z HTTP POST /api/v1/auth/token actor=anon -> 200 74ms
+  req: {"email": "admin@coffer.local", "password": "«bootstrap_password»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_e1b1df3c7bb991c481463850","email":"admin@coffer.local","role":"platform_admin","must_change_password":false,"organization":null}}
+2026-10-29T12:55:28.789Z CLI coffer admin org create acme --owner-email owner@acme.test actor=anon home=/home/grader1/work-r2/homes/root url=http://127.0.0.1:18420 -> rc=0 198ms stdin=25B
+  out: Created organization acme
+Owner: owner@acme.test
+
+  err: 
+2026-10-29T12:55:28.789Z F1 step [root] coffer admin org create acme --owner-email owner@acme.test -> rc=0 want=0
+2026-10-29T12:55:28.973Z CLI coffer admin org create globex --owner-email owner@globex.test actor=anon home=/home/grader1/work-r2/homes/root url=http://127.0.0.1:18420 -> rc=0 184ms stdin=25B
+  out: Created organization globex
+Owner: owner@globex.test
+
+  err: 
+2026-10-29T12:55:28.973Z F1 step [root] coffer admin org create globex --owner-email owner@globex.test -> rc=0 want=0
+2026-10-29T12:55:29.170Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 197ms stdin=25B
+  out: Logged in as owner@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:29.170Z F1 step [owner@acme] coffer login --email owner@acme.test -> rc=0 want=0
+2026-10-29T12:55:29.420Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 249ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:29.420Z F1 step [owner@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:29.615Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 195ms stdin=25B
+  out: Logged in as owner@acme.test
+
+  err: 
+2026-10-29T12:55:29.615Z F1 step [owner@acme] coffer login --email owner@acme.test -> rc=0 want=0
+2026-10-29T12:55:29.720Z HTTP POST /api/v1/auth/token actor=anon -> 200 104ms
+  req: {"email": "owner@acme.test", "password": "«pw:owner@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_493b9b638f8b78d524ce5e65","email":"owner@acme.test","role":"owner","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:29.911Z CLI coffer login --email owner@globex.test actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 190ms stdin=25B
+  out: Logged in as owner@globex.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:29.911Z F1 step [owner@globex] coffer login --email owner@globex.test -> rc=0 want=0
+2026-10-29T12:55:30.158Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 247ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:30.159Z F1 step [owner@globex] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:30.353Z CLI coffer login --email owner@globex.test actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 194ms stdin=25B
+  out: Logged in as owner@globex.test
+
+  err: 
+2026-10-29T12:55:30.353Z F1 step [owner@globex] coffer login --email owner@globex.test -> rc=0 want=0
+2026-10-29T12:55:30.435Z HTTP POST /api/v1/auth/token actor=anon -> 200 82ms
+  req: {"email": "owner@globex.test", "password": "«pw:owner@globex»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_6a34f6e1a538bc7473cd8192","email":"owner@globex.test","role":"owner","must_change_password":false,"organization":{"id":"org_cff856527a2510452eca28eb","slug":"globex"}}}
+2026-10-29T12:55:30.632Z CLI coffer member add admin@acme.test --role admin actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 196ms stdin=25B
+  out: Added admin@acme.test as admin
+
+  err: 
+2026-10-29T12:55:30.632Z F1 step [owner@acme] coffer member add admin@acme.test --role admin -> rc=0 want=0
+2026-10-29T12:55:30.847Z CLI coffer member add admin2@acme.test --role admin actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 215ms stdin=25B
+  out: Added admin2@acme.test as admin
+
+  err: 
+2026-10-29T12:55:30.847Z F1 step [owner@acme] coffer member add admin2@acme.test --role admin -> rc=0 want=0
+2026-10-29T12:55:31.045Z CLI coffer member add writer@acme.test --role member actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 198ms stdin=25B
+  out: Added writer@acme.test as member
+
+  err: 
+2026-10-29T12:55:31.045Z F1 step [owner@acme] coffer member add writer@acme.test --role member -> rc=0 want=0
+2026-10-29T12:55:31.249Z CLI coffer member add reader@acme.test --role member actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 203ms stdin=25B
+  out: Added reader@acme.test as member
+
+  err: 
+2026-10-29T12:55:31.249Z F1 step [owner@acme] coffer member add reader@acme.test --role member -> rc=0 want=0
+2026-10-29T12:55:31.434Z CLI coffer member add viewer@acme.test --role member actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 185ms stdin=25B
+  out: Added viewer@acme.test as member
+
+  err: 
+2026-10-29T12:55:31.434Z F1 step [owner@acme] coffer member add viewer@acme.test --role member -> rc=0 want=0
+2026-10-29T12:55:31.616Z CLI coffer member add nogrant@acme.test --role member actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 181ms stdin=25B
+  out: Added nogrant@acme.test as member
+
+  err: 
+2026-10-29T12:55:31.616Z F1 step [owner@acme] coffer member add nogrant@acme.test --role member -> rc=0 want=0
+2026-10-29T12:55:31.815Z CLI coffer login --email admin@acme.test actor=anon home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 198ms stdin=25B
+  out: Logged in as admin@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:31.815Z F1 step [admin@acme] coffer login --email admin@acme.test -> rc=0 want=0
+2026-10-29T12:55:32.058Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 243ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:32.058Z F1 step [admin@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:32.245Z CLI coffer login --email admin@acme.test actor=anon home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 186ms stdin=25B
+  out: Logged in as admin@acme.test
+
+  err: 
+2026-10-29T12:55:32.245Z F1 step [admin@acme] coffer login --email admin@acme.test -> rc=0 want=0
+2026-10-29T12:55:32.315Z HTTP POST /api/v1/auth/token actor=anon -> 200 70ms
+  req: {"email": "admin@acme.test", "password": "«pw:admin@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:32.504Z CLI coffer login --email admin2@acme.test actor=anon home=/home/grader1/work-r2/homes/admin2@acme url=http://127.0.0.1:18420 -> rc=0 188ms stdin=25B
+  out: Logged in as admin2@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:32.504Z F1 step [admin2@acme] coffer login --email admin2@acme.test -> rc=0 want=0
+2026-10-29T12:55:32.769Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/admin2@acme url=http://127.0.0.1:18420 -> rc=0 264ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:32.769Z F1 step [admin2@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:32.961Z CLI coffer login --email admin2@acme.test actor=anon home=/home/grader1/work-r2/homes/admin2@acme url=http://127.0.0.1:18420 -> rc=0 192ms stdin=25B
+  out: Logged in as admin2@acme.test
+
+  err: 
+2026-10-29T12:55:32.961Z F1 step [admin2@acme] coffer login --email admin2@acme.test -> rc=0 want=0
+2026-10-29T12:55:33.042Z HTTP POST /api/v1/auth/token actor=anon -> 200 81ms
+  req: {"email": "admin2@acme.test", "password": "«pw:admin2@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:33.239Z CLI coffer login --email writer@acme.test actor=anon home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 196ms stdin=25B
+  out: Logged in as writer@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:33.239Z F1 step [writer@acme] coffer login --email writer@acme.test -> rc=0 want=0
+2026-10-29T12:55:33.492Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 253ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:33.492Z F1 step [writer@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:33.688Z CLI coffer login --email writer@acme.test actor=anon home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 196ms stdin=25B
+  out: Logged in as writer@acme.test
+
+  err: 
+2026-10-29T12:55:33.688Z F1 step [writer@acme] coffer login --email writer@acme.test -> rc=0 want=0
+2026-10-29T12:55:33.771Z HTTP POST /api/v1/auth/token actor=anon -> 200 83ms
+  req: {"email": "writer@acme.test", "password": "«pw:writer@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_36d0d9963bd156b5caddacec","email":"writer@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:33.972Z CLI coffer login --email reader@acme.test actor=anon home=/home/grader1/work-r2/homes/reader@acme url=http://127.0.0.1:18420 -> rc=0 200ms stdin=25B
+  out: Logged in as reader@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:33.972Z F1 step [reader@acme] coffer login --email reader@acme.test -> rc=0 want=0
+2026-10-29T12:55:34.224Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/reader@acme url=http://127.0.0.1:18420 -> rc=0 252ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:34.224Z F1 step [reader@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:34.429Z CLI coffer login --email reader@acme.test actor=anon home=/home/grader1/work-r2/homes/reader@acme url=http://127.0.0.1:18420 -> rc=0 204ms stdin=25B
+  out: Logged in as reader@acme.test
+
+  err: 
+2026-10-29T12:55:34.429Z F1 step [reader@acme] coffer login --email reader@acme.test -> rc=0 want=0
+2026-10-29T12:55:34.501Z HTTP POST /api/v1/auth/token actor=anon -> 200 73ms
+  req: {"email": "reader@acme.test", "password": "«pw:reader@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_6e86cc0773114aea3459def6","email":"reader@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:34.691Z CLI coffer login --email viewer@acme.test actor=anon home=/home/grader1/work-r2/homes/viewer@acme url=http://127.0.0.1:18420 -> rc=0 188ms stdin=25B
+  out: Logged in as viewer@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:34.691Z F1 step [viewer@acme] coffer login --email viewer@acme.test -> rc=0 want=0
+2026-10-29T12:55:34.931Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/viewer@acme url=http://127.0.0.1:18420 -> rc=0 240ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:34.931Z F1 step [viewer@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:35.122Z CLI coffer login --email viewer@acme.test actor=anon home=/home/grader1/work-r2/homes/viewer@acme url=http://127.0.0.1:18420 -> rc=0 190ms stdin=25B
+  out: Logged in as viewer@acme.test
+
+  err: 
+2026-10-29T12:55:35.122Z F1 step [viewer@acme] coffer login --email viewer@acme.test -> rc=0 want=0
+2026-10-29T12:55:35.192Z HTTP POST /api/v1/auth/token actor=anon -> 200 70ms
+  req: {"email": "viewer@acme.test", "password": "«pw:viewer@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_554c11ae7f1f108a03ed204b","email":"viewer@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:35.383Z CLI coffer login --email nogrant@acme.test actor=anon home=/home/grader1/work-r2/homes/nogrant@acme url=http://127.0.0.1:18420 -> rc=0 190ms stdin=25B
+  out: Logged in as nogrant@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:35.384Z F1 step [nogrant@acme] coffer login --email nogrant@acme.test -> rc=0 want=0
+2026-10-29T12:55:35.627Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/homes/nogrant@acme url=http://127.0.0.1:18420 -> rc=0 243ms stdin=50B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:35.627Z F1 step [nogrant@acme] coffer passwd -> rc=0 want=0
+2026-10-29T12:55:35.815Z CLI coffer login --email nogrant@acme.test actor=anon home=/home/grader1/work-r2/homes/nogrant@acme url=http://127.0.0.1:18420 -> rc=0 187ms stdin=25B
+  out: Logged in as nogrant@acme.test
+
+  err: 
+2026-10-29T12:55:35.815Z F1 step [nogrant@acme] coffer login --email nogrant@acme.test -> rc=0 want=0
+2026-10-29T12:55:35.888Z HTTP POST /api/v1/auth/token actor=anon -> 200 73ms
+  req: {"email": "nogrant@acme.test", "password": "«pw:nogrant@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_18850c3d628afc43eb072844","email":"nogrant@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:36.009Z CLI coffer project create api actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 120ms stdin=0B
+  out: Created project api
+
+  err: 
+2026-10-29T12:55:36.009Z F1 step [owner@acme] coffer project create api -> rc=0 want=0
+2026-10-29T12:55:36.127Z CLI coffer env create dev -p api actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=0B
+  out: Created environment dev in api
+
+  err: 
+2026-10-29T12:55:36.127Z F1 step [owner@acme] coffer env create dev -p api -> rc=0 want=0
+2026-10-29T12:55:36.241Z CLI coffer env create prod -p api --protected actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 114ms stdin=0B
+  out: Created protected environment prod in api
+
+  err: 
+2026-10-29T12:55:36.241Z F1 step [owner@acme] coffer env create prod -p api --protected -> rc=0 want=0
+2026-10-29T12:55:36.361Z CLI coffer project create web actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 120ms stdin=0B
+  out: Created project web
+
+  err: 
+2026-10-29T12:55:36.361Z F1 step [owner@acme] coffer project create web -> rc=0 want=0
+2026-10-29T12:55:36.478Z CLI coffer env create dev -p web actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 117ms stdin=0B
+  out: Created environment dev in web
+
+  err: 
+2026-10-29T12:55:36.478Z F1 step [owner@acme] coffer env create dev -p web -> rc=0 want=0
+2026-10-29T12:55:36.600Z CLI coffer grant set writer@acme.test -p api --level writer actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 122ms stdin=0B
+  out: Granted writer on api to writer@acme.test
+
+  err: 
+2026-10-29T12:55:36.601Z F1 step [owner@acme] coffer grant set writer@acme.test -p api --level writer -> rc=0 want=0
+2026-10-29T12:55:36.722Z CLI coffer grant set reader@acme.test -p api --level reader actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: Granted reader on api to reader@acme.test
+
+  err: 
+2026-10-29T12:55:36.722Z F1 step [owner@acme] coffer grant set reader@acme.test -p api --level reader -> rc=0 want=0
+2026-10-29T12:55:36.835Z CLI coffer grant set viewer@acme.test -p api --level viewer actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 113ms stdin=0B
+  out: Granted viewer on api to viewer@acme.test
+
+  err: 
+2026-10-29T12:55:36.835Z F1 step [owner@acme] coffer grant set viewer@acme.test -p api --level viewer -> rc=0 want=0
+2026-10-29T12:55:36.946Z CLI coffer project create api actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 111ms stdin=0B
+  out: Created project api
+
+  err: 
+2026-10-29T12:55:36.946Z F1 step [owner@globex] coffer project create api -> rc=0 want=0
+2026-10-29T12:55:37.065Z CLI coffer env create dev -p api actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 118ms stdin=0B
+  out: Created environment dev in api
+
+  err: 
+2026-10-29T12:55:37.065Z F1 step [owner@globex] coffer env create dev -p api -> rc=0 want=0
+2026-10-29T12:55:37.179Z CLI coffer env create prod -p api actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 115ms stdin=0B
+  out: Created environment prod in api
+
+  err: 
+2026-10-29T12:55:37.180Z F1 step [owner@globex] coffer env create prod -p api -> rc=0 want=0
+2026-10-29T12:55:37.301Z CLI coffer secrets set CANARY -p api -e dev actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=40B
+  out: Set CANARY (version 1)
+
+  err: 
+2026-10-29T12:55:37.301Z F1 step [owner@acme] coffer secrets set CANARY -p api -e dev -> rc=0 want=0
+2026-10-29T12:55:37.419Z CLI coffer secrets set MULTI -p api -e dev actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=95B
+  out: Set MULTI (version 1)
+
+  err: 
+2026-10-29T12:55:37.419Z F1 step [owner@acme] coffer secrets set MULTI -p api -e dev -> rc=0 want=0
+2026-10-29T12:55:37.537Z CLI coffer secrets set CANARY -p web -e dev actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 117ms stdin=40B
+  out: Set CANARY (version 1)
+
+  err: 
+2026-10-29T12:55:37.537Z F1 step [owner@acme] coffer secrets set CANARY -p web -e dev -> rc=0 want=0
+2026-10-29T12:55:37.664Z CLI coffer --json secrets set CANARY -p api -e prod actor=anon home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 126ms stdin=40B
+  out: {
+  "change_id": "chg202720b281d431b2e7ce68ef",
+  "status": "pending"
+}
+
+  err: 
+2026-10-29T12:55:37.664Z F1 step [writer@acme] coffer secrets set CANARY -p api -e prod --json -> rc=7 want=7
+2026-10-29T12:55:37.789Z CLI coffer change approve chg202720b281d431b2e7ce68ef actor=anon home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 124ms stdin=0B
+  out: Approved change chg202720b281d431b2e7ce68ef
+
+  err: 
+2026-10-29T12:55:37.789Z F1 step [admin@acme] coffer change approve chg202720b281d431b2e7ce68ef -> rc=0 want=0
+2026-10-29T12:55:37.905Z CLI coffer secrets set CANARY -p api -e dev actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 116ms stdin=40B
+  out: Set CANARY (version 1)
+
+  err: 
+2026-10-29T12:55:37.905Z F1 step [owner@globex] coffer secrets set CANARY -p api -e dev -> rc=0 want=0
+2026-10-29T12:55:38.023Z CLI coffer secrets set CANARY -p api -e prod actor=anon home=/home/grader1/work-r2/homes/owner@globex url=http://127.0.0.1:18420 -> rc=0 118ms stdin=40B
+  out: Set CANARY (version 1)
+
+  err: 
+2026-10-29T12:55:38.023Z F1 step [owner@globex] coffer secrets set CANARY -p api -e prod -> rc=0 want=0
+2026-10-29T12:55:38.142Z CLI coffer --json token create -p api -e dev --access read --ttl 7d --name T_dev_r actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=0B
+  out: {
+  "id": "tok_87cda107d3c46e2d276ef86b",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-29T12:55:38.142Z F1 step [owner@acme] coffer token create -p api -e dev --access read --ttl 7d --name T_dev_r --json -> rc=0 want=0
+2026-10-29T12:55:38.264Z CLI coffer --json token create -p api -e dev --access read-write --ttl 7d --name T_dev_rw actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 122ms stdin=0B
+  out: {
+  "id": "tok_2e1a67f0957d8e6d629f148b",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-29T12:55:38.264Z F1 step [owner@acme] coffer token create -p api -e dev --access read-write --ttl 7d --name T_dev_rw --json -> rc=0 want=0
+2026-10-29T12:55:38.385Z CLI coffer --json token create -p api -e prod --access read-write --ttl 7d --name T_prod_rw actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 120ms stdin=0B
+  out: {
+  "id": "tok_ad3b4b9fb525ee53e703100e",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-29T12:55:38.385Z F1 step [owner@acme] coffer token create -p api -e prod --access read-write --ttl 7d --name T_prod_rw --json -> rc=0 want=0
+2026-10-29T12:55:38.500Z CLI coffer --json token create -p api -e dev --access read --ttl 1m --name T_exp actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 115ms stdin=0B
+  out: {
+  "id": "tok_b93437043426568346a2a4a9",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-29T12:55:38.500Z F1 step [owner@acme] coffer token create -p api -e dev --access read --ttl 1m --name T_exp --json -> rc=0 want=0
+2026-10-29T12:55:38.626Z CLI coffer --json token create -p api -e dev --access read --ttl 7d --name T_rev actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 125ms stdin=0B
+  out: {
+  "id": "tok_db80137464938bb2b72465ac",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-29T12:55:38.626Z F1 step [owner@acme] coffer token create -p api -e dev --access read --ttl 7d --name T_rev --json -> rc=0 want=0
+2026-10-29T12:55:38.743Z CLI coffer token revoke tok_db80137464938bb2b72465ac actor=anon home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 116ms stdin=0B
+  out: Revoked token tok_db80137464938bb2b72465ac
+
+  err: 
+2026-10-29T12:55:38.743Z F1 step [owner@acme] coffer token revoke tok_db80137464938bb2b72465ac -> rc=0 want=0
+2026-10-29T12:55:38.745Z HTTP GET /api/v1/admin/orgs actor=anon -> 200 2ms
+  req: 
+  resp: {"organizations":[{"created_at":"2026-10-29T12:55:28.775207Z","disabled_at":null,"id":"org_8df0928f40cb031f276861d9","slug":"acme"},{"created_at":"2026-10-29T12:55:28.961355Z","disabled_at":null,"id":"org_cff856527a2510452eca28eb","slug":"globex"}]}
+2026-10-29T12:55:39.312Z pg_dumpall after-F1 -> rc=0 0001-F1-after-F1.sql
+2026-10-29T12:55:39.388Z sweep_snapshot after-F1: dump=0001-F1-after-F1.sql logs=2
+2026-10-29T13:04:36.925Z pg_dumpall teardown -> rc=0 0047-F1-teardown.sql
+2026-10-29T13:04:37.013Z sweep_snapshot teardown: dump=0047-F1-teardown.sql logs=2

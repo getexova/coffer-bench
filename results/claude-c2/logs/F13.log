@@ -1,0 +1,95 @@
+2026-10-30T15:24:55.982Z HTTP GET /api/v1/changes actor=owner@acme -> 200 3ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:55.997Z CLI coffer secrets set F13_REJ_80A3E023 -p api -e prod actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 14ms stdin=40B
+  out: pending approval: change chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6
+
+  err: 
+2026-10-30T15:24:55.997Z ASSERT ok   not(setup set prod: rc=7 (want 7))
+2026-10-30T15:24:55.999Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6","project":"api","env":"prod","key":"F13_REJ_80A3E023","op":"set","status":"pending","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.988907Z","decided_by":null,"decided_at":null,"base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:55.999Z ASSERT ok   not(setup set prod: change id not printed on stdout (new pending=1, stdout='pending approval: change chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6'))
+2026-10-30T15:24:56.010Z CLI coffer change approve chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6 actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=0B
+  out: approved change chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6 (version 1)
+
+  err: 
+2026-10-30T15:24:56.015Z HTTP GET /api/v1/projects/api/envs/prod/secrets/F13_REJ_80A3E023 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F13_REJ_80A3E023","version":1,"value":"«canary:F13:v1»"}
+
+2026-10-30T15:24:56.016Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:56.026Z CLI coffer secrets set F13_REJ_80A3E023 -p api -e prod actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 9ms stdin=40B
+  out: pending approval: change chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq
+
+  err: 
+2026-10-30T15:24:56.026Z ASSERT ok   not(writer set v2: rc=7 (want 7))
+2026-10-30T15:24:56.027Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq","project":"api","env":"prod","key":"F13_REJ_80A3E023","op":"set","status":"pending","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.020503Z","decided_by":null,"decided_at":null,"base_version":1,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.027Z ASSERT ok   not(writer set v2: change id not printed on stdout (new pending=1, stdout='pending approval: change chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq'))
+2026-10-30T15:24:56.036Z CLI coffer change reject chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: rejected change chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq
+
+  err: 
+2026-10-30T15:24:56.036Z ASSERT ok   not(admin reject rc=0)
+2026-10-30T15:24:56.040Z HTTP GET /api/v1/projects/api/envs/prod/secrets/F13_REJ_80A3E023 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F13_REJ_80A3E023","version":1,"value":"«canary:F13:v1»"}
+
+2026-10-30T15:24:56.041Z ASSERT ok   not(after reject value unchanged (v1)=True status=200)
+2026-10-30T15:24:56.042Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:56.043Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_zd5x6nfajlre3bmhi7aeii3bo4g57yz6","project":"api","env":"prod","key":"F13_REJ_80A3E023","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.988907Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:56.003333Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_25fywplx2dr2v7ctadqht32t7476zqkk","project":"api","env":"prod","key":"F12_PROT_EF17B607","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.773007Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:55.795178Z","base_version":0,"rollback_to":null,"applied_version":1},{"id":"chg_sposx3ut4klodbvy2k4p3fxl6bfm6qoj","project":"api","env":"prod","key":"CANARY","op":"set","status":"approved","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:45.894797Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:45.906272Z","base_version":0,"rollback_to":null,"applied_version":1}]
+
+2026-10-30T15:24:56.044Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq","project":"api","env":"prod","key":"F13_REJ_80A3E023","op":"set","status":"rejected","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:56.020503Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:56.030769Z","base_version":1,"rollback_to":null,"applied_version":null},{"id":"chg_enkwhfvkohwx4mxrmst26mmw2az5onix","project":"api","env":"prod","key":"F12_PJ_7455FC86","op":"set","status":"rejected","proposed_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp","created_at":"2026-10-30T15:24:55.817129Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:24:55.826583Z","base_version":0,"rollback_to":null,"applied_version":null}]
+
+2026-10-30T15:24:56.044Z ASSERT ok   not(API change status=rejected (want rejected))
+2026-10-30T15:24:56.050Z CLI coffer --json change list --status rejected actor=admin@acme home=/home/grader2/work-c2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 6ms stdin=0B
+  out: [
+  {
+    "id": "chg_ue4alybw5vqma2lcild2ncrmgwgdw3kq",
+    "project": "api",
+    "env": "prod",
+    "key": "F13_REJ_80A3E023",
+    "op": "set",
+    "status": "rejected",
+    "proposed_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp",
+    "created_at": "2026-10-30T15:24:56.020503Z",
+    "decided_by": "usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw",
+    "decided_at": "2026-10-30T15:24:56.030769Z",
+    "base_version": 1,
+    "rollback_to": null,
+    "applied_version": null
+  },
+  {
+    "id": "chg_enkwhfvkohwx4mxrmst26mmw2az5onix",
+    "project": "api",
+    "env": "prod",
+    "key": "F12_PJ_7455FC86",
+    "op": "set",
+    "status": "rejected",
+    "proposed_by": "usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp",
+    "created_at": "2026-10-30T15:24:55.817129Z",
+    "decided_by": "usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw",
+    "decided_at": "2026-10-30T15:24:55.826583Z",
+    "base_version": 0,
+    "rollback_to": null,
+    "applied_version": null
+  }
+]
+
+  err: 
+2026-10-30T15:24:56.050Z ASSERT ok   not(CLI change list --status rejected contains id: True)

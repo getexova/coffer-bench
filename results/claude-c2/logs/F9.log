@@ -1,0 +1,46 @@
+2026-10-30T15:24:54.820Z HTTP POST /api/v1/projects actor=owner@acme -> 201 9ms
+  req: {"slug": "f9-18cc3"}
+  resp: {"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"}
+
+2026-10-30T15:24:54.825Z HTTP POST /api/v1/projects/f9-18cc3/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_dn2tobuslcpl7cazjsaxxp6edebhy6hi","slug":"dev","protected":false,"created_at":"2026-10-30T15:24:54.821434Z"}
+
+2026-10-30T15:24:54.831Z HTTP PUT /api/v1/projects/f9-18cc3/envs/dev/secrets/A_PLAIN actor=owner@acme -> 200 6ms
+  req: {"value": "«canary:F9:plain»"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.836Z HTTP PUT /api/v1/projects/f9-18cc3/envs/dev/secrets/B_MULTI actor=owner@acme -> 200 5ms
+  req: {"value": "«canary:acme/api/dev/MULTI»"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.840Z HTTP PUT /api/v1/projects/f9-18cc3/envs/dev/secrets/C_ESC actor=owner@acme -> 200 5ms
+  req: {"value": "«canary:F9:esc»\\\"$\n\r\t'`😀\u0001$HOME${X}"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.845Z HTTP PUT /api/v1/projects/f9-18cc3/envs/dev/secrets/D_EMPTY actor=owner@acme -> 200 5ms
+  req: {"value": ""}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.850Z HTTP PUT /api/v1/projects/f9-18cc3/envs/dev/secrets/E_UNI actor=owner@acme -> 200 5ms
+  req: {"value": "héllo wörld ☃ «canary:F9:uni»"}
+  resp: {"version":1}
+
+2026-10-30T15:24:54.862Z CLI coffer secrets export -p f9-18cc3 -e dev --format json actor=owner@acme home=/home/grader2/work-c2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=0B
+  out: {"A_PLAIN":"«canary:F9:plain»","B_MULTI":"«canary:acme/api/dev/MULTI»","C_ESC":"«canary:F9:esc»\\\"$\n\r\t'`😀\u0001$HOME${X}","D_EMPTY":"","E_UNI":"héllo wörld ☃ «canary:F9:uni»"}
+
+  err: 
+2026-10-30T15:24:54.862Z ASSERT ok   not(export json rc=0)
+2026-10-30T15:24:54.862Z ASSERT ok   not(export json is not a single object)
+2026-10-30T15:24:54.862Z ASSERT ok   not(json keys sorted: ['A_PLAIN', 'B_MULTI', 'C_ESC', 'D_EMPTY', 'E_UNI'])
+2026-10-30T15:24:54.862Z ASSERT ok   not(json keys ['A_PLAIN', 'B_MULTI', 'C_ESC', 'D_EMPTY', 'E_UNI'] (want ['A_PLAIN', 'B_MULTI', 'C_ESC', 'D_EMPTY', 'E_UNI']))
+2026-10-30T15:24:54.864Z ASSERT ok   not(jq .[A_PLAIN] rc=0 exact=True)
+2026-10-30T15:24:54.866Z ASSERT ok   not(jq .[B_MULTI] rc=0 exact=True)
+2026-10-30T15:24:54.868Z ASSERT ok   not(jq .[C_ESC] rc=0 exact=True)
+2026-10-30T15:24:54.871Z ASSERT ok   not(jq .[D_EMPTY] rc=0 exact=True)
+2026-10-30T15:24:54.872Z ASSERT ok   not(jq .[E_UNI] rc=0 exact=True)
+2026-10-30T15:24:54.887Z CLI coffer secrets export -p api -e dev --format json actor=reader@acme home=/home/grader2/work-c2/homes/reader@acme url=http://127.0.0.1:18420 -> rc=0 13ms stdin=0B
+  out: {"CANARY":"«canary:acme/api/dev/CANARY»","F2_BIG_F37A6220":"«canary:F2:big»","F2_EMPTY_POS_D8F43BE3":"","F2_EMPTY_STDIN_131CA018":"","F2_MULTI_50E8EF4A":"«canary:acme/api/dev/MULTI»","F2_NL_598FE677":"«canary:F2:nl»\n","F2_ONE_98B58392":"U","F3_MAX_82773D2C":"«canary:F3:max»","F4_HIST_2EF66BE8":"«canary:F4:v1»","F5_DEL_EF0C80FE":"«canary:F5:b»","F6_CAS_FD81F1B4":"«canary:F6:3»","F7_PAR_6CF4CACA":"«canary:F7:p0»","MULTI":"«canary:acme/api/dev/MULTI»"}
+…[sha256=b30fcf2a95734b8fa5320724a14c0fef9a2f520b8ed9bb219b1e14e422fa5c67 len=131797]
+  err: 
+2026-10-30T15:24:54.890Z ASSERT ok   not(acme/api/dev json .MULTI via jq exact=True rc=0/0)

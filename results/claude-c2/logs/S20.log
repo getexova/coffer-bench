@@ -1,0 +1,622 @@
+2026-10-30T15:28:00.338Z HTTP GET /healthz actor=anon -> 200 3ms
+  req: 
+  resp: {"status":"ok"}
+
+2026-10-30T15:28:00.338Z CONTROL ok: anon GET /healthz (200)
+2026-10-30T15:28:00.340Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+
+2026-10-30T15:28:00.340Z CONTROL ok: anon GET /readyz (200)
+2026-10-30T15:28:00.413Z HTTP POST /api/v1/members actor=owner@acme -> 201 72ms
+  req: {"email": "s20-1b02a@acme.test", "role": "member", "password": "«pw0:s20-1b02a@acme»"}
+  resp: {"id":"usr_zcxoyxeifzr6b5a7voui2sn6avdnd6qy","email":"s20-1b02a@acme.test","role":"member","created_at":"2026-10-30T15:28:00.404830Z"}
+
+2026-10-30T15:28:00.463Z HTTP POST /api/v1/auth/token actor=anon -> 201 50ms
+  req: {"email": "s20-1b02a@acme.test", "password": "«pw0:s20-1b02a@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:00.414472Z","token":"<redacted-token>","user":{"id":"usr_zcxoyxeifzr6b5a7voui2sn6avdnd6qy","email":"s20-1b02a@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:00.466Z HTTP GET /api/v1/projects actor=s20-1b02a@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:28:00.515Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "s20-1b02a@acme.test", "password": "«pw0:s20-1b02a@acme»"}
+  resp: {"expires_at":"2026-11-29T15:28:00.467628Z","token":"<redacted-token>","user":{"id":"usr_zcxoyxeifzr6b5a7voui2sn6avdnd6qy","email":"s20-1b02a@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:28:00.517Z CONTROL ok: anon POST /auth/token valid creds (201)
+2026-10-30T15:28:00.566Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "s20-1b02a@acme.test", "password": "wrong-Pw-gO-fTVl0unXQb04lCBR0qlcF"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:00.566Z ASSERT ok   not(anon POST /auth/token wrong password -> 401 (want 401))
+2026-10-30T15:28:00.568Z HTTP GET /api/v1/projects actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.568Z CONTROL ok: anon GET /api/v1/projects (200)
+2026-10-30T15:28:00.569Z HTTP GET /api/v1/projects actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.569Z ASSERT ok   not(anon GET /api/v1/projects: denied 401)
+2026-10-30T15:28:00.570Z HTTP POST /api/v1/auth/logout actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.570Z ASSERT ok   not(anon POST /api/v1/auth/logout -> 401 (want 401))
+2026-10-30T15:28:00.571Z HTTP POST /api/v1/auth/password actor=anon -> 401 1ms
+  req: {"current_password": "xxxxxxxxxxxx", "new_password": "yyyyyyyyyyyyyy"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.571Z ASSERT ok   not(anon POST /api/v1/auth/password -> 401 (want 401))
+2026-10-30T15:28:00.571Z HTTP GET /api/v1/me actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.572Z ASSERT ok   not(anon GET /api/v1/me -> 401 (want 401))
+2026-10-30T15:28:00.572Z HTTP GET /api/v1/admin/orgs actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.572Z ASSERT ok   not(anon GET /api/v1/admin/orgs -> 401 (want 401))
+2026-10-30T15:28:00.573Z HTTP POST /api/v1/admin/orgs actor=anon -> 401 0ms
+  req: {"slug": "zz-absent-4817b81d", "owner_email": "zz-absent-4817b81d@x.test", "owner_password": "Pw-gIuUkJdRloMMpT8cGbgWz-fG"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.573Z ASSERT ok   not(anon POST /api/v1/admin/orgs -> 401 (want 401))
+2026-10-30T15:28:00.573Z HTTP POST /api/v1/admin/orgs/zz-absent-4817b81d/disable actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.573Z ASSERT ok   not(anon POST /api/v1/admin/orgs/zz-absent-4817b81d/disable -> 401 (want 401))
+2026-10-30T15:28:00.574Z HTTP GET /api/v1/admin/audit actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.574Z ASSERT ok   not(anon GET /api/v1/admin/audit -> 401 (want 401))
+2026-10-30T15:28:00.574Z HTTP GET /api/v1/admin/audit/verify actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.574Z ASSERT ok   not(anon GET /api/v1/admin/audit/verify -> 401 (want 401))
+2026-10-30T15:28:00.575Z HTTP GET /api/v1/members actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.575Z ASSERT ok   not(anon GET /api/v1/members -> 401 (want 401))
+2026-10-30T15:28:00.575Z HTTP POST /api/v1/members actor=anon -> 401 0ms
+  req: {"email": "zz-absent-4817b81d@acme.test", "role": "member", "password": "Pw-1-vhqmRLyoPhaPZkQyxReKJ8"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.575Z ASSERT ok   not(anon POST /api/v1/members -> 401 (want 401))
+2026-10-30T15:28:00.576Z HTTP PATCH /api/v1/members/97aa1a142636754636ac2fa83ac4a878 actor=anon -> 401 0ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.576Z ASSERT ok   not(anon PATCH /api/v1/members/97aa1a142636754636ac2fa83ac4a878 -> 401 (want 401))
+2026-10-30T15:28:00.576Z HTTP DELETE /api/v1/members/97aa1a142636754636ac2fa83ac4a878 actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.576Z ASSERT ok   not(anon DELETE /api/v1/members/97aa1a142636754636ac2fa83ac4a878 -> 401 (want 401))
+2026-10-30T15:28:00.577Z HTTP PUT /api/v1/members/97aa1a142636754636ac2fa83ac4a878/grants/api actor=anon -> 401 0ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.577Z ASSERT ok   not(anon PUT /api/v1/members/97aa1a142636754636ac2fa83ac4a878/grants/api -> 401 (want 401))
+2026-10-30T15:28:00.578Z HTTP DELETE /api/v1/members/97aa1a142636754636ac2fa83ac4a878/grants/api actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.578Z ASSERT ok   not(anon DELETE /api/v1/members/97aa1a142636754636ac2fa83ac4a878/grants/api -> 401 (want 401))
+2026-10-30T15:28:00.578Z HTTP PATCH /api/v1/members/usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl actor=anon -> 401 0ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.578Z ASSERT ok   not(anon PATCH /api/v1/members/usr_7mpzuuyickfr3whlmwi6zeg7bdli3ayl -> 401 (want 401))
+2026-10-30T15:28:00.578Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.579Z ASSERT ok   not(anon GET /api/v1/projects -> 401 (want 401))
+2026-10-30T15:28:00.579Z HTTP POST /api/v1/projects actor=anon -> 401 0ms
+  req: {"slug": "zz-absent-4817b81d"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.579Z ASSERT ok   not(anon POST /api/v1/projects -> 401 (want 401))
+2026-10-30T15:28:00.580Z HTTP GET /api/v1/projects/api/envs actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.580Z ASSERT ok   not(anon GET /api/v1/projects/api/envs -> 401 (want 401))
+2026-10-30T15:28:00.580Z HTTP POST /api/v1/projects/api/envs actor=anon -> 401 0ms
+  req: {"slug": "zz-absent-4817b81d", "protected": false}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.580Z ASSERT ok   not(anon POST /api/v1/projects/api/envs -> 401 (want 401))
+2026-10-30T15:28:00.581Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.581Z ASSERT ok   not(anon GET /api/v1/projects/api/envs/dev/secrets -> 401 (want 401))
+2026-10-30T15:28:00.581Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.581Z ASSERT ok   not(anon GET /api/v1/projects/api/envs/dev/secrets/CANARY -> 401 (want 401))
+2026-10-30T15:28:00.581Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S20_2 actor=anon -> 401 0ms
+  req: {"value": "anon"}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.582Z ASSERT ok   not(anon PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S20_2 -> 401 (want 401))
+2026-10-30T15:28:00.582Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S20_2 actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.582Z ASSERT ok   not(anon DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S20_2 -> 401 (want 401))
+2026-10-30T15:28:00.583Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.583Z ASSERT ok   not(anon GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions -> 401 (want 401))
+2026-10-30T15:28:00.583Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.583Z ASSERT ok   not(anon GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 -> 401 (want 401))
+2026-10-30T15:28:00.584Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S20_2/rollback actor=anon -> 401 0ms
+  req: {"to": 1}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.584Z ASSERT ok   not(anon POST /api/v1/projects/api/envs/dev/secrets/JUNK_S20_2/rollback -> 401 (want 401))
+2026-10-30T15:28:00.584Z HTTP GET /api/v1/projects/api/envs/dev/export actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.584Z ASSERT ok   not(anon GET /api/v1/projects/api/envs/dev/export -> 401 (want 401))
+2026-10-30T15:28:00.585Z HTTP GET /api/v1/changes actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.585Z ASSERT ok   not(anon GET /api/v1/changes -> 401 (want 401))
+2026-10-30T15:28:00.585Z HTTP POST /api/v1/changes/97aa1a142636754636ac2fa83ac4a878/approve actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.585Z ASSERT ok   not(anon POST /api/v1/changes/97aa1a142636754636ac2fa83ac4a878/approve -> 401 (want 401))
+2026-10-30T15:28:00.586Z HTTP POST /api/v1/changes/97aa1a142636754636ac2fa83ac4a878/reject actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.586Z ASSERT ok   not(anon POST /api/v1/changes/97aa1a142636754636ac2fa83ac4a878/reject -> 401 (want 401))
+2026-10-30T15:28:00.587Z HTTP GET /api/v1/tokens actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.587Z ASSERT ok   not(anon GET /api/v1/tokens -> 401 (want 401))
+2026-10-30T15:28:00.587Z HTTP POST /api/v1/tokens actor=anon -> 401 0ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 60}
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.587Z ASSERT ok   not(anon POST /api/v1/tokens -> 401 (want 401))
+2026-10-30T15:28:00.588Z HTTP DELETE /api/v1/tokens/97aa1a142636754636ac2fa83ac4a878 actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.588Z ASSERT ok   not(anon DELETE /api/v1/tokens/97aa1a142636754636ac2fa83ac4a878 -> 401 (want 401))
+2026-10-30T15:28:00.588Z HTTP GET /api/v1/audit actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.588Z ASSERT ok   not(anon GET /api/v1/audit -> 401 (want 401))
+2026-10-30T15:28:00.589Z HTTP GET /api/v1/audit/verify actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.589Z ASSERT ok   not(anon GET /api/v1/audit/verify -> 401 (want 401))
+2026-10-30T15:28:00.589Z HTTP GET / actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.589Z ASSERT ok   not(anon GET / -> 404 (want 404))
+2026-10-30T15:28:00.590Z HTTP GET / actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.590Z ASSERT ok   not(owner@acme GET / -> 404 (want 404))
+2026-10-30T15:28:00.590Z HTTP GET /api actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.590Z ASSERT ok   not(anon GET /api -> 404 (want 404))
+2026-10-30T15:28:00.591Z HTTP GET /api actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.591Z ASSERT ok   not(owner@acme GET /api -> 404 (want 404))
+2026-10-30T15:28:00.591Z HTTP GET /api/ actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.591Z ASSERT ok   not(anon GET /api/ -> 404 (want 404))
+2026-10-30T15:28:00.592Z HTTP GET /api/ actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.592Z ASSERT ok   not(owner@acme GET /api/ -> 404 (want 404))
+2026-10-30T15:28:00.592Z HTTP GET /api/v1x/projects actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.592Z ASSERT ok   not(anon GET /api/v1x/projects -> 404 (want 404))
+2026-10-30T15:28:00.592Z HTTP GET /api/v1x/projects actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.593Z ASSERT ok   not(owner@acme GET /api/v1x/projects -> 404 (want 404))
+2026-10-30T15:28:00.593Z HTTP GET /api/v2/projects actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.593Z ASSERT ok   not(anon GET /api/v2/projects -> 404 (want 404))
+2026-10-30T15:28:00.593Z HTTP GET /api/v2/projects actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.593Z ASSERT ok   not(owner@acme GET /api/v2/projects -> 404 (want 404))
+2026-10-30T15:28:00.594Z HTTP GET /v1/projects actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.594Z ASSERT ok   not(anon GET /v1/projects -> 404 (want 404))
+2026-10-30T15:28:00.594Z HTTP GET /v1/projects actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.594Z ASSERT ok   not(owner@acme GET /v1/projects -> 404 (want 404))
+2026-10-30T15:28:00.595Z HTTP GET /api/projects actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.595Z ASSERT ok   not(anon GET /api/projects -> 404 (want 404))
+2026-10-30T15:28:00.595Z HTTP GET /api/projects actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.595Z ASSERT ok   not(owner@acme GET /api/projects -> 404 (want 404))
+2026-10-30T15:28:00.596Z HTTP GET /projects actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.596Z ASSERT ok   not(anon GET /projects -> 404 (want 404))
+2026-10-30T15:28:00.596Z HTTP GET /projects actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.596Z ASSERT ok   not(owner@acme GET /projects -> 404 (want 404))
+2026-10-30T15:28:00.597Z HTTP GET /admin actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.597Z ASSERT ok   not(anon GET /admin -> 404 (want 404))
+2026-10-30T15:28:00.597Z HTTP GET /admin actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.597Z ASSERT ok   not(owner@acme GET /admin -> 404 (want 404))
+2026-10-30T15:28:00.597Z HTTP GET /admin/orgs actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.597Z ASSERT ok   not(anon GET /admin/orgs -> 404 (want 404))
+2026-10-30T15:28:00.598Z HTTP GET /admin/orgs actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.598Z ASSERT ok   not(owner@acme GET /admin/orgs -> 404 (want 404))
+2026-10-30T15:28:00.598Z HTTP GET /metrics actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.598Z ASSERT ok   not(anon GET /metrics -> 404 (want 404))
+2026-10-30T15:28:00.599Z HTTP GET /metrics actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.599Z ASSERT ok   not(owner@acme GET /metrics -> 404 (want 404))
+2026-10-30T15:28:00.599Z HTTP GET /debug/pprof/ actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.599Z ASSERT ok   not(anon GET /debug/pprof/ -> 404 (want 404))
+2026-10-30T15:28:00.599Z HTTP GET /debug/pprof/ actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.600Z ASSERT ok   not(owner@acme GET /debug/pprof/ -> 404 (want 404))
+2026-10-30T15:28:00.600Z HTTP GET /debug/vars actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.600Z ASSERT ok   not(anon GET /debug/vars -> 404 (want 404))
+2026-10-30T15:28:00.600Z HTTP GET /debug/vars actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.600Z ASSERT ok   not(owner@acme GET /debug/vars -> 404 (want 404))
+2026-10-30T15:28:00.601Z HTTP GET /swagger actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.601Z ASSERT ok   not(anon GET /swagger -> 404 (want 404))
+2026-10-30T15:28:00.601Z HTTP GET /swagger actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.601Z ASSERT ok   not(owner@acme GET /swagger -> 404 (want 404))
+2026-10-30T15:28:00.601Z HTTP GET /swagger/index.html actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.602Z ASSERT ok   not(anon GET /swagger/index.html -> 404 (want 404))
+2026-10-30T15:28:00.602Z HTTP GET /swagger/index.html actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.602Z ASSERT ok   not(owner@acme GET /swagger/index.html -> 404 (want 404))
+2026-10-30T15:28:00.602Z HTTP GET /docs actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.602Z ASSERT ok   not(anon GET /docs -> 404 (want 404))
+2026-10-30T15:28:00.603Z HTTP GET /docs actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.603Z ASSERT ok   not(owner@acme GET /docs -> 404 (want 404))
+2026-10-30T15:28:00.603Z HTTP GET /openapi.json actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.603Z ASSERT ok   not(anon GET /openapi.json -> 404 (want 404))
+2026-10-30T15:28:00.604Z HTTP GET /openapi.json actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.604Z ASSERT ok   not(owner@acme GET /openapi.json -> 404 (want 404))
+2026-10-30T15:28:00.604Z HTTP GET /static/app.js actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.604Z ASSERT ok   not(anon GET /static/app.js -> 404 (want 404))
+2026-10-30T15:28:00.605Z HTTP GET /static/app.js actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.605Z ASSERT ok   not(owner@acme GET /static/app.js -> 404 (want 404))
+2026-10-30T15:28:00.605Z HTTP GET /.env actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.605Z ASSERT ok   not(anon GET /.env -> 404 (want 404))
+2026-10-30T15:28:00.606Z HTTP GET /.env actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.606Z ASSERT ok   not(owner@acme GET /.env -> 404 (want 404))
+2026-10-30T15:28:00.606Z HTTP GET /.git/config actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.606Z ASSERT ok   not(anon GET /.git/config -> 404 (want 404))
+2026-10-30T15:28:00.607Z HTTP GET /.git/config actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.607Z ASSERT ok   not(owner@acme GET /.git/config -> 404 (want 404))
+2026-10-30T15:28:00.607Z HTTP GET /favicon.ico actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.607Z ASSERT ok   not(anon GET /favicon.ico -> 404 (want 404))
+2026-10-30T15:28:00.607Z HTTP GET /favicon.ico actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.607Z ASSERT ok   not(owner@acme GET /favicon.ico -> 404 (want 404))
+2026-10-30T15:28:00.608Z HTTP GET /index.html actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.608Z ASSERT ok   not(anon GET /index.html -> 404 (want 404))
+2026-10-30T15:28:00.608Z HTTP GET /index.html actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.608Z ASSERT ok   not(owner@acme GET /index.html -> 404 (want 404))
+2026-10-30T15:28:00.609Z HTTP GET /robots.txt actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.609Z ASSERT ok   not(anon GET /robots.txt -> 404 (want 404))
+2026-10-30T15:28:00.609Z HTTP GET /robots.txt actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.609Z ASSERT ok   not(owner@acme GET /robots.txt -> 404 (want 404))
+2026-10-30T15:28:00.609Z HTTP GET /graphql actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.610Z ASSERT ok   not(anon GET /graphql -> 404 (want 404))
+2026-10-30T15:28:00.610Z HTTP GET /graphql actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.610Z ASSERT ok   not(owner@acme GET /graphql -> 404 (want 404))
+2026-10-30T15:28:00.610Z HTTP GET /actuator/health actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.610Z ASSERT ok   not(anon GET /actuator/health -> 404 (want 404))
+2026-10-30T15:28:00.611Z HTTP GET /actuator/health actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.611Z ASSERT ok   not(owner@acme GET /actuator/health -> 404 (want 404))
+2026-10-30T15:28:00.611Z HTTP GET /server-status actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.611Z ASSERT ok   not(anon GET /server-status -> 404 (want 404))
+2026-10-30T15:28:00.612Z HTTP GET /server-status actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.612Z ASSERT ok   not(owner@acme GET /server-status -> 404 (want 404))
+2026-10-30T15:28:00.612Z HTTP GET /healthz/x actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.612Z ASSERT ok   not(anon GET /healthz/x -> 404 (want 404))
+2026-10-30T15:28:00.613Z HTTP GET /healthz/x actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.613Z ASSERT ok   not(owner@acme GET /healthz/x -> 404 (want 404))
+2026-10-30T15:28:00.613Z HTTP GET /readyz/x actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.613Z ASSERT ok   not(anon GET /readyz/x -> 404 (want 404))
+2026-10-30T15:28:00.613Z HTTP GET /readyz/x actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.613Z ASSERT ok   not(owner@acme GET /readyz/x -> 404 (want 404))
+2026-10-30T15:28:00.614Z HTTP GET /auth/token actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.614Z ASSERT ok   not(anon GET /auth/token -> 404 (want 404))
+2026-10-30T15:28:00.614Z HTTP GET /auth/token actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.614Z ASSERT ok   not(owner@acme GET /auth/token -> 404 (want 404))
+2026-10-30T15:28:00.615Z HTTP GET /me actor=anon -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.615Z ASSERT ok   not(anon GET /me -> 404 (want 404))
+2026-10-30T15:28:00.615Z HTTP GET /me actor=owner@acme -> 404 0ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.615Z ASSERT ok   not(owner@acme GET /me -> 404 (want 404))
+2026-10-30T15:28:00.616Z HTTP POST /api/v2/auth/token actor=anon -> 404 0ms
+  req: {"email": "s20-1b02a@acme.test", "password": "«pw0:s20-1b02a@acme»"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:00.616Z ASSERT ok   not(anon POST /api/v2/auth/token -> 404 (want 404))
+2026-10-30T15:28:00.617Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.617Z CONTROL ok: bearer empty Bearer (200)
+2026-10-30T15:28:00.618Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.618Z ASSERT ok   not(bearer empty Bearer: denied 401)
+2026-10-30T15:28:00.619Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.619Z CONTROL ok: bearer scheme only (200)
+2026-10-30T15:28:00.619Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.619Z ASSERT ok   not(bearer scheme only: denied 401)
+2026-10-30T15:28:00.621Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.621Z CONTROL ok: bearer no scheme (200)
+2026-10-30T15:28:00.621Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.621Z ASSERT ok   not(bearer no scheme: denied 401)
+2026-10-30T15:28:00.622Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.622Z CONTROL ok: bearer Basic (200)
+2026-10-30T15:28:00.623Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.623Z ASSERT ok   not(bearer Basic: denied 401)
+2026-10-30T15:28:00.623Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.623Z CONTROL ok: bearer Token scheme (200)
+2026-10-30T15:28:00.624Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.624Z ASSERT ok   not(bearer Token scheme: denied 401)
+2026-10-30T15:28:00.625Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.625Z CONTROL ok: bearer flipped last char (200)
+2026-10-30T15:28:00.625Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.625Z ASSERT ok   not(bearer flipped last char: denied 401)
+2026-10-30T15:28:00.626Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.626Z CONTROL ok: bearer truncated (200)
+2026-10-30T15:28:00.627Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.627Z ASSERT ok   not(bearer truncated: denied 401)
+2026-10-30T15:28:00.627Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.627Z CONTROL ok: bearer extended (200)
+2026-10-30T15:28:00.628Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.628Z ASSERT ok   not(bearer extended: denied 401)
+2026-10-30T15:28:00.629Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.629Z CONTROL ok: bearer trailing garbage (200)
+2026-10-30T15:28:00.629Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.629Z ASSERT ok   not(bearer trailing garbage: denied 401)
+2026-10-30T15:28:00.630Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.630Z CONTROL ok: bearer pat body as cof_st_ (200)
+2026-10-30T15:28:00.630Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.630Z ASSERT ok   not(bearer pat body as cof_st_: denied 401)
+2026-10-30T15:28:00.631Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.631Z CONTROL ok: bearer st body as cof_pat_ (200)
+2026-10-30T15:28:00.632Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.632Z ASSERT ok   not(bearer st body as cof_pat_: denied 401)
+2026-10-30T15:28:00.633Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.633Z CONTROL ok: bearer wrong prefix cof_xx_ (200)
+2026-10-30T15:28:00.633Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.633Z ASSERT ok   not(bearer wrong prefix cof_xx_: denied 401)
+2026-10-30T15:28:00.634Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.634Z CONTROL ok: bearer no prefix (200)
+2026-10-30T15:28:00.634Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.634Z ASSERT ok   not(bearer no prefix: denied 401)
+2026-10-30T15:28:00.635Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.635Z CONTROL ok: bearer prefix only pat (200)
+2026-10-30T15:28:00.636Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.636Z ASSERT ok   not(bearer prefix only pat: denied 401)
+2026-10-30T15:28:00.636Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.637Z CONTROL ok: bearer prefix only st (200)
+2026-10-30T15:28:00.637Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.637Z ASSERT ok   not(bearer prefix only st: denied 401)
+2026-10-30T15:28:00.638Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.638Z CONTROL ok: bearer random pat (200)
+2026-10-30T15:28:00.638Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.638Z ASSERT ok   not(bearer random pat: denied 401)
+2026-10-30T15:28:00.639Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.639Z CONTROL ok: bearer random st (200)
+2026-10-30T15:28:00.640Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.640Z ASSERT ok   not(bearer random st: denied 401)
+2026-10-30T15:28:00.641Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.641Z CONTROL ok: bearer long (200)
+2026-10-30T15:28:00.641Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.641Z ASSERT ok   not(bearer long: denied 401)
+2026-10-30T15:28:00.642Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.642Z CONTROL ok: bearer non-ascii (200)
+2026-10-30T15:28:00.642Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.642Z ASSERT ok   not(bearer non-ascii: denied 401)
+2026-10-30T15:28:00.643Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.643Z CONTROL ok: bearer sql-ish (200)
+2026-10-30T15:28:00.644Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.644Z ASSERT ok   not(bearer sql-ish: denied 401)
+2026-10-30T15:28:00.644Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.645Z CONTROL ok: bearer jwt-like (200)
+2026-10-30T15:28:00.645Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.645Z ASSERT ok   not(bearer jwt-like: denied 401)
+2026-10-30T15:28:00.646Z HTTP GET /api/v1/projects actor=anon -> 200 1ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:00.646Z CONTROL ok: bearer flipped st (200)
+2026-10-30T15:28:00.646Z HTTP GET /api/v1/projects actor=anon -> 401 0ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:00.646Z ASSERT ok   not(bearer flipped st: denied 401)

@@ -1,0 +1,53 @@
+2026-10-29T12:55:43.935Z ASSERT ok   not(admin2@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.935Z ASSERT ok   not(admin2@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(admin2@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(admin@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(admin@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(admin@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(nogrant@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(nogrant@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(nogrant@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(owner@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(owner@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(owner@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(owner@globex: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(owner@globex: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(owner@globex: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(reader@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(reader@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(reader@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(root: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(root: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(root: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(viewer@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(viewer@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(viewer@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:43.936Z ASSERT ok   not(writer@acme: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:43.936Z ASSERT ok   not(writer@acme: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:43.936Z ASSERT ok   not(writer@acme: config dir has 1 files (want >= 1))
+2026-10-29T12:55:44.015Z HTTP POST /api/v1/members actor=owner@acme -> 201 79ms
+  req: {"email": "x17-1dcd7@acme.test", "role": "member", "password": "«pw0:x17-1dcd7@acme»"}
+  resp: {"member":{"id":"usr_8b7a08a3fb67f78f228eddb8","email":"x17-1dcd7@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:55:44.009182Z"}}
+2026-10-29T12:55:44.017Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_18850c3d628afc43eb072844","email":"nogrant@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.603785Z"},{"id":"usr_493b9b638f8b78d524ce5e65","email":"owner@acme.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:55:28.775207Z"},{"id":"usr_6e86cc0773114aea3459def6","email":"reader@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.237160Z"},{"id":"usr_554c11ae7f1f108a03ed204b","email":"viewer@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.425265Z"},{"id":"usr_36d0d9963bd156b5caddacec","email":"writer@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.033571Z"},{"id":"usr_8b7a08a3fb67f78f228eddb8","email":"x17-1dcd7@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:55:44.009182Z"}]}
+2026-10-29T12:55:44.094Z HTTP POST /api/v1/auth/token actor=anon -> 200 77ms
+  req: {"email": "x17-1dcd7@acme.test", "password": "«pw0:x17-1dcd7@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_8b7a08a3fb67f78f228eddb8","email":"x17-1dcd7@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:44.096Z HTTP GET /api/v1/projects actor=x17-1dcd7@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:55:44.248Z HTTP POST /api/v1/auth/password actor=x17-1dcd7@acme -> 200 152ms
+  req: {"current_password": "«pw0:x17-1dcd7@acme»", "new_password": "«pw:x17-1dcd7@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:55:44.330Z HTTP POST /api/v1/auth/token actor=anon -> 200 81ms
+  req: {"email": "x17-1dcd7@acme.test", "password": "«pw:x17-1dcd7@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_8b7a08a3fb67f78f228eddb8","email":"x17-1dcd7@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:44.528Z CLI coffer login --email x17-1dcd7@acme.test actor=anon home=/home/grader1/work-r2/tmp/X17/home-2 url=http://127.0.0.1:8420 -> rc=0 197ms stdin=17B
+  out: Logged in as x17-1dcd7@acme.test
+
+  err: 
+2026-10-29T12:55:44.528Z CONTROL ok: login under umask 000 (rc=0)
+2026-10-29T12:55:44.528Z ASSERT ok   not(fresh login umask000: dir coffer mode 0700 (want 0700))
+2026-10-29T12:55:44.528Z ASSERT ok   not(fresh login umask000: file config.json mode 0600 (want 0600))
+2026-10-29T12:55:44.528Z ASSERT ok   not(fresh login umask000: config dir has 1 files (want >= 1))

@@ -1,0 +1,70 @@
+{
+  "started": "2026-10-30T15:23:42.582556Z",
+  "failed_at": null,
+  "static_ok": true,
+  "clone_rc": 0,
+  "commit": "ba861e566a19771008a6cb077ba5615d36e607bb",
+  "compose": [
+    "podman",
+    "compose"
+  ],
+  "compose_version": "podman-compose version 1.6.0",
+  "init_env_rc": 0,
+  "env_keys": [
+    "COFFER_BOOTSTRAP_ADMIN_EMAIL",
+    "COFFER_BOOTSTRAP_ADMIN_PASSWORD",
+    "COFFER_MASTER_KEY",
+    "COFFER_PORT",
+    "POSTGRES_DB",
+    "POSTGRES_PASSWORD",
+    "POSTGRES_USER"
+  ],
+  "port": 8420,
+  "base_url": "http://127.0.0.1:8420",
+  "build_rc": 0,
+  "build_ms": 15398,
+  "bin_ok": true,
+  "env_prep": {
+    "engine": "podman",
+    "image": "docker.io/library/postgres:16",
+    "images_before": [
+      "docker.io/library/postgres:16 74d436cb49d3",
+      "(total images: 2)"
+    ],
+    "alias_file": "/home/grader2/.config/containers/registries.conf.d/000-coffer-grade-postgres.conf",
+    "pull_rc_1": 0,
+    "pull_rc": 0,
+    "images_after": [
+      "docker.io/library/postgres:16 74d436cb49d3",
+      "(total images: 2)"
+    ],
+    "control_create_rc": 0,
+    "control_err": ""
+  },
+  "image_store": [
+    "docker.io/library/postgres:16 74d436cb49d3",
+    "(total images: 2)"
+  ],
+  "port_busy_before_up": false,
+  "up_rc": 0,
+  "up_ms": 43131,
+  "readyz_status": 200,
+  "containers": {
+    "db": "3563b99c07d1",
+    "server": "4574be900902"
+  },
+  "compose_file": true,
+  "proxy_url": "http://127.0.0.1:18420",
+  "proxy_pid": 102894,
+  "root_login_status": 201,
+  "cli": {
+    "json_position": "front",
+    "bin": "/home/grader2/work-c2/repo/bin/coffer",
+    "ok": true,
+    "login_rc": 0,
+    "tried": {
+      "front": 0
+    }
+  },
+  "finished": "2026-10-30T15:24:43.047228Z"
+}

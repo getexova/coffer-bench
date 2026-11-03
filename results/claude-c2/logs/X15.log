@@ -1,0 +1,22 @@
+2026-10-30T15:24:51.377Z osv-scanner /home/grader2/work-c2/tmp/X15/osv-control -> rc=1 1125ms
+  err: Scanning dir /home/grader2/work-c2/tmp/X15/osv-control
+Starting filesystem walk for root: /
+Scanned /home/grader2/work-c2/tmp/X15/osv-control/requirements.txt file and found 1 package
+End status: 1 dirs visited, 2 inodes visited, 1 Extract calls, 126.885µs elapsed, 126.946µs wall time
+
+2026-10-30T15:24:51.380Z CONTROL ok: osv control finds High/Critical (rc=0)
+2026-10-30T15:24:52.273Z osv-scanner /home/grader2/work-c2/repo -> rc=1 893ms
+  err: Scanning dir /home/grader2/work-c2/repo
+Starting filesystem walk for root: /
+Scanned /home/grader2/work-c2/repo/go.mod file and found 9 packages
+End status: 38 dirs visited, 158 inodes visited, 1 Extract calls, 1.547903ms elapsed, 1.548007ms wall time
+Skipping call analysis on Go code since Go is not installed.
+
+2026-10-30T15:24:52.273Z lockfiles scanned: 1 first-party, 0 vendored/third-party (info only)
+2026-10-30T15:24:52.273Z first-party lockfiles: ['go.mod (9 pkgs)']
+2026-10-30T15:24:52.273Z vendored/third-party lockfiles (not judged): 0, e.g. []
+2026-10-30T15:24:52.273Z High/Critical in first-party lockfiles (0):
+  -
+2026-10-30T15:24:52.273Z High/Critical in vendored/third-party lockfiles, info only (0):
+  -
+2026-10-30T15:24:52.273Z ASSERT ok   0 High/Critical in first-party lockfiles

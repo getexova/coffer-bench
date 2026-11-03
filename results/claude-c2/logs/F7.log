@@ -1,0 +1,175 @@
+2026-10-30T15:24:54.287Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 1)
+
+  err: 
+2026-10-30T15:24:54.287Z ASSERT ok   not(base set failed)
+2026-10-30T15:24:54.330Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 22ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 2)
+
+  err: 
+2026-10-30T15:24:54.337Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 29ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 3)
+
+  err: 
+2026-10-30T15:24:54.339Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 31ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 4)
+
+  err: 
+2026-10-30T15:24:54.350Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 34ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 5)
+
+  err: 
+2026-10-30T15:24:54.354Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 44ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 6)
+
+  err: 
+2026-10-30T15:24:54.358Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 48ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 7)
+
+  err: 
+2026-10-30T15:24:54.362Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 49ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 8)
+
+  err: 
+2026-10-30T15:24:54.366Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 52ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 9)
+
+  err: 
+2026-10-30T15:24:54.371Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 55ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 10)
+
+  err: 
+2026-10-30T15:24:54.375Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 64ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 11)
+
+  err: 
+2026-10-30T15:24:54.379Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 65ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 12)
+
+  err: 
+2026-10-30T15:24:54.384Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 73ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 13)
+
+  err: 
+2026-10-30T15:24:54.388Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 71ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 14)
+
+  err: 
+2026-10-30T15:24:54.393Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 79ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 15)
+
+  err: 
+2026-10-30T15:24:54.397Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 79ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 16)
+
+  err: 
+2026-10-30T15:24:54.401Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 84ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 17)
+
+  err: 
+2026-10-30T15:24:54.406Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 92ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 18)
+
+  err: 
+2026-10-30T15:24:54.410Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 91ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 19)
+
+  err: 
+2026-10-30T15:24:54.414Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 103ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 20)
+
+  err: 
+2026-10-30T15:24:54.419Z CLI coffer secrets set F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 108ms stdin=40B
+  out: set F7_PAR_6CF4CACA (version 21)
+
+  err: 
+2026-10-30T15:24:54.420Z ASSERT ok   not(parallel set rcs=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+2026-10-30T15:24:54.423Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions actor=owner@acme -> 200 3ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:54.281548Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":2,"deleted":false,"created_at":"2026-10-30T15:24:54.315646Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":3,"deleted":false,"created_at":"2026-10-30T15:24:54.320365Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":4,"deleted":false,"created_at":"2026-10-30T15:24:54.320605Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":…[sha256=daf7a5e9f35a05407bbc3343d6be588fce49ace8f32d272fce2d35d123f6fbcf len=2639]
+2026-10-30T15:24:54.423Z ASSERT ok   not(versions=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21] (want 1..21 contiguous, no duplicates))
+2026-10-30T15:24:54.429Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/2 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":2,"value":"«canary:F7:p1»"}
+
+2026-10-30T15:24:54.433Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/3 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":3,"value":"«canary:F7:p3»"}
+
+2026-10-30T15:24:54.438Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/4 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":4,"value":"«canary:F7:p2»"}
+
+2026-10-30T15:24:54.443Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/5 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":5,"value":"«canary:F7:p14»"}
+
+2026-10-30T15:24:54.447Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/6 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":6,"value":"«canary:F7:p5»"}
+
+2026-10-30T15:24:54.451Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/7 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":7,"value":"«canary:F7:p4»"}
+
+2026-10-30T15:24:54.456Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/8 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":8,"value":"«canary:F7:p10»"}
+
+2026-10-30T15:24:54.460Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/9 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":9,"value":"«canary:F7:p13»"}
+
+2026-10-30T15:24:54.465Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/10 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":10,"value":"«canary:F7:p15»"}
+
+2026-10-30T15:24:54.469Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/11 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":11,"value":"«canary:F7:p8»"}
+
+2026-10-30T15:24:54.473Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/12 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":12,"value":"«canary:F7:p12»"}
+
+2026-10-30T15:24:54.478Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/13 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":13,"value":"«canary:F7:p6»"}
+
+2026-10-30T15:24:54.482Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/14 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":14,"value":"«canary:F7:p16»"}
+
+2026-10-30T15:24:54.487Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/15 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":15,"value":"«canary:F7:p9»"}
+
+2026-10-30T15:24:54.491Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/16 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":16,"value":"«canary:F7:p17»"}
+
+2026-10-30T15:24:54.495Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/17 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":17,"value":"«canary:F7:p19»"}
+
+2026-10-30T15:24:54.500Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/18 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":18,"value":"«canary:F7:p11»"}
+
+2026-10-30T15:24:54.504Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/19 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":19,"value":"«canary:F7:p18»"}
+
+2026-10-30T15:24:54.508Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/20 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":20,"value":"«canary:F7:p7»"}
+
+2026-10-30T15:24:54.513Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F7_PAR_6CF4CACA/versions/21 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"F7_PAR_6CF4CACA","version":21,"value":"«canary:F7:p0»"}
+
+2026-10-30T15:24:54.513Z ASSERT ok   not(versions 2..21 hold 20/20 distinct written values (no lost updates))
+2026-10-30T15:24:54.524Z CLI coffer secrets get F7_PAR_6CF4CACA -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=0B
+  out: «canary:F7:p0»
+  err: 
+2026-10-30T15:24:54.524Z ASSERT ok   not(current value equals v21 value: True)

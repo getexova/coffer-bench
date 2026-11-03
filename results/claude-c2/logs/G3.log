@@ -1,0 +1,98 @@
+2026-10-30T15:30:19.979Z .env.example COFFER_MASTER_KEY present=True len=49
+2026-10-30T15:30:20.015Z init-env run 1 rc=0 key_len=44 stdout=Wrote /home/grader2/work-c2/tmp/G3/g3clone/.env (mode 0600) with a new master key, admin password and Postgres password.
+
+  Platform admin email:    admin@example.com
+  Platform admin password: «pw:g3-bootstrap1»
+
+This password is shown only once (it is also stored in .env as COFFER_BOOTSTRAP_ADMIN_PASSWORD).
+Back up COFFER_MASTER_KEY from .env somewhere safe and separate from database backups:
+without it, encrypted secrets cannot be recovered.
+Next: ./scripts/up.sh
+ stderr=
+2026-10-30T15:30:20.015Z ASSERT ok   not(init-env.sh run 1 rc=0)
+2026-10-30T15:30:20.015Z ASSERT ok   not(init-env.sh run 1: no COFFER_MASTER_KEY in .env)
+2026-10-30T15:30:20.015Z ASSERT ok   not(init-env.sh run 1: master key is not base64 of 32 bytes (len 44))
+2026-10-30T15:30:20.015Z ASSERT ok   not(init-env.sh run 1: master key equals the .env.example placeholder)
+2026-10-30T15:30:20.050Z init-env run 2 rc=0 key_len=44 stdout=Wrote /home/grader2/work-c2/tmp/G3/g3clone/.env (mode 0600) with a new master key, admin password and Postgres password.
+
+  Platform admin email:    admin@example.com
+  Platform admin password: «pw:g3-bootstrap2»
+
+This password is shown only once (it is also stored in .env as COFFER_BOOTSTRAP_ADMIN_PASSWORD).
+Back up COFFER_MASTER_KEY from .env somewhere safe and separate from database backups:
+without it, encrypted secrets cannot be recovered.
+Next: ./scripts/up.sh
+ stderr=
+2026-10-30T15:30:20.050Z ASSERT ok   not(init-env.sh run 2 rc=0)
+2026-10-30T15:30:20.050Z ASSERT ok   not(init-env.sh run 2: no COFFER_MASTER_KEY in .env)
+2026-10-30T15:30:20.050Z ASSERT ok   not(init-env.sh run 2: master key is not base64 of 32 bytes (len 44))
+2026-10-30T15:30:20.050Z ASSERT ok   not(init-env.sh run 2: master key equals the .env.example placeholder)
+2026-10-30T15:30:20.050Z ASSERT ok   not(init-env.sh wrote the same master key twice (not random))
+2026-10-30T15:30:21.277Z pg_dumpall pre-env-override -> rc=0 0016-G3-pre-env-override.sql
+2026-10-30T15:30:21.425Z sweep_snapshot pre-env-override: dump=0016-G3-pre-env-override.sql logs=2
+2026-10-30T15:30:21.425Z env_override set=[] unset=[]
+2026-10-30T15:30:24.033Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 553ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:30:24.033Z   compose up out: 011796341bdc49bfe51408cef0c4758ebb6dc9fe622ccbe95807c1469b217558
+repo_server_1
+
+2026-10-30T15:30:24.806Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 0104c4be0548 -> 011796341bdc recreated=True
+  logs: {"ts":"2026-10-30T15:30:24.079041Z","level":"info","msg":"listening","addr":"[::]:8420"}
+{"ts":"2026-10-30T15:30:24.084849Z","level":"info","msg":"migrations applied"}
+{"ts":"2026-10-30T15:30:24.087947Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":503,"duration_ms":0.037,"request_id":"33128b79123b1e8df60ebdc3b9ee2457"}
+{"ts":"2026-10-30T15:30:24.097480Z","level":"info","msg":"using restricted database role","role":"coffer_app"}
+{"ts":"2026-10-30T15:30:24.220659Z","level":"info","msg":"ready"}
+{"ts":"2026-10-30T15:30:24.672885Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":200,"duration_ms":1.264,"request_id":"054a0f1d62efab279a4b97c320fab5f8"}
+
+2026-10-30T15:30:24.808Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+
+2026-10-30T15:30:24.808Z CONTROL ok: unmodified .env boots (recreated container) (200)
+2026-10-30T15:30:25.424Z pg_dumpall pre-env-override -> rc=0 0017-G3-pre-env-override.sql
+2026-10-30T15:30:25.533Z sweep_snapshot pre-env-override: dump=0017-G3-pre-env-override.sql logs=2
+2026-10-30T15:30:25.534Z env_override set=['COFFER_MASTER_KEY'] unset=[]
+2026-10-30T15:30:26.419Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 582ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:30:26.419Z   compose up out: e58602d5231b000c1e0f756bb27616d88ed7328dfbdbe0d4bf077af12ed3e2fb
+repo_server_1
+
+2026-10-30T15:30:27.727Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid 011796341bdc -> e58602d5231b recreated=True
+  logs: config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+config error: invalid environment variable COFFER_MASTER_KEY: is the .env.example placeholder; run ./scripts/init-env.sh
+
+2026-10-30T15:30:27.727Z placeholder override: {'placeholder_len': 49, 'compose_rc': 0, 'ready': False, 'running': False, 'exit_code': 1, 'restarts': 4, 'status': 'stopped', 'recreated': True, 'log_names_key': True, 'log_bytes': 847}
+2026-10-30T15:30:27.728Z ASSERT ok   not(server BOOTED (/readyz 200) with the .env.example placeholder master key)
+2026-10-30T15:30:27.728Z ASSERT ok   not(refused: exit=1 restarts=4 log names key=True)
+2026-10-30T15:30:28.521Z pg_dumpall pre-env-override -> rc=0 0018-G3-pre-env-override.sql
+2026-10-30T15:30:28.841Z sweep_snapshot pre-env-override: dump=0018-G3-pre-env-override.sql logs=2
+2026-10-30T15:30:28.841Z env_override set=[] unset=[]
+2026-10-30T15:30:30.253Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 594ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:30:30.253Z   compose up out: 0441e0071abd1ad8024c84173c3567539e8f49298cf2e591f762bdd4b91cc633
+repo_server_1
+
+2026-10-30T15:30:31.052Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid e58602d5231b -> 0441e0071abd recreated=True
+  logs: {"ts":"2026-10-30T15:30:30.303853Z","level":"info","msg":"listening","addr":"[::]:8420"}
+{"ts":"2026-10-30T15:30:30.306985Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":503,"duration_ms":0.034,"request_id":"1c8fac02fa6b2b3a7a8394e19db13f81"}
+{"ts":"2026-10-30T15:30:30.309943Z","level":"info","msg":"migrations applied"}
+{"ts":"2026-10-30T15:30:30.322892Z","level":"info","msg":"using restricted database role","role":"coffer_app"}
+{"ts":"2026-10-30T15:30:30.452696Z","level":"info","msg":"ready"}
+{"ts":"2026-10-30T15:30:30.907330Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":200,"duration_ms":1.978,"request_id":"57ae36820c1ed2717977c3a0adfe3583"}
+
+2026-10-30T15:30:31.054Z HTTP GET /readyz actor=anon -> 200 1ms
+  req: 
+  resp: {"status":"ready"}
+
+2026-10-30T15:30:31.054Z CONTROL ok: restored .env boots again (recovery) (200)
+2026-10-30T15:30:31.699Z pg_dumpall pre-rollback-G3 -> rc=0 0019-G3-pre-rollback-G3.sql
+2026-10-30T15:30:31.806Z sweep_snapshot pre-rollback-G3: dump=0019-G3-pre-rollback-G3.sql logs=2
+2026-10-30T15:30:48Z [runner] rollback: ok

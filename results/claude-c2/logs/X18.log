@@ -1,0 +1,178 @@
+2026-10-30T15:25:11.050Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 76ms stdin=25B
+  out: logged in as owner@acme.test
+
+  err: 
+2026-10-30T15:25:11.058Z CLI coffer whoami actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 7ms stdin=0B
+  out: type: user
+id: usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+email: owner@acme.test
+role: owner
+org_id: org_xyap7smmpbnuafybnstbwwbvhp32ccah
+org_slug: acme
+must_change_password: false
+
+  err: 
+2026-10-30T15:25:11.071Z CLI coffer secrets set X18_D7CB9B_V -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 14ms stdin=40B
+  out: set X18_D7CB9B_V (version 1)
+
+  err: 
+2026-10-30T15:25:11.081Z CLI coffer secrets set X18_D7CB9B_V -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 10ms stdin=40B
+  out: set X18_D7CB9B_V (version 2)
+
+  err: 
+2026-10-30T15:25:11.091Z CLI coffer secrets set X18_D7CB9B_ARGV «canary:X18_D7CB9B_ARGV» -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 10ms stdin=0B
+  out: set X18_D7CB9B_ARGV (version 1)
+
+  err: 
+2026-10-30T15:25:11.101Z CLI coffer secrets get X18_D7CB9B_V -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: «canary:X18_D7CB9B_V2»
+  err: 
+2026-10-30T15:25:11.110Z CLI coffer secrets get X18_D7CB9B_V --version 1 -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: «canary:X18_D7CB9B_V1»
+  err: 
+2026-10-30T15:25:11.115Z CLI coffer secrets list -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 5ms stdin=0B
+  out: KEY	VERSION	UPDATED_AT	UPDATED_BY
+CANARY	1	2026-10-30T15:24:45.867335Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+F17_PERSIST_D59A493A	2	2026-10-30T15:24:57.379700Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F2_BIG_F37A6220	1	2026-10-30T15:24:53.339447Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F2_EMPTY_POS_D8F43BE3	1	2026-10-30T15:24:53.271765Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F2_EMPTY_STDIN_131CA018	1	2026-10-30T15:24:53.296960Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F2_MULTI_50E8EF4A	1	2026-10-30T15:24:53.363194Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F2_NL_598FE677	1	2026-10-30T15:24:53.383755Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F2_ONE_98B58392	1	2026-10-30T15:24:53.317942Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F3_MAX_82773D2C	1	2026-10-30T15:24:53.538367Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F4_HIST_2EF66BE8	4	2026-10-30T15:24:53.787659Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F5_DEL_EF0C80FE	3	2026-10-30T15:24:53.991563Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F6_CAS_FD81F1B4	3	2026-10-30T15:24:54.157545Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+F7_PAR_6CF4CACA	21	2026-10-30T15:24:54.351576Z	usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp
+MULTI	1	2026-10-30T15:24:45.877742Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+X18_D7CB9B_ARGV	1	2026-10-30T15:25:11.085630Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+X18_D7CB9B_V	2	2026-10-30T15:25:11.076042Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+
+  err: 
+2026-10-30T15:25:11.121Z CLI coffer secrets history X18_D7CB9B_V -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 5ms stdin=0B
+  out: VERSION	DELETED	CREATED_AT	CREATED_BY
+1	false	2026-10-30T15:25:11.061883Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+2	false	2026-10-30T15:25:11.076042Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b
+
+  err: 
+2026-10-30T15:25:11.133Z CLI coffer secrets export -p api -e dev --format dotenv actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 11ms stdin=0B
+  out: CANARY="«canary:acme/api/dev/CANARY»"
+F17_PERSIST_D59A493A="«canary:F17:v2»"
+F2_BIG_F37A6220="«canary:F2:big»"
+F2_EMPTY_POS_D8F43BE3=""
+F2_EMPTY_STDIN_131CA018=""
+F2_MULTI_50E8EF4A="«canary:multi_core»\"\\\$HOME\n\r\n😀qAYGTH3fmMibFvf7o2IWSHhomgNAgbzz5ivuuCMo"
+F2_NL_598FE677="«canary:F2:nl»\n"
+F2_ONE_98B58392="U"
+F3_MAX_82773D2C="«canary:F3:max»"
+F4_HIST_2EF66BE8="«canary:F4:v1»"
+F5_DEL_EF0C80FE="«canary:F5:b»"
+F6_CAS_FD81F1B4="«canary:F6:3»"
+F7_PAR_6CF4CACA="«canary:F7:p0»"
+MULTI="«canary:multi_core»\"\\\$…[sha256=2a91a0d92e9b2089741249ba10bd2c21c094414138d5a4798ea1426ea4ea545e len=131940]
+  err: 
+2026-10-30T15:25:11.146Z CLI coffer secrets export -p api -e dev --format json actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 11ms stdin=0B
+  out: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_D59A493A":"«canary:F17:v2»","F2_BIG_F37A6220":"«canary:F2:big»","F2_EMPTY_POS_D8F43BE3":"","F2_EMPTY_STDIN_131CA018":"","F2_MULTI_50E8EF4A":"«canary:acme/api/dev/MULTI»","F2_NL_598FE677":"«canary:F2:nl»\n","F2_ONE_98B58392":"U","F3_MAX_82773D2C":"«canary:F3:max»","F4_HIST_2EF66BE8":"«canary:F4:v1»","F5_DEL_EF0C80FE":"«canary:F5:b»","F6_CAS_FD81F1B4":"«canary:F6:3»","F7_PAR_6CF4CACA":"«canary:F7:p0»","MULTI":"«canary:acme/api/dev/MULTI»","X18_D7CB9B_ARGV"…[sha256=518faf60fdff0d76950aa75575fe11a55ea1d23004189318ca047a485080ed18 len=131982]
+  err: 
+2026-10-30T15:25:11.160Z CLI coffer run -p api -e dev -- /bin/true actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 13ms stdin=0B
+  out: 
+  err: 
+2026-10-30T15:25:11.169Z CLI coffer --json token create -p api -e dev --access read --ttl 30m --name x18_d7cb9b actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: {
+  "access": "read",
+  "env": "dev",
+  "expires_at": "2026-10-30T15:55:11.163707Z",
+  "id": "tok_drnla2zsv5fmwraksirefxvstgctgcjs",
+  "name": "x18_d7cb9b",
+  "project": "api",
+  "token": "<redacted-token>"
+}
+
+  err: 
+2026-10-30T15:25:11.180Z CLI coffer secrets get X18_D7CB9B_V -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-anon-2 url=http://127.0.0.1:18420 -> rc=0 10ms stdin=0B
+  out: «canary:X18_D7CB9B_V2»
+  err: 
+2026-10-30T15:25:11.188Z CLI coffer token list actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 7ms stdin=0B
+  out: ID	NAME	PROJECT	ENV	ACCESS	CREATED_AT	EXPIRES_AT	REVOKED_AT	CREATED_BY	LAST_USED_AT
+tok_drnla2zsv5fmwraksirefxvstgctgcjs	x18_d7cb9b	api	dev	read	2026-10-30T15:25:11.163707Z	2026-10-30T15:55:11.163707Z	-	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	2026-10-30T15:25:11.175596Z
+tok_mmb4p625sv3co2flieoj5pk3atj43mdo	f16-23fc67	api	dev	read	2026-10-30T15:24:56.716049Z	2026-10-30T15:54:56.716049Z	2026-10-30T15:24:56.726464Z	usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw	-
+tok_eox7zvtfvej54ioft2jxfr5df4pedamf	T_rev	api	dev	read	2026-10-30T15:24:45.971505Z	2026-11-06T15:24:45.971505Z	2026-10-30T15:24:45.980919Z	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	-
+tok_k2mcngz3632qi7f3hbr66swz7rkgj4wx	T_exp	api	dev	read	2026-10-30T15:24:45.962117Z	2026-10-30T15:25:45.962117Z	-	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	-
+tok_n5gqrba67ofoatbp6a4wzw6mt4iefqmo	T_prod_rw	api	prod	read-write	2026-10-30T15:24:45.953180Z	2026-11-06T15:24:45.953180Z	-	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	-
+tok_fnbiolzt32lvkzmers4by3pr47rq6ycg	T_dev_rw	api	dev	read-write	2026-10-30T15:24:45.943482Z	2026-11-06T15:24:45.943482Z	-	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	-
+tok_trplib5a3bzl6jvpaow7gcwarcoe4bbe	T_dev_r	api	dev	read	2026-10-30T15:24:45.934040Z	2026-11-06T15:24:45.934040Z	-	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	2026-10-30T15:24:55.651845Z
+
+  err: 
+2026-10-30T15:25:11.199Z CLI coffer token revoke tok_drnla2zsv5fmwraksirefxvstgctgcjs actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 10ms stdin=0B
+  out: revoked token tok_drnla2zsv5fmwraksirefxvstgctgcjs
+
+  err: 
+2026-10-30T15:25:11.210Z CLI coffer secrets delete X18_D7CB9B_ARGV -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 12ms stdin=0B
+  out: deleted X18_D7CB9B_ARGV (version 2)
+
+  err: 
+2026-10-30T15:25:11.220Z CLI coffer secrets rollback X18_D7CB9B_V --to 1 -p api -e dev actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 10ms stdin=0B
+  out: rolled back X18_D7CB9B_V (version 3)
+
+  err: 
+2026-10-30T15:25:11.231Z CLI coffer --json secrets set X18_D7CB9B_PROT -p api -e prod actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=7 10ms stdin=40B
+  out: {
+  "change_id": "chg_2zwyhwmgkm4lmuuzaxctajviwrswyr35",
+  "status": "pending"
+}
+
+  err: 
+2026-10-30T15:25:11.238Z CLI coffer change list --status pending actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 6ms stdin=0B
+  out: ID	PROJECT	ENV	KEY	OP	STATUS	PROPOSED_BY	CREATED_AT	DECIDED_BY	APPLIED_VERSION
+chg_2zwyhwmgkm4lmuuzaxctajviwrswyr35	api	prod	X18_D7CB9B_PROT	set	pending	usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	2026-10-30T15:25:11.225453Z	-	-
+
+  err: 
+2026-10-30T15:25:11.247Z CLI coffer change reject chg_2zwyhwmgkm4lmuuzaxctajviwrswyr35 actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: rejected change chg_2zwyhwmgkm4lmuuzaxctajviwrswyr35
+
+  err: 
+2026-10-30T15:25:11.253Z CLI coffer audit list --limit 5 actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 6ms stdin=0B
+  out: SEQ	TS	ACTOR	ACTION	TARGET	RESULT	SOURCE_IP
+344	2026-10-30T15:25:11.242547Z	user:usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	change.reject	api/prod/X18_D7CB9B_PROT	success	10.89.0.3
+343	2026-10-30T15:25:11.226376Z	user:usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	change.create	api/prod/X18_D7CB9B_PROT	success	10.89.0.3
+342	2026-10-30T15:25:11.215796Z	user:usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	secret.rollback	api/dev/X18_D7CB9B_V	success	10.89.0.3
+341	2026-10-30T15:25:11.205210Z	user:usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	secret.delete	api/dev/X18_D7CB9B_ARGV	success	10.89.0.3
+340	2026-10-30T15:25:11.193252Z	user:usr_764cnv53gai3qsmtqqnstgooc6sz7r4b	token.revoke	tok_drnla2zsv5fmwraksirefxvstgctgcjs	success	10.89.0.3
+
+  err: 
+2026-10-30T15:25:11.261Z CLI coffer audit verify actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: chain valid
+
+  err: 
+2026-10-30T15:25:11.340Z CLI coffer member add x18-aa7857b1@acme.test --role member actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 76ms stdin=17B
+  out: added x18-aa7857b1@acme.test as member (usr_vjptjwbqkfepfq3px4y5yub2bpjl7vxk)
+
+  err: 
+2026-10-30T15:25:11.403Z CLI coffer login --email x18-aa7857b1@acme.test actor=anon home=/home/grader2/work-c2/tmp/X18/home-3 url=http://127.0.0.1:18420 -> rc=0 62ms stdin=17B
+  out: logged in as x18-aa7857b1@acme.test
+
+  err: 
+2026-10-30T15:25:11.500Z CLI coffer passwd actor=anon home=/home/grader2/work-c2/tmp/X18/home-3 url=http://127.0.0.1:18420 -> rc=0 97ms stdin=34B
+  out: password changed
+
+  err: 
+2026-10-30T15:25:11.516Z CLI coffer logout actor=anon home=/home/grader2/work-c2/tmp/X18/home-3 url=http://127.0.0.1:18420 -> rc=0 15ms stdin=0B
+  out: logged out
+
+  err: 
+2026-10-30T15:25:11.591Z CLI coffer admin org create x18-7dfdcd --owner-email owner@x18-7dfdcd.test actor=anon home=/home/grader2/work-c2/homes/root url=http://127.0.0.1:18420 -> rc=0 74ms stdin=17B
+  out: created org x18-7dfdcd (org_omchbko6hm3bngwj4s52kfcb75j63wid) with owner owner@x18-7dfdcd.test
+
+  err: 
+2026-10-30T15:25:11.608Z CLI coffer logout actor=anon home=/home/grader2/work-c2/tmp/X18/home-1 url=http://127.0.0.1:18420 -> rc=0 16ms stdin=0B
+  out: logged out
+
+  err: 
+2026-10-30T15:25:12.608Z proxy capture: 199 lines total, 29 from this sequence
+2026-10-30T15:25:12.608Z CONTROL ok: CLI traffic captured by proxy (rc=0)
+2026-10-30T15:25:12.608Z needles: 112
+2026-10-30T15:25:12.614Z ASSERT ok   not(199 captured URLs clean)
+2026-10-30T15:25:13.114Z server log lines scanned: 387 (this sequence seen: False)
+2026-10-30T15:25:13.115Z ASSERT ok   not(log URLs clean)
+2026-10-30T15:25:13.115Z ASSERT ok   not(log lines clean)

@@ -1,0 +1,155 @@
+2026-10-29T12:56:42.202Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_1 actor=writer@acme -> 202 9ms
+  req: {"value": "JUNK_S10_1-cr"}
+  resp: {"status":"pending","change_id":"chg1284c462b00398c1d12ae900"}
+2026-10-29T12:56:42.207Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_2 actor=writer@acme -> 202 5ms
+  req: {"value": "JUNK_S10_2-cr"}
+  resp: {"status":"pending","change_id":"chg98ac9d9699fb96109cf9c3cd"}
+2026-10-29T12:56:42.214Z HTTP POST /api/v1/changes/chg98ac9d9699fb96109cf9c3cd/approve actor=admin2@acme -> 200 7ms
+  req: {}
+  resp: {"id":"chg98ac9d9699fb96109cf9c3cd","status":"approved","key":"JUNK_S10_2","version":1}
+2026-10-29T12:56:42.214Z CONTROL ok: writer@acme approves own CR (200)
+2026-10-29T12:56:42.220Z HTTP POST /api/v1/changes/chg1284c462b00398c1d12ae900/approve actor=writer@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:42.220Z ASSERT ok   not(writer@acme approves own CR: denied 403)
+2026-10-29T12:56:42.223Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg98ac9d9699fb96109cf9c3cd","project":"api","env":"prod","key":"JUNK_S10_2","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:56:42.203743Z","resolved_at":"2026-10-29T12:56:42.209355Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg1284c462b00398c1d12ae900","project":"api","env":"prod","key":"JUNK_S10_1","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T…[sha256=e600ee0a13e50c8bb6473f93031cd76d2a9618787f1b74f2f8d31c049bd17a2d len=18692]
+2026-10-29T12:56:42.223Z ASSERT ok   not(writer@acme own CR status 'pending' after self-approve (want pending))
+2026-10-29T12:56:42.228Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S10_1 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:42.228Z ASSERT ok   not(writer@acme self-approve applied the value (404))
+2026-10-29T12:56:42.233Z HTTP POST /api/v1/changes/chg1284c462b00398c1d12ae900/approve actor=admin2@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg1284c462b00398c1d12ae900","status":"approved","key":"JUNK_S10_1","version":1}
+2026-10-29T12:56:42.233Z ASSERT ok   not(admin2 approves writer@acme's CR -> 200 (want 200))
+2026-10-29T12:56:42.238Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S10_1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S10_1","version":1,"value":"JUNK_S10_1-cr"}
+2026-10-29T12:56:42.238Z ASSERT ok   not(admin2 approval of writer@acme's CR not applied (200))
+2026-10-29T12:56:42.240Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg98ac9d9699fb96109cf9c3cd","project":"api","env":"prod","key":"JUNK_S10_2","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:56:42.203743Z","resolved_at":"2026-10-29T12:56:42.209355Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg1284c462b00398c1d12ae900","project":"api","env":"prod","key":"JUNK_S10_1","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29…[sha256=a5180d8d1e30331639d288669006031681434cf75795cde46278e74c553f8431 len=18782]
+2026-10-29T12:56:42.240Z ASSERT ok   not(writer@acme's CR status after admin2 approve != approved)
+2026-10-29T12:56:42.245Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_3 actor=admin@acme -> 202 5ms
+  req: {"value": "JUNK_S10_3-cr"}
+  resp: {"status":"pending","change_id":"chg8bb3dbd319362515b5a7a814"}
+2026-10-29T12:56:42.250Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_4 actor=admin@acme -> 202 5ms
+  req: {"value": "JUNK_S10_4-cr"}
+  resp: {"status":"pending","change_id":"chge5b3e3a5fbef2fd27068a3f2"}
+2026-10-29T12:56:42.255Z HTTP POST /api/v1/changes/chge5b3e3a5fbef2fd27068a3f2/approve actor=admin2@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chge5b3e3a5fbef2fd27068a3f2","status":"approved","key":"JUNK_S10_4","version":1}
+2026-10-29T12:56:42.256Z CONTROL ok: admin@acme approves own CR (200)
+2026-10-29T12:56:42.260Z HTTP POST /api/v1/changes/chg8bb3dbd319362515b5a7a814/approve actor=admin@acme -> 403 5ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:42.260Z ASSERT ok   not(admin@acme approves own CR: denied 403)
+2026-10-29T12:56:42.263Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chge5b3e3a5fbef2fd27068a3f2","project":"api","env":"prod","key":"JUNK_S10_4","op":"set","base_version":0,"status":"approved","proposer_id":"usr_b5e9134f655c5825fa5df3b8","created_at":"2026-10-29T12:56:42.246671Z","resolved_at":"2026-10-29T12:56:42.251561Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg8bb3dbd319362515b5a7a814","project":"api","env":"prod","key":"JUNK_S10_3","op":"set","base_version":0,"status":"pending","proposer_id":"usr_b5e9134f655c5825fa5df3b8","created_at":"2026-10-29T…[sha256=f6bac972e7da44aff6df187128e5d4a999e9d403bf1f6fe5865d31199aea8f0a len=19312]
+2026-10-29T12:56:42.263Z ASSERT ok   not(admin@acme own CR status 'pending' after self-approve (want pending))
+2026-10-29T12:56:42.267Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S10_3 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:42.267Z ASSERT ok   not(admin@acme self-approve applied the value (404))
+2026-10-29T12:56:42.273Z HTTP POST /api/v1/changes/chg8bb3dbd319362515b5a7a814/approve actor=admin2@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg8bb3dbd319362515b5a7a814","status":"approved","key":"JUNK_S10_3","version":1}
+2026-10-29T12:56:42.273Z ASSERT ok   not(admin2 approves admin@acme's CR -> 200 (want 200))
+2026-10-29T12:56:42.278Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S10_3 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"JUNK_S10_3","version":1,"value":"JUNK_S10_3-cr"}
+2026-10-29T12:56:42.278Z ASSERT ok   not(admin2 approval of admin@acme's CR not applied (200))
+2026-10-29T12:56:42.280Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chge5b3e3a5fbef2fd27068a3f2","project":"api","env":"prod","key":"JUNK_S10_4","op":"set","base_version":0,"status":"approved","proposer_id":"usr_b5e9134f655c5825fa5df3b8","created_at":"2026-10-29T12:56:42.246671Z","resolved_at":"2026-10-29T12:56:42.251561Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg8bb3dbd319362515b5a7a814","project":"api","env":"prod","key":"JUNK_S10_3","op":"set","base_version":0,"status":"approved","proposer_id":"usr_b5e9134f655c5825fa5df3b8","created_at":"2026-10-29…[sha256=471a1e61c8f51350d575beb8c09202c97f581ad950f976b5c94bd4de22de018e len=19402]
+2026-10-29T12:56:42.280Z ASSERT ok   not(admin@acme's CR status after admin2 approve != approved)
+2026-10-29T12:56:42.285Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_5 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S10_5-cr"}
+  resp: {"status":"pending","change_id":"chg950e0de8f4742949702f5194"}
+2026-10-29T12:56:42.289Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_6 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S10_6-cr"}
+  resp: {"status":"pending","change_id":"chg613332311bf46509ee69ebed"}
+2026-10-29T12:56:42.295Z HTTP POST /api/v1/changes/chg613332311bf46509ee69ebed/approve actor=admin2@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg613332311bf46509ee69ebed","status":"approved","key":"JUNK_S10_6","version":1}
+2026-10-29T12:56:42.295Z CONTROL ok: owner@acme approves own CR (200)
+2026-10-29T12:56:42.299Z HTTP POST /api/v1/changes/chg950e0de8f4742949702f5194/approve actor=owner@acme -> 403 4ms
+  req: {}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:42.299Z ASSERT ok   not(owner@acme approves own CR: denied 403)
+2026-10-29T12:56:42.301Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg613332311bf46509ee69ebed","project":"api","env":"prod","key":"JUNK_S10_6","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.28615Z","resolved_at":"2026-10-29T12:56:42.290679Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg950e0de8f4742949702f5194","project":"api","env":"prod","key":"JUNK_S10_5","op":"set","base_version":0,"status":"pending","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T1…[sha256=a28b385d0de364c5994a4e63866c779f5d597710a5a3341b4a1f9b055f5ddf2e len=19931]
+2026-10-29T12:56:42.302Z ASSERT ok   not(owner@acme own CR status 'pending' after self-approve (want pending))
+2026-10-29T12:56:42.306Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S10_5 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:42.306Z ASSERT ok   not(owner@acme self-approve applied the value (404))
+2026-10-29T12:56:42.311Z HTTP POST /api/v1/changes/chg950e0de8f4742949702f5194/approve actor=admin2@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg950e0de8f4742949702f5194","status":"approved","key":"JUNK_S10_5","version":1}
+2026-10-29T12:56:42.312Z ASSERT ok   not(admin2 approves owner@acme's CR -> 200 (want 200))
+2026-10-29T12:56:42.316Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S10_5 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S10_5","version":1,"value":"JUNK_S10_5-cr"}
+2026-10-29T12:56:42.316Z ASSERT ok   not(admin2 approval of owner@acme's CR not applied (200))
+2026-10-29T12:56:42.319Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg613332311bf46509ee69ebed","project":"api","env":"prod","key":"JUNK_S10_6","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.28615Z","resolved_at":"2026-10-29T12:56:42.290679Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg950e0de8f4742949702f5194","project":"api","env":"prod","key":"JUNK_S10_5","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T…[sha256=0816a376b4daf6575640fc4297bf4dcdb2bf698b0cba68bdb7508d2966be30b1 len=20021]
+2026-10-29T12:56:42.319Z ASSERT ok   not(owner@acme's CR status after admin2 approve != approved)
+2026-10-29T12:56:42.323Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_7 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S10_7-cr"}
+  resp: {"status":"pending","change_id":"chg2c5bad665b567cba74cf6b13"}
+2026-10-29T12:56:42.328Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S10_8 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S10_8-cr"}
+  resp: {"status":"pending","change_id":"chg914fdafffb39141a3372814c"}
+2026-10-29T12:56:42.555Z CLI coffer login --email admin2@acme.test actor=anon home=/home/grader1/work-r2/homes/admin2@acme~base url=http://127.0.0.1:8420 -> rc=0 226ms stdin=25B
+  out: Logged in as admin2@acme.test
+
+  err: 
+2026-10-29T12:56:42.555Z homebind: admin2@acme home /home/grader1/work-r2/homes/admin2@acme is bound to http://127.0.0.1:18420; using /home/grader1/work-r2/homes/admin2@acme~base for http://127.0.0.1:8420
+2026-10-29T12:56:42.670Z CLI coffer change approve chg914fdafffb39141a3372814c actor=admin2@acme home=/home/grader1/work-r2/homes/admin2@acme~base url=http://127.0.0.1:8420 -> rc=0 114ms stdin=0B
+  out: Approved change chg914fdafffb39141a3372814c
+
+  err: 
+2026-10-29T12:56:42.670Z CONTROL ok: owner CLI approve own CR (rc=0)
+2026-10-29T12:56:42.793Z CLI coffer whoami actor=anon home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 123ms stdin=0B
+  out: owner@acme.test
+  role: owner
+  organization: acme
+  user id: usr_493b9b638f8b78d524ce5e65
+
+  err: 
+2026-10-29T12:56:42.909Z CLI coffer change approve chg2c5bad665b567cba74cf6b13 actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=4 115ms stdin=0B
+  out: 
+  err: coffer: forbidden
+coffer: hint: you may lack permission, or a password set by an administrator must be changed first with `coffer passwd`
+
+2026-10-29T12:56:42.909Z ASSERT ok   not(owner CLI approve own CR: denied rc=4)
+2026-10-29T12:56:42.911Z HTTP POST /api/v1/changes/chg1284c462b00398c1d12ae900/reject actor=admin@acme -> 409 2ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}
+2026-10-29T12:56:42.912Z HTTP POST /api/v1/changes/chg98ac9d9699fb96109cf9c3cd/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}
+2026-10-29T12:56:42.913Z HTTP POST /api/v1/changes/chg8bb3dbd319362515b5a7a814/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}
+2026-10-29T12:56:42.914Z HTTP POST /api/v1/changes/chge5b3e3a5fbef2fd27068a3f2/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}
+2026-10-29T12:56:42.915Z HTTP POST /api/v1/changes/chg950e0de8f4742949702f5194/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}
+2026-10-29T12:56:42.917Z HTTP POST /api/v1/changes/chg613332311bf46509ee69ebed/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}
+2026-10-29T12:56:42.921Z HTTP POST /api/v1/changes/chg2c5bad665b567cba74cf6b13/reject actor=admin@acme -> 200 4ms
+  req: {}
+  resp: {"id":"chg2c5bad665b567cba74cf6b13","status":"rejected","key":"JUNK_S10_7"}
+2026-10-29T12:56:42.922Z HTTP POST /api/v1/changes/chg914fdafffb39141a3372814c/reject actor=admin@acme -> 409 1ms
+  req: {}
+  resp: {"error":{"code":"conflict","message":"change already resolved"}}

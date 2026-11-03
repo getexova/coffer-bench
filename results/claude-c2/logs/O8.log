@@ -1,0 +1,184 @@
+2026-10-30T15:31:21.519Z pg_dumpall pre-env-override -> rc=0 0025-O8-pre-env-override.sql
+2026-10-30T15:31:21.645Z sweep_snapshot pre-env-override: dump=0025-O8-pre-env-override.sql logs=2
+2026-10-30T15:31:21.645Z env_override set=[] unset=[]
+2026-10-30T15:31:22.650Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 577ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:22.650Z   compose up out: de11d776fe63b0f3a6b859d9fc4841586ab8c0eb71fc0ab77842e4cd9e88a60c
+repo_server_1
+
+2026-10-30T15:31:23.457Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 58dd65544d49 -> de11d776fe63 recreated=True
+  logs: {"ts":"2026-10-30T15:31:22.704535Z","level":"info","msg":"listening","addr":"[::]:8420"}
+{"ts":"2026-10-30T15:31:22.706066Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":503,"duration_ms":0.038,"request_id":"b815b2c5110da9c52b12104ad3b4beb2"}
+{"ts":"2026-10-30T15:31:22.710976Z","level":"info","msg":"migrations applied"}
+{"ts":"2026-10-30T15:31:22.723537Z","level":"info","msg":"using restricted database role","role":"coffer_app"}
+{"ts":"2026-10-30T15:31:22.845111Z","level":"info","msg":"ready"}
+{"ts":"2026-10-30T15:31:23.299024Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":200,"duration_ms":1.554,"request_id":"907bf101b921c20d000007e0d4f90e23"}
+
+2026-10-30T15:31:23.459Z HTTP GET /readyz actor=anon -> 200 2ms
+  req: 
+  resp: {"status":"ready"}
+
+2026-10-30T15:31:23.459Z CONTROL ok: unmodified .env boots (200)
+2026-10-30T15:31:24.061Z pg_dumpall pre-env-override -> rc=0 0026-O8-pre-env-override.sql
+2026-10-30T15:31:24.165Z sweep_snapshot pre-env-override: dump=0026-O8-pre-env-override.sql logs=2
+2026-10-30T15:31:24.165Z env_override set=[] unset=['COFFER_MASTER_KEY']
+2026-10-30T15:31:25.009Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 573ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:25.010Z   compose up out: 54c01f146c33ffd6b1592beb5660a4e38468ca785b44c94e6c88f0ac971e136f
+repo_server_1
+
+2026-10-30T15:31:26.239Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid de11d776fe63 -> 54c01f146c33 recreated=True
+  logs: config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+config error: missing required environment variable COFFER_MASTER_KEY
+
+2026-10-30T15:31:26.239Z O8 COFFER_MASTER_KEY: compose_rc=0 ready=False running=False exit=1 restarts=4 -> pass: exit=1 restarts=4, logs name it
+2026-10-30T15:31:26.239Z ASSERT ok   not(unset COFFER_MASTER_KEY: pass: exit=1 restarts=4, logs name it)
+2026-10-30T15:31:26.970Z pg_dumpall pre-env-override -> rc=0 0027-O8-pre-env-override.sql
+2026-10-30T15:31:27.337Z sweep_snapshot pre-env-override: dump=0027-O8-pre-env-override.sql logs=2
+2026-10-30T15:31:27.337Z env_override set=[] unset=['COFFER_BOOTSTRAP_ADMIN_EMAIL']
+2026-10-30T15:31:28.764Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 579ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:28.764Z   compose up out: 5630eafdf89552207e1a1bd28041a703f0aff1531567c41a6ca197bc2f326048
+repo_server_1
+
+2026-10-30T15:31:30.083Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid 54c01f146c33 -> 5630eafdf895 recreated=True
+  logs: config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_EMAIL
+
+2026-10-30T15:31:30.084Z O8 COFFER_BOOTSTRAP_ADMIN_EMAIL: compose_rc=0 ready=False running=False exit=1 restarts=4 -> pass: exit=1 restarts=4, logs name it
+2026-10-30T15:31:30.084Z ASSERT ok   not(unset COFFER_BOOTSTRAP_ADMIN_EMAIL: pass: exit=1 restarts=4, logs name it)
+2026-10-30T15:31:30.845Z pg_dumpall pre-env-override -> rc=0 0028-O8-pre-env-override.sql
+2026-10-30T15:31:31.160Z sweep_snapshot pre-env-override: dump=0028-O8-pre-env-override.sql logs=2
+2026-10-30T15:31:31.160Z env_override set=[] unset=['COFFER_BOOTSTRAP_ADMIN_PASSWORD']
+2026-10-30T15:31:32.514Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 529ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:32.514Z   compose up out: 20729904e7c5bcdedbc90f6f2395b2cdd9da61e9ad87e8e96c879ea28e26df56
+repo_server_1
+
+2026-10-30T15:31:33.824Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid 5630eafdf895 -> 20729904e7c5 recreated=True
+  logs: config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+config error: missing required environment variable COFFER_BOOTSTRAP_ADMIN_PASSWORD
+
+2026-10-30T15:31:33.824Z O8 COFFER_BOOTSTRAP_ADMIN_PASSWORD: compose_rc=0 ready=False running=False exit=1 restarts=4 -> pass: exit=1 restarts=4, logs name it
+2026-10-30T15:31:33.825Z ASSERT ok   not(unset COFFER_BOOTSTRAP_ADMIN_PASSWORD: pass: exit=1 restarts=4, logs name it)
+2026-10-30T15:31:34.631Z pg_dumpall pre-env-override -> rc=0 0029-O8-pre-env-override.sql
+2026-10-30T15:31:34.946Z sweep_snapshot pre-env-override: dump=0029-O8-pre-env-override.sql logs=2
+2026-10-30T15:31:34.946Z env_override set=[] unset=['COFFER_PORT']
+2026-10-30T15:31:36.291Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 534ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:36.291Z   compose up out: dd6a4d733239d1b268b43d06bf68687a3924d19343eb8c9b517c061675504bfb
+repo_server_1
+
+2026-10-30T15:31:37.064Z env_override -> compose_rc=0 ready=True running=True exit=None restarts=0 status=running cid 20729904e7c5 -> dd6a4d733239 recreated=True
+  logs: {"ts":"2026-10-30T15:31:36.341762Z","level":"info","msg":"listening","addr":"[::]:8420"}
+{"ts":"2026-10-30T15:31:36.345560Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":503,"duration_ms":0.043,"request_id":"40fd293b01256a48ec200aabca604c19"}
+{"ts":"2026-10-30T15:31:36.347490Z","level":"info","msg":"migrations applied"}
+{"ts":"2026-10-30T15:31:36.359241Z","level":"info","msg":"using restricted database role","role":"coffer_app"}
+{"ts":"2026-10-30T15:31:36.482260Z","level":"info","msg":"ready"}
+{"ts":"2026-10-30T15:31:36.936778Z","level":"info","msg":"request","method":"GET","route":"GET /readyz","status":200,"duration_ms":2.15,"request_id":"2300df913f204d90d65b5ecb52ee9157"}
+
+2026-10-30T15:31:37.064Z O8 COFFER_PORT: compose_rc=0 ready=True running=True exit=None restarts=0 -> na-by-design: booted on the SPEC default (${COFFER_PORT:-8420})
+2026-10-30T15:31:37.064Z ASSERT ok   not(unset COFFER_PORT: na-by-design: booted on the SPEC default (${COFFER_PORT:-8420}))
+2026-10-30T15:31:37.646Z pg_dumpall pre-env-override -> rc=0 0030-O8-pre-env-override.sql
+2026-10-30T15:31:37.858Z sweep_snapshot pre-env-override: dump=0030-O8-pre-env-override.sql logs=2
+2026-10-30T15:31:37.859Z env_override set=[] unset=['POSTGRES_USER']
+2026-10-30T15:31:38.773Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 559ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:38.774Z   compose up out: 5f7c4edc7e283318d7f6300a53e60c32523ca7eb341a31864dbe65e2dfbd4ee5
+repo_server_1
+
+2026-10-30T15:31:40.110Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid dd6a4d733239 -> 5f7c4edc7e28 recreated=True
+  logs: config error: missing required environment variable POSTGRES_USER
+config error: missing required environment variable POSTGRES_USER
+config error: missing required environment variable POSTGRES_USER
+config error: missing required environment variable POSTGRES_USER
+config error: missing required environment variable POSTGRES_USER
+config error: missing required environment variable POSTGRES_USER
+config error: missing required environment variable POSTGRES_USER
+
+2026-10-30T15:31:40.110Z O8 POSTGRES_USER: compose_rc=0 ready=False running=False exit=1 restarts=4 -> pass: exit=1 restarts=4, logs name it
+2026-10-30T15:31:40.110Z ASSERT ok   not(unset POSTGRES_USER: pass: exit=1 restarts=4, logs name it)
+2026-10-30T15:31:40.753Z pg_dumpall pre-env-override -> rc=1 0031-O8-pre-env-override.sql
+2026-10-30T15:31:40.753Z sweep_snapshot: pg_dumpall rc=1: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mpg_dumpall: error: connection to server on socket "/var/
+2026-10-30T15:31:41.245Z sweep_snapshot pre-env-override: dump=None logs=2
+2026-10-30T15:31:41.245Z env_override set=[] unset=['POSTGRES_PASSWORD']
+2026-10-30T15:31:42.264Z COMPOSE up -d --force-recreate --no-deps server -> rc=1 183ms err:        ~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 479, in rec_subs
+    value = {rec_subs(k, subs_dict): rec_subs(v, subs_dict) for k, v in value.items()}
+                                     ~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 476, in rec_subs
+    svc_envs = rec_subs(svc_envs, subs_dict)
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 479, in rec_subs
+    value = {rec_subs(k, subs_dict): rec_subs(v, subs_dict) for k, v in value.items()}
+                                     ~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 481, in rec_subs
+    value = var_interpolate(value, subs_dict)
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 454, in var_interpolate
+    return interpolate_str(value, env)
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 451, in interpolate_str
+    resolved_parts = [token.resolve(env) for token in tokens]
+                      ~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 312, in resolve
+    raise ValueError(
+        f"required variable {self.name} is missing a value: {interpolated_operand}"
+    )
+ValueError: required variable POSTGRES_PASSWORD is missing a value: POSTGRES_PASSWORD must be set in .env (run ./scripts/init-env.sh)
+Error: executing /usr/bin/podman-compose up -d --force-recreate --no-deps server: exit status 1
+
+2026-10-30T15:31:42.264Z   compose up out: 
+2026-10-30T15:31:42.331Z logs(server): no container
+2026-10-30T15:31:42.331Z env_override -> compose_rc=1 ready=False running=False exit=None restarts=0 status=None cid 5f7c4edc7e28 -> - recreated=False
+  logs: 
+2026-10-30T15:31:42.547Z env_override: no server container after recreate; compose ps rc=1 out='' err='~~~~~~^^^^^\n  File "/usr/lib/python3.14/site-packages/podman_compose.py", line 312, in resolve\n    raise ValueError(\n        f"required variable {self.name} is missing a value: {interpolated_operand}"\n    )\nValueError: required variable POSTGRES_PASSWORD is missing a value: POSTGRES_PASSWORD must be set in .env (run ./scripts/init-env.sh)\nError: executing /usr/bin/podman-compose ps: exit status 1\n' | podman ps -a: 1 containers; named like 'repo': ['repo_db_1'] running labels=['PODMAN_SYSTEMD_UNIT', 'com.docker.compose.container-number', 'com.docker.compose.project', 'com.docker.compose.project.config_files', 'com.docker.compose.project.working_dir', 'com.docker.compose.service']
+2026-10-30T15:31:42.547Z O8 POSTGRES_PASSWORD: compose_rc=1 ready=False running=False exit=None restarts=0 -> pass: compose refused, names it
+2026-10-30T15:31:42.547Z ASSERT ok   not(unset POSTGRES_PASSWORD: pass: compose refused, names it)
+2026-10-30T15:31:42.810Z pg_dumpall pre-env-override -> rc=1 0032-O8-pre-env-override.sql
+2026-10-30T15:31:42.810Z sweep_snapshot: pg_dumpall rc=1: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0mTraceback (most recent call last):
+  File "/usr/bin/podm
+2026-10-30T15:31:42.894Z sweep_snapshot pre-env-override: dump=None logs=1
+2026-10-30T15:31:42.894Z env_override set=[] unset=['POSTGRES_DB']
+2026-10-30T15:31:43.465Z COMPOSE up -d --force-recreate --no-deps server -> rc=0 536ms err: [4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m
+2026-10-30T15:31:43.465Z   compose up out: 8ae0285a4b96c9826f1c5432d0591417e13e641abd2c76f4b91012f24ea6f4c2
+repo_server_1
+
+2026-10-30T15:31:44.781Z env_override -> compose_rc=0 ready=False running=False exit=1 restarts=4 status=stopped cid - -> 8ae0285a4b96 recreated=True
+  logs: config error: missing required environment variable POSTGRES_DB
+config error: missing required environment variable POSTGRES_DB
+config error: missing required environment variable POSTGRES_DB
+config error: missing required environment variable POSTGRES_DB
+config error: missing required environment variable POSTGRES_DB
+config error: missing required environment variable POSTGRES_DB
+config error: missing required environment variable POSTGRES_DB
+
+2026-10-30T15:31:44.781Z O8 POSTGRES_DB: compose_rc=0 ready=False running=False exit=1 restarts=4 -> pass: exit=1 restarts=4, logs name it
+2026-10-30T15:31:44.782Z ASSERT ok   not(unset POSTGRES_DB: pass: exit=1 restarts=4, logs name it)
+2026-10-30T15:31:45.569Z pg_dumpall pre-rollback-O8 -> rc=0 0033-O8-pre-rollback-O8.sql
+2026-10-30T15:31:45.884Z sweep_snapshot pre-rollback-O8: dump=0033-O8-pre-rollback-O8.sql logs=2
+2026-10-30T15:32:01Z [runner] rollback: ok

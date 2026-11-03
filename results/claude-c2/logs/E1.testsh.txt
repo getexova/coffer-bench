@@ -1,0 +1,22 @@
+===== stdout =====
+?   	github.com/coffer-dev/coffer/cmd/coffer	[no test files]
+?   	github.com/coffer-dev/coffer/cmd/coffer-server	[no test files]
+ok  	github.com/coffer-dev/coffer/internal/cli	1.245s
+ok  	github.com/coffer-dev/coffer/internal/server/api	72.723s
+ok  	github.com/coffer-dev/coffer/internal/server/app	15.360s
+ok  	github.com/coffer-dev/coffer/internal/server/audit	1.012s
+ok  	github.com/coffer-dev/coffer/internal/server/config	1.010s
+ok  	github.com/coffer-dev/coffer/internal/server/crypto	1.401s
+?   	github.com/coffer-dev/coffer/internal/server/db	[no test files]
+?   	github.com/coffer-dev/coffer/internal/server/testutil	[no test files]
+?   	github.com/coffer-dev/coffer/test/e2e	[no test files]
+
+===== stderr =====
+==> .env.example documents every variable read by the server, the CLI, the e2e suite and the scripts
+==> starting throwaway docker.io/library/postgres:16 (coffer-test-pg-232758-24629)
+==> test database ready on 127.0.0.1:39721
+==> no suitable local Go; running tests inside docker.io/library/golang:1.26.10-alpine3.24@sha256:a2012b4a1d1f9f7e9f44e0d39b805a901e856b1dd80b4e6ee4338db547050308 with podman
+==> gofmt ok
+==> go vet ok
+==> unit/integration tests ok
+==> all tests passed

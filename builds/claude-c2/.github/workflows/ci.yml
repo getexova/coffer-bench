@@ -1,0 +1,130 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: gofmt
+        run: |
+          out="$(gofmt -l $(go list -f '{{.Dir}}' ./...))"
+          if [ -n "$out" ]; then echo "files need gofmt:"; echo "$out"; exit 1; fi
+      - name: go vet
+        run: go vet ./...
+      - name: go mod verify
+        run: go mod verify
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.15.0
+      - name: govulncheck
+        run: |
+          go install golang.org/x/vuln/cmd/govulncheck@v1.9.0
+          "$(go env GOPATH)/bin/govulncheck" ./...
+      - name: shellcheck
+        run: shellcheck -x scripts/*.sh
+      - name: every env var is documented in .env.example
+        run: ./scripts/check-env-docs.sh
+
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: coffer
+          POSTGRES_PASSWORD: coffer
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -h 127.0.0.1 -U coffer -d postgres"
+          --health-interval 2s
+          --health-timeout 5s
+          --health-retries 30
+    env:
+      COFFER_TEST_DATABASE_URL: postgres://coffer:coffer@127.0.0.1:5432/postgres?sslmode=disable
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: unit and integration tests (gofmt, vet, go test -race)
+        run: ./scripts/test.sh
+
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: build CLI and server binaries
+        run: ./scripts/build.sh --server
+      - name: build server image
+        run: docker build -t coffer-server:ci .
+      - name: image runs as non-root
+        run: |
+          user="$(docker image inspect --format '{{.Config.User}}' coffer-server:ci)"
+          echo "image user: $user"
+          [ "$user" = "65532:65532" ]
+      - uses: actions/upload-artifact@v7
+        with:
+          name: coffer-linux-amd64
+          path: bin/coffer
+          retention-days: 7
+
+  e2e:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: quickstart smoke test (README steps 2-4)
+        run: |
+          ./scripts/init-env.sh
+          ./scripts/up.sh
+          ./scripts/build.sh
+          ./bin/coffer --url http://127.0.0.1:8420 whoami || test $? -eq 3
+      - name: e2e suite
+        if: hashFiles('test/e2e/**') != ''
+        run: go test -tags e2e -count=1 ./test/e2e/...
+      - name: ops lifecycle smoke (env change, master-key rotation, down/up, backup/restore)
+        # Private compose project on its own port; does not touch the stack above.
+        run: ./scripts/ops-smoke.sh
+      - name: server logs
+        if: always()
+        run: docker compose logs --tail 200 server || true
+      - name: tear down
+        if: always()
+        run: docker compose down -v || true

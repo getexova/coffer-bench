@@ -1,0 +1,260 @@
+2026-10-29T12:56:28.519Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=reader@acme -> 200 3ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=07d61c0661934bc914adcf3f300923c07e564050626cd8b38427f520a5caa8f4 len=3184]
+2026-10-29T12:56:28.519Z ASSERT ok   not(reader@acme list api/dev: got 200 (want 200))
+2026-10-29T12:56:28.519Z ASSERT ok   not(reader@acme list api/dev: CANARY not in list)
+2026-10-29T12:56:28.519Z ASSERT ok   not(reader@acme list api/dev: list body contains a secret value)
+2026-10-29T12:56:28.524Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=reader@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:28.524Z ASSERT ok   not(reader@acme get api/dev: got 200 (want 200))
+2026-10-29T12:56:28.524Z ASSERT ok   not(reader@acme get api/dev: value is not the fixture canary)
+2026-10-29T12:56:28.529Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions/1 actor=reader@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:28.529Z ASSERT ok   not(reader@acme ver api/dev: got 200 (want 200))
+2026-10-29T12:56:28.529Z ASSERT ok   not(reader@acme ver api/dev: no value in version 1)
+2026-10-29T12:56:28.530Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:55:37.289735Z","created_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:56:28.530Z ASSERT ok   not(reader@acme hist api/dev: got 200 (want 200))
+2026-10-29T12:56:28.530Z ASSERT ok   not(reader@acme hist api/dev: empty history)
+2026-10-29T12:56:28.626Z HTTP GET /api/v1/projects/api/envs/dev/export actor=reader@acme -> 200 94ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_CC9191E0":"«canary:F17:v2»","F2_BIG_52A56062":"«canary:F2:big»","F2_EMPTY_POS_54786955":"","F2_EMPTY_STDIN_4066FB55":"","F2_MULTI_F31B149F":"«canary:acme/api/dev/MULTI»","F2_NL_B5FC211B":"«canary:F2:nl»\n","F2_ONE_9904A704":"e","F3_MAX_2C199CC4":"«canary:F3:max»","F4_HIST_F2B56E22":"«canary:F4:v1»","F5_DEL_5C6625B2":"«canary:F5:b»","F6_CAS_3987DC75":"«canary:F6:3»","F7_PAR_D36734FB":"«canary:F7:p10»","JUNK_S4_10":"JUNK_S4_10-v2","JUNK_S4_13":"S4-PROBE","…[sha256=f5e268b56e53a320214996f1f98fca9ed50e7b0abc38eb5cdab6530968cecaf8 len=132200]
+2026-10-29T12:56:28.626Z ASSERT ok   not(reader@acme export api/dev: got 200 (want 200))
+2026-10-29T12:56:28.626Z ASSERT ok   not(reader@acme export api/dev: export lacks the canary)
+2026-10-29T12:56:28.736Z CLI coffer whoami actor=anon home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 110ms stdin=0B
+  out: reader@acme.test
+  role: member
+  organization: acme
+  user id: usr_6e86cc0773114aea3459def6
+
+  err: 
+2026-10-29T12:56:28.944Z CLI coffer run -p api -e dev -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 208ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:56:28.945Z ASSERT ok   not(reader@acme run api/dev: rc=0 (want 0 and the canary in the child env))
+2026-10-29T12:56:28.949Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S7_2 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:28.954Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_1 actor=writer@acme -> 200 5ms
+  req: {"value": "ctl"}
+  resp: {"version":1}
+2026-10-29T12:56:28.954Z CONTROL ok: reader@acme set api/dev (200)
+2026-10-29T12:56:28.959Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_2 actor=reader@acme -> 403 4ms
+  req: {"value": "PROBE-must-not-land"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:28.959Z ASSERT ok   not(reader@acme set api/dev: denied 403)
+2026-10-29T12:56:28.964Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S7_2 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:28.964Z ASSERT ok   not(reader@acme set api/dev: target JUNK_S7_2 changed after denied write (404/vNone -> 404/vNone))
+2026-10-29T12:56:28.968Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_3 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S7_3-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:28.972Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_3 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S7_3-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:28.977Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_4 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S7_4-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:28.982Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_4 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S7_4-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:28.986Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S7_4 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_4","version":2,"value":"JUNK_S7_4-v2"}
+2026-10-29T12:56:28.990Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S7_3 actor=writer@acme -> 200 4ms
+  req: 
+  resp: {"version":3}
+2026-10-29T12:56:28.991Z CONTROL ok: reader@acme del api/dev (200)
+2026-10-29T12:56:28.995Z HTTP DELETE /api/v1/projects/api/envs/dev/secrets/JUNK_S7_4 actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:28.995Z ASSERT ok   not(reader@acme del api/dev: denied 403)
+2026-10-29T12:56:28.999Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S7_4 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_4","version":2,"value":"JUNK_S7_4-v2"}
+2026-10-29T12:56:28.999Z ASSERT ok   not(reader@acme del api/dev: target JUNK_S7_4 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:29.004Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_5 actor=owner@acme -> 200 5ms
+  req: {"value": "JUNK_S7_5-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:29.009Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_5 actor=owner@acme -> 200 5ms
+  req: {"value": "JUNK_S7_5-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:29.013Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_6 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S7_6-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:29.018Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_S7_6 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S7_6-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:29.022Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S7_6 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_6","version":2,"value":"JUNK_S7_6-v2"}
+2026-10-29T12:56:29.027Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S7_5/rollback actor=writer@acme -> 200 5ms
+  req: {"to": 1}
+  resp: {"version":3}
+2026-10-29T12:56:29.027Z CONTROL ok: reader@acme rb api/dev (200)
+2026-10-29T12:56:29.031Z HTTP POST /api/v1/projects/api/envs/dev/secrets/JUNK_S7_6/rollback actor=reader@acme -> 403 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:29.031Z ASSERT ok   not(reader@acme rb api/dev: denied 403)
+2026-10-29T12:56:29.035Z HTTP GET /api/v1/projects/api/envs/dev/secrets/JUNK_S7_6 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_6","version":2,"value":"JUNK_S7_6-v2"}
+2026-10-29T12:56:29.036Z ASSERT ok   not(reader@acme rb api/dev: target JUNK_S7_6 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:29.037Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.779192Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F12_PROT_BD032AFE","version":1,"updated_at":"2026-10-29T12:55:54.717212Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F13_REJ_09BCA637","version":1,"updated_at":"2026-10-29T12:55:55.345252Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALEAPI_512A84DA","version":1,"updated_at":"2026-10-29T12:55:56.335464Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALE_E004D236","version":1,"updated_at":"2026-10-29T12:55:56.18182Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S4_2","version":1,"updated_at":"2026-10-29T12:56:23.186981Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S5_10","version":2,"updated_at":"2026-10-29T12:56:25.783777Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S5_11","version":2,"updated_at":"2026-10-29T12:56:25.830255Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S5_12","version":2,"updated_at":"2026-10-29T12:56:25.849102Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S5_9","version":2,"updated_at":"2026-10-29T12:56:25.764061Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S6_10","version":2,"updated_at":"2026-10-29T12:56:28.154066Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S6_11","version":2,"updated_at":"2026-10-29T12:56:28.191546Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S6_12","version":2,"updated_at":"2026-10-29T12:56:28.211003Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"JUNK_S6_9","version":2,"updated_at":"2026-10-29T12:56:28.134087Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"}]
+2026-10-29T12:56:29.037Z ASSERT ok   not(reader@acme list api/prod: got 200 (want 200))
+2026-10-29T12:56:29.037Z ASSERT ok   not(reader@acme list api/prod: CANARY not in list)
+2026-10-29T12:56:29.037Z ASSERT ok   not(reader@acme list api/prod: list body contains a secret value)
+2026-10-29T12:56:29.041Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=reader@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:56:29.041Z ASSERT ok   not(reader@acme get api/prod: got 200 (want 200))
+2026-10-29T12:56:29.041Z ASSERT ok   not(reader@acme get api/prod: value is not the fixture canary)
+2026-10-29T12:56:29.046Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions/1 actor=reader@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+2026-10-29T12:56:29.046Z ASSERT ok   not(reader@acme ver api/prod: got 200 (want 200))
+2026-10-29T12:56:29.046Z ASSERT ok   not(reader@acme ver api/prod: no value in version 1)
+2026-10-29T12:56:29.047Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY/versions actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:55:37.779192Z","created_by":"usr_b5e9134f655c5825fa5df3b8"}]
+2026-10-29T12:56:29.047Z ASSERT ok   not(reader@acme hist api/prod: got 200 (want 200))
+2026-10-29T12:56:29.047Z ASSERT ok   not(reader@acme hist api/prod: empty history)
+2026-10-29T12:56:29.098Z HTTP GET /api/v1/projects/api/envs/prod/export actor=reader@acme -> 200 51ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/prod/CANARY»","F12_PROT_BD032AFE":"«canary:F12:prot»","F13_REJ_09BCA637":"«canary:F13:v1»","F14_STALEAPI_512A84DA":"«canary:F14:c»","F14_STALE_E004D236":"«canary:F14:a»","JUNK_S4_2":"JUNK_S4_2-cr","JUNK_S5_10":"JUNK_S5_10-v2","JUNK_S5_11":"JUNK_S5_11-v2","JUNK_S5_12":"JUNK_S5_12-v2","JUNK_S5_9":"JUNK_S5_9-v2","JUNK_S6_10":"JUNK_S6_10-v2","JUNK_S6_11":"JUNK_S6_11-v2","JUNK_S6_12":"JUNK_S6_12-v2","JUNK_S6_9":"JUNK_S6_9-v2"}
+2026-10-29T12:56:29.099Z ASSERT ok   not(reader@acme export api/prod: got 200 (want 200))
+2026-10-29T12:56:29.099Z ASSERT ok   not(reader@acme export api/prod: export lacks the canary)
+2026-10-29T12:56:29.261Z CLI coffer run -p api -e prod -- /bin/sh -c [ "${CANARY}" = "$S_EXPECT" ] actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 163ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:56:29.262Z ASSERT ok   not(reader@acme run api/prod: rc=0 (want 0 and the canary in the child env))
+2026-10-29T12:56:29.267Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S7_8 actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:29.272Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_7 actor=writer@acme -> 202 5ms
+  req: {"value": "ctl"}
+  resp: {"status":"pending","change_id":"chg7093336ac8ce8c9b8f643d9f"}
+2026-10-29T12:56:29.272Z CONTROL ok: reader@acme set api/prod (202)
+2026-10-29T12:56:29.276Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_8 actor=reader@acme -> 403 4ms
+  req: {"value": "PROBE-must-not-land"}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:29.276Z ASSERT ok   not(reader@acme set api/prod: denied 403)
+2026-10-29T12:56:29.281Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S7_8 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:29.281Z ASSERT ok   not(reader@acme set api/prod: target JUNK_S7_8 changed after denied write (404/vNone -> 404/vNone))
+2026-10-29T12:56:29.285Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_9 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S7_9-v1"}
+  resp: {"status":"pending","change_id":"chgf0178a77fa6f2e71add93dac"}
+2026-10-29T12:56:29.290Z HTTP POST /api/v1/changes/chgf0178a77fa6f2e71add93dac/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chgf0178a77fa6f2e71add93dac","status":"approved","key":"JUNK_S7_9","version":1}
+2026-10-29T12:56:29.295Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_9 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S7_9-v2"}
+  resp: {"status":"pending","change_id":"chg4bcd0efa8e98f2870cc85f37"}
+2026-10-29T12:56:29.300Z HTTP POST /api/v1/changes/chg4bcd0efa8e98f2870cc85f37/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg4bcd0efa8e98f2870cc85f37","status":"approved","key":"JUNK_S7_9","version":2}
+2026-10-29T12:56:29.305Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_10 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S7_10-v1"}
+  resp: {"status":"pending","change_id":"chg8b9c3aeb47315c13b1e3204a"}
+2026-10-29T12:56:29.310Z HTTP POST /api/v1/changes/chg8b9c3aeb47315c13b1e3204a/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg8b9c3aeb47315c13b1e3204a","status":"approved","key":"JUNK_S7_10","version":1}
+2026-10-29T12:56:29.314Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_10 actor=owner@acme -> 202 4ms
+  req: {"value": "JUNK_S7_10-v2"}
+  resp: {"status":"pending","change_id":"chg5a5288829f7a760ddbd2e8ec"}
+2026-10-29T12:56:29.319Z HTTP POST /api/v1/changes/chg5a5288829f7a760ddbd2e8ec/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg5a5288829f7a760ddbd2e8ec","status":"approved","key":"JUNK_S7_10","version":2}
+2026-10-29T12:56:29.324Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S7_10 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_10","version":2,"value":"JUNK_S7_10-v2"}
+2026-10-29T12:56:29.328Z HTTP DELETE /api/v1/projects/api/envs/prod/secrets/JUNK_S7_9 actor=writer@acme -> 202 4ms
+  req: 
+  resp: {"status":"pending","change_id":"chg657683e620d2f633a4aeddd7"}
+2026-10-29T12:56:29.328Z CONTROL ok: reader@acme del api/prod (202)
+2026-10-29T12:56:29.333Z HTTP DELETE /api/v1/projects/api/envs/prod/secrets/JUNK_S7_10 actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:29.333Z ASSERT ok   not(reader@acme del api/prod: denied 403)
+2026-10-29T12:56:29.337Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S7_10 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_10","version":2,"value":"JUNK_S7_10-v2"}
+2026-10-29T12:56:29.337Z ASSERT ok   not(reader@acme del api/prod: target JUNK_S7_10 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:29.342Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_11 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S7_11-v1"}
+  resp: {"status":"pending","change_id":"chg417b31adb2cb7cad250aaf54"}
+2026-10-29T12:56:29.347Z HTTP POST /api/v1/changes/chg417b31adb2cb7cad250aaf54/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg417b31adb2cb7cad250aaf54","status":"approved","key":"JUNK_S7_11","version":1}
+2026-10-29T12:56:29.352Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_11 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S7_11-v2"}
+  resp: {"status":"pending","change_id":"chgc32e3f5de30fbe814902a95a"}
+2026-10-29T12:56:29.357Z HTTP POST /api/v1/changes/chgc32e3f5de30fbe814902a95a/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chgc32e3f5de30fbe814902a95a","status":"approved","key":"JUNK_S7_11","version":2}
+2026-10-29T12:56:29.361Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_12 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S7_12-v1"}
+  resp: {"status":"pending","change_id":"chg4ae486f8e51ca32e72b44246"}
+2026-10-29T12:56:29.367Z HTTP POST /api/v1/changes/chg4ae486f8e51ca32e72b44246/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg4ae486f8e51ca32e72b44246","status":"approved","key":"JUNK_S7_12","version":1}
+2026-10-29T12:56:29.372Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S7_12 actor=owner@acme -> 202 5ms
+  req: {"value": "JUNK_S7_12-v2"}
+  resp: {"status":"pending","change_id":"chgba2efbf55e090f68d2447084"}
+2026-10-29T12:56:29.377Z HTTP POST /api/v1/changes/chgba2efbf55e090f68d2447084/approve actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chgba2efbf55e090f68d2447084","status":"approved","key":"JUNK_S7_12","version":2}
+2026-10-29T12:56:29.381Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S7_12 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_12","version":2,"value":"JUNK_S7_12-v2"}
+2026-10-29T12:56:29.386Z HTTP POST /api/v1/projects/api/envs/prod/secrets/JUNK_S7_11/rollback actor=writer@acme -> 202 4ms
+  req: {"to": 1}
+  resp: {"status":"pending","change_id":"chg50a06209938c0cf053ce2227"}
+2026-10-29T12:56:29.386Z CONTROL ok: reader@acme rb api/prod (202)
+2026-10-29T12:56:29.390Z HTTP POST /api/v1/projects/api/envs/prod/secrets/JUNK_S7_12/rollback actor=reader@acme -> 403 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:29.390Z ASSERT ok   not(reader@acme rb api/prod: denied 403)
+2026-10-29T12:56:29.394Z HTTP GET /api/v1/projects/api/envs/prod/secrets/JUNK_S7_12 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S7_12","version":2,"value":"JUNK_S7_12-v2"}
+2026-10-29T12:56:29.395Z ASSERT ok   not(reader@acme rb api/prod: target JUNK_S7_12 changed after denied write (200/v2 -> 200/v2))
+2026-10-29T12:56:29.507Z CLI coffer secrets get CANARY -p api -e dev actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 112ms stdin=0B
+  out: «canary:acme/api/dev/CANARY»
+  err: 
+2026-10-29T12:56:29.507Z ASSERT ok   not(reader CLI secrets get rc=0, value not exact)
+2026-10-29T12:56:29.739Z CLI coffer secrets export -p api -e dev --format dotenv actor=reader@acme home=/home/grader1/work-r2/homes/reader@acme~base url=http://127.0.0.1:8420 -> rc=0 231ms stdin=0B
+  out: CANARY="«canary:acme/api/dev/CANARY»"
+F17_PERSIST_CC9191E0="«canary:F17:v2»"
+F2_BIG_52A56062="«canary:F2:big»"
+F2_EMPTY_POS_54786955=""
+F2_EMPTY_STDIN_4066FB55=""
+F2_MULTI_F31B149F="«canary:multi_core»\"\\\$HOME\n\r\n😀IH0T3YvVcRywjyEU8WObCPxKvGCXZ8dTzbfVMwqF"
+F2_NL_B5FC211B="«canary:F2:nl»\n"
+F2_ONE_9904A704="e"
+F3_MAX_2C199CC4="«canary:F3:max»"
+F4_HIST_F2B56E22="«canary:F4:v1»"
+F5_DEL_5C6625B2="«canary:F5:b»"
+F6_CAS_3987DC75="«canary:F6:3»"
+F7_PAR_D36734FB="«canary:F7:p10»"
+JUNK_S4_10="JUNK_S4_10-v2"
+JUNK…[sha256=aa7c38fcad4c1a56b9b303011d0b98e77973d75a90c7b7a8dfcdf11ba471f322 len=132230]
+  err: 
+2026-10-29T12:56:29.739Z ASSERT ok   not(reader CLI export rc=0)
+2026-10-29T12:56:29.744Z HTTP POST /api/v1/changes/chg7093336ac8ce8c9b8f643d9f/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg7093336ac8ce8c9b8f643d9f","status":"rejected","key":"JUNK_S7_7"}
+2026-10-29T12:56:29.749Z HTTP POST /api/v1/changes/chg657683e620d2f633a4aeddd7/reject actor=admin@acme -> 200 5ms
+  req: {}
+  resp: {"id":"chg657683e620d2f633a4aeddd7","status":"rejected","key":"JUNK_S7_9"}
+2026-10-29T12:56:29.754Z HTTP POST /api/v1/changes/chg50a06209938c0cf053ce2227/reject actor=admin@acme -> 200 4ms
+  req: {}
+  resp: {"id":"chg50a06209938c0cf053ce2227","status":"rejected","key":"JUNK_S7_11"}

@@ -1,0 +1,218 @@
+2026-10-30T15:29:13.379Z HTTP POST /api/v1/projects actor=owner@acme -> 201 8ms
+  req: {"slug": "o3-167ce"}
+  resp: {"id":"prj_pwp5ujnujut2z6ucumwq3gyywh24c7pc","slug":"o3-167ce","created_at":"2026-10-30T15:29:13.375239Z"}
+
+2026-10-30T15:29:13.385Z HTTP POST /api/v1/projects/o3-167ce/envs actor=owner@acme -> 201 5ms
+  req: {"slug": "dev", "protected": false}
+  resp: {"id":"env_6hmju6l2ilfwyfgdalbrygwguatabbcp","slug":"dev","protected":false,"created_at":"2026-10-30T15:29:13.381613Z"}
+
+2026-10-30T15:29:13.390Z HTTP PUT /api/v1/projects/o3-167ce/envs/dev/secrets/O3_CTL actor=owner@acme -> 200 5ms
+  req: {"value": "o3-control"}
+  resp: {"version":1}
+
+2026-10-30T15:29:13.390Z CONTROL ok: PUT junk key in scratch project (200)
+2026-10-30T15:29:13.859Z podman kill --signal TERM 416f41424343 -> rc=0 b''
+2026-10-30T15:29:14.962Z ASSERT ok   not(server process exit after SIGTERM: 1.16 s (want <= 10))
+2026-10-30T15:29:14.962Z in-flight O3_K00 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.962Z ASSERT ok   not(in-flight PUT O3_K00 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.962Z in-flight O3_K01 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.962Z ASSERT ok   not(in-flight PUT O3_K01 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.962Z in-flight O3_K02 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.962Z ASSERT ok   not(in-flight PUT O3_K02 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.962Z in-flight O3_K03 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.962Z ASSERT ok   not(in-flight PUT O3_K03 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K04 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K04 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K05 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K05 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K06 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K06 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K07 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K07 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K08 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K08 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K09 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K09 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K10 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K10 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K11 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K11 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K12 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K12 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K13 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K13 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K14 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.963Z ASSERT ok   not(in-flight PUT O3_K14 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.963Z in-flight O3_K15 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.964Z ASSERT ok   not(in-flight PUT O3_K15 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.964Z in-flight O3_K16 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.964Z ASSERT ok   not(in-flight PUT O3_K16 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.964Z in-flight O3_K17 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.964Z ASSERT ok   not(in-flight PUT O3_K17 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.964Z in-flight O3_K18 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.964Z ASSERT ok   not(in-flight PUT O3_K18 -> status 200 (want completion or clean error))
+2026-10-30T15:29:14.964Z in-flight O3_K19 -> status=200 phase=done err=None body={"version":1}
+
+2026-10-30T15:29:14.964Z ASSERT ok   not(in-flight PUT O3_K19 -> status 200 (want completion or clean error))
+2026-10-30T15:29:15.674Z pg_dumpall pre-up -> rc=0 0012-O3-pre-up.sql
+2026-10-30T15:29:15.796Z sweep_snapshot pre-up: dump=0012-O3-pre-up.sql logs=2
+2026-10-30T15:29:25.978Z SCRIPT up.sh  -> rc=0 10181ms
+  out: CH=amd64
+--> Using cache b252843697b57a67d5681ab333a9f98db97916f5e82afe38ea90de87283d99de
+--> b252843697b5
+[1/2] STEP 7/7: RUN go build -trimpath -buildvcs=false -ldflags "-s -w"       -o /out/coffer-server ./cmd/coffer-server
+--> Using cache 13ece9e9ca186724a21b6e172b777126f0f8f4b4591fd8ba1b1da80dfc1580ce
+--> 13ece9e9ca18
+[2/2] STEP 1/6: FROM gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab
+[2/2] STEP 2/6: COPY --from=builder /out/coffer-server /coffer-server
+--> Using cache 5925902c97353877d228ec434d2dd5f0a2c43557e68525eba155a0ae049bd486
+--> 5925902c9735
+[2/2] STEP 3/6: USER 65532:65532
+--> Using cache 092157f2c6e44057a7c396ac89a5465067e029e2481ecfacf276048146944c55
+--> 092157f2c6e4
+[2/2] STEP 4/6: EXPOSE 8420
+--> Using cache 6a8dd481aa80970025f409f21bebda17553336c914007ecb7c72990e69a40ecd
+--> 6a8dd481aa80
+[2/2] STEP 5/6: HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3   CMD ["/coffer-server", "healthcheck"]
+--> Using cache 39a65752b6f9c1fe6990c8c337e378998325c4b7f34a1a25858742f1448500ba
+--> 39a65752b6f9
+[2/2] STEP 6/6: ENTRYPOINT ["/coffer-server"]
+--> Using cache e091acd9bd9cec427c7c14bd338a5cc50905ce9280599de0feebda569474708e
+[2/2] COMMIT repo_server
+--> e091acd9bd9c
+Successfully tagged localhost/repo_server:latest
+e091acd9bd9cec427c7c14bd338a5cc50905ce9280599de0feebda569474708e
+repo_server_1
+repo_server_1
+9e53f65d6152a2c4918834edd02a89b9c72c17e55454049d02eafaa24c429b0e
+repo_server_1
+
+  err: ==> starting stack with: docker compose
+Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+==> waiting for http://127.0.0.1:8420/readyz (timeout 180s)
+==> Coffer is ready at http://127.0.0.1:8420
+==> no suitable local Go toolchain; building inside docker.io/library/golang:1.26.10-alpine3.24@sha256:a2012b4a1d1f9f7e9f44e0d39b805a901e856b1dd80b4e6ee4338db547050308 with podman
+==> built bin/coffer
+
+2026-10-30T15:29:25.981Z wait_ready(30.0s) -> True (last status 200)
+2026-10-30T15:29:25.982Z wait_ready(60s) -> True (last status 200)
+2026-10-30T15:29:25.990Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K00 actor=owner@acme -> 200 8ms
+  req: 
+  resp: {"key":"O3_K00","version":1,"value":"«canary:o3-0»"}
+
+2026-10-30T15:29:25.991Z ASSERT ok   not(O3_K00 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:25.996Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K01 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K01","version":1,"value":"«canary:o3-1»"}
+
+2026-10-30T15:29:25.996Z ASSERT ok   not(O3_K01 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.001Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K02 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K02","version":1,"value":"«canary:o3-2»"}
+
+2026-10-30T15:29:26.001Z ASSERT ok   not(O3_K02 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.007Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K03 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K03","version":1,"value":"«canary:o3-3»"}
+
+2026-10-30T15:29:26.007Z ASSERT ok   not(O3_K03 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.012Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K04 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K04","version":1,"value":"«canary:o3-4»"}
+
+2026-10-30T15:29:26.012Z ASSERT ok   not(O3_K04 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.017Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K05 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K05","version":1,"value":"«canary:o3-5»"}
+
+2026-10-30T15:29:26.017Z ASSERT ok   not(O3_K05 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.022Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K06 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K06","version":1,"value":"«canary:o3-6»"}
+
+2026-10-30T15:29:26.022Z ASSERT ok   not(O3_K06 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.027Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K07 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K07","version":1,"value":"«canary:o3-7»"}
+
+2026-10-30T15:29:26.027Z ASSERT ok   not(O3_K07 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.032Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K08 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K08","version":1,"value":"«canary:o3-8»"}
+
+2026-10-30T15:29:26.032Z ASSERT ok   not(O3_K08 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.037Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K09 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K09","version":1,"value":"«canary:o3-9»"}
+
+2026-10-30T15:29:26.037Z ASSERT ok   not(O3_K09 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.042Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K10 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K10","version":1,"value":"«canary:o3-10»"}
+
+2026-10-30T15:29:26.042Z ASSERT ok   not(O3_K10 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.046Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K11 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K11","version":1,"value":"«canary:o3-11»"}
+
+2026-10-30T15:29:26.046Z ASSERT ok   not(O3_K11 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.050Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K12 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K12","version":1,"value":"«canary:o3-12»"}
+
+2026-10-30T15:29:26.050Z ASSERT ok   not(O3_K12 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.055Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K13 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K13","version":1,"value":"«canary:o3-13»"}
+
+2026-10-30T15:29:26.055Z ASSERT ok   not(O3_K13 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.059Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K14 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K14","version":1,"value":"«canary:o3-14»"}
+
+2026-10-30T15:29:26.059Z ASSERT ok   not(O3_K14 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.063Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K15 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K15","version":1,"value":"«canary:o3-15»"}
+
+2026-10-30T15:29:26.064Z ASSERT ok   not(O3_K15 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.068Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K16 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K16","version":1,"value":"«canary:o3-16»"}
+
+2026-10-30T15:29:26.069Z ASSERT ok   not(O3_K16 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.073Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K17 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K17","version":1,"value":"«canary:o3-17»"}
+
+2026-10-30T15:29:26.073Z ASSERT ok   not(O3_K17 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.078Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K18 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"O3_K18","version":1,"value":"«canary:o3-18»"}
+
+2026-10-30T15:29:26.078Z ASSERT ok   not(O3_K18 acknowledged 200 but after restart GET -> 200 (lost write))
+2026-10-30T15:29:26.083Z HTTP GET /api/v1/projects/o3-167ce/envs/dev/secrets/O3_K19 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"O3_K19","version":1,"value":"«canary:o3-19»"}
+
+2026-10-30T15:29:26.083Z ASSERT ok   not(O3_K19 acknowledged 200 but after restart GET -> 200 (lost write))

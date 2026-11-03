@@ -1,0 +1,3 @@
+2026-10-29T13:04:12.137Z CONTROL ok: sweep scanner finds a planted needle raw/hex/b64
+2026-10-29T13:04:18.047Z sweep.scan sources=('dumps',) kinds=('token',) needles=171 hits=0
+2026-10-29T13:04:18.192Z ASSERT ok   not(171 token needles scanned over 44 dumps)

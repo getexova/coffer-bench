@@ -1,0 +1,41 @@
+2026-10-29T12:55:58.864Z CLI coffer member add f18-f83a9441@acme.test --role member actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme url=http://127.0.0.1:18420 -> rc=0 187ms stdin=17B
+  out: Added f18-f83a9441@acme.test as member
+
+  err: 
+2026-10-29T12:55:58.864Z ASSERT ok   not(member add rc=0)
+2026-10-29T12:55:59.068Z CLI coffer login --email f18-f83a9441@acme.test actor=anon home=/home/grader1/work-r2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 203ms stdin=17B
+  out: Logged in as f18-f83a9441@acme.test
+Your password must be changed before you can use the service: run `coffer passwd`.
+
+  err: 
+2026-10-29T12:55:59.068Z ASSERT ok   not(login with initial password rc=0 (passwd needs a session))
+2026-10-29T12:55:59.184Z CLI coffer project list actor=anon home=/home/grader1/work-r2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=4 116ms stdin=0B
+  out: 
+  err: coffer: password change required: call POST /api/v1/auth/password (coffer passwd) first
+coffer: hint: you may lack permission, or a password set by an administrator must be changed first with `coffer passwd`
+
+2026-10-29T12:55:59.184Z ASSERT ok   not(before passwd: project list rc=4 (want refused))
+2026-10-29T12:55:59.265Z HTTP POST /api/v1/auth/token actor=anon -> 200 81ms
+  req: {"email": "f18-f83a9441@acme.test", "password": "«pw0:f18-f83a9441@acme.test»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_3b947b63f4fa7f3f46ad504f","email":"f18-f83a9441@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:59.268Z HTTP GET /api/v1/projects actor=anon -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:55:59.268Z ASSERT ok   not(before passwd: API GET /projects -> 403 (want refused))
+2026-10-29T12:55:59.522Z CLI coffer passwd actor=anon home=/home/grader1/work-r2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 254ms stdin=34B
+  out: Password changed.
+
+  err: 
+2026-10-29T12:55:59.522Z ASSERT ok   not(passwd rc=0 (want 0))
+2026-10-29T12:55:59.636Z CLI coffer project list actor=anon home=/home/grader1/work-r2/tmp/F18/home-1 url=http://127.0.0.1:18420 -> rc=0 113ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:55:59.636Z ASSERT ok   not(after passwd: project list rc=0 (want 0))
+2026-10-29T12:55:59.710Z HTTP POST /api/v1/auth/token actor=anon -> 200 74ms
+  req: {"email": "f18-f83a9441@acme.test", "password": "«pw1:f18-f83a9441@acme.test»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_3b947b63f4fa7f3f46ad504f","email":"f18-f83a9441@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:55:59.710Z ASSERT ok   not(raw login new password -> 200)
+2026-10-29T12:55:59.788Z HTTP POST /api/v1/auth/token actor=anon -> 401 76ms
+  req: {"email": "f18-f83a9441@acme.test", "password": "«pw0:f18-f83a9441@acme.test»"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:55:59.788Z ASSERT ok   not(raw login old password -> 401 (want 401))

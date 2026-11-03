@@ -1,0 +1,19 @@
+# Keep the build context small and, more importantly, keep secrets out of image layers.
+.git
+.gitignore
+.github
+.toolbox
+bin
+docs
+*.md
+
+# A .env holds real credentials. compose injects environment variables into the container;
+# the image never needs a copy of the file.
+.env
+.env.*
+
+# Local caches and backups.
+.cache
+*.dump
+*.sql.gz
+coverage.out

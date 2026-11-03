@@ -1,0 +1,56 @@
+2026-10-29T12:55:54.488Z HTTP GET /api/v1/changes actor=owner@acme -> 200 4ms
+  req: 
+  resp: []
+2026-10-29T12:55:54.601Z CLI coffer secrets set F12_PROT_BD032AFE -p api -e prod actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 113ms stdin=40B
+  out: chgfcdfba33670e99003ee9cc6b
+
+  err: 
+2026-10-29T12:55:54.601Z ASSERT ok   not(writer set prod: rc=7 (want 7))
+2026-10-29T12:55:54.603Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chgfcdfba33670e99003ee9cc6b","project":"api","env":"prod","key":"F12_PROT_BD032AFE","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:55:54.59281Z"}]
+2026-10-29T12:55:54.603Z ASSERT ok   not(writer set prod: change id not printed on stdout (new pending=1, stdout='chgfcdfba33670e99003ee9cc6b'))
+2026-10-29T12:55:54.608Z HTTP GET /api/v1/projects/api/envs/prod/secrets/F12_PROT_BD032AFE actor=owner@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:55:54.608Z ASSERT ok   not(before approval: GET prod F12_PROT_BD032AFE -> 404 (want 404, value unchanged))
+2026-10-29T12:55:54.726Z CLI coffer change approve chgfcdfba33670e99003ee9cc6b actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=0B
+  out: Approved change chgfcdfba33670e99003ee9cc6b
+
+  err: 
+2026-10-29T12:55:54.727Z ASSERT ok   not(admin approve rc=0 (want 0))
+2026-10-29T12:55:54.731Z HTTP GET /api/v1/projects/api/envs/prod/secrets/F12_PROT_BD032AFE actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F12_PROT_BD032AFE","version":1,"value":"«canary:F12:prot»"}
+2026-10-29T12:55:54.732Z ASSERT ok   not(after approval: GET prod -> 200 exact=True)
+2026-10-29T12:55:54.733Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+2026-10-29T12:55:54.734Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chgfcdfba33670e99003ee9cc6b","project":"api","env":"prod","key":"F12_PROT_BD032AFE","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:55:54.59281Z","resolved_at":"2026-10-29T12:55:54.717212Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg202720b281d431b2e7ce68ef","project":"api","env":"prod","key":"CANARY","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:55:37.653603Z","resolved_at":"2026-10-29T12:55:37.779192Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"}]
+2026-10-29T12:55:54.735Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: []
+2026-10-29T12:55:54.736Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chgfcdfba33670e99003ee9cc6b","project":"api","env":"prod","key":"F12_PROT_BD032AFE","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:55:54.59281Z","resolved_at":"2026-10-29T12:55:54.717212Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg202720b281d431b2e7ce68ef","project":"api","env":"prod","key":"CANARY","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:55:37.653603Z","resolved_at":"2026-10-29T12:55:37.779192Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"}]
+2026-10-29T12:55:54.736Z ASSERT ok   not(change status after approve=approved)
+2026-10-29T12:55:54.859Z CLI coffer --json secrets set F12_PJ_6153770B -p api -e prod actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=7 121ms stdin=40B
+  out: {
+  "change_id": "chg8a79ce35f3cff6fb2f1c8b8b",
+  "status": "pending"
+}
+
+  err: 
+2026-10-29T12:55:54.859Z ASSERT ok   not(--json protected write rc=7 doc={'change_id': 'chg8a79ce35f3cff6fb2f1c8b8b', 'status': 'pending'} (want {status:pending,change_id}))
+2026-10-29T12:55:54.980Z CLI coffer change reject chg8a79ce35f3cff6fb2f1c8b8b actor=admin@acme home=/home/grader1/work-r2/homes/admin@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: Rejected change chg8a79ce35f3cff6fb2f1c8b8b
+
+  err: 
+2026-10-29T12:55:54.983Z HTTP GET /api/v1/audit actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"events":[{"seq":221,"timestamp":"2026-10-29T12:55:54.970179Z","actor":"usr_b5e9134f655c5825fa5df3b8","action":"change.rejected","target":"chg8a79ce35f3cff6fb2f1c8b8b","source_ip":"10.89.0.3","result":"success","prev_hash":"e3de97b7698841a5b07fd95efe5a5fd4f578427592be1837005f23d66a1b99e8","hash":"43939974ba08c4e4cebd7eb45f5149be0ecf2f80ead5c8870fc88c116657e999"},{"seq":220,"timestamp":"2026-10-29T12:55:54.849537Z","actor":"usr_36d0d9963bd156b5caddacec","action":"change.created","target":"chg8a79ce35f3cff6f…[sha256=9518758f923a3e593872492a1df36dfd6289afe6d7b0d5626e6d13bcf8d47eee len=52557]
+2026-10-29T12:55:54.984Z audit since 2026-10-29T12:55:49Z: 135 events, 4 mention change/key
+2026-10-29T12:55:54.984Z ASSERT ok   not(audit: no event for the change by the proposer (writer))
+2026-10-29T12:55:54.984Z ASSERT ok   not(audit: no event for the change by the approver (admin))

@@ -1,0 +1,97 @@
+2026-10-29T12:58:20.731Z HTTP POST /api/v1/members actor=owner@acme -> 201 73ms
+  req: {"email": "x8-1a1d3@acme.test", "role": "member", "password": "«pw0:x8-1a1d3@acme»"}
+  resp: {"member":{"id":"usr_7d53a5cce5bb3bc75c749894","email":"x8-1a1d3@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:20.723911Z"}}
+2026-10-29T12:58:20.733Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=4b07d68cb60352a17d41b10d5f03ffff2bfc899a53b16a061219b2c356b708ab len=2949]
+2026-10-29T12:58:20.805Z HTTP POST /api/v1/auth/token actor=anon -> 200 72ms
+  req: {"email": "x8-1a1d3@acme.test", "password": "«pw0:x8-1a1d3@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_7d53a5cce5bb3bc75c749894","email":"x8-1a1d3@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:20.808Z HTTP GET /api/v1/projects actor=x8-1a1d3@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:20.960Z HTTP POST /api/v1/auth/password actor=x8-1a1d3@acme -> 200 150ms
+  req: {"current_password": "«pw0:x8-1a1d3@acme»", "new_password": "«pw:x8-1a1d3@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:21.046Z HTTP POST /api/v1/auth/token actor=anon -> 200 86ms
+  req: {"email": "x8-1a1d3@acme.test", "password": "«pw:x8-1a1d3@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_7d53a5cce5bb3bc75c749894","email":"x8-1a1d3@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.128Z HTTP POST /api/v1/auth/token actor=anon -> 200 80ms
+  req: {"email": "x8-1a1d3@acme.test", "password": "«pw:x8-1a1d3@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_7d53a5cce5bb3bc75c749894","email":"x8-1a1d3@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.129Z login gate X8 start try 1 after 0s: fresh-account correct login -> 200
+2026-10-29T12:58:21.213Z HTTP POST /api/v1/members actor=owner@acme -> 201 82ms
+  req: {"email": "x8-30239@acme.test", "role": "member", "password": "«pw0:x8-30239@acme»"}
+  resp: {"member":{"id":"usr_0ac6cedbf3125c910d8e6a66","email":"x8-30239@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:21.207656Z"}}
+2026-10-29T12:58:21.215Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=5686038828cbb3b80f1bc301fca4b0e8b1ca32dbe7080afe539f599db390a6cb len=3104]
+2026-10-29T12:58:21.286Z HTTP POST /api/v1/auth/token actor=anon -> 200 70ms
+  req: {"email": "x8-30239@acme.test", "password": "«pw0:x8-30239@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_0ac6cedbf3125c910d8e6a66","email":"x8-30239@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.289Z HTTP GET /api/v1/projects actor=x8-30239@acme -> 403 2ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:21.422Z HTTP POST /api/v1/auth/password actor=x8-30239@acme -> 200 131ms
+  req: {"current_password": "«pw0:x8-30239@acme»", "new_password": "«pw:x8-30239@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:21.495Z HTTP POST /api/v1/auth/token actor=anon -> 200 72ms
+  req: {"email": "x8-30239@acme.test", "password": "«pw:x8-30239@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_0ac6cedbf3125c910d8e6a66","email":"x8-30239@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.579Z HTTP POST /api/v1/members actor=owner@acme -> 201 81ms
+  req: {"email": "x8-4db5e@acme.test", "role": "member", "password": "«pw0:x8-4db5e@acme»"}
+  resp: {"member":{"id":"usr_fa9b9cfc4ce2e45512f868a2","email":"x8-4db5e@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:58:21.573932Z"}}
+2026-10-29T12:58:21.582Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=97e0051c0dd400a356dc358b8ed4d9f1a95f2d369b3ea7aed3d6da5802cea7a7 len=3259]
+2026-10-29T12:58:21.653Z HTTP POST /api/v1/auth/token actor=anon -> 200 71ms
+  req: {"email": "x8-4db5e@acme.test", "password": "«pw0:x8-4db5e@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_fa9b9cfc4ce2e45512f868a2","email":"x8-4db5e@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.656Z HTTP GET /api/v1/projects actor=x8-4db5e@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:58:21.800Z HTTP POST /api/v1/auth/password actor=x8-4db5e@acme -> 200 142ms
+  req: {"current_password": "«pw0:x8-4db5e@acme»", "new_password": "«pw:x8-4db5e@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:58:21.874Z HTTP POST /api/v1/auth/token actor=anon -> 200 73ms
+  req: {"email": "x8-4db5e@acme.test", "password": "«pw:x8-4db5e@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_fa9b9cfc4ce2e45512f868a2","email":"x8-4db5e@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.949Z HTTP POST /api/v1/auth/token actor=anon -> 200 74ms
+  req: {"email": "x8-30239@acme.test", "password": "«pw:x8-30239@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_0ac6cedbf3125c910d8e6a66","email":"x8-30239@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:21.951Z CONTROL ok: A correct login before failures (200)
+2026-10-29T12:58:22.022Z HTTP POST /api/v1/auth/token actor=anon -> 200 71ms
+  req: {"email": "x8-4db5e@acme.test", "password": "«pw:x8-4db5e@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_fa9b9cfc4ce2e45512f868a2","email":"x8-4db5e@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:22.023Z CONTROL ok: B correct login before failures (200)
+2026-10-29T12:58:22.095Z HTTP POST /api/v1/auth/token actor=anon -> 401 71ms
+  req: {"email": "x8-30239@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:22.172Z HTTP POST /api/v1/auth/token actor=anon -> 401 77ms
+  req: {"email": "x8-30239@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:22.241Z HTTP POST /api/v1/auth/token actor=anon -> 401 69ms
+  req: {"email": "x8-30239@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:22.323Z HTTP POST /api/v1/auth/token actor=anon -> 401 81ms
+  req: {"email": "x8-30239@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:22.402Z HTTP POST /api/v1/auth/token actor=anon -> 401 79ms
+  req: {"email": "x8-30239@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid email or password"}}
+2026-10-29T12:58:22.402Z X8 A wrong statuses [401, 401, 401, 401, 401]
+2026-10-29T12:58:22.402Z ASSERT ok   not(A wrong tries 1-5 -> [401, 401, 401, 401, 401] (429 before 5 failures))
+2026-10-29T12:58:22.402Z ASSERT ok   not(A wrong tries 1-5 -> [401, 401, 401, 401, 401] (want 401))
+2026-10-29T12:58:22.404Z HTTP POST /api/v1/auth/token actor=anon -> 429 1ms
+  req: {"email": "x8-30239@acme.test", "password": "«pw:x8-30239@acme»"}
+  resp: {"error":{"code":"rate_limited","message":"account is locked, try again later"}}
+2026-10-29T12:58:22.404Z ASSERT ok   not(A correct password after 5 failures -> 429 (want 429))
+2026-10-29T12:58:22.405Z HTTP POST /api/v1/auth/token actor=anon -> 429 1ms
+  req: {"email": "x8-30239@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"rate_limited","message":"account is locked, try again later"}}
+2026-10-29T12:58:22.405Z ASSERT ok   not(A 7th (wrong) try -> 429 (want 429))
+2026-10-29T12:58:22.491Z HTTP POST /api/v1/auth/token actor=anon -> 200 86ms
+  req: {"email": "x8-4db5e@acme.test", "password": "«pw:x8-4db5e@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_fa9b9cfc4ce2e45512f868a2","email":"x8-4db5e@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:58:22.493Z X8 cross-account: 5 failures on A -> B correct login 200 (B unaffected)
+2026-10-29T12:58:22.493Z ASSERT ok   not(B correct login while A locked -> 200 (want 200))

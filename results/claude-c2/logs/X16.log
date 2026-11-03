@@ -1,0 +1,14 @@
+2026-10-30T15:24:52.416Z gitleaks /home/grader2/work-c2/tmp/X16/gl-control -> rc=1 34ms
+  err: [90m3:24PM[0m [32mINF[0m [1m1 commits scanned.[0m
+[90m3:24PM[0m [32mINF[0m [1mscanned ~51 bytes (51 bytes) in 28.5ms[0m
+[90m3:24PM[0m [33mWRN[0m [1mleaks found: 1[0m
+
+2026-10-30T15:24:52.416Z CONTROL ok: gitleaks control detects planted token (rc=0)
+2026-10-30T15:24:52.580Z gitleaks /home/grader2/work-c2/repo -> rc=1 164ms
+  err: [90m3:24PM[0m [32mINF[0m [1mUnknown SCM platform. Use --platform to include links in findings.[0m [36mhost=[0m
+[90m3:24PM[0m [32mINF[0m [1m6 commits scanned.[0m
+[90m3:24PM[0m [32mINF[0m [1mscanned ~847986 bytes (847.99 KB) in 155ms[0m
+[90m3:24PM[0m [33mWRN[0m [1mleaks found: 1[0m
+
+2026-10-30T15:24:52.580Z finding: generic-api-key test/e2e/helpers_test.go:27 commit 1fbcde8e
+2026-10-30T15:24:52.580Z ASSERT FAIL 1 gitleaks findings: generic-api-key test/e2e/helpers_test.go:27 commit 1fbcde8e

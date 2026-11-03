@@ -1,0 +1,65 @@
+# Coffer stack: `server` (Coffer API) + `db` (PostgreSQL 16).
+#
+# Works with `docker compose` (v2) and `podman compose` / podman-compose 1.x.
+# Configuration comes from ./.env (create it with ./scripts/init-env.sh).
+# Use ./scripts/up.sh and ./scripts/down.sh rather than calling compose directly.
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      COFFER_LISTEN_ADDR: ":8420"
+    ports:
+      # Loopback only. Put a TLS-terminating reverse proxy in front for remote access.
+      - "127.0.0.1:${COFFER_PORT:-8420}:8420"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    stop_grace_period: 10s
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "/coffer-server", "healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  db:
+    # Fully-qualified form of postgres:16 (podman's short-name-mode=enforcing cannot
+    # resolve bare short names without a TTY on a machine that has not pulled it yet).
+    image: docker.io/library/postgres:16
+    # Only the Postgres variables are passed in: the db container never sees the
+    # Coffer master key or the bootstrap admin password.
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-coffer}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env (run ./scripts/init-env.sh)}
+      POSTGRES_DB: ${POSTGRES_DB:-coffer}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # No published ports: the database is reachable only from the compose network.
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+    stop_grace_period: 30s
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  pgdata: {}

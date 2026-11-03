@@ -1,0 +1,134 @@
+2026-10-30T15:24:57.375Z CLI coffer secrets set F17_PERSIST_D59A493A -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 11ms stdin=40B
+  out: set F17_PERSIST_D59A493A (version 1)
+
+  err: 
+2026-10-30T15:24:57.375Z ASSERT ok   not(pre set failed)
+2026-10-30T15:24:57.384Z CLI coffer secrets set F17_PERSIST_D59A493A -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=40B
+  out: set F17_PERSIST_D59A493A (version 2)
+
+  err: 
+2026-10-30T15:24:57.384Z ASSERT ok   not(pre set failed)
+2026-10-30T15:24:57.389Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:24:57.392Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+
+2026-10-30T15:24:57.396Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+
+2026-10-30T15:24:57.399Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+
+2026-10-30T15:24:57.404Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:24:57.407Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 3ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+
+2026-10-30T15:24:58.016Z pg_dumpall pre-down -> rc=0 0002-F17-pre-down.sql
+2026-10-30T15:24:58.143Z sweep_snapshot pre-down: dump=0002-F17-pre-down.sql logs=2
+2026-10-30T15:24:59.181Z SCRIPT down.sh  -> rc=0 1038ms
+  out: repo_server_1
+repo_db_1
+repo_server_1
+repo_db_1
+369ab7a54e95675f779e107c448083acbeae344f155f2391f3f97d5716ef50ad
+repo_default
+
+  err: Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+==> stack stopped (data volume kept)
+
+2026-10-30T15:24:59.181Z ASSERT ok   not(down.sh rc=0)
+2026-10-30T15:24:59.182Z readyz after down.sh -> 0 ConnectionRefusedError: [Errno 111] Connection refused
+2026-10-30T15:24:59.493Z container discovery: nothing found for project repo; compose ps rc=0 out='CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES\n' err='\x1b[4m>>>> Executing external compose provider "/usr/bin/podman-compose". Please see podman-compose(1) for how to disable this message. <<<<\n\n\x1b[0m' | podman ps -a: 0 containers; named like 'repo': 
+2026-10-30T15:24:59.528Z sweep_snapshot pre-up: dump=None logs=0
+2026-10-30T15:25:10.775Z SCRIPT up.sh  -> rc=0 11246ms
+  out: GO_ENABLED=0 GOOS=linux GOARCH=amd64
+--> Using cache b252843697b57a67d5681ab333a9f98db97916f5e82afe38ea90de87283d99de
+--> b252843697b5
+[1/2] STEP 7/7: RUN go build -trimpath -buildvcs=false -ldflags "-s -w"       -o /out/coffer-server ./cmd/coffer-server
+--> Using cache 13ece9e9ca186724a21b6e172b777126f0f8f4b4591fd8ba1b1da80dfc1580ce
+--> 13ece9e9ca18
+[2/2] STEP 1/6: FROM gcr.io/distroless/static-debian12:nonroot@sha256:afa5c872c891853ca7fcf1f12c3edb23f7eeef36189728842dd51042ff57f7ab
+[2/2] STEP 2/6: COPY --from=builder /out/coffer-server /coffer-server
+--> Using cache 5925902c97353877d228ec434d2dd5f0a2c43557e68525eba155a0ae049bd486
+--> 5925902c9735
+[2/2] STEP 3/6: USER 65532:65532
+--> Using cache 092157f2c6e44057a7c396ac89a5465067e029e2481ecfacf276048146944c55
+--> 092157f2c6e4
+[2/2] STEP 4/6: EXPOSE 8420
+--> Using cache 6a8dd481aa80970025f409f21bebda17553336c914007ecb7c72990e69a40ecd
+--> 6a8dd481aa80
+[2/2] STEP 5/6: HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3   CMD ["/coffer-server", "healthcheck"]
+--> Using cache 39a65752b6f9c1fe6990c8c337e378998325c4b7f34a1a25858742f1448500ba
+--> 39a65752b6f9
+[2/2] STEP 6/6: ENTRYPOINT ["/coffer-server"]
+--> Using cache e091acd9bd9cec427c7c14bd338a5cc50905ce9280599de0feebda569474708e
+[2/2] COMMIT repo_server
+--> e091acd9bd9c
+Successfully tagged localhost/repo_server:latest
+e091acd9bd9cec427c7c14bd338a5cc50905ce9280599de0feebda569474708e
+60b1c98cda109ae5ee0e63c7ae35ae0999a6be647a9269143c2aef7326cb5612
+repo_server_1
+
+  err: ==> starting stack with: docker compose
+Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+Emulate Docker CLI using podman. Create /etc/containers/nodocker to quiet msg.
+==> waiting for http://127.0.0.1:8420/readyz (timeout 180s)
+==> Coffer is ready at http://127.0.0.1:8420
+==> no suitable local Go toolchain; building inside docker.io/library/golang:1.26.10-alpine3.24@sha256:a2012b4a1d1f9f7e9f44e0d39b805a901e856b1dd80b4e6ee4338db547050308 with podman
+==> built bin/coffer
+
+2026-10-30T15:25:10.777Z wait_ready(30.0s) -> True (last status 200)
+2026-10-30T15:25:10.777Z ASSERT ok   not(up.sh rc=0)
+2026-10-30T15:25:10.778Z wait_ready(60.0s) -> True (last status 200)
+2026-10-30T15:25:10.786Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 8ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:25:10.787Z ASSERT ok   not(after down/up acme/api/dev/CANARY: 200 exact=True)
+2026-10-30T15:25:10.792Z HTTP GET /api/v1/projects/api/envs/dev/secrets/MULTI actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"MULTI","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+
+2026-10-30T15:25:10.792Z ASSERT ok   not(after down/up acme/api/dev/MULTI: 200 exact=True)
+2026-10-30T15:25:10.797Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+
+2026-10-30T15:25:10.798Z ASSERT ok   not(after down/up acme/web/dev/CANARY: 200 exact=True)
+2026-10-30T15:25:10.802Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/prod/CANARY»"}
+
+2026-10-30T15:25:10.803Z ASSERT ok   not(after down/up acme/api/prod/CANARY: 200 exact=True)
+2026-10-30T15:25:10.808Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/dev/CANARY»"}
+
+2026-10-30T15:25:10.808Z ASSERT ok   not(after down/up globex/api/dev/CANARY: 200 exact=True)
+2026-10-30T15:25:10.813Z HTTP GET /api/v1/projects/api/envs/prod/secrets/CANARY actor=owner@globex -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:globex/api/prod/CANARY»"}
+
+2026-10-30T15:25:10.813Z ASSERT ok   not(after down/up globex/api/prod/CANARY: 200 exact=True)
+2026-10-30T15:25:10.823Z CLI coffer secrets get F17_PERSIST_D59A493A -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 10ms stdin=0B
+  out: «canary:F17:v2»
+  err: 
+2026-10-30T15:25:10.823Z ASSERT ok   not(marker current after restart exact=True rc=0)
+2026-10-30T15:25:10.833Z CLI coffer secrets get F17_PERSIST_D59A493A -p api -e dev --version 1 actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=0B
+  out: «canary:F17:v1»
+  err: 
+2026-10-30T15:25:10.833Z ASSERT ok   not(marker v1 after restart exact=True)
+2026-10-30T15:25:10.834Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F17_PERSIST_D59A493A/versions actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:57.369311Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":2,"deleted":false,"created_at":"2026-10-30T15:24:57.379700Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"}]
+
+2026-10-30T15:25:10.834Z ASSERT ok   not(marker versions after restart=[(1, False), (2, False)])

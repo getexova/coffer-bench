@@ -1,0 +1,295 @@
+2026-10-29T12:56:10.312Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_1 actor=owner@acme -> 200 8ms
+  req: {"value": "JUNK_S1_1-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:10.317Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_1 actor=owner@acme -> 200 5ms
+  req: {"value": "JUNK_S1_1-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:10.322Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_2 actor=owner@acme -> 200 5ms
+  req: {"value": "JUNK_S1_2-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:10.327Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_2 actor=owner@acme -> 200 5ms
+  req: {"value": "JUNK_S1_2-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:10.331Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:56:10.336Z HTTP GET /api/v1/projects/web/envs/dev/secrets/JUNK_S1_1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S1_1","version":2,"value":"JUNK_S1_1-v2"}
+2026-10-29T12:56:10.340Z HTTP GET /api/v1/projects/web/envs/dev/secrets/JUNK_S1_2 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S1_2","version":2,"value":"JUNK_S1_2-v2"}
+2026-10-29T12:56:10.344Z HTTP GET /api/v1/projects/web/envs/dev/secrets/JUNK_S1_3 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.346Z HTTP GET /api/v1/projects/web/envs actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"environments":[{"created_at":"2026-10-29T12:55:36.469259Z","id":"env_29cf08ef8b46502b5f2353a1","protected":false,"slug":"dev"}]}
+2026-10-29T12:56:10.347Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.52727Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_1","version":2,"updated_at":"2026-10-29T12:56:10.313622Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_2","version":2,"updated_at":"2026-10-29T12:56:10.323483Z","updated_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:56:10.348Z HTTP GET /api/v1/projects/web/envs actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"environments":[{"created_at":"2026-10-29T12:55:36.469259Z","id":"env_29cf08ef8b46502b5f2353a1","protected":false,"slug":"dev"}]}
+2026-10-29T12:56:10.348Z CONTROL ok: control globex GET /projects/<acme web>/envs (200)
+2026-10-29T12:56:10.353Z HTTP GET /api/v1/projects/zz-absent-ebebed26/envs actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.357Z HTTP GET /api/v1/projects/zz-absent-ebebed26/envs actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.361Z HTTP GET /api/v1/projects/web/envs actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.362Z ASSERT ok   not(globex GET /projects/<acme web>/envs: 404 identical to absent)
+2026-10-29T12:56:10.366Z HTTP POST /api/v1/projects actor=owner@acme -> 201 5ms
+  req: {"slug": "s1-40722"}
+  resp: {"project":{"created_at":"2026-10-29T12:56:10.362885Z","id":"prj_35a0f4923d736248036c9b78","slug":"s1-40722"}}
+2026-10-29T12:56:10.371Z HTTP POST /api/v1/projects/s1-40722/envs actor=owner@acme -> 201 4ms
+  req: {"slug": "s1x", "protected": false}
+  resp: {"created_at":"2026-10-29T12:56:10.367850Z","id":"env_948fa40c217e6d4aedb5d245","protected":false,"slug":"s1x"}
+2026-10-29T12:56:10.371Z CONTROL ok: control globex POST /projects/<acme web>/envs (201)
+2026-10-29T12:56:10.376Z HTTP POST /api/v1/projects/zz-absent-d0d25787/envs actor=owner@globex -> 404 4ms
+  req: {"slug": "s1x", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.380Z HTTP POST /api/v1/projects/zz-absent-d0d25787/envs actor=owner@globex -> 404 4ms
+  req: {"slug": "s1x", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.385Z HTTP POST /api/v1/projects/web/envs actor=owner@globex -> 404 4ms
+  req: {"slug": "s1x", "protected": false}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.385Z ASSERT ok   not(globex POST /projects/<acme web>/envs: 404 identical to absent)
+2026-10-29T12:56:10.386Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.52727Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_1","version":2,"updated_at":"2026-10-29T12:56:10.313622Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_2","version":2,"updated_at":"2026-10-29T12:56:10.323483Z","updated_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:56:10.386Z CONTROL ok: control globex GET /projects/<acme web>/envs/dev/secrets (200)
+2026-10-29T12:56:10.390Z HTTP GET /api/v1/projects/zz-absent-8b9d3c17/envs/dev/secrets actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.394Z HTTP GET /api/v1/projects/zz-absent-8b9d3c17/envs/dev/secrets actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.398Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.399Z ASSERT ok   not(globex GET /projects/<acme web>/envs/dev/secrets: 404 identical to absent)
+2026-10-29T12:56:10.403Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:56:10.403Z CONTROL ok: control globex GET /projects/<acme web>/envs/dev/secrets/CANARY (200)
+2026-10-29T12:56:10.407Z HTTP GET /api/v1/projects/zz-absent-98750557/envs/dev/secrets/CANARY actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.412Z HTTP GET /api/v1/projects/zz-absent-98750557/envs/dev/secrets/CANARY actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.416Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.416Z ASSERT ok   not(globex GET /projects/<acme web>/envs/dev/secrets/CANARY: 404 identical to absent)
+2026-10-29T12:56:10.417Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY/versions actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-29T12:55:37.52727Z","created_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:56:10.417Z CONTROL ok: control globex GET /projects/<acme web>/envs/dev/secrets/CANARY/versions (200)
+2026-10-29T12:56:10.421Z HTTP GET /api/v1/projects/zz-absent-cd045d54/envs/dev/secrets/CANARY/versions actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.426Z HTTP GET /api/v1/projects/zz-absent-cd045d54/envs/dev/secrets/CANARY/versions actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.430Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY/versions actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.430Z ASSERT ok   not(globex GET /projects/<acme web>/envs/dev/secrets/CANARY/versions: 404 identical to absent)
+2026-10-29T12:56:10.435Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY/versions/1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:56:10.435Z CONTROL ok: control globex GET /projects/<acme web>/envs/dev/secrets/CANARY/versions/1 (200)
+2026-10-29T12:56:10.439Z HTTP GET /api/v1/projects/zz-absent-b9e897fb/envs/dev/secrets/CANARY/versions/1 actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.443Z HTTP GET /api/v1/projects/zz-absent-b9e897fb/envs/dev/secrets/CANARY/versions/1 actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.447Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY/versions/1 actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.447Z ASSERT ok   not(globex GET /projects/<acme web>/envs/dev/secrets/CANARY/versions/1: 404 identical to absent)
+2026-10-29T12:56:10.459Z HTTP GET /api/v1/projects/web/envs/dev/export actor=owner@acme -> 200 11ms
+  req: 
+  resp: {"CANARY":"«canary:acme/web/dev/CANARY»","JUNK_S1_1":"JUNK_S1_1-v2","JUNK_S1_2":"JUNK_S1_2-v2"}
+2026-10-29T12:56:10.459Z CONTROL ok: control globex GET /projects/<acme web>/envs/dev/export (200)
+2026-10-29T12:56:10.463Z HTTP GET /api/v1/projects/zz-absent-1b900ff3/envs/dev/export actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.467Z HTTP GET /api/v1/projects/zz-absent-1b900ff3/envs/dev/export actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.471Z HTTP GET /api/v1/projects/web/envs/dev/export actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.471Z ASSERT ok   not(globex GET /projects/<acme web>/envs/dev/export: 404 identical to absent)
+2026-10-29T12:56:10.482Z HTTP GET /api/v1/projects/web/envs/dev/export actor=owner@acme -> 200 11ms
+  req: 
+  resp: CANARY="«canary:acme/web/dev/CANARY»"
+JUNK_S1_1="JUNK_S1_1-v2"
+JUNK_S1_2="JUNK_S1_2-v2"
+
+2026-10-29T12:56:10.482Z CONTROL ok: control globex GET /projects/<acme web>/envs/dev/export (200)
+2026-10-29T12:56:10.487Z HTTP GET /api/v1/projects/zz-absent-326f1ac0/envs/dev/export actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.491Z HTTP GET /api/v1/projects/zz-absent-326f1ac0/envs/dev/export actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.495Z HTTP GET /api/v1/projects/web/envs/dev/export actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.495Z ASSERT ok   not(globex GET /projects/<acme web>/envs/dev/export: 404 identical to absent)
+2026-10-29T12:56:10.500Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_5 actor=owner@acme -> 200 5ms
+  req: {"value": "ctl"}
+  resp: {"version":1}
+2026-10-29T12:56:10.500Z CONTROL ok: control globex PUT /projects/<acme web>/envs/dev/secrets/JUNK_S1_3 (200)
+2026-10-29T12:56:10.505Z HTTP PUT /api/v1/projects/zz-absent-561f900a/envs/dev/secrets/JUNK_S1_3 actor=owner@globex -> 404 4ms
+  req: {"value": "S1-PROBE"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.509Z HTTP PUT /api/v1/projects/zz-absent-561f900a/envs/dev/secrets/JUNK_S1_3 actor=owner@globex -> 404 4ms
+  req: {"value": "S1-PROBE"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.513Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_3 actor=owner@globex -> 404 4ms
+  req: {"value": "S1-PROBE"}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.513Z ASSERT ok   not(globex PUT /projects/<acme web>/envs/dev/secrets/JUNK_S1_3: 404 identical to absent)
+2026-10-29T12:56:10.518Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_6 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S1_6-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:10.522Z HTTP DELETE /api/v1/projects/web/envs/dev/secrets/JUNK_S1_6 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"version":2}
+2026-10-29T12:56:10.522Z CONTROL ok: control globex DELETE /projects/<acme web>/envs/dev/secrets/JUNK_S1_1 (200)
+2026-10-29T12:56:10.526Z HTTP DELETE /api/v1/projects/zz-absent-1be57ff8/envs/dev/secrets/JUNK_S1_1 actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.531Z HTTP DELETE /api/v1/projects/zz-absent-1be57ff8/envs/dev/secrets/JUNK_S1_1 actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.535Z HTTP DELETE /api/v1/projects/web/envs/dev/secrets/JUNK_S1_1 actor=owner@globex -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.535Z ASSERT ok   not(globex DELETE /projects/<acme web>/envs/dev/secrets/JUNK_S1_1: 404 identical to absent)
+2026-10-29T12:56:10.539Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_7 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S1_7-v1"}
+  resp: {"version":1}
+2026-10-29T12:56:10.544Z HTTP PUT /api/v1/projects/web/envs/dev/secrets/JUNK_S1_7 actor=owner@acme -> 200 4ms
+  req: {"value": "JUNK_S1_7-v2"}
+  resp: {"version":2}
+2026-10-29T12:56:10.549Z HTTP POST /api/v1/projects/web/envs/dev/secrets/JUNK_S1_7/rollback actor=owner@acme -> 200 5ms
+  req: {"to": 1}
+  resp: {"version":3}
+2026-10-29T12:56:10.549Z CONTROL ok: control globex POST /projects/<acme web>/envs/dev/secrets/JUNK_S1_2/rollback (200)
+2026-10-29T12:56:10.553Z HTTP POST /api/v1/projects/zz-absent-441f641e/envs/dev/secrets/JUNK_S1_2/rollback actor=owner@globex -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.557Z HTTP POST /api/v1/projects/zz-absent-441f641e/envs/dev/secrets/JUNK_S1_2/rollback actor=owner@globex -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.562Z HTTP POST /api/v1/projects/web/envs/dev/secrets/JUNK_S1_2/rollback actor=owner@globex -> 404 4ms
+  req: {"to": 1}
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:10.562Z ASSERT ok   not(globex POST /projects/<acme web>/envs/dev/secrets/JUNK_S1_2/rollback: 404 identical to absent)
+2026-10-29T12:56:10.750Z CLI coffer login --email owner@acme.test actor=anon home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 188ms stdin=25B
+  out: Logged in as owner@acme.test
+
+  err: 
+2026-10-29T12:56:10.750Z homebind: owner@acme home /home/grader1/work-r2/homes/owner@acme is bound to http://127.0.0.1:18420; using /home/grader1/work-r2/homes/owner@acme~base for http://127.0.0.1:8420
+2026-10-29T12:56:10.865Z CLI coffer secrets get CANARY -e dev -p web actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 115ms stdin=0B
+  out: «canary:acme/web/dev/CANARY»
+  err: 
+2026-10-29T12:56:10.865Z CONTROL ok: control globex CLI secrets get -p <acme web> (rc=0)
+2026-10-29T12:56:11.048Z CLI coffer login --email owner@globex.test actor=anon home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=0 182ms stdin=25B
+  out: Logged in as owner@globex.test
+
+  err: 
+2026-10-29T12:56:11.049Z homebind: owner@globex home /home/grader1/work-r2/homes/owner@globex is bound to http://127.0.0.1:18420; using /home/grader1/work-r2/homes/owner@globex~base for http://127.0.0.1:8420
+2026-10-29T12:56:11.160Z CLI coffer secrets get CANARY -e dev -p zz-absent-de833b9c actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 111ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:11.272Z CLI coffer secrets get CANARY -e dev -p zz-absent-de833b9c actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 112ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:11.384Z CLI coffer secrets get CANARY -e dev -p web actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 112ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:11.384Z ASSERT ok   not(globex CLI secrets get -p <acme web>: 404 identical to absent)
+2026-10-29T12:56:11.491Z CLI coffer secrets list -e dev -p web actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 107ms stdin=0B
+  out: KEY        VERSION  UPDATED               UPDATED BY
+---        -------  -------               ----------
+CANARY     1        2026-10-29T12:55:37Z  usr_493b9b638f8b78d524ce5e65
+JUNK_S1_1  2        2026-10-29T12:56:10Z  usr_493b9b638f8b78d524ce5e65
+JUNK_S1_2  2        2026-10-29T12:56:10Z  usr_493b9b638f8b78d524ce5e65
+JUNK_S1_5  1        2026-10-29T12:56:10Z  usr_493b9b638f8b78d524ce5e65
+JUNK_S1_7  3        2026-10-29T12:56:10Z  usr_493b9b638f8b78d524ce5e65
+
+  err: 
+2026-10-29T12:56:11.491Z CONTROL ok: control globex CLI secrets list -p <acme web> (rc=0)
+2026-10-29T12:56:11.603Z CLI coffer secrets list -e dev -p zz-absent-c5b37425 actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 111ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:11.715Z CLI coffer secrets list -e dev -p zz-absent-c5b37425 actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 111ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:11.829Z CLI coffer secrets list -e dev -p web actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 113ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:11.829Z ASSERT ok   not(globex CLI secrets list -p <acme web>: 404 identical to absent)
+2026-10-29T12:56:11.953Z CLI coffer secrets export -e dev --format dotenv -p web actor=owner@acme home=/home/grader1/work-r2/homes/owner@acme~base url=http://127.0.0.1:8420 -> rc=0 124ms stdin=0B
+  out: CANARY="«canary:acme/web/dev/CANARY»"
+JUNK_S1_1="JUNK_S1_1-v2"
+JUNK_S1_2="JUNK_S1_2-v2"
+JUNK_S1_5="ctl"
+JUNK_S1_7="JUNK_S1_7-v1"
+
+  err: 
+2026-10-29T12:56:11.953Z CONTROL ok: control globex CLI secrets export -p <acme web> (rc=0)
+2026-10-29T12:56:12.066Z CLI coffer secrets export -e dev --format dotenv -p zz-absent-9b1e0540 actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 112ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:12.174Z CLI coffer secrets export -e dev --format dotenv -p zz-absent-9b1e0540 actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 108ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:12.298Z CLI coffer secrets export -e dev --format dotenv -p web actor=owner@globex home=/home/grader1/work-r2/homes/owner@globex~base url=http://127.0.0.1:8420 -> rc=5 124ms stdin=0B
+  out: 
+  err: coffer: not found
+
+2026-10-29T12:56:12.299Z ASSERT ok   not(globex CLI secrets export -p <acme web>: 404 identical to absent)
+2026-10-29T12:56:12.300Z HTTP GET /api/v1/projects actor=owner@globex -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:36.938361Z","id":"prj_d1a75eebc02b36825bd71b38","slug":"api"}]}
+2026-10-29T12:56:12.300Z ASSERT ok   not(globex GET /projects -> 200, lists acme web)
+2026-10-29T12:56:12.305Z HTTP GET /api/v1/projects/web/envs/dev/secrets/CANARY actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/web/dev/CANARY»"}
+2026-10-29T12:56:12.309Z HTTP GET /api/v1/projects/web/envs/dev/secrets/JUNK_S1_1 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S1_1","version":2,"value":"JUNK_S1_1-v2"}
+2026-10-29T12:56:12.314Z HTTP GET /api/v1/projects/web/envs/dev/secrets/JUNK_S1_2 actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"key":"JUNK_S1_2","version":2,"value":"JUNK_S1_2-v2"}
+2026-10-29T12:56:12.318Z HTTP GET /api/v1/projects/web/envs/dev/secrets/JUNK_S1_3 actor=owner@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:12.320Z HTTP GET /api/v1/projects/web/envs actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"environments":[{"created_at":"2026-10-29T12:55:36.469259Z","id":"env_29cf08ef8b46502b5f2353a1","protected":false,"slug":"dev"}]}
+2026-10-29T12:56:12.321Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.52727Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_1","version":2,"updated_at":"2026-10-29T12:56:10.313622Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_2","version":2,"updated_at":"2026-10-29T12:56:10.323483Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_5","version":1,"updated_at":"2026-10-29T12:56:10.496661Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"JUNK_S1_7","version":3,"updated_at":"2026-10-29T12:56:10.545138Z","updated_by":"usr_493b9b638f8b78d524ce5e65"}]
+2026-10-29T12:56:12.321Z ASSERT ok   not(acme web/dev state changed: {'CANARY': (200, '«canary:acme/web/dev/CANARY»', 1), 'JUNK_S1_1': (200, 'JUNK_S1_1-v2', 2), 'JUNK_S1_2': (200, 'JUNK_S1_2-v2', 2), 'JUNK_S1_3': (404, None, None), '_envs': ['dev'], '_keys': ['CANARY']} -> {'CANARY': (200, '«canary:acme/web/dev/CANARY»', 1), 'JUNK_S1_1': (200, 'JUNK_S1_1-v2', 2), 'JUNK_S1_2': (200, 'JUNK_S1_2-v2', 2), 'JUNK_S1_3': (404, None, None), '_envs': ['dev'], '_keys': ['CANARY']})

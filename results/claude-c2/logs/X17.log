@@ -1,0 +1,47 @@
+2026-10-30T15:24:52.690Z ASSERT ok   not(admin2@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.690Z ASSERT ok   not(admin2@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.690Z ASSERT ok   not(admin2@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.690Z ASSERT ok   not(admin@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.690Z ASSERT ok   not(admin@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.690Z ASSERT ok   not(admin@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.690Z ASSERT ok   not(nogrant@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.690Z ASSERT ok   not(nogrant@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.690Z ASSERT ok   not(nogrant@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.690Z ASSERT ok   not(owner@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.690Z ASSERT ok   not(owner@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.690Z ASSERT ok   not(owner@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.690Z ASSERT ok   not(owner@globex: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.690Z ASSERT ok   not(owner@globex: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.690Z ASSERT ok   not(owner@globex: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.691Z ASSERT ok   not(reader@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.691Z ASSERT ok   not(reader@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.691Z ASSERT ok   not(reader@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.691Z ASSERT ok   not(root: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.691Z ASSERT ok   not(root: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.691Z ASSERT ok   not(root: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.691Z ASSERT ok   not(viewer@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.691Z ASSERT ok   not(viewer@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.691Z ASSERT ok   not(viewer@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.691Z ASSERT ok   not(writer@acme: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.691Z ASSERT ok   not(writer@acme: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.691Z ASSERT ok   not(writer@acme: config dir has 1 files (want >= 1))
+2026-10-30T15:24:52.743Z HTTP POST /api/v1/members actor=owner@acme -> 201 52ms
+  req: {"email": "x17-16c3f@acme.test", "role": "member", "password": "«pw0:x17-16c3f@acme»"}
+  resp: {"id":"usr_dpeeutsk4hmkwzc55xf7cklvqg3bzfyj","email":"x17-16c3f@acme.test","role":"member","created_at":"2026-10-30T15:24:52.735433Z"}
+
+2026-10-30T15:24:52.792Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x17-16c3f@acme.test", "password": "«pw0:x17-16c3f@acme»"}
+  resp: {"expires_at":"2026-11-29T15:24:52.744912Z","token":"<redacted-token>","user":{"id":"usr_dpeeutsk4hmkwzc55xf7cklvqg3bzfyj","email":"x17-16c3f@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:24:52.795Z HTTP GET /api/v1/projects actor=x17-16c3f@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:24:52.849Z CLI coffer login --email x17-16c3f@acme.test actor=anon home=/home/grader2/work-c2/tmp/X17/home-2 url=http://127.0.0.1:8420 -> rc=0 54ms stdin=17B
+  out: logged in as x17-16c3f@acme.test
+
+  err: 
+2026-10-30T15:24:52.849Z CONTROL ok: login under umask 000 (rc=0)
+2026-10-30T15:24:52.849Z ASSERT ok   not(fresh login umask000: dir coffer mode 0700 (want 0700))
+2026-10-30T15:24:52.849Z ASSERT ok   not(fresh login umask000: file config.json mode 0600 (want 0600))
+2026-10-30T15:24:52.849Z ASSERT ok   not(fresh login umask000: config dir has 1 files (want >= 1))

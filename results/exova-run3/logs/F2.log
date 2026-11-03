@@ -1,0 +1,83 @@
+2026-10-29T12:55:45.083Z CLI coffer secrets set F2_EMPTY_POS_54786955  -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 121ms stdin=0B
+  out: Set F2_EMPTY_POS_54786955 (version 1)
+
+  err: 
+2026-10-29T12:55:45.083Z ASSERT ok   not(set EMPTY_POS (0B positional) rc=0)
+2026-10-29T12:55:45.200Z CLI coffer secrets get F2_EMPTY_POS_54786955 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 117ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:55:45.201Z ASSERT ok   not(get EMPTY_POS: rc=0 len=0 want 0B exact)
+2026-10-29T12:55:45.207Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F2_EMPTY_POS_54786955 actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"key":"F2_EMPTY_POS_54786955","version":1,"value":""}
+2026-10-29T12:55:45.207Z API cross-check EMPTY_POS: status=200 exact=True
+2026-10-29T12:55:45.325Z CLI coffer secrets set F2_EMPTY_STDIN_4066FB55 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=0B
+  out: Set F2_EMPTY_STDIN_4066FB55 (version 1)
+
+  err: 
+2026-10-29T12:55:45.325Z ASSERT ok   not(set EMPTY_STDIN (0B stdin) rc=0)
+2026-10-29T12:55:45.442Z CLI coffer secrets get F2_EMPTY_STDIN_4066FB55 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 117ms stdin=0B
+  out: 
+  err: 
+2026-10-29T12:55:45.442Z ASSERT ok   not(get EMPTY_STDIN: rc=0 len=0 want 0B exact)
+2026-10-29T12:55:45.448Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F2_EMPTY_STDIN_4066FB55 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F2_EMPTY_STDIN_4066FB55","version":1,"value":""}
+2026-10-29T12:55:45.448Z API cross-check EMPTY_STDIN: status=200 exact=True
+2026-10-29T12:55:45.575Z CLI coffer secrets set F2_ONE_9904A704 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 127ms stdin=1B
+  out: Set F2_ONE_9904A704 (version 1)
+
+  err: 
+2026-10-29T12:55:45.575Z ASSERT ok   not(set ONE (1B stdin) rc=0)
+2026-10-29T12:55:45.691Z CLI coffer secrets get F2_ONE_9904A704 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 115ms stdin=0B
+  out: e
+  err: 
+2026-10-29T12:55:45.691Z ASSERT ok   not(get ONE: rc=0 len=1 want 1B exact)
+2026-10-29T12:55:45.696Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F2_ONE_9904A704 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F2_ONE_9904A704","version":1,"value":"e"}
+2026-10-29T12:55:45.697Z API cross-check ONE: status=200 exact=True
+2026-10-29T12:55:45.817Z CLI coffer secrets set F2_BIG_52A56062 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 120ms stdin=65536B
+  out: Set F2_BIG_52A56062 (version 1)
+
+  err: 
+2026-10-29T12:55:45.817Z ASSERT ok   not(set BIG (65536B stdin) rc=0)
+2026-10-29T12:55:45.940Z CLI coffer secrets get F2_BIG_52A56062 -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 122ms stdin=0B
+  out: «canary:F2:big»…[sha256=f8d51a705d3c7dc4e20e90b32fdb1206c5cad24c1b809c4ab8221097a45f0527 len=65536]
+  err: 
+2026-10-29T12:55:45.940Z ASSERT ok   not(get BIG: rc=0 len=65536 want 65536B exact)
+2026-10-29T12:55:45.946Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F2_BIG_52A56062 actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F2_BIG_52A56062","version":1,"value":"«canary:F2:big»"}…[sha256=32f4af86a5a4dc0a32b69064faeab665ae64fb18673f5b1af41ffb9b340a9936 len=65584]
+2026-10-29T12:55:45.946Z API cross-check BIG: status=200 exact=True
+2026-10-29T12:55:46.065Z CLI coffer secrets set F2_MULTI_F31B149F -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 119ms stdin=95B
+  out: Set F2_MULTI_F31B149F (version 1)
+
+  err: 
+2026-10-29T12:55:46.065Z ASSERT ok   not(set MULTI (95B stdin) rc=0)
+2026-10-29T12:55:46.182Z CLI coffer secrets get F2_MULTI_F31B149F -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 117ms stdin=0B
+  out: «canary:acme/api/dev/MULTI»
+  err: 
+2026-10-29T12:55:46.182Z ASSERT ok   not(get MULTI: rc=0 len=95 want 95B exact)
+2026-10-29T12:55:46.187Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F2_MULTI_F31B149F actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F2_MULTI_F31B149F","version":1,"value":"«canary:acme/api/dev/MULTI»"}
+2026-10-29T12:55:46.187Z API cross-check MULTI: status=200 exact=True
+2026-10-29T12:55:46.306Z CLI coffer secrets set F2_NL_B5FC211B -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=41B
+  out: Set F2_NL_B5FC211B (version 1)
+
+  err: 
+2026-10-29T12:55:46.306Z ASSERT ok   not(set NL (41B stdin) rc=0)
+2026-10-29T12:55:46.421Z CLI coffer secrets get F2_NL_B5FC211B -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 115ms stdin=0B
+  out: «canary:F2:nl»
+
+  err: 
+2026-10-29T12:55:46.421Z ASSERT ok   not(get NL: rc=0 len=41 want 41B exact)
+2026-10-29T12:55:46.426Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F2_NL_B5FC211B actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"key":"F2_NL_B5FC211B","version":1,"value":"«canary:F2:nl»\n"}
+2026-10-29T12:55:46.427Z API cross-check NL: status=200 exact=True
+2026-10-29T12:55:46.545Z CLI coffer secrets get MULTI -p api -e dev actor=writer@acme home=/home/grader1/work-r2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 118ms stdin=0B
+  out: «canary:acme/api/dev/MULTI»
+  err: 
+2026-10-29T12:55:46.545Z ASSERT ok   not(get fixture MULTI rc=0 exact=True)

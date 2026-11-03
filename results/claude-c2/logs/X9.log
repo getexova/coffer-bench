@@ -1,0 +1,247 @@
+2026-10-30T15:28:34.198Z HTTP GET /api/v1/me actor=owner@acme -> 200 3ms
+  req: 
+  resp: {"email":"owner@acme.test","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","must_change_password":false,"org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","role":"owner","type":"user"}
+
+2026-10-30T15:28:34.198Z ASSERT ok   not(GET /me owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.198Z ASSERT ok   not(GET /me owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.198Z ASSERT ok   not(GET /me owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.199Z CONTROL ok: GET /me owner (200)
+2026-10-30T15:28:34.201Z HTTP GET /api/v1/projects actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"prj_2qrwi6qi4dkplcplfvrzdaumocjgq5gh","slug":"api","created_at":"2026-10-30T15:24:45.761961Z"},{"id":"prj_uulioje5zzoofx7ozbauzd72qywhptai","slug":"f10-13fc2","created_at":"2026-10-30T15:24:55.029384Z"},{"id":"prj_ezwu7dvmvuvm35l433wbxuw5refd2me6","slug":"f3-1fe1c","created_at":"2026-10-30T15:24:53.591176Z"},{"id":"prj_4ag6nuxcckuiohljtqrcwumib3bd4ffm","slug":"f8-1dc57","created_at":"2026-10-30T15:24:54.649247Z"},{"id":"prj_gdtagw6x5xk6zpsuo4gmtfwcmrzmorqg","slug":"f9-18cc3","created_at":"2026-10-30T15:24:54.814291Z"},{"id":"prj_sbsjptm6umszn477xkb75znofmiyg6hb","slug":"s1-412bd","created_at":"2026-10-30T15:25:13.305164Z"},{"id":"prj_bqrqdshzhtxmize5gflknsr2xm3qibpj","slug":"s4-16fdbe","created_at":"2026-10-30T15:25:38.812911Z"},{"id":"prj_eyrzqjplwja2jtbqiji4pa5loraq2vd6","slug":"web","created_at":"2026-10-30T15:24:45.789858Z"}]
+
+2026-10-30T15:28:34.201Z ASSERT ok   not(GET /projects owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.201Z ASSERT ok   not(GET /projects owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.201Z ASSERT ok   not(GET /projects owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.202Z HTTP GET /api/v1/projects/api/envs actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"env_kbsj4uoxxnutcd5kyukejkcr4tt2dhrj","slug":"dev","protected":false,"created_at":"2026-10-30T15:24:45.772538Z"},{"id":"env_uyieigvpq2ofdzgozapa56hxvrwhv3mv","slug":"prod","protected":true,"created_at":"2026-10-30T15:24:45.781722Z"}]
+
+2026-10-30T15:28:34.202Z ASSERT ok   not(GET /projects/api/envs owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.203Z ASSERT ok   not(GET /projects/api/envs owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.203Z ASSERT ok   not(GET /projects/api/envs owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.204Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-30T15:24:45.867335Z","updated_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},{"key":"F17_PERSIST_D59A493A","version":2,"updated_at":"2026-10-30T15:24:57.379700Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_BIG_F37A6220","version":1,"updated_at":"2026-10-30T15:24:53.339447Z","updated_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"key":"F2_EMPTY_POS_D8F43BE3","version":1,"updated_at":"2026-10-30T15:24:53.271765Z","updated_by":"usr_ja7iipixewb7…[sha256=7f6957530c2128977addac9acc23229aa1fa702f495b7321d6311f9224fae7b1 len=4670]
+2026-10-30T15:28:34.205Z ASSERT ok   not(GET /projects/api/envs/dev/secrets owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.205Z ASSERT ok   not(GET /projects/api/envs/dev/secrets owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.205Z ASSERT ok   not(GET /projects/api/envs/dev/secrets owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.267Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 63ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:28:34.268Z ASSERT ok   not(GET /projects/api/envs/dev/secrets/CANARY owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.268Z ASSERT ok   not(GET /projects/api/envs/dev/secrets/CANARY owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.268Z ASSERT ok   not(GET /projects/api/envs/dev/secrets/CANARY owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.269Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY/versions actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:45.867335Z","created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"}]
+
+2026-10-30T15:28:34.269Z ASSERT ok   not(GET /projects/api/envs/dev/secrets/CANARY/versions owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.269Z ASSERT ok   not(GET /projects/api/envs/dev/secrets/CANARY/versions owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.269Z ASSERT ok   not(GET /projects/api/envs/dev/secrets/CANARY/versions owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.271Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"usr_qt2mfl6eo32re2mdx33zuuq2kjdzfmtq","email":"admin2@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.974970Z","grants":[]},{"id":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","email":"admin@acme.test","role":"admin","created_at":"2026-10-30T15:24:43.909703Z","grants":[]},{"id":"usr_7mcqbbw2pn2lloevs5befikvtxqueelh","email":"f10-2a82b@acme.test","role":"member","created_at":"2026-10-30T15:24:55.101257Z","grants":[{"project":"f10-13fc2","level":"reader"}]},{"id":"usr_5bqahud3p3qbb4hwotpfsgk5hvkg…[sha256=3fe424e0efa940f34d8e662fe3ffa2aefbc56728c6f8d9d2fa08d080ab66bfaf len=3206]
+2026-10-30T15:28:34.271Z ASSERT ok   not(GET /members owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.271Z ASSERT ok   not(GET /members owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.271Z ASSERT ok   not(GET /members owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.273Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"tok_p2kfpyx3yinjubsk5hlcs2quqaind5bv","name":"s17exp60","project":"api","env":"dev","access":"read","created_at":"2026-10-30T15:26:58.310617Z","expires_at":"2026-10-30T15:27:58.310617Z","revoked_at":null,"created_by":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b","last_used_at":"2026-10-30T15:26:58.317134Z"},{"id":"tok_rupbed25fghprob5njp4w5jl5nbwe4wi","name":"s17-3b9f8","project":"api","env":"dev","access":"read-write","created_at":"2026-10-30T15:26:58.286207Z","expires_at":"2026-10-30T16:26:58.286207Z","r…[sha256=6a95ebc210c2e21232d25269b109503c0330b3bb9ceec1d960c540afe7467a7e len=4039]
+2026-10-30T15:28:34.273Z ASSERT ok   not(GET /tokens owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.273Z ASSERT ok   not(GET /tokens owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.273Z ASSERT ok   not(GET /tokens owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.277Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg_cihb23lj4cevknec7l3c6mn72kfucmgm","project":"api","env":"prod","key":"JUNK_S15_1","op":"set","status":"rejected","proposed_by":"tok_n5gqrba67ofoatbp6a4wzw6mt4iefqmo","created_at":"2026-10-30T15:26:37.502069Z","decided_by":"usr_rs7i2je4vfkvhqnli3ohsacvkuskurzw","decided_at":"2026-10-30T15:26:37.516570Z","base_version":0,"rollback_to":null,"applied_version":null},{"id":"chg_25xglue6bztiwcdluujchz5gvmr7ugue","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","status":"approved","proposed_by…[sha256=d0d425f5f31336b23d2df6a15c0004bf5bd08851c83b22299398cc2577f387b6 len=25075]
+2026-10-30T15:28:34.277Z ASSERT ok   not(GET /changes owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.277Z ASSERT ok   not(GET /changes owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.277Z ASSERT ok   not(GET /changes owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.281Z HTTP GET /api/v1/audit actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"seq":1205,"ts":"2026-10-30T15:28:34.206260Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"secret.read","target":"api/dev/CANARY","source_ip":"10.89.0.15","result":"success","details":{"version":1},"prev_hash":"e98f164b8daee26df6c3f20a120ef55cdd8424b3f7c475a51d7955af5bfa25d9","hash":"e6a7dfbbe7456a18c344ae4069f4bb2c1594f26d21a55c1b0e52d3ed7cac116f"},{"seq":1204,"ts":"2026-10-30T15:28:34.076255Z","actor":{"type":"user","id":"usr_764cnv53gai3qsmtqqnstgooc6sz7r4b"},"action":"…[sha256=abd0bb06da5f54780622633dba46b0982f10bc4fa66692e92955adbe2d18f56b len=42082]
+2026-10-30T15:28:34.281Z ASSERT ok   not(GET /audit owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.281Z ASSERT ok   not(GET /audit owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.281Z ASSERT ok   not(GET /audit owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.293Z HTTP GET /api/v1/audit/verify actor=owner@acme -> 200 11ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+
+2026-10-30T15:28:34.293Z ASSERT ok   not(GET /audit/verify owner -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.293Z ASSERT ok   not(GET /audit/verify owner -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.293Z ASSERT ok   not(GET /audit/verify owner -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.356Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@acme -> 200 62ms
+  req: 
+  resp: {"CANARY":"«canary:acme/api/dev/CANARY»","F17_PERSIST_D59A493A":"«canary:F17:v2»","F2_BIG_F37A6220":"«canary:F2:big»","F2_EMPTY_POS_D8F43BE3":"","F2_EMPTY_STDIN_131CA018":"","F2_MULTI_50E8EF4A":"«canary:acme/api/dev/MULTI»","F2_NL_598FE677":"«canary:F2:nl»\n","F2_ONE_98B58392":"U","F3_MAX_82773D2C":"«canary:F3:max»","F4_HIST_2EF66BE8":"«canary:F4:v1»","F5_DEL_EF0C80FE":"«canary:F5:b»","F6_CAS_FD81F1B4":"«canary:F6:3»","F7_PAR_6CF4CACA":"«canary:F7:p0»","JUNK_S14_1":"s14b","JUNK_S14_2":"v1","JUNK_S18_3":"w1"…[sha256=ea9cd972c546ffc66ac78cfce2c8a8de896ba6892cd6bfcada1e30947f25847c len=132438]
+2026-10-30T15:28:34.357Z ASSERT ok   not(export json -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.357Z ASSERT ok   not(export json -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.357Z ASSERT ok   not(export json -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.423Z HTTP GET /api/v1/projects/api/envs/dev/export actor=owner@acme -> 200 65ms
+  req: 
+  resp: CANARY="«canary:acme/api/dev/CANARY»"
+F17_PERSIST_D59A493A="«canary:F17:v2»"
+F2_BIG_F37A6220="«canary:F2:big»"
+F2_EMPTY_POS_D8F43BE3=""
+F2_EMPTY_STDIN_131CA018=""
+F2_MULTI_50E8EF4A="«canary:multi_core»\"\\\$HOME\n\r\n😀qAYGTH3fmMibFvf7o2IWSHhomgNAgbzz5ivuuCMo"
+F2_NL_598FE677="«canary:F2:nl»\n"
+F2_ONE_98B58392="U"
+F3_MAX_82773D2C="«canary:F3:max»"
+F4_HIST_2EF66BE8="«canary:F4:v1»"
+F5_DEL_EF0C80FE="«canary:F5:b»"
+F6_CAS_FD81F1B4="«canary:F6:3»"
+F7_PAR_6CF4CACA="«canary:F7:p0»"
+JUNK_S14_1="s14b"
+JUNK_S14_2="v1…[sha256=ebb9b61d6b4f484fc4b4827931d8b6d19134c12e4c04efef0d0b717ab135d7ab len=132356]
+2026-10-30T15:28:34.423Z ASSERT ok   not(export dotenv -> 200: Content-Type 'text/plain; charset=utf-8')
+2026-10-30T15:28:34.423Z ASSERT ok   not(export dotenv -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.423Z ASSERT ok   not(export dotenv -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.425Z HTTP GET /api/v1/admin/orgs actor=root -> 200 2ms
+  req: 
+  resp: [{"id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","slug":"acme","disabled":false,"created_at":"2026-10-30T15:24:43.277446Z"},{"id":"org_vx52qjv4ol5vw65z3qaeqxr7tdplmvhl","slug":"globex","disabled":false,"created_at":"2026-10-30T15:24:43.332136Z"},{"id":"org_litjq2nbrrgb44ja2ply4z7l7ebhodq4","slug":"s12-180db","disabled":false,"created_at":"2026-10-30T15:26:19.302445Z"},{"id":"org_hg5qi3wa7huqj6frh4cxtnmpljqy6ve5","slug":"s19-1e715","disabled":true,"created_at":"2026-10-30T15:27:59.912539Z"},{"id":"org_omchbko6hm3bngwj4s52kfcb75j63wid","slug":"x18-7dfdcd","disabled":false,"created_at":"2026-10-30T15:25:11.578653Z"},{"id":"org_cshkmen3idhu5csoivft6bh7eklveful","slug":"x5-83a32","disabled":false,"created_at":"2026-10-30T15:28:06.981944Z"}]
+
+2026-10-30T15:28:34.425Z ASSERT ok   not(GET /admin/orgs root -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.425Z ASSERT ok   not(GET /admin/orgs root -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.425Z ASSERT ok   not(GET /admin/orgs root -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.427Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: [{"seq":63,"ts":"2026-10-30T15:28:07.920641Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:a9ed903c2fd4836a","source_ip":"10.89.0.13","result":"denied","details":{"reason":"locked"},"prev_hash":"17cf7d977d382fe5d3ac1b2cc007f178094f0ca0402f5a38afa0297a2847b3ad","hash":"4c8f596fdb7f84126a257767b2406cd662663abd052a7c93daeba55c6bb81e43"},{"seq":62,"ts":"2026-10-30T15:28:07.914953Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:a9ed903c2fd4836a","source_ip":"10.89.0.13","result":"denied","details":{"reason":"locked"},"prev_hash":"982a439faf7d58096b058a26bbed7c0f6000ba413cf9073b45454a75be8ad0ec","hash":"17cf7d977d382fe5d3ac1b2cc007f178094f0ca0402f5a38afa0297a2847b3ad"},{"seq":61,"ts":"2026-10-30T15:28:07.906119Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:a9ed903c2fd4836a","source_ip":"10.89.0.13","result":"failed","details":{},"prev_hash":"c8b16fed10cc9f85b9edddde936e19260a5343a930f8ab2deebd5a133e21e63a","hash":"982a439faf7d58096b058a26bbed7c0f6000ba413cf9073b45454a75be8ad0ec"},{"seq":60,"ts":"2026-10-30T15:28:07.857205Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:a9ed903c2fd4836a","source_ip":"10.89.0.13","result":"failed","details":{},"prev_hash":"10916a2b4eb2263c26ca294b108796d06adad43828a1519dd0b19a6052267293","hash":"c8b16fed10cc9f85b9edddde936e19260a5343a930f8ab2deebd5a133e21e63a"},{"seq":59,"ts":"2026-10-30T15:28:07.807634Z","actor":{"type":"anonymous","id":""},"action":"auth.login","target":"email:a9ed903c2fd4836a","source_ip":"10.89.0.13","result":"failed","details":{},"prev_hash":"af45436d15edb68ed17a4547e0def6264b9ba1c581b380bad8d112e5fa0496f1","hash":"10916a2b4eb2263c26ca294b108796d06adad43828a1519dd0b19a6052267293"}]
+
+2026-10-30T15:28:34.427Z ASSERT ok   not(GET /admin/audit root -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.427Z ASSERT ok   not(GET /admin/audit root -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.427Z ASSERT ok   not(GET /admin/audit root -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.470Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X9_1 actor=owner@acme -> 200 43ms
+  req: {"value": "R8YitpC2IeKCn14zg5Xc"}
+  resp: {"version":1}
+
+2026-10-30T15:28:34.470Z ASSERT ok   not(PUT junk -> 200: Content-Type 'application/json')
+2026-10-30T15:28:34.471Z ASSERT ok   not(PUT junk -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.471Z ASSERT ok   not(PUT junk -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:34.474Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X9_1 actor=owner@acme -> 409 3ms
+  req: {"value": "iUBE7fQd9BrYFTOAUy5t", "expected_version": 99}
+  resp: {"error":{"code":"conflict","message":"expected_version does not match the current version"}}
+2026-10-30T15:28:34.474Z ASSERT ok   not(PUT junk stale expected_version -> 409: Content-Type 'application/json')
+2026-10-30T15:28:34.474Z ASSERT ok   not(PUT junk stale expected_version -> 409: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.474Z ASSERT ok   not(PUT junk stale expected_version -> 409: Cache-Control 'no-store')
+2026-10-30T15:28:34.606Z HTTP POST /api/v1/projects actor=owner@acme -> 201 131ms
+  req: {"slug": "x9-24d1d"}
+  resp: {"id":"prj_edozicjs7o3ahqxej2xzraxsq5crtixm","slug":"x9-24d1d","created_at":"2026-10-30T15:28:34.475467Z"}
+
+2026-10-30T15:28:34.742Z HTTP POST /api/v1/projects/x9-24d1d/envs actor=owner@acme -> 201 136ms
+  req: {"slug": "prot", "protected": true}
+  resp: {"id":"env_gynssdvdgisfsfp7vhfi7d7hab3j552p","slug":"prot","protected":true,"created_at":"2026-10-30T15:28:34.608066Z"}
+
+2026-10-30T15:28:34.847Z HTTP PUT /api/v1/projects/x9-24d1d/envs/prot/secrets/JUNK_X9_3 actor=owner@acme -> 202 105ms
+  req: {"value": "WqTjtQHj7CpXBs90yZzn"}
+  resp: {"change_id":"chg_essk7alz3pcexugimjhg7iqv6mgebrso","status":"pending"}
+
+2026-10-30T15:28:34.848Z ASSERT ok   not(PUT protected junk (202) -> 202: Content-Type 'application/json')
+2026-10-30T15:28:34.848Z ASSERT ok   not(PUT protected junk (202) -> 202: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.848Z ASSERT ok   not(PUT protected junk (202) -> 202: Cache-Control 'no-store')
+2026-10-30T15:28:34.935Z HTTP POST /api/v1/projects actor=owner@acme -> 201 87ms
+  req: {"slug": "x9-41f4d"}
+  resp: {"id":"prj_tak5s5bcv6jfrhwnzmc4kfoovvloyxch","slug":"x9-41f4d","created_at":"2026-10-30T15:28:34.850201Z"}
+
+2026-10-30T15:28:34.935Z ASSERT ok   not(POST /projects (201) -> 201: Content-Type 'application/json')
+2026-10-30T15:28:34.935Z ASSERT ok   not(POST /projects (201) -> 201: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:34.935Z ASSERT ok   not(POST /projects (201) -> 201: Cache-Control 'no-store')
+2026-10-30T15:28:35.003Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=viewer@acme -> 403 68ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-30T15:28:35.003Z ASSERT ok   not(viewer GET value -> 403: Content-Type 'application/json')
+2026-10-30T15:28:35.003Z ASSERT ok   not(viewer GET value -> 403: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.004Z ASSERT ok   not(viewer GET value -> 403: Cache-Control 'no-store')
+2026-10-30T15:28:35.198Z HTTP GET /api/v1/projects/zz-absent-74c23aad/envs actor=owner@acme -> 404 194ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.198Z ASSERT ok   not(absent project -> 404: Content-Type 'application/json')
+2026-10-30T15:28:35.198Z ASSERT ok   not(absent project -> 404: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.198Z ASSERT ok   not(absent project -> 404: Cache-Control 'no-store')
+2026-10-30T15:28:35.199Z HTTP GET /api/v1/projects actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:35.199Z ASSERT ok   not(anon GET /projects -> 401: Content-Type 'application/json')
+2026-10-30T15:28:35.199Z ASSERT ok   not(anon GET /projects -> 401: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.199Z ASSERT ok   not(anon GET /projects -> 401: Cache-Control 'no-store')
+2026-10-30T15:28:35.200Z HTTP GET /api/v1/projects actor=anon -> 401 1ms
+  req: 
+  resp: {"error":{"code":"unauthenticated","message":"authentication required"}}
+2026-10-30T15:28:35.200Z ASSERT ok   not(bad bearer -> 401: Content-Type 'application/json')
+2026-10-30T15:28:35.200Z ASSERT ok   not(bad bearer -> 401: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.200Z ASSERT ok   not(bad bearer -> 401: Cache-Control 'no-store')
+2026-10-30T15:28:35.302Z HTTP POST /api/v1/auth/token actor=anon -> 401 102ms
+  req: {"email": "nouser-spswrnqo@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:35.303Z ASSERT ok   not(bad login -> 401: Content-Type 'application/json')
+2026-10-30T15:28:35.303Z ASSERT ok   not(bad login -> 401: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.303Z ASSERT ok   not(bad login -> 401: Cache-Control 'no-store')
+2026-10-30T15:28:35.305Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X9_5 actor=owner@acme -> 400 2ms
+  req: {"value": "x"
+  resp: {"error":{"code":"validation","message":"invalid JSON"}}
+2026-10-30T15:28:35.305Z ASSERT ok   not(malformed JSON -> 400: Content-Type 'application/json')
+2026-10-30T15:28:35.305Z ASSERT ok   not(malformed JSON -> 400: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.305Z ASSERT ok   not(malformed JSON -> 400: Cache-Control 'no-store')
+2026-10-30T15:28:35.306Z HTTP POST /api/v1/auth/token actor=anon -> 400 1ms
+  req: {not json
+  resp: {"error":{"code":"validation","message":"invalid JSON"}}
+2026-10-30T15:28:35.306Z ASSERT ok   not(malformed JSON login -> 400: Content-Type 'application/json')
+2026-10-30T15:28:35.306Z ASSERT ok   not(malformed JSON login -> 400: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.306Z ASSERT ok   not(malformed JSON login -> 400: Cache-Control 'no-store')
+2026-10-30T15:28:35.310Z RAW PUT /api/v1/projects/api/envs/dev/secrets/JUNK_X9_6 -> 413 1ms err=None body={"error":{"code":"payload_too_large","message":"request body too large"}}
+2026-10-30T15:28:35.310Z ASSERT ok   not(2 MiB PUT (413) -> 413: Content-Type 'application/json')
+2026-10-30T15:28:35.310Z ASSERT ok   not(2 MiB PUT (413) -> 413: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.310Z ASSERT ok   not(2 MiB PUT (413) -> 413: Cache-Control 'no-store')
+2026-10-30T15:28:35.311Z HTTP PATCH /api/v1/projects actor=owner@acme -> 405 1ms
+  req: {}
+  resp: {"error":{"code":"method_not_allowed","message":"method not allowed"}}
+2026-10-30T15:28:35.311Z ASSERT ok   not(wrong method -> 405: Content-Type 'application/json')
+2026-10-30T15:28:35.311Z ASSERT ok   not(wrong method -> 405: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.311Z ASSERT ok   not(wrong method -> 405: Cache-Control 'no-store')
+2026-10-30T15:28:35.312Z HTTP GET /api/v1/nope-d33gwq actor=owner@acme -> 404 1ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-30T15:28:35.312Z ASSERT ok   not(unknown /api/v1 route -> 404: Content-Type 'application/json')
+2026-10-30T15:28:35.312Z ASSERT ok   not(unknown /api/v1 route -> 404: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.312Z ASSERT ok   not(unknown /api/v1 route -> 404: Cache-Control 'no-store')
+2026-10-30T15:28:35.313Z HTTP OPTIONS /api/v1/projects actor=anon -> 405 1ms
+  req: 
+  resp: {"error":{"code":"method_not_allowed","message":"method not allowed"}}
+2026-10-30T15:28:35.313Z ASSERT ok   not(OPTIONS preflight /projects -> 405: Content-Type 'application/json')
+2026-10-30T15:28:35.313Z ASSERT ok   not(OPTIONS preflight /projects -> 405: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.313Z ASSERT ok   not(OPTIONS preflight /projects -> 405: Cache-Control 'no-store')
+2026-10-30T15:28:35.313Z ASSERT ok   not(preflight /projects -> 405: Access-Control-Allow-Origin None)
+2026-10-30T15:28:35.313Z ASSERT ok   not(preflight /projects: Access-Control-Allow-Credentials None)
+2026-10-30T15:28:35.314Z HTTP OPTIONS /api/v1/projects/api/envs/dev/secrets/CANARY actor=anon -> 405 0ms
+  req: 
+  resp: {"error":{"code":"method_not_allowed","message":"method not allowed"}}
+2026-10-30T15:28:35.314Z ASSERT ok   not(OPTIONS preflight secret -> 405: Content-Type 'application/json')
+2026-10-30T15:28:35.314Z ASSERT ok   not(OPTIONS preflight secret -> 405: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.314Z ASSERT ok   not(OPTIONS preflight secret -> 405: Cache-Control 'no-store')
+2026-10-30T15:28:35.314Z ASSERT ok   not(preflight secret -> 405: Access-Control-Allow-Origin None)
+2026-10-30T15:28:35.314Z ASSERT ok   not(preflight secret: Access-Control-Allow-Credentials None)
+2026-10-30T15:28:35.370Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=owner@acme -> 200 56ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+
+2026-10-30T15:28:35.370Z ASSERT ok   not(GET secret with Origin -> 200: Content-Type 'application/json')
+2026-10-30T15:28:35.370Z ASSERT ok   not(GET secret with Origin -> 200: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.370Z ASSERT ok   not(GET secret with Origin -> 200: Cache-Control 'no-store')
+2026-10-30T15:28:35.371Z ASSERT ok   not(GET secret with Origin -> 200: Access-Control-Allow-Origin None)
+2026-10-30T15:28:35.371Z ASSERT ok   not(GET secret with Origin: Access-Control-Allow-Credentials None)
+2026-10-30T15:28:35.501Z HTTP POST /api/v1/auth/token actor=anon -> 401 131ms
+  req: {"email": "nouser@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:28:35.502Z ASSERT ok   not(POST /auth/token with Origin -> 401: Content-Type 'application/json')
+2026-10-30T15:28:35.502Z ASSERT ok   not(POST /auth/token with Origin -> 401: X-Content-Type-Options 'nosniff')
+2026-10-30T15:28:35.502Z ASSERT ok   not(POST /auth/token with Origin -> 401: Cache-Control 'no-store')
+2026-10-30T15:28:35.502Z ASSERT ok   not(POST /auth/token with Origin -> 401: Access-Control-Allow-Origin None)
+2026-10-30T15:28:35.502Z ASSERT ok   not(POST /auth/token with Origin: Access-Control-Allow-Credentials None)
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 202 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 400 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 401 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 403 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 404 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 409 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z ASSERT ok   not(status 413 never elicited (seen [200, 201, 202, 400, 401, 403, 404, 405, 409, 413]))
+2026-10-30T15:28:35.502Z X9 statuses seen: {200: 17, 201: 1, 202: 1, 400: 2, 401: 4, 403: 1, 404: 2, 405: 3, 409: 1, 413: 1}

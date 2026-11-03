@@ -1,0 +1,414 @@
+2026-10-29T12:56:53.694Z HTTP GET /api/v1/me actor=writer@acme -> 200 4ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"writer@acme.test","id":"usr_36d0d9963bd156b5caddacec","must_change_password":false}}
+2026-10-29T12:56:53.694Z CONTROL ok: writer@acme GET /me (200)
+2026-10-29T12:56:53.696Z HTTP GET /api/v1/me actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"reader@acme.test","id":"usr_6e86cc0773114aea3459def6","must_change_password":false}}
+2026-10-29T12:56:53.696Z CONTROL ok: reader@acme GET /me (200)
+2026-10-29T12:56:53.697Z HTTP GET /api/v1/me actor=viewer@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"viewer@acme.test","id":"usr_554c11ae7f1f108a03ed204b","must_change_password":false}}
+2026-10-29T12:56:53.697Z CONTROL ok: viewer@acme GET /me (200)
+2026-10-29T12:56:53.698Z HTTP GET /api/v1/me actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"nogrant@acme.test","id":"usr_18850c3d628afc43eb072844","must_change_password":false}}
+2026-10-29T12:56:53.698Z CONTROL ok: nogrant@acme GET /me (200)
+2026-10-29T12:56:53.699Z HTTP GET /api/v1/me actor=admin@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"admin","user":{"email":"admin@acme.test","id":"usr_b5e9134f655c5825fa5df3b8","must_change_password":false}}
+2026-10-29T12:56:53.699Z CONTROL ok: admin@acme GET /me (200)
+2026-10-29T12:56:53.700Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","email":"f18-f83a9441@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:58.852362Z"},{"id":"usr_18850c3d628afc43eb072844","email":"nogrant@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.603785Z"},{"id":"usr_493b9b638f8b78d524ce5e65","email":"owner@acme.test","role":"owner","must_change_password":false,"created_at":"2026-10-29T12:55:28.775207Z"},{"id":"usr_6e86cc0773114aea3459def6","email":"reader@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.237160Z"},{"id":"usr_7fdf2b64e640b52a77e9e81d","email":"s4-181d36@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:23.111783Z"},{"id":"usr_cca8bf5c2862175a33a4191b","email":"s4-838b1@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:22.693019Z"},{"id":"usr_554c11ae7f1f108a03ed204b","email":"viewer@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.425265Z"},{"id":"usr_36d0d9963bd156b5caddacec","email":"writer@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:31.033571Z"},{"id":"usr_8b7a08a3fb67f78f228eddb8","email":"x17-1dcd7@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:44.009182Z"},{"id":"usr_46349db5849c31be2e060ef9","email":"x18-2579ad8c@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:56:08.169929Z"}]}
+2026-10-29T12:56:53.700Z CONTROL ok: owner GET /members (200)
+2026-10-29T12:56:53.767Z HTTP POST /api/v1/members actor=owner@acme -> 201 65ms
+  req: {"email": "s13-1441b@acme.test", "role": "member", "password": "«pw0:s13-1441b@acme»"}
+  resp: {"member":{"id":"usr_843bf2bccc3a32d2207a8131","email":"s13-1441b@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:56:53.761487Z"}}
+2026-10-29T12:56:53.768Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=0c6209978b360abb4963a4fdbfb032433d008093a6be039546ed044ac2e60650 len=2174]
+2026-10-29T12:56:53.852Z HTTP POST /api/v1/auth/token actor=anon -> 200 83ms
+  req: {"email": "s13-1441b@acme.test", "password": "«pw0:s13-1441b@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_843bf2bccc3a32d2207a8131","email":"s13-1441b@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:56:53.855Z HTTP GET /api/v1/projects actor=s13-1441b@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:56:53.984Z HTTP POST /api/v1/auth/password actor=s13-1441b@acme -> 200 127ms
+  req: {"current_password": "«pw0:s13-1441b@acme»", "new_password": "«pw:s13-1441b@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:56:54.066Z HTTP POST /api/v1/auth/token actor=anon -> 200 82ms
+  req: {"email": "s13-1441b@acme.test", "password": "«pw:s13-1441b@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_843bf2bccc3a32d2207a8131","email":"s13-1441b@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:56:54.069Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=5417daf9a30e632e6cc0bf1b1c5625fb510bd179380acf82713d2028a74c5706 len=2175]
+2026-10-29T12:56:54.072Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"tokens":[{"access":"read","created_at":"2026-10-29T12:56:23.160922Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:56:23.160922Z","id":"tok_e71f4bb9c105a47be8647bc7","name":"s4-195b2d","project":"api","project_id":"prj_9b5ed80f66b6e14db5e07a4d","revoked_at":null},{"access":"read","created_at":"2026-10-29T12:56:22.583280Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:56:22.583280Z","id":"tok_74c4c1db6cd0940527169934","name…[sha256=709cabbcf330f4f539f46423cfc3c4d39d77efc8f333b9a46948db83d90bb42e len=3084]
+2026-10-29T12:56:54.075Z HTTP GET /api/v1/changes actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.076Z HTTP GET /api/v1/admin/orgs actor=root -> 200 1ms
+  req: 
+  resp: {"organizations":[{"created_at":"2026-10-29T12:55:28.775207Z","disabled_at":null,"id":"org_8df0928f40cb031f276861d9","slug":"acme"},{"created_at":"2026-10-29T12:55:28.961355Z","disabled_at":null,"id":"org_cff856527a2510452eca28eb","slug":"globex"},{"created_at":"2026-10-29T12:56:08.932294Z","disabled_at":null,"id":"org_0eb322e9b262aecf3164ded1","slug":"x18-6b6ef8"},{"created_at":"2026-10-29T12:56:51.717687Z","disabled_at":null,"id":"org_816ab8b8de1fca39965c87de","slug":"s12-1aa72"}]}
+2026-10-29T12:56:54.078Z HTTP GET /api/v1/me actor=writer@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"writer@acme.test","id":"usr_36d0d9963bd156b5caddacec","must_change_password":false}}
+2026-10-29T12:56:54.079Z HTTP GET /api/v1/projects actor=writer@acme -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:35.999463Z","id":"prj_9b5ed80f66b6e14db5e07a4d","slug":"api"}]}
+2026-10-29T12:56:54.083Z HTTP GET /api/v1/members actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.087Z HTTP GET /api/v1/audit actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.092Z HTTP GET /api/v1/tokens actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.094Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=writer@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=f9a314384db268e917b1790d79755d396ba23e6ddb46be6e2eb51d78a7710448 len=4016]
+2026-10-29T12:56:54.099Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=writer@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:54.103Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=writer@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.105Z HTTP GET /api/v1/changes actor=writer@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.107Z HTTP GET /api/v1/me actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"reader@acme.test","id":"usr_6e86cc0773114aea3459def6","must_change_password":false}}
+2026-10-29T12:56:54.108Z HTTP GET /api/v1/projects actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:35.999463Z","id":"prj_9b5ed80f66b6e14db5e07a4d","slug":"api"}]}
+2026-10-29T12:56:54.112Z HTTP GET /api/v1/members actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.116Z HTTP GET /api/v1/audit actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.121Z HTTP GET /api/v1/tokens actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.122Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=f9a314384db268e917b1790d79755d396ba23e6ddb46be6e2eb51d78a7710448 len=4016]
+2026-10-29T12:56:54.127Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=reader@acme -> 200 5ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:54.131Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=reader@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.134Z HTTP GET /api/v1/changes actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.135Z HTTP GET /api/v1/me actor=viewer@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"viewer@acme.test","id":"usr_554c11ae7f1f108a03ed204b","must_change_password":false}}
+2026-10-29T12:56:54.136Z HTTP GET /api/v1/projects actor=viewer@acme -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:35.999463Z","id":"prj_9b5ed80f66b6e14db5e07a4d","slug":"api"}]}
+2026-10-29T12:56:54.140Z HTTP GET /api/v1/members actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.145Z HTTP GET /api/v1/audit actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.149Z HTTP GET /api/v1/tokens actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.151Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=viewer@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=f9a314384db268e917b1790d79755d396ba23e6ddb46be6e2eb51d78a7710448 len=4016]
+2026-10-29T12:56:54.155Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:54.159Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=viewer@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.162Z HTTP GET /api/v1/changes actor=viewer@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.163Z HTTP GET /api/v1/me actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"nogrant@acme.test","id":"usr_18850c3d628afc43eb072844","must_change_password":false}}
+2026-10-29T12:56:54.164Z HTTP GET /api/v1/projects actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: {"projects":[]}
+2026-10-29T12:56:54.168Z HTTP GET /api/v1/members actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.172Z HTTP GET /api/v1/audit actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.176Z HTTP GET /api/v1/tokens actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.181Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.185Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.190Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=nogrant@acme -> 404 5ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.191Z HTTP GET /api/v1/changes actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: []
+2026-10-29T12:56:54.191Z S13 snapshot keys: ['admin_orgs', 'api_dev_list:nogrant@acme', 'api_dev_list:reader@acme', 'api_dev_list:viewer@acme', 'api_dev_list:writer@acme', 'api_dev_value:nogrant@acme', 'api_dev_value:reader@acme', 'api_dev_value:viewer@acme', 'api_dev_value:writer@acme', 'audit_route:nogrant@acme', 'audit_route:reader@acme', 'audit_route:viewer@acme', 'audit_route:writer@acme', 'changes', 'changes_route:nogrant@acme', 'changes_route:reader@acme', 'changes_route:viewer@acme', 'changes_route:writer@acme', 'me:nogrant@acme', 'me:reader@acme', 'me:viewer@acme', 'me:writer@acme', 'members', 'members_route:nogrant@acme', 'members_route:reader@acme', 'members_route:viewer@acme', 'members_route:writer@acme', 'projects:nogrant@acme', 'projects:reader@acme', 'projects:viewer@acme', 'projects:writer@acme', 'tokens', 'tokens_route:nogrant@acme', 'tokens_route:reader@acme', 'tokens_route:viewer@acme', 'tokens_route:writer@acme', 'web_dev_list:nogrant@acme', 'web_dev_list:reader@acme', 'web_dev_list:viewer@acme', 'web_dev_list:writer@acme']
+2026-10-29T12:56:54.201Z HTTP PATCH /api/v1/members/usr_36d0d9963bd156b5caddacec actor=writer@acme -> 403 5ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.201Z S13 rejected: writer@acme PATCH /members/usr_36d0d9963bd156b5caddacec ['role'] -> 403
+2026-10-29T12:56:54.206Z HTTP PATCH /api/v1/members/usr_36d0d9963bd156b5caddacec actor=writer@acme -> 403 4ms
+  req: {"role": "admin", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.206Z S13 rejected: writer@acme PATCH /members/usr_36d0d9963bd156b5caddacec ['is_platform_admin', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.210Z HTTP PATCH /api/v1/members/usr_36d0d9963bd156b5caddacec actor=writer@acme -> 403 4ms
+  req: {"is_platform_admin": true, "org_id": "org_cff856527a2510452eca28eb", "level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.210Z S13 rejected: writer@acme PATCH /members/usr_36d0d9963bd156b5caddacec ['is_platform_admin', 'level', 'org_id'] -> 403
+2026-10-29T12:56:54.215Z HTTP PUT /api/v1/members/usr_36d0d9963bd156b5caddacec/grants/api actor=writer@acme -> 403 4ms
+  req: {"level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.215Z S13 rejected: writer@acme PUT /members/usr_36d0d9963bd156b5caddacec/grants/api ['level', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.219Z HTTP PUT /api/v1/members/usr_36d0d9963bd156b5caddacec/grants/web actor=writer@acme -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.219Z S13 rejected: writer@acme PUT /members/usr_36d0d9963bd156b5caddacec/grants/web ['level'] -> 403
+2026-10-29T12:56:54.224Z HTTP POST /api/v1/members actor=writer@acme -> 403 4ms
+  req: {"email": "s13-esc-912831b1@acme.test", "role": "owner", "password": "«pw:s13-esc»", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.224Z S13 rejected: writer@acme POST /members ['email', 'is_platform_admin', 'org_id', 'password', 'role'] -> 403
+2026-10-29T12:56:54.228Z HTTP POST /api/v1/tokens actor=writer@acme -> 403 4ms
+  req: {"project": "api", "env": "prod", "access": "read-write", "ttl_seconds": 600, "name": "s13-esc", "level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.228Z S13 rejected: writer@acme POST /tokens ['access', 'env', 'is_platform_admin', 'level', 'name', 'org_id', 'project', 'role', 'ttl_seconds'] -> 403
+2026-10-29T12:56:54.232Z HTTP PATCH /api/v1/members/usr_6e86cc0773114aea3459def6 actor=reader@acme -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.232Z S13 rejected: reader@acme PATCH /members/usr_6e86cc0773114aea3459def6 ['role'] -> 403
+2026-10-29T12:56:54.237Z HTTP PATCH /api/v1/members/usr_6e86cc0773114aea3459def6 actor=reader@acme -> 403 5ms
+  req: {"role": "admin", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.237Z S13 rejected: reader@acme PATCH /members/usr_6e86cc0773114aea3459def6 ['is_platform_admin', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.242Z HTTP PATCH /api/v1/members/usr_6e86cc0773114aea3459def6 actor=reader@acme -> 403 4ms
+  req: {"is_platform_admin": true, "org_id": "org_cff856527a2510452eca28eb", "level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.242Z S13 rejected: reader@acme PATCH /members/usr_6e86cc0773114aea3459def6 ['is_platform_admin', 'level', 'org_id'] -> 403
+2026-10-29T12:56:54.246Z HTTP PUT /api/v1/members/usr_6e86cc0773114aea3459def6/grants/api actor=reader@acme -> 403 4ms
+  req: {"level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.247Z S13 rejected: reader@acme PUT /members/usr_6e86cc0773114aea3459def6/grants/api ['level', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.251Z HTTP PUT /api/v1/members/usr_6e86cc0773114aea3459def6/grants/web actor=reader@acme -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.251Z S13 rejected: reader@acme PUT /members/usr_6e86cc0773114aea3459def6/grants/web ['level'] -> 403
+2026-10-29T12:56:54.255Z HTTP POST /api/v1/members actor=reader@acme -> 403 4ms
+  req: {"email": "s13-esc-0fe0e786@acme.test", "role": "owner", "password": "«pw:s13-esc»", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.255Z S13 rejected: reader@acme POST /members ['email', 'is_platform_admin', 'org_id', 'password', 'role'] -> 403
+2026-10-29T12:56:54.260Z HTTP POST /api/v1/tokens actor=reader@acme -> 403 5ms
+  req: {"project": "api", "env": "prod", "access": "read-write", "ttl_seconds": 600, "name": "s13-esc", "level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.260Z S13 rejected: reader@acme POST /tokens ['access', 'env', 'is_platform_admin', 'level', 'name', 'org_id', 'project', 'role', 'ttl_seconds'] -> 403
+2026-10-29T12:56:54.265Z HTTP PATCH /api/v1/members/usr_554c11ae7f1f108a03ed204b actor=viewer@acme -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.265Z S13 rejected: viewer@acme PATCH /members/usr_554c11ae7f1f108a03ed204b ['role'] -> 403
+2026-10-29T12:56:54.269Z HTTP PATCH /api/v1/members/usr_554c11ae7f1f108a03ed204b actor=viewer@acme -> 403 4ms
+  req: {"role": "admin", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.269Z S13 rejected: viewer@acme PATCH /members/usr_554c11ae7f1f108a03ed204b ['is_platform_admin', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.274Z HTTP PATCH /api/v1/members/usr_554c11ae7f1f108a03ed204b actor=viewer@acme -> 403 4ms
+  req: {"is_platform_admin": true, "org_id": "org_cff856527a2510452eca28eb", "level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.274Z S13 rejected: viewer@acme PATCH /members/usr_554c11ae7f1f108a03ed204b ['is_platform_admin', 'level', 'org_id'] -> 403
+2026-10-29T12:56:54.278Z HTTP PUT /api/v1/members/usr_554c11ae7f1f108a03ed204b/grants/api actor=viewer@acme -> 403 4ms
+  req: {"level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.278Z S13 rejected: viewer@acme PUT /members/usr_554c11ae7f1f108a03ed204b/grants/api ['level', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.282Z HTTP PUT /api/v1/members/usr_554c11ae7f1f108a03ed204b/grants/web actor=viewer@acme -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.282Z S13 rejected: viewer@acme PUT /members/usr_554c11ae7f1f108a03ed204b/grants/web ['level'] -> 403
+2026-10-29T12:56:54.287Z HTTP POST /api/v1/members actor=viewer@acme -> 403 4ms
+  req: {"email": "s13-esc-53ee5d19@acme.test", "role": "owner", "password": "«pw:s13-esc»", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.287Z S13 rejected: viewer@acme POST /members ['email', 'is_platform_admin', 'org_id', 'password', 'role'] -> 403
+2026-10-29T12:56:54.291Z HTTP POST /api/v1/tokens actor=viewer@acme -> 403 4ms
+  req: {"project": "api", "env": "prod", "access": "read-write", "ttl_seconds": 600, "name": "s13-esc", "level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.292Z S13 rejected: viewer@acme POST /tokens ['access', 'env', 'is_platform_admin', 'level', 'name', 'org_id', 'project', 'role', 'ttl_seconds'] -> 403
+2026-10-29T12:56:54.296Z HTTP PATCH /api/v1/members/usr_18850c3d628afc43eb072844 actor=nogrant@acme -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.296Z S13 rejected: nogrant@acme PATCH /members/usr_18850c3d628afc43eb072844 ['role'] -> 403
+2026-10-29T12:56:54.301Z HTTP PATCH /api/v1/members/usr_18850c3d628afc43eb072844 actor=nogrant@acme -> 403 4ms
+  req: {"role": "admin", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.301Z S13 rejected: nogrant@acme PATCH /members/usr_18850c3d628afc43eb072844 ['is_platform_admin', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.305Z HTTP PATCH /api/v1/members/usr_18850c3d628afc43eb072844 actor=nogrant@acme -> 403 4ms
+  req: {"is_platform_admin": true, "org_id": "org_cff856527a2510452eca28eb", "level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.305Z S13 rejected: nogrant@acme PATCH /members/usr_18850c3d628afc43eb072844 ['is_platform_admin', 'level', 'org_id'] -> 403
+2026-10-29T12:56:54.310Z HTTP PUT /api/v1/members/usr_18850c3d628afc43eb072844/grants/api actor=nogrant@acme -> 403 4ms
+  req: {"level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.310Z S13 rejected: nogrant@acme PUT /members/usr_18850c3d628afc43eb072844/grants/api ['level', 'org_id', 'role'] -> 403
+2026-10-29T12:56:54.314Z HTTP PUT /api/v1/members/usr_18850c3d628afc43eb072844/grants/web actor=nogrant@acme -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.314Z S13 rejected: nogrant@acme PUT /members/usr_18850c3d628afc43eb072844/grants/web ['level'] -> 403
+2026-10-29T12:56:54.318Z HTTP POST /api/v1/members actor=nogrant@acme -> 403 4ms
+  req: {"email": "s13-esc-d32f02dd@acme.test", "role": "owner", "password": "«pw:s13-esc»", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.318Z S13 rejected: nogrant@acme POST /members ['email', 'is_platform_admin', 'org_id', 'password', 'role'] -> 403
+2026-10-29T12:56:54.323Z HTTP POST /api/v1/tokens actor=nogrant@acme -> 403 4ms
+  req: {"project": "api", "env": "prod", "access": "read-write", "ttl_seconds": 600, "name": "s13-esc", "level": "writer", "role": "owner", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.323Z S13 rejected: nogrant@acme POST /tokens ['access', 'env', 'is_platform_admin', 'level', 'name', 'org_id', 'project', 'role', 'ttl_seconds'] -> 403
+2026-10-29T12:56:54.328Z HTTP PATCH /api/v1/members/usr_b5e9134f655c5825fa5df3b8 actor=admin@acme -> 403 5ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.328Z S13 rejected: admin@acme PATCH /members/usr_b5e9134f655c5825fa5df3b8 ['role'] -> 403
+2026-10-29T12:56:54.329Z HTTP PATCH /api/v1/members/usr_b5e9134f655c5825fa5df3b8 actor=admin@acme -> 400 1ms
+  req: {"role": "admin", "org_id": "org_cff856527a2510452eca28eb", "is_platform_admin": true}
+  resp: {"error":{"code":"validation_error","message":"request body is not valid JSON"}}
+2026-10-29T12:56:54.329Z S13 rejected: admin@acme PATCH /members/usr_b5e9134f655c5825fa5df3b8 ['is_platform_admin', 'org_id', 'role'] -> 400
+2026-10-29T12:56:54.331Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=5417daf9a30e632e6cc0bf1b1c5625fb510bd179380acf82713d2028a74c5706 len=2175]
+2026-10-29T12:56:54.332Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"tokens":[{"access":"read","created_at":"2026-10-29T12:56:23.160922Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:56:23.160922Z","id":"tok_e71f4bb9c105a47be8647bc7","name":"s4-195b2d","project":"api","project_id":"prj_9b5ed80f66b6e14db5e07a4d","revoked_at":null},{"access":"read","created_at":"2026-10-29T12:56:22.583280Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:56:22.583280Z","id":"tok_74c4c1db6cd0940527169934","name…[sha256=709cabbcf330f4f539f46423cfc3c4d39d77efc8f333b9a46948db83d90bb42e len=3084]
+2026-10-29T12:56:54.335Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.337Z HTTP GET /api/v1/admin/orgs actor=root -> 200 1ms
+  req: 
+  resp: {"organizations":[{"created_at":"2026-10-29T12:55:28.775207Z","disabled_at":null,"id":"org_8df0928f40cb031f276861d9","slug":"acme"},{"created_at":"2026-10-29T12:55:28.961355Z","disabled_at":null,"id":"org_cff856527a2510452eca28eb","slug":"globex"},{"created_at":"2026-10-29T12:56:08.932294Z","disabled_at":null,"id":"org_0eb322e9b262aecf3164ded1","slug":"x18-6b6ef8"},{"created_at":"2026-10-29T12:56:51.717687Z","disabled_at":null,"id":"org_816ab8b8de1fca39965c87de","slug":"s12-1aa72"}]}
+2026-10-29T12:56:54.338Z HTTP GET /api/v1/me actor=writer@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"writer@acme.test","id":"usr_36d0d9963bd156b5caddacec","must_change_password":false}}
+2026-10-29T12:56:54.339Z HTTP GET /api/v1/projects actor=writer@acme -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:35.999463Z","id":"prj_9b5ed80f66b6e14db5e07a4d","slug":"api"}]}
+2026-10-29T12:56:54.343Z HTTP GET /api/v1/members actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.347Z HTTP GET /api/v1/audit actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.352Z HTTP GET /api/v1/tokens actor=writer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.353Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=writer@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=f9a314384db268e917b1790d79755d396ba23e6ddb46be6e2eb51d78a7710448 len=4016]
+2026-10-29T12:56:54.358Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=writer@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:54.362Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=writer@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.365Z HTTP GET /api/v1/changes actor=writer@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.366Z HTTP GET /api/v1/me actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"reader@acme.test","id":"usr_6e86cc0773114aea3459def6","must_change_password":false}}
+2026-10-29T12:56:54.367Z HTTP GET /api/v1/projects actor=reader@acme -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:35.999463Z","id":"prj_9b5ed80f66b6e14db5e07a4d","slug":"api"}]}
+2026-10-29T12:56:54.371Z HTTP GET /api/v1/members actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.376Z HTTP GET /api/v1/audit actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.380Z HTTP GET /api/v1/tokens actor=reader@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.381Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=f9a314384db268e917b1790d79755d396ba23e6ddb46be6e2eb51d78a7710448 len=4016]
+2026-10-29T12:56:54.386Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=reader@acme -> 200 4ms
+  req: 
+  resp: {"key":"CANARY","version":1,"value":"«canary:acme/api/dev/CANARY»"}
+2026-10-29T12:56:54.390Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=reader@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.392Z HTTP GET /api/v1/changes actor=reader@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.393Z HTTP GET /api/v1/me actor=viewer@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"viewer@acme.test","id":"usr_554c11ae7f1f108a03ed204b","must_change_password":false}}
+2026-10-29T12:56:54.394Z HTTP GET /api/v1/projects actor=viewer@acme -> 200 1ms
+  req: 
+  resp: {"projects":[{"created_at":"2026-10-29T12:55:35.999463Z","id":"prj_9b5ed80f66b6e14db5e07a4d","slug":"api"}]}
+2026-10-29T12:56:54.399Z HTTP GET /api/v1/members actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.403Z HTTP GET /api/v1/audit actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.407Z HTTP GET /api/v1/tokens actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.409Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=viewer@acme -> 200 1ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=f9a314384db268e917b1790d79755d396ba23e6ddb46be6e2eb51d78a7710448 len=4016]
+2026-10-29T12:56:54.413Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=viewer@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:56:54.417Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=viewer@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.420Z HTTP GET /api/v1/changes actor=viewer@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg914fdafffb39141a3372814c","project":"api","env":"prod","key":"JUNK_S10_8","op":"set","base_version":0,"status":"approved","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29T12:56:42.324736Z","resolved_at":"2026-10-29T12:56:42.660504Z","resolver_id":"usr_fa24e22d79e206bccdc776ff"},{"id":"chg2c5bad665b567cba74cf6b13","project":"api","env":"prod","key":"JUNK_S10_7","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_493b9b638f8b78d524ce5e65","created_at":"2026-10-29…[sha256=f7140641cd6e4fa7d4555e667b99f764a4e46e3c18f9666eea2eec90cad122e4 len=20640]
+2026-10-29T12:56:54.421Z HTTP GET /api/v1/me actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: {"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"},"role":"member","user":{"email":"nogrant@acme.test","id":"usr_18850c3d628afc43eb072844","must_change_password":false}}
+2026-10-29T12:56:54.422Z HTTP GET /api/v1/projects actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: {"projects":[]}
+2026-10-29T12:56:54.426Z HTTP GET /api/v1/members actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.430Z HTTP GET /api/v1/audit actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.434Z HTTP GET /api/v1/tokens actor=nogrant@acme -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:56:54.439Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.443Z HTTP GET /api/v1/projects/api/envs/dev/secrets/CANARY actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.447Z HTTP GET /api/v1/projects/web/envs/dev/secrets actor=nogrant@acme -> 404 4ms
+  req: 
+  resp: {"error":{"code":"not_found","message":"not found"}}
+2026-10-29T12:56:54.448Z HTTP GET /api/v1/changes actor=nogrant@acme -> 200 1ms
+  req: 
+  resp: []
+2026-10-29T12:56:54.449Z ASSERT ok   not(state identical after 30 attempts (0 returned 2xx))
+2026-10-29T12:56:54.454Z HTTP PATCH /api/v1/members/usr_843bf2bccc3a32d2207a8131 actor=owner@acme -> 200 5ms
+  req: {"role": "admin"}
+  resp: {"member":{"id":"usr_843bf2bccc3a32d2207a8131","email":"s13-1441b@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:56:53.761487Z"}}
+2026-10-29T12:56:54.454Z CONTROL ok: owner PATCH scratch member -> admin (200)
+2026-10-29T12:56:54.455Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=50b774a18d5535ae48c6e72554873cb537d89382671084c26d66d584146d1b38 len=2174]
+2026-10-29T12:56:54.985Z pg_dumpall pre-rollback-S13 -> rc=0 0007-S13-pre-rollback-S13.sql
+2026-10-29T12:56:55.059Z sweep_snapshot pre-rollback-S13: dump=0007-S13-pre-rollback-S13.sql logs=2
+2026-10-29T12:57:00Z [runner] rollback: ok

@@ -1,0 +1,83 @@
+{
+  "started": "2026-10-29T12:53:45.486593Z",
+  "failed_at": null,
+  "static_ok": true,
+  "clone_rc": 0,
+  "commit": "b5426446177dd2d3f5284be88ddd3951100ce35b",
+  "compose": [
+    "podman",
+    "compose"
+  ],
+  "compose_version": "podman-compose version 1.6.0",
+  "init_env_rc": 0,
+  "env_keys": [
+    "COFFER_ALLOW_DEGRADED_DB_ROLE",
+    "COFFER_APP_DB_PASSWORD",
+    "COFFER_BIND_ADDR",
+    "COFFER_BOOTSTRAP_ADMIN_EMAIL",
+    "COFFER_BOOTSTRAP_ADMIN_PASSWORD",
+    "COFFER_DB_HOST",
+    "COFFER_DB_MAX_CONNS",
+    "COFFER_DB_MIN_CONNS",
+    "COFFER_DB_PORT",
+    "COFFER_DB_SSLMODE",
+    "COFFER_ENV",
+    "COFFER_MASTER_KEY",
+    "COFFER_MASTER_KEY_PREVIOUS",
+    "COFFER_MIGRATION_DATABASE_URL",
+    "COFFER_PORT",
+    "COFFER_TRUST_PROXY",
+    "DATABASE_URL",
+    "POSTGRES_DB",
+    "POSTGRES_PASSWORD",
+    "POSTGRES_USER"
+  ],
+  "port": 8420,
+  "base_url": "http://127.0.0.1:8420",
+  "build_rc": 0,
+  "build_ms": 53577,
+  "bin_ok": true,
+  "env_prep": {
+    "engine": "podman",
+    "image": "docker.io/library/postgres:16",
+    "images_before": [
+      "docker.io/library/postgres:16 74d436cb49d3",
+      "(total images: 2)"
+    ],
+    "alias_file": "/home/grader1/.config/containers/registries.conf.d/000-coffer-grade-postgres.conf",
+    "pull_rc_1": 0,
+    "pull_rc": 0,
+    "images_after": [
+      "docker.io/library/postgres:16 74d436cb49d3",
+      "(total images: 2)"
+    ],
+    "control_create_rc": 0,
+    "control_err": ""
+  },
+  "image_store": [
+    "docker.io/library/postgres:16 74d436cb49d3",
+    "(total images: 2)"
+  ],
+  "port_busy_before_up": false,
+  "up_rc": 0,
+  "up_ms": 47491,
+  "readyz_status": 200,
+  "containers": {
+    "db": "7829af2b3a79",
+    "server": "4123e2477105"
+  },
+  "compose_file": true,
+  "proxy_url": "http://127.0.0.1:18420",
+  "proxy_pid": 222457,
+  "root_login_status": 200,
+  "cli": {
+    "json_position": "front",
+    "bin": "/home/grader1/work-r2/repo/bin/coffer",
+    "ok": true,
+    "login_rc": 0,
+    "tried": {
+      "front": 0
+    }
+  },
+  "finished": "2026-10-29T12:55:28.236450Z"
+}

@@ -1,0 +1,402 @@
+2026-10-29T12:57:02.287Z HTTP POST /api/v1/members actor=owner@acme -> 201 113ms
+  req: {"email": "s16-13acc@acme.test", "role": "member", "password": "«pw0:s16-13acc@acme»"}
+  resp: {"member":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:57:02.279570Z"}}
+2026-10-29T12:57:02.289Z HTTP GET /api/v1/members actor=owner@acme -> 200 2ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=90dbd2be0b45b0530e97aaa49fb53d3a9b87f7e942c034b06392ff268a3dd7a5 len=2174]
+2026-10-29T12:57:02.362Z HTTP POST /api/v1/auth/token actor=anon -> 200 73ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw0:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"member","must_change_password":true,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:02.365Z HTTP GET /api/v1/projects actor=s16-13acc@acme -> 403 1ms
+  req: 
+  resp: {"error":{"code":"password_change_required","message":"password change required: call POST /api/v1/auth/password (coffer passwd) first"}}
+2026-10-29T12:57:02.497Z HTTP POST /api/v1/auth/password actor=s16-13acc@acme -> 200 130ms
+  req: {"current_password": "«pw0:s16-13acc@acme»", "new_password": "«pw:s16-13acc@acme»"}
+  resp: {"password_changed":true,"revoked_tokens":0}
+2026-10-29T12:57:02.573Z HTTP POST /api/v1/auth/token actor=anon -> 200 76ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:02.576Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_dev_r -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:57:02.577Z CONTROL ok: T_dev_r works in scope (200)
+2026-10-29T12:57:02.582Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_2 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_2"}
+  resp: {"status":"pending","change_id":"chg5fc2590700f817a3710444f2"}
+2026-10-29T12:57:02.586Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_3 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_3"}
+  resp: {"status":"pending","change_id":"chg8a80e6aaa33b5df86f2a1a22"}
+2026-10-29T12:57:02.592Z HTTP POST /api/v1/changes/chg8a80e6aaa33b5df86f2a1a22/approve actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chg8a80e6aaa33b5df86f2a1a22","status":"approved","key":"JUNK_S16_3","version":1}
+2026-10-29T12:57:02.592Z CONTROL ok: T_dev_r approve change (200)
+2026-10-29T12:57:02.596Z HTTP POST /api/v1/changes/chg5fc2590700f817a3710444f2/approve actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:02.596Z ASSERT ok   not(T_dev_r approve change: denied 403)
+2026-10-29T12:57:02.599Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg8a80e6aaa33b5df86f2a1a22","project":"api","env":"prod","key":"JUNK_S16_3","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:57:02.583138Z","resolved_at":"2026-10-29T12:57:02.587982Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg5fc2590700f817a3710444f2","project":"api","env":"prod","key":"JUNK_S16_2","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T…[sha256=429b03343d405ffcf7a85927e5ade1638c6eef263f945982be58b44eb860ccea len=21480]
+2026-10-29T12:57:02.599Z ASSERT ok   not(T_dev_r approve: change chg5fc2590700f817a3710444f2 status 'pending' after denied approve (want pending))
+2026-10-29T12:57:02.604Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_4 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_4"}
+  resp: {"status":"pending","change_id":"chg2feae6bef55c9db8505400bf"}
+2026-10-29T12:57:02.608Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_5 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_5"}
+  resp: {"status":"pending","change_id":"chge8de82e3b7409a5f8930fb6e"}
+2026-10-29T12:57:02.613Z HTTP POST /api/v1/changes/chge8de82e3b7409a5f8930fb6e/reject actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chge8de82e3b7409a5f8930fb6e","status":"rejected","key":"JUNK_S16_5"}
+2026-10-29T12:57:02.613Z CONTROL ok: T_dev_r reject change (200)
+2026-10-29T12:57:02.618Z HTTP POST /api/v1/changes/chg2feae6bef55c9db8505400bf/reject actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:02.618Z ASSERT ok   not(T_dev_r reject change: denied 403)
+2026-10-29T12:57:02.620Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chge8de82e3b7409a5f8930fb6e","project":"api","env":"prod","key":"JUNK_S16_5","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:57:02.605021Z","resolved_at":"2026-10-29T12:57:02.609962Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg2feae6bef55c9db8505400bf","project":"api","env":"prod","key":"JUNK_S16_4","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T…[sha256=bdfeb68ae1372c59e47c785471ef3986c8f868fe7f14a1a24b1d58f5ce54251b len=22010]
+2026-10-29T12:57:02.620Z ASSERT ok   not(T_dev_r reject: change chg2feae6bef55c9db8505400bf status 'pending' after denied reject (want pending))
+2026-10-29T12:57:02.622Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=d73864736d3a8e98cfa802a26b0855d341456e55284b31a7bf6a46dc85893465 len=2175]
+2026-10-29T12:57:02.622Z CONTROL ok: T_dev_r GET /members (200)
+2026-10-29T12:57:02.626Z HTTP GET /api/v1/members actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.626Z ASSERT ok   not(T_dev_r GET /members: denied 403)
+2026-10-29T12:57:02.714Z HTTP POST /api/v1/members actor=owner@acme -> 201 86ms
+  req: {"email": "s16-0ebfe999@acme.test", "role": "member", "password": "«pw:s16-m»"}
+  resp: {"member":{"id":"usr_e39da4fdcc2ea2b6023d3ba6","email":"s16-0ebfe999@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:57:02.708379Z"}}
+2026-10-29T12:57:02.714Z CONTROL ok: T_dev_r POST /members (201)
+2026-10-29T12:57:02.720Z HTTP POST /api/v1/members actor=T_dev_r -> 403 5ms
+  req: {"email": "s16-8df7cb92@acme.test", "role": "member", "password": "«pw:s16-m»"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.720Z ASSERT ok   not(T_dev_r POST /members: denied 403)
+2026-10-29T12:57:02.726Z HTTP PATCH /api/v1/members/usr_ba9a1e783db50d783c1e78e6 actor=owner@acme -> 200 5ms
+  req: {"role": "admin"}
+  resp: {"member":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:57:02.279570Z"}}
+2026-10-29T12:57:02.726Z CONTROL ok: T_dev_r PATCH member (200)
+2026-10-29T12:57:02.730Z HTTP PATCH /api/v1/members/usr_ba9a1e783db50d783c1e78e6 actor=T_dev_r -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.730Z ASSERT ok   not(T_dev_r PATCH member: denied 403)
+2026-10-29T12:57:02.735Z HTTP PUT /api/v1/members/usr_ba9a1e783db50d783c1e78e6/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"grant":{"level":"viewer","project":"api","user_id":"usr_ba9a1e783db50d783c1e78e6"}}
+2026-10-29T12:57:02.735Z CONTROL ok: T_dev_r PUT grant (200)
+2026-10-29T12:57:02.739Z HTTP PUT /api/v1/members/usr_ba9a1e783db50d783c1e78e6/grants/api actor=T_dev_r -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.739Z ASSERT ok   not(T_dev_r PUT grant: denied 403)
+2026-10-29T12:57:02.741Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"tokens":[{"access":"read","created_at":"2026-10-29T12:56:23.160922Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:56:23.160922Z","id":"tok_e71f4bb9c105a47be8647bc7","name":"s4-195b2d","project":"api","project_id":"prj_9b5ed80f66b6e14db5e07a4d","revoked_at":null},{"access":"read","created_at":"2026-10-29T12:56:22.583280Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:56:22.583280Z","id":"tok_74c4c1db6cd0940527169934","name…[sha256=709cabbcf330f4f539f46423cfc3c4d39d77efc8f333b9a46948db83d90bb42e len=3084]
+2026-10-29T12:57:02.741Z CONTROL ok: T_dev_r GET /tokens (200)
+2026-10-29T12:57:02.746Z HTTP GET /api/v1/tokens actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.746Z ASSERT ok   not(T_dev_r GET /tokens: denied 403)
+2026-10-29T12:57:02.751Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:02.747274Z","id":"tok_40e0f4b739c5b07205e043bf","name":"s16","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:02.752Z CONTROL ok: T_dev_r POST /tokens (201)
+2026-10-29T12:57:02.757Z HTTP POST /api/v1/tokens actor=T_dev_r -> 403 4ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.757Z ASSERT ok   not(T_dev_r POST /tokens: denied 403)
+2026-10-29T12:57:02.762Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16-6e277"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:02.758190Z","id":"tok_cd25b4d9716cb92d7f44296f","name":"s16-6e277","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:02.768Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16-78237"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:02.764556Z","id":"tok_42a50ca81a5159086e614e2b","name":"s16-78237","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:02.774Z HTTP DELETE /api/v1/tokens/tok_42a50ca81a5159086e614e2b actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"revoked":true}
+2026-10-29T12:57:02.774Z CONTROL ok: T_dev_r DELETE /tokens/id (200)
+2026-10-29T12:57:02.778Z HTTP DELETE /api/v1/tokens/tok_cd25b4d9716cb92d7f44296f actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.778Z ASSERT ok   not(T_dev_r DELETE /tokens/id: denied 403)
+2026-10-29T12:57:02.782Z HTTP GET /api/v1/audit actor=admin@acme -> 200 2ms
+  req: 
+  resp: {"events":[{"seq":1171,"timestamp":"2026-10-29T12:57:02.774738Z","actor":"tok_87cda107d3c46e2d276ef86b","action":"denied","target":"tokens","source_ip":"10.89.0.7","result":"denied","prev_hash":"22d37a2e718a8223440c17f3126e1ad874b94dad69c16572afba0fe5846f8849","hash":"ce99772647c35650c7a801ebd90aa7e65e898b7e0663e78b8860cafec1344734"},{"seq":1170,"timestamp":"2026-10-29T12:57:02.770724Z","actor":"pat_e1838de443ff8e3af9ef6c96","action":"token.revoked","target":"token/tok_42a50ca81a5159086e614e2b","source_ip":…[sha256=2dfc6bda7fb4af86fab4313fe746cd51ca2f54b1578c0569d9fcbda10eea98e6 len=37099]
+2026-10-29T12:57:02.782Z CONTROL ok: T_dev_r GET /audit (200)
+2026-10-29T12:57:02.786Z HTTP GET /api/v1/audit actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.786Z ASSERT ok   not(T_dev_r GET /audit: denied 403)
+2026-10-29T12:57:02.792Z HTTP GET /api/v1/audit/verify actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+2026-10-29T12:57:02.792Z CONTROL ok: T_dev_r GET /audit/verify (200)
+2026-10-29T12:57:02.796Z HTTP GET /api/v1/audit/verify actor=T_dev_r -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:02.796Z ASSERT ok   not(T_dev_r GET /audit/verify: denied 403)
+2026-10-29T12:57:02.875Z HTTP POST /api/v1/auth/token actor=anon -> 200 79ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"admin","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:02.876Z CONTROL ok: valid login without bearer (200)
+2026-10-29T12:57:02.955Z HTTP POST /api/v1/auth/token actor=T_dev_r -> 200 79ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"admin","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:02.957Z S16 T_dev_r /auth/token with bearer: status=200 pat_issued=True
+2026-10-29T12:57:02.957Z HARNESS ERROR: T_dev_r POST /auth/token with service-token bearer + valid creds -> 200 and a PAT: route ignores the bearer (unauthenticated by SPEC); review, not graded
+2026-10-29T12:57:02.959Z HTTP GET /api/v1/projects/api/envs/dev/secrets actor=T_dev_rw -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.289735Z","updated_by":"usr_493b9b638f8b78d524ce5e65"},{"key":"F17_PERSIST_CC9191E0","version":2,"updated_at":"2026-10-29T12:56:00.122813Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_BIG_52A56062","version":1,"updated_at":"2026-10-29T12:55:45.806825Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F2_EMPTY_POS_54786955","version":1,"updated_at":"2026-10-29T12:55:45.073405Z","updated_by":"usr_36d0d9963bd156b5caddacec"},{"key":"F…[sha256=39496e8d3fe6faa2286668e41242e13abe3b20fdabef193501a8c3c25a1c61f9 len=4256]
+2026-10-29T12:57:02.959Z CONTROL ok: T_dev_rw works in scope (200)
+2026-10-29T12:57:02.964Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_8 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_8"}
+  resp: {"status":"pending","change_id":"chg8080f0e00c89317c5b216179"}
+2026-10-29T12:57:02.968Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_9 actor=writer@acme -> 202 4ms
+  req: {"value": "s16-JUNK_S16_9"}
+  resp: {"status":"pending","change_id":"chgec1cb375b68a1663231a54f4"}
+2026-10-29T12:57:02.974Z HTTP POST /api/v1/changes/chgec1cb375b68a1663231a54f4/approve actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chgec1cb375b68a1663231a54f4","status":"approved","key":"JUNK_S16_9","version":1}
+2026-10-29T12:57:02.974Z CONTROL ok: T_dev_rw approve change (200)
+2026-10-29T12:57:02.978Z HTTP POST /api/v1/changes/chg8080f0e00c89317c5b216179/approve actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:02.978Z ASSERT ok   not(T_dev_rw approve change: denied 403)
+2026-10-29T12:57:02.980Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chgec1cb375b68a1663231a54f4","project":"api","env":"prod","key":"JUNK_S16_9","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:57:02.965135Z","resolved_at":"2026-10-29T12:57:02.969842Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg8080f0e00c89317c5b216179","project":"api","env":"prod","key":"JUNK_S16_8","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T…[sha256=19f4aa7095540b9876eab2eb42ffb3aebb257c3ad775fad16d0f48068fba298a len=22540]
+2026-10-29T12:57:02.981Z ASSERT ok   not(T_dev_rw approve: change chg8080f0e00c89317c5b216179 status 'pending' after denied approve (want pending))
+2026-10-29T12:57:02.985Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_10 actor=writer@acme -> 202 4ms
+  req: {"value": "s16-JUNK_S16_10"}
+  resp: {"status":"pending","change_id":"chgaab980e79a9a0d4c931cba37"}
+2026-10-29T12:57:02.990Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_11 actor=writer@acme -> 202 4ms
+  req: {"value": "s16-JUNK_S16_11"}
+  resp: {"status":"pending","change_id":"chg9ee9fe0aa0c07215f1ca9d73"}
+2026-10-29T12:57:02.994Z HTTP POST /api/v1/changes/chg9ee9fe0aa0c07215f1ca9d73/reject actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chg9ee9fe0aa0c07215f1ca9d73","status":"rejected","key":"JUNK_S16_11"}
+2026-10-29T12:57:02.994Z CONTROL ok: T_dev_rw reject change (200)
+2026-10-29T12:57:02.998Z HTTP POST /api/v1/changes/chgaab980e79a9a0d4c931cba37/reject actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:02.999Z ASSERT ok   not(T_dev_rw reject change: denied 403)
+2026-10-29T12:57:03.001Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg9ee9fe0aa0c07215f1ca9d73","project":"api","env":"prod","key":"JUNK_S16_11","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:57:02.986352Z","resolved_at":"2026-10-29T12:57:02.99089Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chgaab980e79a9a0d4c931cba37","project":"api","env":"prod","key":"JUNK_S16_10","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29…[sha256=0a5346f4085a5ee35bf28e71d7e50fd07b28d23d08d58d4a2e0d5cc89bdc42df len=23071]
+2026-10-29T12:57:03.002Z ASSERT ok   not(T_dev_rw reject: change chgaab980e79a9a0d4c931cba37 status 'pending' after denied reject (want pending))
+2026-10-29T12:57:03.003Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=7aa57d6c7983fe5be7cbf2856a699f5e04e27108cd525b82e23c5a8a57674015 len=2332]
+2026-10-29T12:57:03.003Z CONTROL ok: T_dev_rw GET /members (200)
+2026-10-29T12:57:03.007Z HTTP GET /api/v1/members actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.007Z ASSERT ok   not(T_dev_rw GET /members: denied 403)
+2026-10-29T12:57:03.080Z HTTP POST /api/v1/members actor=owner@acme -> 201 71ms
+  req: {"email": "s16-ce58b6e1@acme.test", "role": "member", "password": "«pw:s16-m»"}
+  resp: {"member":{"id":"usr_90581948f069921040bfadd8","email":"s16-ce58b6e1@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:57:03.075441Z"}}
+2026-10-29T12:57:03.080Z CONTROL ok: T_dev_rw POST /members (201)
+2026-10-29T12:57:03.086Z HTTP POST /api/v1/members actor=T_dev_rw -> 403 5ms
+  req: {"email": "s16-aa57a419@acme.test", "role": "member", "password": "«pw:s16-m»"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.086Z ASSERT ok   not(T_dev_rw POST /members: denied 403)
+2026-10-29T12:57:03.091Z HTTP PATCH /api/v1/members/usr_ba9a1e783db50d783c1e78e6 actor=owner@acme -> 200 5ms
+  req: {"role": "member"}
+  resp: {"member":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:57:02.279570Z"}}
+2026-10-29T12:57:03.091Z CONTROL ok: T_dev_rw PATCH member (200)
+2026-10-29T12:57:03.096Z HTTP PATCH /api/v1/members/usr_ba9a1e783db50d783c1e78e6 actor=T_dev_rw -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.096Z ASSERT ok   not(T_dev_rw PATCH member: denied 403)
+2026-10-29T12:57:03.101Z HTTP PUT /api/v1/members/usr_ba9a1e783db50d783c1e78e6/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "reader"}
+  resp: {"grant":{"level":"reader","project":"api","user_id":"usr_ba9a1e783db50d783c1e78e6"}}
+2026-10-29T12:57:03.101Z CONTROL ok: T_dev_rw PUT grant (200)
+2026-10-29T12:57:03.105Z HTTP PUT /api/v1/members/usr_ba9a1e783db50d783c1e78e6/grants/api actor=T_dev_rw -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.105Z ASSERT ok   not(T_dev_rw PUT grant: denied 403)
+2026-10-29T12:57:03.107Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"tokens":[{"access":"read","created_at":"2026-10-29T12:57:02.764556Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:07:02.764556Z","id":"tok_42a50ca81a5159086e614e2b","name":"s16-78237","project":"api","project_id":"prj_9b5ed80f66b6e14db5e07a4d","revoked_at":"2026-10-29T12:57:02.770517Z"},{"access":"read","created_at":"2026-10-29T12:57:02.758190Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:07:02.758190Z","id":"tok_cd25b4…[sha256=fa850e57734330fa8008c7ed913126e93e227c0ae5f658c05517bfb3c78bde7a len=3994]
+2026-10-29T12:57:03.107Z CONTROL ok: T_dev_rw GET /tokens (200)
+2026-10-29T12:57:03.111Z HTTP GET /api/v1/tokens actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.111Z ASSERT ok   not(T_dev_rw GET /tokens: denied 403)
+2026-10-29T12:57:03.117Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:03.112849Z","id":"tok_399fbe1ebc3075c298a49d4d","name":"s16","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:03.118Z CONTROL ok: T_dev_rw POST /tokens (201)
+2026-10-29T12:57:03.122Z HTTP POST /api/v1/tokens actor=T_dev_rw -> 403 4ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.122Z ASSERT ok   not(T_dev_rw POST /tokens: denied 403)
+2026-10-29T12:57:03.127Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16-129286"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:03.123671Z","id":"tok_7a9869abd5efd52af3e47c6e","name":"s16-129286","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:03.134Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16-132805"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:03.129918Z","id":"tok_59816248c385f8bcf529c93b","name":"s16-132805","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:03.139Z HTTP DELETE /api/v1/tokens/tok_59816248c385f8bcf529c93b actor=owner@acme -> 200 4ms
+  req: 
+  resp: {"revoked":true}
+2026-10-29T12:57:03.140Z CONTROL ok: T_dev_rw DELETE /tokens/id (200)
+2026-10-29T12:57:03.144Z HTTP DELETE /api/v1/tokens/tok_7a9869abd5efd52af3e47c6e actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.144Z ASSERT ok   not(T_dev_rw DELETE /tokens/id: denied 403)
+2026-10-29T12:57:03.148Z HTTP GET /api/v1/audit actor=admin@acme -> 200 2ms
+  req: 
+  resp: {"events":[{"seq":1198,"timestamp":"2026-10-29T12:57:03.140612Z","actor":"tok_2e1a67f0957d8e6d629f148b","action":"denied","target":"tokens","source_ip":"10.89.0.7","result":"denied","prev_hash":"e99abf919bd6600f9763e14ee183069db0b2ca726c1bfc6bb08e211b3191c885","hash":"1e7df702e9b1f978829bf9e959c3181cef8e449c7d0fa5637625a6cba941aa13"},{"seq":1197,"timestamp":"2026-10-29T12:57:03.136392Z","actor":"pat_e1838de443ff8e3af9ef6c96","action":"token.revoked","target":"token/tok_59816248c385f8bcf529c93b","source_ip":…[sha256=72f6b00e1dd8eb02748cd7267f2e2a48b7ad8e31f28f9dda9f768edf8c701838 len=36351]
+2026-10-29T12:57:03.148Z CONTROL ok: T_dev_rw GET /audit (200)
+2026-10-29T12:57:03.152Z HTTP GET /api/v1/audit actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.152Z ASSERT ok   not(T_dev_rw GET /audit: denied 403)
+2026-10-29T12:57:03.158Z HTTP GET /api/v1/audit/verify actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+2026-10-29T12:57:03.158Z CONTROL ok: T_dev_rw GET /audit/verify (200)
+2026-10-29T12:57:03.162Z HTTP GET /api/v1/audit/verify actor=T_dev_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.162Z ASSERT ok   not(T_dev_rw GET /audit/verify: denied 403)
+2026-10-29T12:57:03.239Z HTTP POST /api/v1/auth/token actor=anon -> 200 77ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:03.241Z CONTROL ok: valid login without bearer (200)
+2026-10-29T12:57:03.322Z HTTP POST /api/v1/auth/token actor=T_dev_rw -> 200 81ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"member","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:03.324Z S16 T_dev_rw /auth/token with bearer: status=200 pat_issued=True
+2026-10-29T12:57:03.324Z HARNESS ERROR: T_dev_rw POST /auth/token with service-token bearer + valid creds -> 200 and a PAT: route ignores the bearer (unauthenticated by SPEC); review, not graded
+2026-10-29T12:57:03.326Z HTTP GET /api/v1/projects/api/envs/prod/secrets actor=T_prod_rw -> 200 2ms
+  req: 
+  resp: [{"key":"CANARY","version":1,"updated_at":"2026-10-29T12:55:37.779192Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F12_PROT_BD032AFE","version":1,"updated_at":"2026-10-29T12:55:54.717212Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F13_REJ_09BCA637","version":1,"updated_at":"2026-10-29T12:55:55.345252Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14_STALEAPI_512A84DA","version":1,"updated_at":"2026-10-29T12:55:56.335464Z","updated_by":"usr_b5e9134f655c5825fa5df3b8"},{"key":"F14…[sha256=63133244802a99191009e4b993aebd628d595a4f1c3c0bdbe4461c5fa28610e8 len=3502]
+2026-10-29T12:57:03.326Z CONTROL ok: T_prod_rw works in scope (200)
+2026-10-29T12:57:03.331Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_14 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_14"}
+  resp: {"status":"pending","change_id":"chg3ea1b2fb58f67ac08a38324a"}
+2026-10-29T12:57:03.336Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_15 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_15"}
+  resp: {"status":"pending","change_id":"chg0a3405c32374a582648e4384"}
+2026-10-29T12:57:03.342Z HTTP POST /api/v1/changes/chg0a3405c32374a582648e4384/approve actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"id":"chg0a3405c32374a582648e4384","status":"approved","key":"JUNK_S16_15","version":1}
+2026-10-29T12:57:03.342Z CONTROL ok: T_prod_rw approve change (200)
+2026-10-29T12:57:03.346Z HTTP POST /api/v1/changes/chg3ea1b2fb58f67ac08a38324a/approve actor=T_prod_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:03.347Z ASSERT ok   not(T_prod_rw approve change: denied 403)
+2026-10-29T12:57:03.349Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chg0a3405c32374a582648e4384","project":"api","env":"prod","key":"JUNK_S16_15","op":"set","base_version":0,"status":"approved","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:57:03.332598Z","resolved_at":"2026-10-29T12:57:03.337661Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chg3ea1b2fb58f67ac08a38324a","project":"api","env":"prod","key":"JUNK_S16_14","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-2…[sha256=cd4fdc8bcb878a8ec6aac027b3e4cf144ba8cb4add374d42113172f685ead989 len=23603]
+2026-10-29T12:57:03.350Z ASSERT ok   not(T_prod_rw approve: change chg3ea1b2fb58f67ac08a38324a status 'pending' after denied approve (want pending))
+2026-10-29T12:57:03.354Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_16 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_16"}
+  resp: {"status":"pending","change_id":"chgfcb083ce923a25bc62c32d68"}
+2026-10-29T12:57:03.359Z HTTP PUT /api/v1/projects/api/envs/prod/secrets/JUNK_S16_17 actor=writer@acme -> 202 5ms
+  req: {"value": "s16-JUNK_S16_17"}
+  resp: {"status":"pending","change_id":"chgf1f37c16ebcabc8998a8b2b1"}
+2026-10-29T12:57:03.364Z HTTP POST /api/v1/changes/chgf1f37c16ebcabc8998a8b2b1/reject actor=admin@acme -> 200 5ms
+  req: 
+  resp: {"id":"chgf1f37c16ebcabc8998a8b2b1","status":"rejected","key":"JUNK_S16_17"}
+2026-10-29T12:57:03.364Z CONTROL ok: T_prod_rw reject change (200)
+2026-10-29T12:57:03.368Z HTTP POST /api/v1/changes/chgfcb083ce923a25bc62c32d68/reject actor=T_prod_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"forbidden"}}
+2026-10-29T12:57:03.368Z ASSERT ok   not(T_prod_rw reject change: denied 403)
+2026-10-29T12:57:03.371Z HTTP GET /api/v1/changes actor=owner@acme -> 200 1ms
+  req: 
+  resp: [{"id":"chgf1f37c16ebcabc8998a8b2b1","project":"api","env":"prod","key":"JUNK_S16_17","op":"set","base_version":0,"status":"rejected","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-29T12:57:03.355677Z","resolved_at":"2026-10-29T12:57:03.360448Z","resolver_id":"usr_b5e9134f655c5825fa5df3b8"},{"id":"chgfcb083ce923a25bc62c32d68","project":"api","env":"prod","key":"JUNK_S16_16","op":"set","base_version":0,"status":"pending","proposer_id":"usr_36d0d9963bd156b5caddacec","created_at":"2026-10-2…[sha256=16df234d89c50925087a98bfd1304e5a3667e9e2b777e46ae292d25a71f70c5b len=24135]
+2026-10-29T12:57:03.371Z ASSERT ok   not(T_prod_rw reject: change chgfcb083ce923a25bc62c32d68 status 'pending' after denied reject (want pending))
+2026-10-29T12:57:03.373Z HTTP GET /api/v1/members actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"members":[{"id":"usr_fa24e22d79e206bccdc776ff","email":"admin2@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.834387Z"},{"id":"usr_b5e9134f655c5825fa5df3b8","email":"admin@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:55:30.619009Z"},{"id":"usr_1e4672fc8ca0226448d0c991","email":"f10-22d0b@acme.test","role":"member","must_change_password":false,"created_at":"2026-10-29T12:55:52.839032Z"},{"id":"usr_3b947b63f4fa7f3f46ad504f","ema…[sha256=9df0c280c8b36870f7b6ff9dff99d1f1e05e4a97fdc2b334062f4b6eb844775b len=2491]
+2026-10-29T12:57:03.373Z CONTROL ok: T_prod_rw GET /members (200)
+2026-10-29T12:57:03.377Z HTTP GET /api/v1/members actor=T_prod_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.377Z ASSERT ok   not(T_prod_rw GET /members: denied 403)
+2026-10-29T12:57:03.447Z HTTP POST /api/v1/members actor=owner@acme -> 201 69ms
+  req: {"email": "s16-e6444597@acme.test", "role": "member", "password": "«pw:s16-m»"}
+  resp: {"member":{"id":"usr_0572a9d988aba2aa95a43f30","email":"s16-e6444597@acme.test","role":"member","must_change_password":true,"created_at":"2026-10-29T12:57:03.440316Z"}}
+2026-10-29T12:57:03.448Z CONTROL ok: T_prod_rw POST /members (201)
+2026-10-29T12:57:03.454Z HTTP POST /api/v1/members actor=T_prod_rw -> 403 5ms
+  req: {"email": "s16-9dd39241@acme.test", "role": "member", "password": "«pw:s16-m»"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.454Z ASSERT ok   not(T_prod_rw POST /members: denied 403)
+2026-10-29T12:57:03.459Z HTTP PATCH /api/v1/members/usr_ba9a1e783db50d783c1e78e6 actor=owner@acme -> 200 5ms
+  req: {"role": "admin"}
+  resp: {"member":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"admin","must_change_password":false,"created_at":"2026-10-29T12:57:02.279570Z"}}
+2026-10-29T12:57:03.459Z CONTROL ok: T_prod_rw PATCH member (200)
+2026-10-29T12:57:03.464Z HTTP PATCH /api/v1/members/usr_ba9a1e783db50d783c1e78e6 actor=T_prod_rw -> 403 4ms
+  req: {"role": "owner"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.464Z ASSERT ok   not(T_prod_rw PATCH member: denied 403)
+2026-10-29T12:57:03.469Z HTTP PUT /api/v1/members/usr_ba9a1e783db50d783c1e78e6/grants/api actor=owner@acme -> 200 5ms
+  req: {"level": "viewer"}
+  resp: {"grant":{"level":"viewer","project":"api","user_id":"usr_ba9a1e783db50d783c1e78e6"}}
+2026-10-29T12:57:03.469Z CONTROL ok: T_prod_rw PUT grant (200)
+2026-10-29T12:57:03.473Z HTTP PUT /api/v1/members/usr_ba9a1e783db50d783c1e78e6/grants/api actor=T_prod_rw -> 403 4ms
+  req: {"level": "writer"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.473Z ASSERT ok   not(T_prod_rw PUT grant: denied 403)
+2026-10-29T12:57:03.475Z HTTP GET /api/v1/tokens actor=owner@acme -> 200 1ms
+  req: 
+  resp: {"tokens":[{"access":"read","created_at":"2026-10-29T12:57:03.129918Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:07:03.129918Z","id":"tok_59816248c385f8bcf529c93b","name":"s16-132805","project":"api","project_id":"prj_9b5ed80f66b6e14db5e07a4d","revoked_at":"2026-10-29T12:57:03.136256Z"},{"access":"read","created_at":"2026-10-29T12:57:03.123671Z","env":"dev","environment_id":"env_1161efd8271530cd160dcf3e","expires_at":"2026-10-29T13:07:03.123671Z","id":"tok_7a986…[sha256=074aaa4aec1b57a9dd076a7a66c6baa637501958eb5c14d39c2fc74c66151784 len=4906]
+2026-10-29T12:57:03.475Z CONTROL ok: T_prod_rw GET /tokens (200)
+2026-10-29T12:57:03.479Z HTTP GET /api/v1/tokens actor=T_prod_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.479Z ASSERT ok   not(T_prod_rw GET /tokens: denied 403)
+2026-10-29T12:57:03.484Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:03.480418Z","id":"tok_22f9898b48ea414cc3403871","name":"s16","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:03.485Z CONTROL ok: T_prod_rw POST /tokens (201)
+2026-10-29T12:57:03.490Z HTTP POST /api/v1/tokens actor=T_prod_rw -> 403 4ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16"}
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.490Z ASSERT ok   not(T_prod_rw POST /tokens: denied 403)
+2026-10-29T12:57:03.494Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 4ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16-189b24"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:03.491121Z","id":"tok_e8db9a47243b41ac2cf631b2","name":"s16-189b24","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:03.501Z HTTP POST /api/v1/tokens actor=owner@acme -> 201 5ms
+  req: {"project": "api", "env": "dev", "access": "read", "ttl_seconds": 600, "name": "s16-19c00c"}
+  resp: {"access":"read","env":"dev","expires_at":"2026-10-29T13:07:03.497169Z","id":"tok_2e97c5ea154174b1a4fd272b","name":"s16-19c00c","project":"api","token":"<redacted-token>"}
+2026-10-29T12:57:03.507Z HTTP DELETE /api/v1/tokens/tok_2e97c5ea154174b1a4fd272b actor=owner@acme -> 200 5ms
+  req: 
+  resp: {"revoked":true}
+2026-10-29T12:57:03.507Z CONTROL ok: T_prod_rw DELETE /tokens/id (200)
+2026-10-29T12:57:03.512Z HTTP DELETE /api/v1/tokens/tok_e8db9a47243b41ac2cf631b2 actor=T_prod_rw -> 403 5ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.512Z ASSERT ok   not(T_prod_rw DELETE /tokens/id: denied 403)
+2026-10-29T12:57:03.516Z HTTP GET /api/v1/audit actor=admin@acme -> 200 2ms
+  req: 
+  resp: {"events":[{"seq":1225,"timestamp":"2026-10-29T12:57:03.508294Z","actor":"tok_ad3b4b9fb525ee53e703100e","action":"denied","target":"tokens","source_ip":"10.89.0.7","result":"denied","prev_hash":"1a21b160f924c6bede93a930f3cbcb793ee3a75fcad29597ce5076da6bfeaaf6","hash":"0289e41684ce8b3577f73eced82f3d43b10565985af552ddcc64aa5b78c51494"},{"seq":1224,"timestamp":"2026-10-29T12:57:03.503685Z","actor":"pat_e1838de443ff8e3af9ef6c96","action":"token.revoked","target":"token/tok_2e97c5ea154174b1a4fd272b","source_ip":…[sha256=16a572f144b445c7f8187aaa1c3cf5702a141bcb4a4b1707df8648cfc4edefb9 len=35422]
+2026-10-29T12:57:03.516Z CONTROL ok: T_prod_rw GET /audit (200)
+2026-10-29T12:57:03.520Z HTTP GET /api/v1/audit actor=T_prod_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.520Z ASSERT ok   not(T_prod_rw GET /audit: denied 403)
+2026-10-29T12:57:03.526Z HTTP GET /api/v1/audit/verify actor=admin@acme -> 200 6ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+2026-10-29T12:57:03.526Z CONTROL ok: T_prod_rw GET /audit/verify (200)
+2026-10-29T12:57:03.531Z HTTP GET /api/v1/audit/verify actor=T_prod_rw -> 403 4ms
+  req: 
+  resp: {"error":{"code":"forbidden","message":"not permitted"}}
+2026-10-29T12:57:03.531Z ASSERT ok   not(T_prod_rw GET /audit/verify: denied 403)
+2026-10-29T12:57:03.601Z HTTP POST /api/v1/auth/token actor=anon -> 200 70ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"admin","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:03.603Z CONTROL ok: valid login without bearer (200)
+2026-10-29T12:57:03.683Z HTTP POST /api/v1/auth/token actor=T_prod_rw -> 200 80ms
+  req: {"email": "s16-13acc@acme.test", "password": "«pw:s16-13acc@acme»"}
+  resp: {"token":"<redacted-token>","user":{"id":"usr_ba9a1e783db50d783c1e78e6","email":"s16-13acc@acme.test","role":"admin","must_change_password":false,"organization":{"id":"org_8df0928f40cb031f276861d9","slug":"acme"}}}
+2026-10-29T12:57:03.685Z S16 T_prod_rw /auth/token with bearer: status=200 pat_issued=True
+2026-10-29T12:57:03.685Z HARNESS ERROR: T_prod_rw POST /auth/token with service-token bearer + valid creds -> 200 and a PAT: route ignores the bearer (unauthenticated by SPEC); review, not graded
+2026-10-29T12:57:04.226Z pg_dumpall pre-rollback-S16 -> rc=0 0008-S16-pre-rollback-S16.sql
+2026-10-29T12:57:04.303Z sweep_snapshot pre-rollback-S16: dump=0008-S16-pre-rollback-S16.sql logs=2
+2026-10-29T12:57:09Z [runner] rollback: ok

@@ -1,0 +1,39 @@
+2026-10-29T12:59:04.946Z HTTP GET /api/v1/audit actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"events":[{"seq":1325,"timestamp":"2026-10-29T12:59:03.515970Z","actor":"usr_493b9b638f8b78d524ce5e65","action":"secret.read","target":"prj_9b5ed80f66b6e14db5e07a4d/env_1161efd8271530cd160dcf3e/CANARY","source_ip":"10.89.0.10","result":"success","prev_hash":"1142063d4358d3033051132342e90e708aec30ced37b5f112f5fdcbdd62655d6","hash":"ee881698b4813e7b897b2cd46ed4a40df0cf7a45fc076c6fe724aef6e60e9b32"},{"seq":1324,"timestamp":"2026-10-29T12:59:03.012697Z","actor":"usr_18850c3d628afc43eb072844","action":"secret.r…[sha256=ad55576f1f78405b58fba564885b40a2d00f13d79cefbd3ebe2b8a2fa290755b len=379553]
+2026-10-29T12:59:04.949Z ASSERT ok   not(owner@acme: log non-empty (1000 events; an empty log would make verify vacuous))
+2026-10-29T12:59:05.067Z CLI coffer audit verify actor=owner@acme home=/home/grader1/work-r2/tmp/A4/home-pat-2e5dbc66 url=http://127.0.0.1:8420 -> rc=0 118ms stdin=0B
+  out: Audit chain valid.
+
+  err: 
+2026-10-29T12:59:05.067Z ASSERT ok   not(owner@acme: coffer audit verify rc=0 (want 0))
+2026-10-29T12:59:05.073Z HTTP GET /api/v1/audit/verify actor=owner@acme -> 200 6ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+2026-10-29T12:59:05.074Z ASSERT ok   not(owner@acme: GET /audit/verify -> 200 {'valid': True, 'first_invalid_seq': None} (want valid:true, first_invalid_seq:null))
+2026-10-29T12:59:05.078Z HTTP GET /api/v1/audit actor=owner@globex -> 200 1ms
+  req: 
+  resp: {"events":[{"seq":74,"timestamp":"2026-10-29T12:56:13.280091Z","actor":"tok_7f24c5eae966de6b5eb24809","action":"secret.read","target":"prj_d1a75eebc02b36825bd71b38/env_383a807aefe3690c4d1d78ae/CANARY","source_ip":"10.89.0.3","result":"success","prev_hash":"c56ab6098e59efa7a1071d391422c69b0e8337e0aace238f6132b1d02c845e71","hash":"bb43161d9ec5918f7961f3365ef03c2b5f60ff4a5307c6ed2358b3bba56e1538"},{"seq":73,"timestamp":"2026-10-29T12:56:13.275630Z","actor":"tok_7f24c5eae966de6b5eb24809","action":"secret.read",…[sha256=11f8f23296d076d394cbf4452e3bfd84c86f1c99a84f8ef9cb0974952dfb6477 len=26886]
+2026-10-29T12:59:05.079Z ASSERT ok   not(owner@globex: log non-empty (74 events; an empty log would make verify vacuous))
+2026-10-29T12:59:05.197Z CLI coffer audit verify actor=owner@globex home=/home/grader1/work-r2/tmp/A4/home-pat-405fc6c2 url=http://127.0.0.1:8420 -> rc=0 118ms stdin=0B
+  out: Audit chain valid.
+
+  err: 
+2026-10-29T12:59:05.197Z ASSERT ok   not(owner@globex: coffer audit verify rc=0 (want 0))
+2026-10-29T12:59:05.199Z HTTP GET /api/v1/audit/verify actor=owner@globex -> 200 2ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+2026-10-29T12:59:05.199Z ASSERT ok   not(owner@globex: GET /audit/verify -> 200 {'valid': True, 'first_invalid_seq': None} (want valid:true, first_invalid_seq:null))
+2026-10-29T12:59:05.203Z HTTP GET /api/v1/admin/audit actor=root -> 200 1ms
+  req: 
+  resp: {"events":[{"seq":63,"timestamp":"2026-10-29T12:59:04.663468Z","actor":"","action":"login.failure","target":"auth/token","source_ip":"10.89.0.10","result":"failed","prev_hash":"4dc0402a6dfc3cee913ecbbd20701fbfc822b5d14b07cbdbaae4bf5c2cd1900d","hash":"46bb1fedc26feb2f23afe2f4a44a63076b265f2f83317e473e5c613e958f2dfe"},{"seq":62,"timestamp":"2026-10-29T12:59:03.143438Z","actor":"pat_7e0f18efd9ef7fdbb1404947","action":"organization.created","target":"organization/a2-1d553","source_ip":"10.89.0.10","result":"suc…[sha256=ddf1e8d52b3689ff429a4f4bdafcfd7b2910d792f70efac0e5d2f8e837272146 len=21523]
+2026-10-29T12:59:05.204Z ASSERT ok   not(root: log non-empty (63 events; an empty log would make verify vacuous))
+2026-10-29T12:59:05.314Z CLI coffer admin audit verify actor=root home=/home/grader1/work-r2/tmp/A4/home-pat-c1a3f612 url=http://127.0.0.1:8420 -> rc=0 110ms stdin=0B
+  out: Audit chain valid.
+
+  err: 
+2026-10-29T12:59:05.314Z ASSERT ok   not(root: coffer admin audit verify rc=0 (want 0))
+2026-10-29T12:59:05.316Z HTTP GET /api/v1/admin/audit/verify actor=root -> 200 2ms
+  req: 
+  resp: {"valid":true,"first_invalid_seq":null}
+2026-10-29T12:59:05.316Z ASSERT ok   not(root: GET /admin/audit/verify -> 200 {'valid': True, 'first_invalid_seq': None} (want valid:true, first_invalid_seq:null))

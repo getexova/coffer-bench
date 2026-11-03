@@ -1,0 +1,37 @@
+2026-10-30T15:24:54.125Z CLI coffer secrets set F6_CAS_FD81F1B4 -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 12ms stdin=40B
+  out: set F6_CAS_FD81F1B4 (version 1)
+
+  err: 
+2026-10-30T15:24:54.125Z ASSERT ok   not(setup set failed)
+2026-10-30T15:24:54.135Z CLI coffer secrets set F6_CAS_FD81F1B4 -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 9ms stdin=40B
+  out: set F6_CAS_FD81F1B4 (version 2)
+
+  err: 
+2026-10-30T15:24:54.135Z ASSERT ok   not(setup set failed)
+2026-10-30T15:24:54.141Z CLI coffer secrets set F6_CAS_FD81F1B4 -p api -e dev --expect-version 1 actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=8 6ms stdin=40B
+  out: 
+  err: error: expected_version does not match the current version (conflict)
+
+2026-10-30T15:24:54.141Z ASSERT ok   not(--expect-version 1 (current 2) rc=8 (want 8))
+2026-10-30T15:24:54.151Z CLI coffer secrets get F6_CAS_FD81F1B4 -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 10ms stdin=0B
+  out: «canary:F6:2»
+  err: 
+2026-10-30T15:24:54.151Z ASSERT ok   not(after stale write value unchanged=True)
+2026-10-30T15:24:54.153Z HTTP GET /api/v1/projects/api/envs/dev/secrets/F6_CAS_FD81F1B4/versions actor=owner@acme -> 200 2ms
+  req: 
+  resp: [{"version":1,"deleted":false,"created_at":"2026-10-30T15:24:54.118964Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"},{"version":2,"deleted":false,"created_at":"2026-10-30T15:24:54.129623Z","created_by":"usr_ja7iipixewb75ww5w62vvlhfbyjrr7hp"}]
+
+2026-10-30T15:24:54.153Z ASSERT ok   not(stale write created a version)
+2026-10-30T15:24:54.161Z CLI coffer secrets set F6_CAS_FD81F1B4 -p api -e dev --expect-version 2 actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 8ms stdin=40B
+  out: set F6_CAS_FD81F1B4 (version 3)
+
+  err: 
+2026-10-30T15:24:54.161Z ASSERT ok   not(--expect-version 2 (current 2) rc=0 (want 0))
+2026-10-30T15:24:54.169Z CLI coffer secrets get F6_CAS_FD81F1B4 -p api -e dev actor=writer@acme home=/home/grader2/work-c2/homes/writer@acme url=http://127.0.0.1:18420 -> rc=0 8ms stdin=0B
+  out: «canary:F6:3»
+  err: 
+2026-10-30T15:24:54.169Z ASSERT ok   not(after correct CAS value == v3: True)
+2026-10-30T15:24:54.172Z HTTP PUT /api/v1/projects/api/envs/dev/secrets/F6_CAS_FD81F1B4 actor=owner@acme -> 409 1ms
+  req: {"value": "«canary:F6:y»", "expected_version": 1}
+  resp: {"error":{"code":"conflict","message":"expected_version does not match the current version"}}
+2026-10-30T15:24:54.172Z ASSERT ok   not(API PUT expected_version=1 (current 3) -> 409 (want 409))

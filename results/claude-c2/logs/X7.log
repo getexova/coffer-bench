@@ -1,0 +1,315 @@
+2026-10-30T15:35:36.997Z HTTP POST /api/v1/members actor=owner@acme -> 201 56ms
+  req: {"email": "x7-168b5@acme.test", "role": "member", "password": "«pw0:x7-168b5@acme»"}
+  resp: {"id":"usr_z3xalzf6bydoefvyspwsb4frc7ipjkii","email":"x7-168b5@acme.test","role":"member","created_at":"2026-10-30T15:35:36.986960Z"}
+
+2026-10-30T15:35:37.045Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x7-168b5@acme.test", "password": "«pw0:x7-168b5@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:36.998353Z","token":"<redacted-token>","user":{"id":"usr_z3xalzf6bydoefvyspwsb4frc7ipjkii","email":"x7-168b5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.050Z HTTP GET /api/v1/projects actor=x7-168b5@acme -> 200 3ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.098Z HTTP POST /api/v1/auth/token actor=anon -> 201 47ms
+  req: {"email": "x7-168b5@acme.test", "password": "«pw0:x7-168b5@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.051419Z","token":"<redacted-token>","user":{"id":"usr_z3xalzf6bydoefvyspwsb4frc7ipjkii","email":"x7-168b5@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.099Z login gate X7 start try 1 after 0s: fresh-account correct login -> 201
+2026-10-30T15:35:37.152Z HTTP POST /api/v1/members actor=owner@acme -> 201 51ms
+  req: {"email": "x7-3f4db@acme.test", "role": "member", "password": "«pw0:x7-3f4db@acme»"}
+  resp: {"id":"usr_qosggomgxg7zx2vinsuqugjzgt2gcyha","email":"x7-3f4db@acme.test","role":"member","created_at":"2026-10-30T15:35:37.144182Z"}
+
+2026-10-30T15:35:37.203Z HTTP POST /api/v1/auth/token actor=anon -> 201 50ms
+  req: {"email": "x7-3f4db@acme.test", "password": "«pw0:x7-3f4db@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.153861Z","token":"<redacted-token>","user":{"id":"usr_qosggomgxg7zx2vinsuqugjzgt2gcyha","email":"x7-3f4db@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.207Z HTTP GET /api/v1/projects actor=x7-3f4db@acme -> 200 3ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.259Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "x7-46919@acme.test", "role": "member", "password": "«pw0:x7-46919@acme»"}
+  resp: {"id":"usr_npqhvcxtxw52264dci5j5rtzqapynu4x","email":"x7-46919@acme.test","role":"member","created_at":"2026-10-30T15:35:37.250994Z"}
+
+2026-10-30T15:35:37.309Z HTTP POST /api/v1/auth/token actor=anon -> 201 50ms
+  req: {"email": "x7-46919@acme.test", "password": "«pw0:x7-46919@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.259952Z","token":"<redacted-token>","user":{"id":"usr_npqhvcxtxw52264dci5j5rtzqapynu4x","email":"x7-46919@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.313Z HTTP GET /api/v1/projects actor=x7-46919@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.364Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x7-5a62b@acme.test", "role": "member", "password": "«pw0:x7-5a62b@acme»"}
+  resp: {"id":"usr_sfxavgqdef4j37tool4ormtu3afhjxhk","email":"x7-5a62b@acme.test","role":"member","created_at":"2026-10-30T15:35:37.356698Z"}
+
+2026-10-30T15:35:37.413Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x7-5a62b@acme.test", "password": "«pw0:x7-5a62b@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.365691Z","token":"<redacted-token>","user":{"id":"usr_sfxavgqdef4j37tool4ormtu3afhjxhk","email":"x7-5a62b@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.416Z HTTP GET /api/v1/projects actor=x7-5a62b@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.468Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "x7-6ed37@acme.test", "role": "member", "password": "«pw0:x7-6ed37@acme»"}
+  resp: {"id":"usr_vzzqh76gcyxheca6uabawsxf7dlwrh4r","email":"x7-6ed37@acme.test","role":"member","created_at":"2026-10-30T15:35:37.460151Z"}
+
+2026-10-30T15:35:37.517Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x7-6ed37@acme.test", "password": "«pw0:x7-6ed37@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.469883Z","token":"<redacted-token>","user":{"id":"usr_vzzqh76gcyxheca6uabawsxf7dlwrh4r","email":"x7-6ed37@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.521Z HTTP GET /api/v1/projects actor=x7-6ed37@acme -> 200 3ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.572Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x7-71bbe@acme.test", "role": "member", "password": "«pw0:x7-71bbe@acme»"}
+  resp: {"id":"usr_eeghntlqpelkbhqvg54yjqfdgbuush3t","email":"x7-71bbe@acme.test","role":"member","created_at":"2026-10-30T15:35:37.564426Z"}
+
+2026-10-30T15:35:37.620Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x7-71bbe@acme.test", "password": "«pw0:x7-71bbe@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.573638Z","token":"<redacted-token>","user":{"id":"usr_eeghntlqpelkbhqvg54yjqfdgbuush3t","email":"x7-71bbe@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.623Z HTTP GET /api/v1/projects actor=x7-71bbe@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.674Z HTTP POST /api/v1/members actor=owner@acme -> 201 49ms
+  req: {"email": "x7-84bef@acme.test", "role": "member", "password": "«pw0:x7-84bef@acme»"}
+  resp: {"id":"usr_k74f6hwtpinmwdv6s2comekapimepbna","email":"x7-84bef@acme.test","role":"member","created_at":"2026-10-30T15:35:37.668605Z"}
+
+2026-10-30T15:35:37.723Z HTTP POST /api/v1/auth/token actor=anon -> 201 49ms
+  req: {"email": "x7-84bef@acme.test", "password": "«pw0:x7-84bef@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.675326Z","token":"<redacted-token>","user":{"id":"usr_k74f6hwtpinmwdv6s2comekapimepbna","email":"x7-84bef@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.727Z HTTP GET /api/v1/projects actor=x7-84bef@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.777Z HTTP POST /api/v1/members actor=owner@acme -> 201 48ms
+  req: {"email": "x7-9901d@acme.test", "role": "member", "password": "«pw0:x7-9901d@acme»"}
+  resp: {"id":"usr_u2eic5pfxvq2uyn2fnnrwmfihukzizwd","email":"x7-9901d@acme.test","role":"member","created_at":"2026-10-30T15:35:37.770210Z"}
+
+2026-10-30T15:35:37.825Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x7-9901d@acme.test", "password": "«pw0:x7-9901d@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.778554Z","token":"<redacted-token>","user":{"id":"usr_u2eic5pfxvq2uyn2fnnrwmfihukzizwd","email":"x7-9901d@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.829Z HTTP GET /api/v1/projects actor=x7-9901d@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.881Z HTTP POST /api/v1/members actor=owner@acme -> 201 50ms
+  req: {"email": "x7-10ecc7@acme.test", "role": "member", "password": "«pw0:x7-10ecc7@acme»"}
+  resp: {"id":"usr_hcdgy3yljv77xhhr62ti5tce5qxsiihm","email":"x7-10ecc7@acme.test","role":"member","created_at":"2026-10-30T15:35:37.873165Z"}
+
+2026-10-30T15:35:37.932Z HTTP POST /api/v1/auth/token actor=anon -> 201 51ms
+  req: {"email": "x7-10ecc7@acme.test", "password": "«pw0:x7-10ecc7@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.882580Z","token":"<redacted-token>","user":{"id":"usr_hcdgy3yljv77xhhr62ti5tce5qxsiihm","email":"x7-10ecc7@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.935Z HTTP GET /api/v1/projects actor=x7-10ecc7@acme -> 200 2ms
+  req: 
+  resp: []
+
+2026-10-30T15:35:37.984Z HTTP POST /api/v1/auth/token actor=anon -> 201 48ms
+  req: {"email": "x7-3f4db@acme.test", "password": "«pw0:x7-3f4db@acme»"}
+  resp: {"expires_at":"2026-11-29T15:35:37.936468Z","token":"<redacted-token>","user":{"id":"usr_qosggomgxg7zx2vinsuqugjzgt2gcyha","email":"x7-3f4db@acme.test","role":"member","org_id":"org_xyap7smmpbnuafybnstbwwbvhp32ccah","org_slug":"acme","must_change_password":false}}
+
+2026-10-30T15:35:37.985Z CONTROL ok: correct login for scratch user 0 (201)
+2026-10-30T15:35:38.035Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "warm-0fl68uxrxd@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.100Z HTTP POST /api/v1/auth/token actor=anon -> 401 64ms
+  req: {"email": "warm-elsv082wma@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.149Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "warm-495ewox7c7@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.197Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-t2ozjfi4pbdl@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.247Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-3f4db@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.547Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-0udz3f6es1gg@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.597Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-46919@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.897Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-sztx7cddqhxe@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:38.946Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-5a62b@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:39.245Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-bxx7kgc2lvpa@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:39.294Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-6ed37@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:39.595Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-rrfkssrjzqgp@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:39.645Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-71bbe@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:39.946Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-bwnbykci7qfx@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:39.996Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-84bef@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:40.294Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-jc4hwmupzr1x@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:40.344Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-9901d@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:40.645Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-sd36vjihzb9m@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:40.693Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-10ecc7@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:40.994Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-0pcs6xu9j8pk@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:41.044Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-3f4db@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:41.343Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-bypmbkdljrpd@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:41.393Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-46919@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:41.695Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "nouser-a4wxup9vsvb1@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:41.745Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-5a62b@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:42.045Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-c0lle7crrych@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:42.092Z HTTP POST /api/v1/auth/token actor=anon -> 401 47ms
+  req: {"email": "x7-6ed37@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:42.391Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-ymlotgbgywyn@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:42.441Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-71bbe@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:42.742Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-re0gwhgyq7ab@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:42.791Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-84bef@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:43.093Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "nouser-1ewfibpjcyl8@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:43.142Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-9901d@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:43.440Z HTTP POST /api/v1/auth/token actor=anon -> 401 47ms
+  req: {"email": "nouser-gu4yehey3b9l@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:43.490Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-10ecc7@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:43.788Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-cevpb177z15x@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:43.836Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-3f4db@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:44.136Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-qbuqbpumaaqw@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:44.182Z HTTP POST /api/v1/auth/token actor=anon -> 401 45ms
+  req: {"email": "x7-46919@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:44.482Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-ratgyacuzbbv@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:44.531Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-5a62b@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:44.832Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "nouser-jbbp1vgsfyze@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:44.883Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "x7-6ed37@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:45.184Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-k7ohqyttsywm@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:45.233Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-71bbe@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:45.533Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-3jsd6bmdn8hv@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:45.582Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-84bef@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:45.883Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "nouser-qvqeq5jfrotf@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:45.932Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-9901d@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:46.232Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-jafo2bvpaha0@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:46.283Z HTTP POST /api/v1/auth/token actor=anon -> 401 50ms
+  req: {"email": "x7-10ecc7@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:46.582Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-ew9wztmkdf1l@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:46.631Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-3f4db@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:46.931Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-fekfawxkelti@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:46.980Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-46919@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:47.279Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-5a8y2pvzwzp8@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:47.328Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "x7-5a62b@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:47.627Z HTTP POST /api/v1/auth/token actor=anon -> 401 49ms
+  req: {"email": "nouser-qbtpezxjxrre@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:47.675Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-6ed37@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:47.974Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "nouser-hjoqfejsjr6w@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:48.023Z HTTP POST /api/v1/auth/token actor=anon -> 401 48ms
+  req: {"email": "x7-71bbe@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:48.325Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "nouser-3f3il91au7bo@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:48.376Z HTTP POST /api/v1/auth/token actor=anon -> 401 51ms
+  req: {"email": "x7-84bef@acme.test", "password": "<redacted-password>"}
+  resp: {"error":{"code":"unauthenticated","message":"invalid credentials"}}
+2026-10-30T15:35:48.627Z X7 sample: 30 pairs, 0 limiter 429s (dropped), thresholds [], batch 10, stopped=-, 10s
+2026-10-30T15:35:48.627Z X7 sample: 0 rate-limit 429s retried (not sampled)
+2026-10-30T15:35:48.627Z X7 statuses=[401]
+2026-10-30T15:35:48.627Z ASSERT ok   not(login statuses differ: unknown=[401] wrong=[401])
+2026-10-30T15:35:48.627Z ASSERT ok   not(failed-login statuses not all 4xx: [401])
+2026-10-30T15:35:48.627Z ASSERT ok   not(all 60 failed-login bodies identical (68 bytes))
+2026-10-30T15:35:48.627Z X7 median unknown=49.4ms wrong=49.2ms ratio=1.004
+2026-10-30T15:35:48.627Z ASSERT ok   not(median latency unknown=49.4ms wrong=49.2ms ratio=1.00 (want <= 1.25))
