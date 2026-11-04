@@ -14,9 +14,11 @@ Both were given the same spec for a production-grade secrets service: multi-tena
 
 Both builds are scored on the same harness under the same rules. See [Results](#results).
 
+This page compares Exova run 3 with Claude Code c2. In other graded rounds, Claude Code's original run beat Exova run 3, 150 to 147 on the same rules (`results/exova-run3/notes/rescore-fixed-harness.md`), and beat Exova run 4, 148 to 141. Those other builds are not published here.
+
 Exova's cost comes from its gateway billing ledger. Claude Code ran through a proxy and has no bill of its own, so its cost is its logged token usage priced at Anthropic list rates: 1,074 calls and 111.8M tokens. That figure assumes every cache write was a 5-minute write. If they were all 1-hour writes, the total is $82.
 
-Published 2026-10-30. Updated 2026-11-03.
+Published 2026-10-30. Updated 2026-11-04.
 
 This repository holds everything behind the result: both builds with their full git history, the spec, the grader, the harness code that ran it, and the raw grading output.
 
@@ -81,7 +83,7 @@ Every check not listed passed on both builds.
 
 ## How it was graded
 
-- Blind. Each build was renamed `build-1` or `build-2` by a recorded coin flip before cloning. Graders saw only the bundle, `SPEC.md` and `GRADER.md`, and ran as separate OS users on a dedicated host.
+- Blind in round 3, which graded Exova run 3. Each build was renamed `build-1` or `build-2` by a recorded coin flip before cloning. Graders saw only the bundle, `SPEC.md` and `GRADER.md`, and ran as separate OS users on a dedicated host. Claude Code c2 was graded later, on its own, under its run label.
 - Black-box. The harness boots each build with its own `compose.yaml` and drives it through the HTTP API and the CLI. It never reads source, except where a check is explicitly about the repository (X15, X16, E1, E6).
 - Scoring. P0 checks are worth 2 points and P1 checks 1. A void earns nothing and leaves the denominator. A ship-blocker failure caps the verdict at not shippable, whatever the score. SHIP needs zero ship-blocker failures, at least 90% of P0 points and a strict G1: a fresh clone and the README quickstart, followed exactly, reach a working `secrets get` within 30 minutes. G1 carries no points.
 - G1. Exova run 3 got an assisted pass. Its `compose.yaml` uses the unqualified image `postgres:16`, which rootless podman with short-name enforcement won't pull without a TTY. One prerequisite pull fixed it. Claude Code c2 names `docker.io/library/postgres:16` in full. G1 was not run for c2; it carries no points, and c2's X10 ship-blocker already sets its verdict.
@@ -90,7 +92,7 @@ Every check not listed passed on both builds.
 
 ### Grader issues and how each was handled
 
-Four grader issues came up during grading. Each was settled under one rule for both builds, and the matched scores above already include it.
+Five grader issues came up during grading. Each was settled under one rule for both builds, and the matched scores above already include it.
 
 | Issue | How it was handled |
 |---|---|
@@ -98,6 +100,7 @@ Four grader issues came up during grading. Each was settled under one rule for b
 | A6: GRADER says "the following sequence", but SPEC only says "first invalid sequence number". Both builds answer N. | Voided for both builds. |
 | X5: any column with "pass" in its name is read as a password hash, timestamps included. | Corrected in adjudication and scored on the real hash columns. |
 | S4/S16 control: the positive control grants a project to a user it has just made admin. SPEC lets a build refuse that, and c2 does (400, "grants apply only to members"), so the check stops early. | S4 left out of c2's denominator; S16 void for both. |
+| O4: c2 logged nothing during one window of the scored run, then passed 4/4 when re-run alone. Its adjudication rates this flaky (`adjudicate-c2.md`). | The scored run counts for both builds; nothing is re-run. Counted as a pass, c2 would score 148. |
 
 X5 and S4 are corrected at scoring time. Their harness code is unchanged, so a re-run reproduces the raw result in `results/`.
 
@@ -135,5 +138,5 @@ A full run takes 10 to 15 minutes per build. G1, E2, E4 and E5 are manual (`grad
 ## Notes on the artifacts
 
 - Exova run 3's commit messages were replaced with `commit N` when the history was rewritten for blinding. The builder's own final commit was `7fae8c87`.
-- In the round-3 notes, `build-1` is Exova run 3. `build-2`, and the labels `c1` and `r4` in the c2 notes, refer to other runs that are not published in this repository.
+- In the round-3 notes, `build-1` is Exova run 3 and `build-2` is Claude Code's original run (150 in the re-score). The labels `c1` and `r4` in the c2 notes are other runs. None of these other builds are published in this repository.
 - Throwaway credentials the grader generated on its disposable stacks have been replaced with `<redacted-…>` in `results/`. The remaining strings secret scanners flag are canary values and test fixtures, listed in `.gitleaksignore`.
